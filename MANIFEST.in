@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include advantisquartz *.css
+recursive-include advantisquartz *.csv
+recursive-include advantisquartz *.html
+recursive-include advantisquartz *.ico
+recursive-include advantisquartz *.js
+recursive-include advantisquartz *.json
+recursive-include advantisquartz *.md
+recursive-include advantisquartz *.png
+recursive-include advantisquartz *.py
+recursive-include advantisquartz *.svg
+recursive-include advantisquartz *.txt
+recursive-exclude advantisquartz *.pyc
