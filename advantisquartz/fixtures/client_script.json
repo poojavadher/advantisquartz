@@ -1,0 +1,57 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Supplier Quotation",
+  "enabled": 0,
+  "modified": "2023-06-15 13:18:40.152249",
+  "module": "Advantisquartz",
+  "name": "Create Button Hide",
+  "script": "frappe.ui.form.on('Supplier Quotation', {\n    refresh: function(frm) {\n        // Get the create button element\n        var createButton = frm.page\n            .get_inner_group_button('Create')\n            .addClass('d-none'); // Hide the button using the \"d-none\" class\n\n        // Optionally, you can also disable the button to prevent any unintended functionality\n        createButton.prop('disabled', true);\n    }\n});\n\n\nfrappe.ui.form.on('Supplier Quotation', {\n    refresh: function(frm) {\n        frm.add_custom_button('Purchase Receipt');\n    }\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Supplier Quotation",
+  "enabled": 1,
+  "modified": "2023-06-15 13:18:40.215589",
+  "module": "Advantisquartz",
+  "name": "button",
+  "script": "frappe.ui.form.on('Supplier Quotation', {\n  refresh(frm) {\n    if (cur_frm.doc.status == \"Submitted\") {\n      frm.add_custom_button('Purchase Order', () => {\n        const purchaseOrder = frappe.model.get_new_doc('Purchase Order');\n        const purchaseOrderItem = frappe.model.get_new_doc('Purchase Order Item');\n        purchaseOrder.supplier = cur_frm.doc.supplier;\n        purchaseOrder.title = cur_frm.doc.supplier;\n        purchaseOrder.naming_series = 'PUR-ORD-.YYYY.-';\n        purchaseOrder.schedule_date = cur_frm.doc.valid_till;\n        const purchaseOrderItems = [];\n\n        const quotationItems = cur_frm.doc.items;\n        quotationItems.forEach((quotationItem, index) => {\n          if (quotationItem.status == \"Accepted\") {\n            const purchaseOrderItem = frappe.model.get_new_doc('Purchase Order Item');\n            purchaseOrderItem.item_code = quotationItem.item_code;\n            purchaseOrderItem.uom = quotationItem.uom;\n            purchaseOrderItem.qty = quotationItem.qty;\n            purchaseOrderItem.uom = quotationItem.uom;\n            purchaseOrderItem.item_name = quotationItem.item_name;\n            purchaseOrderItem.base_rate = quotationItem.base_rate;\n            purchaseOrderItem.rate = quotationItem.rate;\n            purchaseOrderItem.price_list_rate = quotationItem.price_list_rate;\n            purchaseOrderItem.warehouse = quotationItem.warehouse;\n            purchaseOrderItem.material_request = quotationItem.material_request;\n            purchaseOrderItem.supplier_quotation = cur_frm.doc.name;\n            purchaseOrderItem.expense_account = 'Cost of Goods Sold - AQL';\n            purchaseOrderItem.cost_center = 'Main - AQL';\n            \n            // Set values for other required fields of the purchase order item\n            // purchaseOrderItem.field_name = quotationItem.field_name;\n\n            purchaseOrderItems.push(purchaseOrderItem);\n          }\n        });\n\n        purchaseOrder.items = purchaseOrderItems;\n        \n        // Save the purchase order with the populated items\n        frappe.call({\n          method: 'frappe.client.insert',\n          args: {\n            doc: purchaseOrder\n          },\n          callback: function(response) {\n            if (response.message) {\n              const newPurchaseOrderName = response.message.name;\n              frappe.set_route('Form', 'Purchase Order', newPurchaseOrderName);\n            }\n          }\n        });\n      });\n    }\n  }\n});\n\n\n\n\nfrappe.ui.form.on('Supplier Quotation', {\n  refresh: function(frm) {\n   \n   set_css(frm);\n    \n  }\n});\n\n\n\nfunction set_css(frm){\n$('.btn ellipsis btn-primary').css('display','none');\n\n\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Stock Entry",
+  "enabled": 1,
+  "modified": "2023-06-15 13:18:40.192396",
+  "module": "Advantisquartz",
+  "name": "quality",
+  "script": "\n\nfrappe.ui.form.on('Stock Entry', {\n    refresh: function(frm) {\n       \n       $.each(frm.doc.items || [], function (i, d)\n            {\n                var a = d.is_finished_item;\n                var batch = d.batch_no;\n                var serial = d.serial_no;\n                // console.log(a)\n                if(a == 1 && batch ){\n                var b = d.quality;\n                console.log(b);\n                 frappe.db.set_value('Batch',batch, 'quality',b)\n                }\n                else if(a == 1 && serial){\n                   \n                    var c = d.quality;\n                  \n                    $.each(serial.split('\\n'), function(index, value) {\n                    frappe.db.set_value('Serial No', value, '_serial_no_quality', c);\n                });\n                }\n                \n                \n            });\n        \n    }\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Sales Order",
+  "enabled": 1,
+  "modified": "2023-06-15 13:18:40.238552",
+  "module": "Advantisquartz",
+  "name": "sales order",
+  "script": "frappe.ui.form.on('Sales Order Item', {\n\tsales_uom_conversion_factor:function(frm) {\n\t $.each(frm.doc.items || [], function (i, d)\n\t {\n\t     var sales_uom_cf = d.sales_uom_conversion_factor;\n\t     var sales_uom_multipy = sales_uom_cf * d.qty;\n\t  \n\t })\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Order",
+  "enabled": 1,
+  "modified": "2023-06-15 13:18:40.262657",
+  "module": "Advantisquartz",
+  "name": "Required By Date 7 Days",
+  "script": "frappe.ui.form.on('Purchase Order', {\n\trefresh(frm) {\n\t\tconst currentDate = new Date();\nconst year = currentDate.getFullYear();\nconst month = String(currentDate.getMonth() + 1).padStart(2, '0');\nconst day = String(currentDate.getDate()).padStart(2, '0');\nconst formattedDate = `${day}-${month}-${year}`;\n\nconsole.log(formattedDate);\n\n\t}\n})",
+  "view": "Form"
+ }
+]

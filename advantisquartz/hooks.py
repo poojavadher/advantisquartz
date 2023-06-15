@@ -199,3 +199,22 @@ app_license = "MIT"
 # auth_hooks = [
 #	"advantisquartz.auth.validate"
 # ]
+ 
+fixtures = [
+    "Workflow",
+    "Workflow State",
+    {"dt":"Custom Field","filters":[
+        [
+            "module","in",[
+               "advantisquartz"
+            ]
+        ]
+    ]},
+    {"dt":"Client Script","filters":[
+        [
+            "module","in",[
+               "advantisquartz"
+            ]
+        ]
+    ]},
+]
