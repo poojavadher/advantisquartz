@@ -218,11 +218,4 @@ fixtures = [
             ],
         ]
     ]},
-    {"dt":"Dashboard","filters":[
-        [
-            "name","in",[
-               "Buying"
-            ],
-        ]
-    ]},
 ]
