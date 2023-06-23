@@ -1,0 +1,348 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-06-16 18:09:32.004281",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "invoice_no",
+  "invoice_date",
+  "entry_type",
+  "column_break_om2y0",
+  "gate_in_date",
+  "gate_in_time",
+  "is_gate_out",
+  "gate_out_date",
+  "gate_out_time",
+  "section_break_s4rhw",
+  "driver_name",
+  "driver_mobile_no",
+  "column_break_mbtk2",
+  "truck_no",
+  "section_break_pawp6",
+  "is_weight_in",
+  "weight_in",
+  "column_break_52oid",
+  "weight_in_date",
+  "weight_in_time",
+  "section_break_tbmnr",
+  "unloading",
+  "is_unloaded",
+  "column_break_fr4yd",
+  "unloading_date",
+  "unloading_time",
+  "section_break_x9qy7",
+  "is_weight_out",
+  "weight_out",
+  "column_break_jx1uc",
+  "weight_out_date",
+  "weight_out_time",
+  "quality_inspection_tab",
+  "sampling",
+  "sampling_time",
+  "column_break_frrzj",
+  "sampling_date",
+  "section_break_mo5tj",
+  "quality_inspection",
+  "quality_inspection_time",
+  "column_break_39qxh",
+  "quality_inspection_date",
+  "section_break_gqszu",
+  "qc_remark",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_no",
+   "fieldtype": "Data",
+   "label": "Invoice No."
+  },
+  {
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name"
+  },
+  {
+   "fieldname": "driver_mobile_no",
+   "fieldtype": "Phone",
+   "label": "Driver Mobile No."
+  },
+  {
+   "fieldname": "column_break_om2y0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "gate_in_date",
+   "fieldtype": "Date",
+   "label": "Gate in Date"
+  },
+  {
+   "default": "Now",
+   "fieldname": "gate_in_time",
+   "fieldtype": "Time",
+   "label": "Gate in Time"
+  },
+  {
+   "fieldname": "truck_no",
+   "fieldtype": "Data",
+   "label": "Truck No."
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date"
+  },
+  {
+   "depends_on": "is_weight_in",
+   "fieldname": "weight_in_date",
+   "fieldtype": "Date",
+   "label": "Weight In Date",
+   "read_only_depends_on": "is_weight_in"
+  },
+  {
+   "fieldname": "sampling",
+   "fieldtype": "Data",
+   "label": "Sampling"
+  },
+  {
+   "default": "Today",
+   "fieldname": "sampling_date",
+   "fieldtype": "Date",
+   "label": "Sampling Date"
+  },
+  {
+   "depends_on": "is_weight_in",
+   "fieldname": "weight_in",
+   "fieldtype": "Data",
+   "label": "Weight in (Weight)"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "is_weight_in",
+   "fieldname": "weight_in_time",
+   "fieldtype": "Time",
+   "label": "Weight in Time",
+   "read_only_depends_on": "is_weight_in"
+  },
+  {
+   "default": "Now",
+   "fieldname": "sampling_time",
+   "fieldtype": "Time",
+   "label": "Sampling Time"
+  },
+  {
+   "fieldname": "quality_inspection",
+   "fieldtype": "Select",
+   "label": "Quality Inspection",
+   "options": "Approved\nRejected\nPartially Approved"
+  },
+  {
+   "fieldname": "qc_remark",
+   "fieldtype": "Text",
+   "label": "QC Remark"
+  },
+  {
+   "default": "Today",
+   "fieldname": "quality_inspection_date",
+   "fieldtype": "Date",
+   "label": "Quality Inspection Date"
+  },
+  {
+   "default": "Now",
+   "fieldname": "quality_inspection_time",
+   "fieldtype": "Time",
+   "label": "Quality Inspection TIme"
+  },
+  {
+   "fieldname": "unloading",
+   "fieldtype": "Data",
+   "label": "Unloading"
+  },
+  {
+   "depends_on": "is_unloaded",
+   "fieldname": "unloading_date",
+   "fieldtype": "Date",
+   "label": "Unloading Dat",
+   "read_only_depends_on": "is_unloaded"
+  },
+  {
+   "depends_on": "is_unloaded",
+   "fieldname": "unloading_time",
+   "fieldtype": "Time",
+   "label": "Unloading Time",
+   "read_only_depends_on": "is_unloaded"
+  },
+  {
+   "default": "0",
+   "depends_on": "is_weight_out",
+   "fieldname": "weight_out",
+   "fieldtype": "Data",
+   "label": "Weight Out (Weight)",
+   "read_only_depends_on": "is_weight_out"
+  },
+  {
+   "depends_on": "is_weight_out",
+   "fieldname": "weight_out_date",
+   "fieldtype": "Date",
+   "label": "Weight Out Date",
+   "read_only_depends_on": "is_weight_out"
+  },
+  {
+   "depends_on": "is_weight_out",
+   "fieldname": "weight_out_time",
+   "fieldtype": "Time",
+   "label": "Weight Out TIme",
+   "read_only_depends_on": "is_weight_out"
+  },
+  {
+   "depends_on": "is_gate_out",
+   "fieldname": "gate_out_date",
+   "fieldtype": "Date",
+   "label": "Gate Out Date ",
+   "read_only_depends_on": "is_gate_out"
+  },
+  {
+   "depends_on": "is_gate_out",
+   "fieldname": "gate_out_time",
+   "fieldtype": "Time",
+   "label": "Gate Out Time",
+   "read_only_depends_on": "is_gate_out"
+  },
+  {
+   "fieldname": "quality_inspection_tab",
+   "fieldtype": "Tab Break",
+   "label": "Quality Inspection"
+  },
+  {
+   "fieldname": "section_break_s4rhw",
+   "fieldtype": "Section Break",
+   "label": "Driver Details"
+  },
+  {
+   "fieldname": "column_break_frrzj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mo5tj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_39qxh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gqszu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_mbtk2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_x9qy7",
+   "fieldtype": "Section Break",
+   "label": "Weight Out Details"
+  },
+  {
+   "fieldname": "column_break_jx1uc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gate Entry",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_tbmnr",
+   "fieldtype": "Section Break",
+   "label": "Unloading Details",
+   "read_only_depends_on": "is_weight_in"
+  },
+  {
+   "fieldname": "column_break_fr4yd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Gate Entry NO.",
+   "options": "GT-.MM.-.YY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_pawp6",
+   "fieldtype": "Section Break",
+   "label": "Weight In Details"
+  },
+  {
+   "fieldname": "column_break_52oid",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "entry_type",
+   "fieldtype": "Select",
+   "label": "Entry Type",
+   "options": "Inward\nOutward"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_gate_out",
+   "fieldtype": "Check",
+   "label": "Is Gate Out"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_weight_in",
+   "fieldtype": "Check",
+   "label": "Is Weight In"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_unloaded",
+   "fieldtype": "Check",
+   "label": "Is Unloaded"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_weight_out",
+   "fieldtype": "Check",
+   "label": "Is weight Out"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-06-22 17:15:45.487198",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Gate Entry",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

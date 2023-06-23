@@ -203,6 +203,7 @@ app_license = "MIT"
 fixtures = [
     "Workflow",
     "Workflow State",
+    "Custom DocPerm",
     {"dt":"Custom Field","filters":[
         [
             "module","in",[
@@ -214,7 +215,14 @@ fixtures = [
         [
             "module","in",[
                "advantisquartz"
-            ]
+            ],
+        ]
+    ]},
+    {"dt":"Dashboard","filters":[
+        [
+            "name","in",[
+               "Buying"
+            ],
         ]
     ]},
 ]
