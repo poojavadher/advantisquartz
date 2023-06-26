@@ -130,61 +130,61 @@
   "cards": [
    {
     "card": "Material Request Pending for approval",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Approved Material Request",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Request for Quotation pending for approval",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Approved Request for Quotation",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Supplier Quotation pending for approval",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Approved Supplier Quotation",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Purchase Order pending for Approval",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Approved Purchase Orders",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Purchase Receipt pending for Approval",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
     "card": "Approved Purchase Receipts",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    }
@@ -193,19 +193,19 @@
   "charts": [
    {
     "chart": "Material Request Analysis",
-    "parent": "AQ Buying",
+    "parent": "AQ Buying Dashboard",
     "parentfield": "charts",
     "parenttype": "Dashboard",
     "width": "Half"
    }
   ],
-  "dashboard_name": "AQ Buying",
+  "dashboard_name": "AQ Buying Dashboard",
   "docstatus": 0,
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-06-26 18:06:09.329282",
+  "modified": "2023-06-26 18:15:09.635720",
   "module": "Advantisquartz",
-  "name": "AQ Buying"
+  "name": "AQ Buying Dashboard"
  }
 ]
