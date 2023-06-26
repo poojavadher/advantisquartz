@@ -48,10 +48,10 @@
   "doctype": "Client Script",
   "dt": "Stock Entry",
   "enabled": 1,
-  "modified": "2023-06-26 11:52:30.199261",
+  "modified": "2023-06-26 15:42:09.962674",
   "module": "Advantisquartz",
   "name": "Manual Series Number",
-  "script": "frappe.ui.form.on('Stock Entry Detail', {\n\titem_code: function(frm) {\n\t\tvar currentSeries = cur_frm.doc.manual_serial_series;\n\t\tvar qty = 0;\n\t\n         $.each(frm.doc.items, function(i, d) {\n            qty += d.qty;\n        });\n        console.log(qty)\n     if (currentSeries.split(\"#\").length - 1 === 1) {\n\t\t\tfor (var i = 0; i < qty; i++) {\n\t\t\t\tvar paddedIndex = i.toString().padStart(2, '0'); // Add leading zeros if the index is a single digit\n\t\t\t\tconsole.log(currentSeries.replace(\"#\", paddedIndex));\n\t\t\t}\n\t\t} else if (currentSeries.split(\"#\").length - 1 === 2) {\n\t\t\tconsole.log(\"two #\");\n\t\t\tfor (var j = 0; j < qty ; j++){\n\t\t\t    var paddedjindex = j.toString().padStart(2,'0');\n\t\t\t    console.log(currentSeries.replace(\"##\",paddedjindex))\n\t\t\t}\n\t\t}\n\t\telse if(currentSeries.split(\"#\").length - 1 === 3){\n\t\t    console.log(\"Three #\")\n\t\t}\n\t\t}\n\t\n});\n",
+  "script": "frappe.ui.form.on('Stock Entry Detail', {\n\titem_code: function(frm) {\n\t\tvar currentSeries = cur_frm.doc.manual_serial_series;\n\t\tvar qty = 0;\n\t    var year = new Date().getFullYear();\n\t    console.log(year)\n         $.each(frm.doc.items, function(i, d) {\n            qty += d.qty;\n        });\n      \n     if (currentSeries.split(\"#\").length - 1 === 1) {\n\t\t\tfor (var i = 0; i < qty; i++) {\n\t\t\t\tvar paddedIndex = i.toString().padStart(2, '0'); // Add leading zeros if the index is a single digit\n\t\t\t\tconsole.log(currentSeries.replace(\"#\", paddedIndex));\n\t\t\t}\n\t\t} else if (currentSeries.split(\"#\").length - 1 === 2) {\n\t\t\n\t\t\tfor (var j = 0; j < qty ; j++){\n\t\t\t    var paddedjindex = j.toString().padStart(2,'0');\n\t\t\t    console.log(currentSeries.replace(\"##\",paddedjindex))\n\t\t\t}\n\t\t}\n\t\telse if (currentSeries.split(\"#\").length - 1 === 3 || currentSeries.includes(\"YY\")) {\n\t\t\tfor (var k = 0; k < qty; k++) {\n\t\t\t\tvar paddedkindex = k.toString().padStart(3, '00');\n\t\t\t\tconsole.log(currentSeries.replace(/YY/g, year).replace(\"###\", paddedkindex));\n\t\t\t}\n\t\t}\n\t\t}\n\t\n});\n",
   "view": "Form"
  }
 ]

@@ -218,4 +218,18 @@ fixtures = [
             ],
         ]
     ]},
+    {"dt":"Number Card","filters":[
+        [
+            "module","in",[
+                "advantisquartz"
+            ]
+        ]
+    ]},
+    {"dt":"Dashboard","filters":[
+        [
+            "module","in",[
+                "advantisquartz"
+            ]
+        ]
+    ]}
 ]

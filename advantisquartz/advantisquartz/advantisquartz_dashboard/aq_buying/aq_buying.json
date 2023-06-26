@@ -1,0 +1,52 @@
+{
+ "cards": [
+  {
+   "card": "Material Request Pending for approval"
+  },
+  {
+   "card": "Approved Material Request"
+  },
+  {
+   "card": "Request for Quotation pending for approval"
+  },
+  {
+   "card": "Approved Request for Quotation"
+  },
+  {
+   "card": "Supplier Quotation pending for approval"
+  },
+  {
+   "card": "Approved Supplier Quotation"
+  },
+  {
+   "card": "Purchase Order pending for Approval"
+  },
+  {
+   "card": "Approved Purchase Orders"
+  },
+  {
+   "card": "Purchase Receipt pending for Approval"
+  },
+  {
+   "card": "Approved Purchase Receipts"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Material Request Analysis",
+   "width": "Half"
+  }
+ ],
+ "creation": "2023-06-26 14:59:10.913371",
+ "dashboard_name": "AQ Buying",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-06-26 15:45:09.283860",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "AQ Buying",
+ "owner": "Administrator"
+}
