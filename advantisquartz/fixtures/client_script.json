@@ -15,10 +15,10 @@
   "doctype": "Client Script",
   "dt": "Purchase Order",
   "enabled": 1,
-  "modified": "2023-06-23 15:13:55.573628",
+  "modified": "2023-06-28 17:45:57.007448",
   "module": "Advantisquartz",
   "name": "Default schedule date in Purchase Order",
-  "script": "frappe.ui.form.on('Purchase Order', {\n    \n    onload :function(frm)\n    {\n        var a = cur_frm.doc.transaction_date;\n       \n        frm.set_value('schedule_date',frappe.datetime.add_days(a,7) );\n        console.log(a);\n    }\n});",
+  "script": "frappe.ui.form.on('Purchase Order', {\n    \n    onload :function(frm)\n    {\n        var a = cur_frm.doc.transaction_date;\n       \n        frm.set_value('schedule_date',frappe.datetime.add_days(a,7) );\n        console.log(a);\n    }\n});\n\n\nfrappe.ui.form.on('Purchase Order', {\n\tbefore_submit: function(frm) {\n\t\tvar a = [];\n\t\tfrm.doc.items.forEach(function(child) {\n\t\t\tif (child.supplier_quotation) {\n\t\t\t\ta.push(child.supplier_quotation);\n\t\t\t}\n\t\t});\n\t\ta = [...new Set(a)];\n\n\t\tif (a.length > 0) {\n\t\t\tvar output = a.join(', '); \n\t\t\n\t\t}\n\t\tfrappe.db.set_value('Supplier Quotation',output, 'supplier_quotation_status',\"Received\")\n\t}\n});",
   "view": "Form"
  },
  {
@@ -52,6 +52,28 @@
   "module": "Advantisquartz",
   "name": "Manual Series Number",
   "script": "frappe.ui.form.on('Stock Entry Detail', {\n\titem_code: function(frm) {\n\t\tvar currentSeries = cur_frm.doc.manual_serial_series;\n\t\tvar qty = 0;\n\t    var year = new Date().getFullYear();\n\t    console.log(year)\n         $.each(frm.doc.items, function(i, d) {\n            qty += d.qty;\n        });\n      \n     if (currentSeries.split(\"#\").length - 1 === 1) {\n\t\t\tfor (var i = 0; i < qty; i++) {\n\t\t\t\tvar paddedIndex = i.toString().padStart(2, '0'); // Add leading zeros if the index is a single digit\n\t\t\t\tconsole.log(currentSeries.replace(\"#\", paddedIndex));\n\t\t\t}\n\t\t} else if (currentSeries.split(\"#\").length - 1 === 2) {\n\t\t\n\t\t\tfor (var j = 0; j < qty ; j++){\n\t\t\t    var paddedjindex = j.toString().padStart(2,'0');\n\t\t\t    console.log(currentSeries.replace(\"##\",paddedjindex))\n\t\t\t}\n\t\t}\n\t\telse if (currentSeries.split(\"#\").length - 1 === 3 || currentSeries.includes(\"YY\")) {\n\t\t\tfor (var k = 0; k < qty; k++) {\n\t\t\t\tvar paddedkindex = k.toString().padStart(3, '00');\n\t\t\t\tconsole.log(currentSeries.replace(/YY/g, year).replace(\"###\", paddedkindex));\n\t\t\t}\n\t\t}\n\t\t}\n\t\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Request for Quotation",
+  "enabled": 1,
+  "modified": "2023-06-28 17:46:18.579048",
+  "module": "Advantisquartz",
+  "name": "status",
+  "script": "frappe.ui.form.on('Request for Quotation', {\n  validate: function(frm) {\n    var a = [];\n    frm.doc.suppliers.forEach(function(child) {\n      if (child.quote_status) {\n        a.push(child.quote_status);\n      }\n    });\n  \n    if (a.includes(\"Received\")) {\n      frm.set_value(\"quotation_status\",\"Received\")\n    } else {\n      frm.set_value(\"quotation_status\",\"Pending\")\n    }\n  }\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Supplier Quotation",
+  "enabled": 1,
+  "modified": "2023-06-28 17:45:56.970859",
+  "module": "Advantisquartz",
+  "name": "Status Changed",
+  "script": "frappe.ui.form.on('Supplier Quotation', {\n\tbefore_submit: function(frm) {\n\t\tvar a = [];\n\t\tfrm.doc.items.forEach(function(child) {\n\t\t\tif (child.request_for_quotation) {\n\t\t\t\ta.push(child.request_for_quotation);\n\t\t\t}\n\t\t});\n\t\ta = [...new Set(a)];\n\n\t\tif (a.length > 0) {\n\t\t\tvar output = a.join(', '); \n\t\t\n\t\t}\n\t\tfrappe.db.set_value('Request for Quotation',output, 'quotation_status',\"Received\")\n\t}\n});\nfrappe.ui.form.on('Supplier Quotation', {\n  validate: function(frm) {\n\n      frm.set_value(\"supplier_quotation_status\",\"Pending\")\n    \n  }\n});\n\n",
   "view": "Form"
  }
 ]
