@@ -12,12 +12,14 @@
   "invoice_no",
   "invoice_date",
   "entry_type",
+  "purpose",
   "column_break_om2y0",
   "gate_in_date",
   "gate_in_time",
   "is_gate_out",
   "gate_out_date",
   "gate_out_time",
+  "remarks",
   "section_break_s4rhw",
   "driver_name",
   "driver_mobile_no",
@@ -42,17 +44,7 @@
   "weight_out_date",
   "weight_out_time",
   "quality_inspection_tab",
-  "sampling",
-  "sampling_time",
-  "column_break_frrzj",
-  "sampling_date",
-  "section_break_mo5tj",
-  "quality_inspection",
-  "quality_inspection_time",
-  "column_break_39qxh",
-  "quality_inspection_date",
-  "section_break_gqszu",
-  "qc_remark",
+  "qc_details",
   "amended_from"
  ],
  "fields": [
@@ -105,17 +97,6 @@
    "read_only_depends_on": "is_weight_in"
   },
   {
-   "fieldname": "sampling",
-   "fieldtype": "Data",
-   "label": "Sampling"
-  },
-  {
-   "default": "Today",
-   "fieldname": "sampling_date",
-   "fieldtype": "Date",
-   "label": "Sampling Date"
-  },
-  {
    "depends_on": "is_weight_in",
    "fieldname": "weight_in",
    "fieldtype": "Data",
@@ -128,35 +109,6 @@
    "fieldtype": "Time",
    "label": "Weight in Time",
    "read_only_depends_on": "is_weight_in"
-  },
-  {
-   "default": "Now",
-   "fieldname": "sampling_time",
-   "fieldtype": "Time",
-   "label": "Sampling Time"
-  },
-  {
-   "fieldname": "quality_inspection",
-   "fieldtype": "Select",
-   "label": "Quality Inspection",
-   "options": "Approved\nRejected\nPartially Approved"
-  },
-  {
-   "fieldname": "qc_remark",
-   "fieldtype": "Text",
-   "label": "QC Remark"
-  },
-  {
-   "default": "Today",
-   "fieldname": "quality_inspection_date",
-   "fieldtype": "Date",
-   "label": "Quality Inspection Date"
-  },
-  {
-   "default": "Now",
-   "fieldname": "quality_inspection_time",
-   "fieldtype": "Time",
-   "label": "Quality Inspection TIme"
   },
   {
    "fieldname": "unloading",
@@ -224,22 +176,6 @@
    "label": "Driver Details"
   },
   {
-   "fieldname": "column_break_frrzj",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_mo5tj",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_39qxh",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_gqszu",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "column_break_mbtk2",
    "fieldtype": "Column Break"
   },
@@ -291,8 +227,9 @@
   {
    "fieldname": "entry_type",
    "fieldtype": "Select",
+   "in_standard_filter": 1,
    "label": "Entry Type",
-   "options": "Inward\nOutward"
+   "options": "\nInward\nOutward"
   },
   {
    "default": "0",
@@ -317,12 +254,37 @@
    "fieldname": "is_weight_out",
    "fieldtype": "Check",
    "label": "Is weight Out"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Purpose",
+   "options": "\nRaw Material\nAsset Repairing\nCapital Asset\nMachinery\nSales Order Delivery\nOther"
+  },
+  {
+   "depends_on": "eval:doc.purpose=='Other'",
+   "description": "Add Remarks for any other purpose",
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "qc_details",
+   "fieldtype": "Table",
+   "label": "QC Details",
+   "options": "Gate Entry QC"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2023-06-22 17:15:45.487198",
+ "links": [
+  {
+   "link_doctype": "Purchase Receipt",
+   "link_fieldname": "gate_entry"
+  }
+ ],
+ "modified": "2023-07-05 15:32:07.996602",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
@@ -340,9 +302,40 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gate Entry Operator",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "set_user_permissions": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

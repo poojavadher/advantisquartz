@@ -75,5 +75,27 @@
   "name": "Status Changed",
   "script": "frappe.ui.form.on('Supplier Quotation', {\n\tbefore_submit: function(frm) {\n\t\tvar a = [];\n\t\tfrm.doc.items.forEach(function(child) {\n\t\t\tif (child.request_for_quotation) {\n\t\t\t\ta.push(child.request_for_quotation);\n\t\t\t}\n\t\t});\n\t\ta = [...new Set(a)];\n\n\t\tif (a.length > 0) {\n\t\t\tvar output = a.join(', '); \n\t\t\n\t\t}\n\t\tfrappe.db.set_value('Request for Quotation',output, 'quotation_status',\"Received\")\n\t}\n});\nfrappe.ui.form.on('Supplier Quotation', {\n  validate: function(frm) {\n\n      frm.set_value(\"supplier_quotation_status\",\"Pending\")\n    \n  }\n});\n\n",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Receipt",
+  "enabled": 1,
+  "modified": "2023-07-05 15:49:01.349910",
+  "module": "Advantisquartz",
+  "name": "Gate Entry filter in material receipt",
+  "script": "frappe.ui.form.on('Purchase Receipt', {\n\tbill_no(frm) {\n\t\tfrm.set_query(\"gate_entry\",function(){\n    \t    return{\n    \t        filters:{\n    \t            'invoice_no':cur_frm.doc.bill_no,\n    \t            'invoice_date':cur_frm.doc.bill_date,\n    \t        }\n    \t    };\n    \t});\n\t},\n// \tbefore_submit(frm){\n//         frappe.call({\n//             method: \"erpnext.buying.api.link_gate_entry\",\n//             args: {\n//                 pr_doc: frm.doc.name,\n//                 parent_doc : frm.doc.gate_entry\n//             },\n//             callback: function(r) {\n//                 console.log(\"Success\");\n//             }\n//         });\n//     }\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Asset Repair",
+  "enabled": 1,
+  "modified": "2023-07-05 15:55:37.373540",
+  "module": "Advantisquartz",
+  "name": "Asset Repair Gate entry filter",
+  "script": "frappe.ui.form.on('Asset Repair', {\n\tinvoice_no(frm) {\n\t\tfrm.set_query(\"gate_entry_no\",function(){\n    \t    return{\n    \t        filters:{\n    \t            'invoice_no':cur_frm.doc.invoice_no,\n    \t            'invoice_date':cur_frm.doc.invoice_date,\n    \t        }\n    \t    };\n    \t});\n\t}\n});",
+  "view": "Form"
  }
 ]
