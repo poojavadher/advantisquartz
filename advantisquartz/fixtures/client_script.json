@@ -4,10 +4,10 @@
   "doctype": "Client Script",
   "dt": "Gate Entry",
   "enabled": 1,
-  "modified": "2023-06-19 15:23:10.941627",
+  "modified": "2023-07-10 17:59:50.885989",
   "module": "Advantisquartz",
   "name": "To show Current TIme",
-  "script": "frappe.ui.form.on('Gate Entry', {\n\tis_weight_in: function(frm) {\n\t\tfrm.set_value('weight_in_date', frappe.datetime.now_date())\n\t\tfrm.set_value('weight_in_time',frappe.datetime.now_time())\n\t},\n\tis_unloaded: function(frm){\n\t    frm.set_value('unloading_date', frappe.datetime.now_date() )\n\t    frm.set_value('unloading_time', frappe.datetime.now_time())\n\t},\n\t\n\tis_weight_out: function(frm)\n\t{\n        frm.set_value('weight_out_date', frappe.datetime.now_date() )\n        frm.set_value('weight_out_time', frappe.datetime.now_time())\n\t},\n\tis_gate_out: function(frm)\n\t{\n\t    frm.set_value('gate_out_date', frappe.datetime.now_date() )\n        frm.set_value('gate_out_time', frappe.datetime.now_time())\n\t}\n})",
+  "script": "frappe.ui.form.on('Gate Entry', {\n\tis_weight_in: function(frm) {\n\t\tfrm.set_value('weight_in_date', frappe.datetime.now_date());\n\t\tfrm.set_value('weight_in_time',frappe.datetime.now_time());\n\t},\n\tis_unloaded: function(frm){\n\t    frm.set_value('unloading_date', frappe.datetime.now_date());\n\t    frm.set_value('unloading_time', frappe.datetime.now_time());\n\t},\n\t\n\tis_weight_out: function(frm)\n\t{\n        frm.set_value('weight_out_date', frappe.datetime.now_date());\n        frm.set_value('weight_out_time', frappe.datetime.now_time());\n\t},\n\tis_gate_out: function(frm)\n\t{\n\t    frm.set_value('gate_out_date', frappe.datetime.now_date());\n        frm.set_value('gate_out_time', frappe.datetime.now_time());\n\t},\n\tweight_out:function(frm){\n\t    var gross_weight= frm.doc.weight_in;\n\t    var tare_weight = frm.doc.weight_out;\n\t    console.log(gross_weight + \"\\n\\n\" + tare_weight);\n\t    frm.doc.net_weight = gross_weight-tare_weight;\n\t},\n\tbefore_submit(frm){\n\t    var asset_repair = frm.doc.asset_repair_entry;\n\t    if(asset_repair){\n\t        frappe.db.set_value(\"Asset Repair\",asset_repair,'gate_out_entry',frm.doc.name);\n\t    }\n\t},\n\tbefore_cancel(frm){\n\t    var asset_repair = frm.doc.asset_repair_entry;\n\t    if(asset_repair){\n\t        frappe.db.set_value(\"Asset Repair\",asset_repair,'gate_out_entry',' ');\n\t    }\n\t}\n});\n",
   "view": "Form"
  },
  {
@@ -15,10 +15,10 @@
   "doctype": "Client Script",
   "dt": "Purchase Order",
   "enabled": 1,
-  "modified": "2023-06-28 17:45:57.007448",
+  "modified": "2023-07-10 12:47:48.963272",
   "module": "Advantisquartz",
   "name": "Default schedule date in Purchase Order",
-  "script": "frappe.ui.form.on('Purchase Order', {\n    \n    onload :function(frm)\n    {\n        var a = cur_frm.doc.transaction_date;\n       \n        frm.set_value('schedule_date',frappe.datetime.add_days(a,7) );\n        console.log(a);\n    }\n});\n\n\nfrappe.ui.form.on('Purchase Order', {\n\tbefore_submit: function(frm) {\n\t\tvar a = [];\n\t\tfrm.doc.items.forEach(function(child) {\n\t\t\tif (child.supplier_quotation) {\n\t\t\t\ta.push(child.supplier_quotation);\n\t\t\t}\n\t\t});\n\t\ta = [...new Set(a)];\n\n\t\tif (a.length > 0) {\n\t\t\tvar output = a.join(', '); \n\t\t\n\t\t}\n\t\tfrappe.db.set_value('Supplier Quotation',output, 'supplier_quotation_status',\"Received\")\n\t}\n});",
+  "script": "frappe.ui.form.on('Purchase Order', {\n    \n    onload :function(frm)\n    {\n        var a = cur_frm.doc.transaction_date;\n       \n        frm.set_value('schedule_date',frappe.datetime.add_days(a,7) );\n        console.log(a);\n    }\n});\n\n\nfrappe.ui.form.on('Purchase Order', {\n\tbefore_submit: function(frm) {\n\t\tvar a = [];\n\t\tfrm.doc.items.forEach(function(child) {\n\t\t\tif (child.supplier_quotation) {\n\t\t\t\ta.push(child.supplier_quotation);\n\t\t\t}\n\t\t});\n\t\ta = [...new Set(a)];\n\n\t\tif (a.length > 0) {\n\t\t\tvar output = a.join(', '); \n\t\t\n\t\t}\n\t\tfrappe.db.set_value('Supplier Quotation',output, 'supplier_quotation_status',\"Received\")\n\t}\n});\n\n\n\n\nfrappe.ui.form.on('Purchase Order', {\n    after_save: function(frm) { \n        var a = [];\n        frm.doc.items.forEach(function(child) {\n            if (child.material_request) {\n                a.push(child.material_request);\n                } });\n                a = [...new Set(a)];\n                if (a.length > 0) {\n                    var material = a.join(', ');\n                    }\n                    if(a.length !== 0) {\n                        frappe.db.get_value('Material Request', {\n                            'name': material\n                            \n                        }, \n                        'remarks', function(response) {\n                            var material_remarks = response.remarks;\n                            console.log(material_remarks) \n                            frm.set_value(\"remarks\",material_remarks)\n                            });\n                            } \n    } });\n    \n    \n    \n  \n    \n    \n\nfrappe.ui.form.on('Purchase Order Item', \"item_tax_template\",function(frm, cdt, cdn){\n    var d = locals[cdt][cdn];\n    var tax = d.item_tax_template;\n    \n    frappe.call({\n        method:\"tax\",\n        args:{\n            no:tax\n        },\n        }).then(records =>{\n        \t      \n        \t      console.log(records.total)\n        \t      d.tax_rate = records.total\n        \t      \n    \t        frm.refresh_field(\"items\");\n    \t        })\n    \n});",
   "view": "Form"
  },
  {
@@ -41,17 +41,6 @@
   "module": "Advantisquartz",
   "name": "sales order",
   "script": "frappe.ui.form.on('Sales Order Item', {\n\tsales_uom_conversion_factor:function(frm) {\n\t $.each(frm.doc.items || [], function (i, d)\n\t {\n\t     var sales_uom_cf = d.sales_uom_conversion_factor;\n\t     var sales_uom_multipy = sales_uom_cf * d.qty;\n\t  \n\t })\n\t}\n})",
-  "view": "Form"
- },
- {
-  "docstatus": 0,
-  "doctype": "Client Script",
-  "dt": "Stock Entry",
-  "enabled": 1,
-  "modified": "2023-06-26 15:42:09.962674",
-  "module": "Advantisquartz",
-  "name": "Manual Series Number",
-  "script": "frappe.ui.form.on('Stock Entry Detail', {\n\titem_code: function(frm) {\n\t\tvar currentSeries = cur_frm.doc.manual_serial_series;\n\t\tvar qty = 0;\n\t    var year = new Date().getFullYear();\n\t    console.log(year)\n         $.each(frm.doc.items, function(i, d) {\n            qty += d.qty;\n        });\n      \n     if (currentSeries.split(\"#\").length - 1 === 1) {\n\t\t\tfor (var i = 0; i < qty; i++) {\n\t\t\t\tvar paddedIndex = i.toString().padStart(2, '0'); // Add leading zeros if the index is a single digit\n\t\t\t\tconsole.log(currentSeries.replace(\"#\", paddedIndex));\n\t\t\t}\n\t\t} else if (currentSeries.split(\"#\").length - 1 === 2) {\n\t\t\n\t\t\tfor (var j = 0; j < qty ; j++){\n\t\t\t    var paddedjindex = j.toString().padStart(2,'0');\n\t\t\t    console.log(currentSeries.replace(\"##\",paddedjindex))\n\t\t\t}\n\t\t}\n\t\telse if (currentSeries.split(\"#\").length - 1 === 3 || currentSeries.includes(\"YY\")) {\n\t\t\tfor (var k = 0; k < qty; k++) {\n\t\t\t\tvar paddedkindex = k.toString().padStart(3, '00');\n\t\t\t\tconsole.log(currentSeries.replace(/YY/g, year).replace(\"###\", paddedkindex));\n\t\t\t}\n\t\t}\n\t\t}\n\t\n});\n",
   "view": "Form"
  },
  {
@@ -81,10 +70,10 @@
   "doctype": "Client Script",
   "dt": "Purchase Receipt",
   "enabled": 1,
-  "modified": "2023-07-05 15:49:01.349910",
+  "modified": "2023-07-11 17:43:20.914652",
   "module": "Advantisquartz",
   "name": "Gate Entry filter in material receipt",
-  "script": "frappe.ui.form.on('Purchase Receipt', {\n\tbill_no(frm) {\n\t\tfrm.set_query(\"gate_entry\",function(){\n    \t    return{\n    \t        filters:{\n    \t            'invoice_no':cur_frm.doc.bill_no,\n    \t            'invoice_date':cur_frm.doc.bill_date,\n    \t        }\n    \t    };\n    \t});\n\t},\n// \tbefore_submit(frm){\n//         frappe.call({\n//             method: \"erpnext.buying.api.link_gate_entry\",\n//             args: {\n//                 pr_doc: frm.doc.name,\n//                 parent_doc : frm.doc.gate_entry\n//             },\n//             callback: function(r) {\n//                 console.log(\"Success\");\n//             }\n//         });\n//     }\n});",
+  "script": "frappe.ui.form.on('Purchase Receipt', {\n\tbill_no(frm) {\n\t\tfrm.set_query(\"gate_entry\",function(){\n    \t    return{\n    \t        filters:{\n    \t            'invoice_no':cur_frm.doc.bill_no,\n    \t            'invoice_date':cur_frm.doc.bill_date,\n    \t        }\n    \t    };\n    \t});\n\t},\n\tbefore_submit(frm){\n        frappe.call({\n            method: \"erpnext.buying.api.link_gate_entry\",\n            args: {\n                pr_doc: frm.doc.name,\n                parent_doc : frm.doc.gate_entry\n            },\n            callback: function(r) {\n                console.log(\"Success\");\n            }\n        });\n    }\n});",
   "view": "Form"
  },
  {
@@ -92,7 +81,7 @@
   "doctype": "Client Script",
   "dt": "Asset Repair",
   "enabled": 1,
-  "modified": "2023-07-05 15:55:37.373540",
+  "modified": "2023-07-10 17:53:27.849877",
   "module": "Advantisquartz",
   "name": "Asset Repair Gate entry filter",
   "script": "frappe.ui.form.on('Asset Repair', {\n\tinvoice_no(frm) {\n\t\tfrm.set_query(\"gate_entry_no\",function(){\n    \t    return{\n    \t        filters:{\n    \t            'invoice_no':cur_frm.doc.invoice_no,\n    \t            'invoice_date':cur_frm.doc.invoice_date,\n    \t        }\n    \t    };\n    \t});\n\t}\n});",

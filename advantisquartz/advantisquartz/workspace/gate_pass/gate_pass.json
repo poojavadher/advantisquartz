@@ -1,0 +1,71 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}}]",
+ "creation": "2023-07-10 14:15:17.241903",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "change",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Gate Pass",
+ "links": [
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Video",
+   "link_count": 0,
+   "link_to": "Video",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Video Settings",
+   "link_count": 0,
+   "link_to": "Video Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-07-11 17:37:59.907751",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Gate Pass",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 7.0,
+ "shortcuts": [
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{}",
+   "label": "Gate Out Entry",
+   "link_to": "Gate Entry",
+   "stats_filter": "{\"entry_type\":[\"=\",\"Outward\"]}",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}",
+   "label": "Gate In Entry ",
+   "link_to": "Gate Entry",
+   "stats_filter": "{\"entry_type\":[\"=\",\"Inward\"]}",
+   "type": "DocType"
+  }
+ ],
+ "title": "Gate Pass"
+}

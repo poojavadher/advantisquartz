@@ -205,6 +205,14 @@ fixtures = [
     "Workflow State",
     "Custom DocPerm",
     "Property Setter",
+    "Role",
+    {"dt":"Workspace","filters":[
+        [
+            "module","in",[
+               "advantisquartz"
+            ],
+        ]
+    ]},
     {"dt":"Server Script","filters":[
         [
             "module","in",[
@@ -226,20 +234,20 @@ fixtures = [
             ],
         ]
     ]},
-    {"dt":"Number Card","filters":[
-        [
-            "module","in",[
-                "advantisquartz"
-            ]
-        ]
-    ]},
-    {"dt":"Dashboard","filters":[
-        [
-            "module","in",[
-                "advantisquartz"
-            ]
-        ]
-    ]},
+    # {"dt":"Number Card","filters":[
+    #     [
+    #         "module","in",[
+    #             "advantisquartz"
+    #         ]
+    #     ]
+    # ]},
+    # {"dt":"Dashboard","filters":[
+    #     [
+    #         "module","in",[
+    #             "advantisquartz"
+    #         ]
+    #     ]
+    # ]},
         {"dt":"Print Format","filters":[
         [
             "module","in",[

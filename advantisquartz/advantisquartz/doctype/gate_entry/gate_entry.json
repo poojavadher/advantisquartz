@@ -14,12 +14,16 @@
   "entry_type",
   "purpose",
   "column_break_om2y0",
+  "operation",
   "gate_in_date",
   "gate_in_time",
+  "remarks",
+  "asset_repair_entry",
+  "column_break_e9ulk",
+  "operation_status",
   "is_gate_out",
   "gate_out_date",
   "gate_out_time",
-  "remarks",
   "section_break_s4rhw",
   "driver_name",
   "driver_mobile_no",
@@ -28,18 +32,20 @@
   "section_break_pawp6",
   "is_weight_in",
   "weight_in",
+  "uom",
   "column_break_52oid",
   "weight_in_date",
   "weight_in_time",
   "section_break_tbmnr",
-  "unloading",
   "is_unloaded",
+  "unloading_person",
   "column_break_fr4yd",
   "unloading_date",
   "unloading_time",
   "section_break_x9qy7",
   "is_weight_out",
   "weight_out",
+  "net_weight",
   "column_break_jx1uc",
   "weight_out_date",
   "weight_out_time",
@@ -99,7 +105,7 @@
   {
    "depends_on": "is_weight_in",
    "fieldname": "weight_in",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Weight in (Weight)"
   },
   {
@@ -109,11 +115,6 @@
    "fieldtype": "Time",
    "label": "Weight in Time",
    "read_only_depends_on": "is_weight_in"
-  },
-  {
-   "fieldname": "unloading",
-   "fieldtype": "Data",
-   "label": "Unloading"
   },
   {
    "depends_on": "is_unloaded",
@@ -132,10 +133,10 @@
   {
    "default": "0",
    "depends_on": "is_weight_out",
+   "description": "Tare Weight",
    "fieldname": "weight_out",
-   "fieldtype": "Data",
-   "label": "Weight Out (Weight)",
-   "read_only_depends_on": "is_weight_out"
+   "fieldtype": "Float",
+   "label": "Weight Out (Weight)"
   },
   {
    "depends_on": "is_weight_out",
@@ -260,7 +261,7 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Purpose",
-   "options": "\nRaw Material\nAsset Repairing\nCapital Asset\nMachinery\nSales Order Delivery\nOther"
+   "options": "\nRaw Material\nStore & Spare\nAsset Repairing\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther"
   },
   {
    "depends_on": "eval:doc.purpose=='Other'",
@@ -273,7 +274,50 @@
    "fieldname": "qc_details",
    "fieldtype": "Table",
    "label": "QC Details",
+   "mandatory_depends_on": "eval:doc.purpose == \"Raw Material\";",
    "options": "Gate Entry QC"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Select",
+   "label": "Operation",
+   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nUnloading\nTare Weight\nGRN"
+  },
+  {
+   "fieldname": "column_break_e9ulk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "operation_status",
+   "fieldtype": "Select",
+   "label": "Operation Status",
+   "options": "\nPending\nCompleted"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "depends_on": "is_unloaded",
+   "fieldname": "unloading_person",
+   "fieldtype": "Data",
+   "label": "Unloading Person Name"
+  },
+  {
+   "depends_on": "weight_out",
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "label": "Net Weight"
+  },
+  {
+   "depends_on": "eval:doc.purpose=='Asset Repairing'",
+   "fieldname": "asset_repair_entry",
+   "fieldtype": "Link",
+   "label": "Asset Repair Entry",
+   "mandatory_depends_on": "eval:doc.purpose=='Asset Repairing'",
+   "options": "Asset Repair"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -284,7 +328,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-07-05 15:32:07.996602",
+ "modified": "2023-07-10 14:01:56.470721",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
