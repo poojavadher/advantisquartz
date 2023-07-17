@@ -9,26 +9,28 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
-  "invoice_no",
-  "invoice_date",
   "entry_type",
   "purpose",
+  "invoice_no",
+  "invoice_date",
   "column_break_om2y0",
-  "operation",
+  "in_operation",
+  "remarks",
   "gate_in_date",
   "gate_in_time",
-  "remarks",
-  "asset_repair_entry",
   "column_break_e9ulk",
-  "operation_status",
   "is_gate_out",
   "gate_out_date",
   "gate_out_time",
+  "section_break_zwtny",
+  "asset_repair",
+  "stock_item_tab",
   "section_break_s4rhw",
   "driver_name",
   "driver_mobile_no",
   "column_break_mbtk2",
   "truck_no",
+  "weight_specification_tab",
   "section_break_pawp6",
   "is_weight_in",
   "weight_in",
@@ -49,12 +51,16 @@
   "column_break_jx1uc",
   "weight_out_date",
   "weight_out_time",
+  "sampling_details_tab",
+  "sampling_done",
+  "sampling_person_name",
   "quality_inspection_tab",
   "qc_details",
   "amended_from"
  ],
  "fields": [
   {
+   "depends_on": "eval: doc.entry_type == 'Inward';",
    "fieldname": "invoice_no",
    "fieldtype": "Data",
    "label": "Invoice No."
@@ -91,6 +97,7 @@
    "label": "Truck No."
   },
   {
+   "depends_on": "eval: doc.entry_type == 'Inward';",
    "fieldname": "invoice_date",
    "fieldtype": "Date",
    "label": "Invoice Date"
@@ -261,7 +268,7 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Purpose",
-   "options": "\nRaw Material\nStore & Spare\nAsset Repairing\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther"
+   "options": "\nRaw Material\nStore & Spare\nAsset Repair\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther"
   },
   {
    "depends_on": "eval:doc.purpose=='Other'",
@@ -274,24 +281,11 @@
    "fieldname": "qc_details",
    "fieldtype": "Table",
    "label": "QC Details",
-   "mandatory_depends_on": "eval:doc.purpose == \"Raw Material\";",
    "options": "Gate Entry QC"
-  },
-  {
-   "fieldname": "operation",
-   "fieldtype": "Select",
-   "label": "Operation",
-   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nUnloading\nTare Weight\nGRN"
   },
   {
    "fieldname": "column_break_e9ulk",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "operation_status",
-   "fieldtype": "Select",
-   "label": "Operation Status",
-   "options": "\nPending\nCompleted"
   },
   {
    "fieldname": "uom",
@@ -312,12 +306,49 @@
    "label": "Net Weight"
   },
   {
-   "depends_on": "eval:doc.purpose=='Asset Repairing'",
-   "fieldname": "asset_repair_entry",
-   "fieldtype": "Link",
-   "label": "Asset Repair Entry",
-   "mandatory_depends_on": "eval:doc.purpose=='Asset Repairing'",
-   "options": "Asset Repair"
+   "fieldname": "section_break_zwtny",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.purpose==\"Asset Repair\" || doc.purpose == \"Asset Returnable\";",
+   "fieldname": "asset_repair",
+   "fieldtype": "Table",
+   "label": "Asset Repair Status",
+   "options": "Gate Entry Asset Repairing"
+  },
+  {
+   "fieldname": "stock_item_tab",
+   "fieldtype": "Table",
+   "label": "Stock Item",
+   "options": "Gate Entry Stock Items"
+  },
+  {
+   "fieldname": "weight_specification_tab",
+   "fieldtype": "Tab Break",
+   "label": "Weight Specification"
+  },
+  {
+   "fieldname": "sampling_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Sampling Details"
+  },
+  {
+   "depends_on": "eval:doc.sampling_done;",
+   "fieldname": "sampling_person_name",
+   "fieldtype": "Small Text",
+   "label": "Sampling Person Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "sampling_done",
+   "fieldtype": "Check",
+   "label": "Sampling Done"
+  },
+  {
+   "fieldname": "in_operation",
+   "fieldtype": "Select",
+   "label": "Inward Operation",
+   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nUnloading\nTare Weight\nGRN\nCompleted"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -328,7 +359,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-07-10 14:01:56.470721",
+ "modified": "2023-07-17 12:38:51.027203",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
