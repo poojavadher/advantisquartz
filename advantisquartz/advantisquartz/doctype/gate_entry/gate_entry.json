@@ -30,6 +30,7 @@
   "driver_mobile_no",
   "column_break_mbtk2",
   "truck_no",
+  "lock_fields",
   "weight_specification_tab",
   "section_break_pawp6",
   "is_weight_in",
@@ -38,6 +39,15 @@
   "column_break_52oid",
   "weight_in_date",
   "weight_in_time",
+  "sampling_details_section",
+  "sampling_done",
+  "sample_date",
+  "sample_time",
+  "column_break_tth4t",
+  "sampling_person_name",
+  "quality_inspection_section",
+  "qc_details",
+  "grn",
   "section_break_tbmnr",
   "is_unloaded",
   "unloading_person",
@@ -51,11 +61,6 @@
   "column_break_jx1uc",
   "weight_out_date",
   "weight_out_time",
-  "sampling_details_tab",
-  "sampling_done",
-  "sampling_person_name",
-  "quality_inspection_tab",
-  "qc_details",
   "amended_from"
  ],
  "fields": [
@@ -83,13 +88,15 @@
    "default": "Today",
    "fieldname": "gate_in_date",
    "fieldtype": "Date",
-   "label": "Gate in Date"
+   "label": "Gate in Date",
+   "read_only": 1
   },
   {
    "default": "Now",
    "fieldname": "gate_in_time",
    "fieldtype": "Time",
-   "label": "Gate in Time"
+   "label": "Gate in Time",
+   "read_only": 1
   },
   {
    "fieldname": "truck_no",
@@ -127,7 +134,7 @@
    "depends_on": "is_unloaded",
    "fieldname": "unloading_date",
    "fieldtype": "Date",
-   "label": "Unloading Dat",
+   "label": "Unloading Date",
    "read_only_depends_on": "is_unloaded"
   },
   {
@@ -172,11 +179,6 @@
    "fieldtype": "Time",
    "label": "Gate Out Time",
    "read_only_depends_on": "is_gate_out"
-  },
-  {
-   "fieldname": "quality_inspection_tab",
-   "fieldtype": "Tab Break",
-   "label": "Quality Inspection"
   },
   {
    "fieldname": "section_break_s4rhw",
@@ -328,11 +330,6 @@
    "label": "Weight Specification"
   },
   {
-   "fieldname": "sampling_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Sampling Details"
-  },
-  {
    "depends_on": "eval:doc.sampling_done;",
    "fieldname": "sampling_person_name",
    "fieldtype": "Small Text",
@@ -348,7 +345,48 @@
    "fieldname": "in_operation",
    "fieldtype": "Select",
    "label": "Inward Operation",
-   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nUnloading\nTare Weight\nGRN\nCompleted"
+   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nGRN\nUnloading\nTare Weight\nGate Out"
+  },
+  {
+   "fieldname": "sampling_details_section",
+   "fieldtype": "Section Break",
+   "label": "Sampling Details"
+  },
+  {
+   "fieldname": "quality_inspection_section",
+   "fieldtype": "Section Break",
+   "label": "Quality Inspection"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.entry_type == \"Inward\" && doc.stock_item_tab && doc.purpose && doc.invoice_no && doc.invoice_date && doc.driver_name && doc.driver_mobile_no && doc.truck_no ||\ndoc.entry_type == \"Outward\" && doc.stock_item_tab && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no\n",
+   "fieldname": "lock_fields",
+   "fieldtype": "Check",
+   "label": "Lock Fields"
+  },
+  {
+   "depends_on": "eval:doc.sampling_done;",
+   "fieldname": "sample_date",
+   "fieldtype": "Date",
+   "label": "Sample Date",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.sampling_done;",
+   "fieldname": "sample_time",
+   "fieldtype": "Time",
+   "label": "Sample Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tth4t",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "grn",
+   "fieldtype": "Check",
+   "label": "GRN"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -359,7 +397,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-07-17 12:38:51.027203",
+ "modified": "2023-07-19 15:39:28.142115",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",

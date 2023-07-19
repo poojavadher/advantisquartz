@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "Serial No Update",
+  "enabled": 1,
+  "modified": "2023-07-19 12:32:01.620181",
+  "module": "Advantisquartz",
+  "name": "Serial No Update",
+  "script": "frappe.ui.form.on('Serial No Update', {\n\ton_submit:function(frm) {\n\t\n\t        $.each(frm.doc.press_item || [], function(i, d) {\n            var serial = d.serial_no;\n            console.log(serial);\n            var batch_no = d.batch_no;\n            console.log(batch_no);\n            var select_type = d.select_type;\n            console.log(select_type);\n            \n\t\t  frappe.db.set_value('Serial No',serial, {\n                'serial_no_type': select_type,\n                'custom_batch_no':batch_no\n            });\n\t    }); \n\t    \n\t   \n\t  \n\t}\n})\n\n\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Serial No Update Field",
   "enabled": 1,
   "modified": "2023-07-12 12:55:10.353430",
@@ -14,8 +25,8 @@
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Stock Entry",
-  "enabled": 1,
-  "modified": "2023-07-17 13:57:55.922804",
+  "enabled": 0,
+  "modified": "2023-07-19 12:31:38.951404",
   "module": "Advantisquartz",
   "name": "Serial No Interface",
   "script": "frappe.ui.form.on('Stock Entry', {\n  refresh: function(frm) {\n    frm.set_query('product_type', function() {\n      return {\n        options: 'Semi Finished Item\\nFinished Item'\n      };\n    });\n\n    // Triggered when the form is loaded\n    frm.add_custom_button(__('Update Serial No'), function() {\n      // Function to open the dialog box\n      showDialog(frm);\n    });\n  }\n});\n\nfunction showDialog(frm) {\n  // Create the dialog box\n  let d = new frappe.ui.Dialog({\n    title: __('Serial No'),\n    fields: [\n      {\n        fieldtype: 'Select',\n        fieldname: 'product_type',\n        label: __('Product Type'),\n        options: 'Semi Finished Item\\nFinished Item',\n        onchange: function() {\n          // Refresh the dialog to show/hide the table based on the selected value\n          d.refresh();\n        }\n      },\n      {\n        fieldname: 'items',\n        fieldtype: 'Table',\n        label: __('Serial No'),\n        depends_on: 'eval: doc.product_type == \"Semi Finished Item\"',\n        fields: [\n          {\n            fieldtype: 'Link',\n            options: 'Serial No',\n            fieldname: 'serial_no',\n            label: __('Serial No'),\n            in_list_view: 1\n          },\n          {\n            fieldtype: 'Data',\n            fieldname: 'batch_no',\n            label: __('Batch'),\n            in_list_view: 1\n          },\n          {\n            fieldtype: 'Select',\n            fieldname: 'serial_auto',\n            label: __('Serial Type'),\n            in_list_view: 1,\n            options: 'Auto\\nManual'\n          }\n        ]\n      },\n       {\n        fieldname: 'finished_items',\n        fieldtype: 'Table',\n        label: __('Finished Item'),\n        depends_on: 'eval: doc.product_type == \"Finished Item\"',\n        fields: [\n          {\n            fieldtype: 'Link',\n            options: 'Item',\n            fieldname: 'item_code',\n            label: __('Item Code'),\n            in_list_view: 1\n          },\n          {\n            fieldtype: 'Data',\n            fieldname: 'Item Name',\n            label: __('Item Name'),\n            in_list_view: 1,\n          },\n          {\n            fieldtype: 'Select',\n            fieldname: 'serial_auto',\n            label: __('Serial Type'),\n            in_list_view: 1,\n            options: 'Auto\\nManual'\n          }\n        ]\n      }\n    ],\n    primary_action: function() {\n      let values = d.get_values();\n      let items = values.items;\n      for (let i = 0; i < items.length; i++) {\n        let item = items[i];\n        frappe.msgprint('Serial Type: ' + item.serial_auto);\n         frappe.db.set_value('Serial No',item.serial_no, {\n                'serial_no_type': item.serial_auto,\n                'batch_no':item.batch_no\n            });\n      }\n\n      d.hide();\n    },\n    primary_action_label: __('Add')\n  });\n\n  d.show();\n}\n",
@@ -26,10 +37,10 @@
   "doctype": "Client Script",
   "dt": "Gate Entry",
   "enabled": 1,
-  "modified": "2023-07-17 13:32:24.573374",
+  "modified": "2023-07-19 15:10:19.370518",
   "module": "Advantisquartz",
   "name": "To show Current TIme",
-  "script": "frappe.ui.form.on('Gate Entry', {\n\tis_weight_in: function(frm) {\n\t\tfrm.set_value('weight_in_date', frappe.datetime.now_date());\n\t\tfrm.set_value('weight_in_time',frappe.datetime.now_time());\n\t},\n\tis_unloaded: function(frm){\n\t    frm.set_value('unloading_date', frappe.datetime.now_date());\n\t    frm.set_value('unloading_time', frappe.datetime.now_time());\n\t},\n\t\n\tis_weight_out: function(frm)\n\t{\n        frm.set_value('weight_out_date', frappe.datetime.now_date());\n        frm.set_value('weight_out_time', frappe.datetime.now_time());\n\t},\n\tis_gate_out: function(frm)\n\t{\n\t    frm.set_value('gate_out_date', frappe.datetime.now_date());\n        frm.set_value('gate_out_time', frappe.datetime.now_time());\n\t},\n\tweight_out:function(frm){\n\t    var gross_weight= frm.doc.weight_in;\n\t    var tare_weight = frm.doc.weight_out;\n\t    console.log(gross_weight + \"\\n\\n\" + tare_weight);\n\t    frm.doc.net_weight = gross_weight-tare_weight;\n\t    frm.refresh_field('net_weight');\n\t},\n\tbefore_submit(frm){\n\t    var asset_repair = frm.doc.asset_repair_entry;\n\t    if(asset_repair){\n\t        frappe.db.set_value(\"Asset Repair\",asset_repair,'gate_out_entry',frm.doc.name);\n\t    }\n\t},\n\tbefore_cancel(frm){\n\t    if(frm.doc.purpose == \"Raw Material\"){\n\t        frm.clear_table('qc_details');\n\t    }\n\t    var asset_repair = frm.doc.asset_repair_entry;\n\t    if(asset_repair){\n\t        frappe.db.set_value(\"Asset Repair\",asset_repair,'gate_out_entry',' ');\n\t    }\n\t}\n});\n",
+  "script": "frappe.ui.form.on('Gate Entry', {\n\tis_weight_in: function(frm) {\n\t\tfrm.set_value('weight_in_date', frappe.datetime.now_date());\n\t\tfrm.set_value('weight_in_time',frappe.datetime.now_time());\n\t},\n\tis_unloaded: function(frm){\n\t    frm.set_value('unloading_date', frappe.datetime.now_date());\n\t    frm.set_value('unloading_time', frappe.datetime.now_time());\n\t},\n\t\n\tis_weight_out: function(frm)\n\t{\n        frm.set_value('weight_out_date', frappe.datetime.now_date());\n        frm.set_value('weight_out_time', frappe.datetime.now_time());\n\t},\n\tis_gate_out: function(frm)\n\t{\n\t    frm.set_value('gate_out_date', frappe.datetime.now_date());\n        frm.set_value('gate_out_time', frappe.datetime.now_time());\n\t},\n\tsampling_done: function(frm)\n\t{\n\t    frm.set_value('sample_date', frappe.datetime.now_date());\n        frm.set_value('sample_time', frappe.datetime.now_time());\n\t},\n\tweight_out:function(frm){\n\t    var gross_weight= frm.doc.weight_in;\n\t    var tare_weight = frm.doc.weight_out;\n\t    console.log(gross_weight + \"\\n\\n\" + tare_weight);\n\t    frm.doc.net_weight = gross_weight-tare_weight;\n\t    frm.refresh_field('net_weight');\n\t},\n\tbefore_submit(frm){\n\t    var asset_repair = frm.doc.asset_repair_entry;\n\t    if(asset_repair){\n\t        frappe.db.set_value(\"Asset Repair\",asset_repair,'gate_out_entry',frm.doc.name);\n\t    }\n\t},\n\tbefore_cancel(frm){\n\t    if(frm.doc.purpose == \"Raw Material\"){\n\t        frm.clear_table('qc_details');\n\t    }\n\t    var asset_repair = frm.doc.asset_repair_entry;\n\t    if(asset_repair){\n\t        frappe.db.set_value(\"Asset Repair\",asset_repair,'gate_out_entry',' ');\n\t    }\n\t}\n});\n",
   "view": "Form"
  },
  {
@@ -107,6 +118,17 @@
   "module": "Advantisquartz",
   "name": "Asset Repair Gate entry filter",
   "script": "frappe.ui.form.on('Asset Repair', {\n\tinvoice_no(frm) {\n\t\tfrm.set_query(\"gate_entry_no\",function(){\n    \t    return{\n    \t        filters:{\n    \t            'invoice_no':cur_frm.doc.invoice_no,\n    \t            'invoice_date':cur_frm.doc.invoice_date,\n    \t        }\n    \t    };\n    \t});\n\t}\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Polish Serial No Update",
+  "enabled": 1,
+  "modified": "2023-07-19 12:32:12.209309",
+  "module": "Advantisquartz",
+  "name": "Polish Serial No Update",
+  "script": "frappe.ui.form.on('Polish Serial No Update', {\n\ton_submit:function(frm) {\n\n\t        $.each(frm.doc.polish_item || [], function(i, d) {\n            var serial = d.slab_no;\n            var batch_no = d.batch;\n            var weight = d.weight;\n            var length = d.length;\n            var width = d.width;\n            var grade = d.grade;\n\t\t  frappe.db.set_value('Serial No',serial, {\n                'gross_weight': weight,\n                '_serial_no_quality':grade,\n                'custom_batch_no':batch_no,\n                'length':length,\n                'width':width\n\n            });\n\t    }); \n\t    \n\t}\n})\ncur_frm.cscript.onload = function(frm) {\n    \n\n   \n    cur_frm.set_query(\"slab_no\", \"polish_item\", function(doc, cdt, cdn) {\n        var child = locals[cdt][cdn]; \n\n        \n        var itemcode = child.item_code;\n      \n\n        return {\n            \"filters\": {\n               \n                \n                \"item_code\": itemcode  \n            }\n        };\n    });\n    \n};",
   "view": "Form"
  }
 ]
