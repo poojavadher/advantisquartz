@@ -80,11 +80,11 @@
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Supplier Quotation",
-  "is_active": 0,
-  "modified": "2023-06-05 17:42:49.331547",
+  "is_active": 1,
+  "modified": "2023-07-21 17:55:15.291107",
   "name": "Supplier Quotation WorkFlow",
   "override_status": 0,
-  "send_email_alert": 1,
+  "send_email_alert": 0,
   "states": [
    {
     "allow_edit": "All",

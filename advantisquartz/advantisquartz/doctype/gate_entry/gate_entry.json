@@ -36,6 +36,7 @@
   "is_weight_in",
   "weight_in",
   "uom",
+  "lock_weight",
   "column_break_52oid",
   "weight_in_date",
   "weight_in_time",
@@ -45,12 +46,15 @@
   "sample_time",
   "column_break_tth4t",
   "sampling_person_name",
+  "lock_sampling",
   "quality_inspection_section",
   "qc_details",
+  "lock_quality_inspection",
   "grn",
   "section_break_tbmnr",
   "is_unloaded",
   "unloading_person",
+  "lock_unload_details",
   "column_break_fr4yd",
   "unloading_date",
   "unloading_time",
@@ -58,6 +62,7 @@
   "is_weight_out",
   "weight_out",
   "net_weight",
+  "lock_weight_out_details",
   "column_break_jx1uc",
   "weight_out_date",
   "weight_out_time",
@@ -325,6 +330,7 @@
    "options": "Gate Entry Stock Items"
   },
   {
+   "depends_on": "eval:doc.lock_fields === 1",
    "fieldname": "weight_specification_tab",
    "fieldtype": "Tab Break",
    "label": "Weight Specification"
@@ -345,7 +351,8 @@
    "fieldname": "in_operation",
    "fieldtype": "Select",
    "label": "Inward Operation",
-   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nGRN\nUnloading\nTare Weight\nGate Out"
+   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nGRN\nUnloading\nTare Weight\nGate Out",
+   "read_only": 1
   },
   {
    "fieldname": "sampling_details_section",
@@ -359,7 +366,7 @@
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.entry_type == \"Inward\" && doc.stock_item_tab && doc.purpose && doc.invoice_no && doc.invoice_date && doc.driver_name && doc.driver_mobile_no && doc.truck_no ||\ndoc.entry_type == \"Outward\" && doc.stock_item_tab && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no\n",
+   "depends_on": "eval:doc.entry_type == \"Inward\"  && doc.purpose && doc.invoice_no && doc.invoice_date && doc.driver_name && doc.driver_mobile_no && doc.truck_no ||\ndoc.entry_type == \"Outward\"  && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no",
    "fieldname": "lock_fields",
    "fieldtype": "Check",
    "label": "Lock Fields"
@@ -387,6 +394,40 @@
    "fieldname": "grn",
    "fieldtype": "Check",
    "label": "GRN"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_weight_in === 1 && doc.weight_in || doc.uom  ||\ndoc.is_weight_in === 0 && doc.uom\n",
+   "fieldname": "lock_weight",
+   "fieldtype": "Check",
+   "label": "Lock Weight"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.sampling_done === 1 && doc.sampling_person_name \n",
+   "fieldname": "lock_sampling",
+   "fieldtype": "Check",
+   "label": "Lock Sampling"
+  },
+  {
+   "default": "0",
+   "fieldname": "lock_quality_inspection",
+   "fieldtype": "Check",
+   "label": "Lock Quality Inspection"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_unloaded === 1 && doc.unloading_person",
+   "fieldname": "lock_unload_details",
+   "fieldtype": "Check",
+   "label": "Lock Unload Details"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_weight_out === 1 && doc.weight_out && doc.net_weight",
+   "fieldname": "lock_weight_out_details",
+   "fieldtype": "Check",
+   "label": "Lock Weight Out Details"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -397,7 +438,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-07-19 15:39:28.142115",
+ "modified": "2023-07-21 18:27:31.215138",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",

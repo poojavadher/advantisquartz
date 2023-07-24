@@ -5,13 +5,13 @@
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
-  "doctype_event": "After Save",
+  "doctype_event": "Before Save",
   "event_frequency": "All",
-  "modified": "2023-07-19 15:15:21.983223",
+  "modified": "2023-07-21 17:13:47.997063",
   "module": "Advantisquartz",
   "name": "Link QC to Gate entry On submit Purchase Receipt Enabled",
   "reference_doctype": "Purchase Receipt",
-  "script": "name = doc.name\ngate_entry = doc.gate_entry\n\nqc_list = frappe.db.get_list('Purchase Receipt Item',filters={'parent': f'{name}'}, fields=['quality_inspection'])\nparent = frappe.get_doc('Gate Entry', gate_entry)\n\n\nif doc.gate_entry:  \n    for l in doc.items:\n        if l.quality_inspection:\n            qc_data = frappe.db.get_value('Quality Inspection', l.quality_inspection,['item_name', 'status','report_date','sample_size','sample_uom','inspected_by','remarks'], as_dict=1)\n            parent.append(\"qc_details\", {\n                'qc': l.quality_inspection,\n                'item_name': qc_data.item_name,\n                'qc_status' : qc_data.status,\n                'qc_date' : qc_data.report_date,\n                'qc_time': '',\n                'inspected_by': qc_data.inspected_by,\n                'qc_remarks' : qc_data.remarks,\n                'sample_size': str(qc_data.sample_size) +\" \"+ str(qc_data.sample_uom),\n            })\n            parent.save()\n            frappe.db.commit",
+  "script": "# qc_list = frappe.db.get_list('Purchase Receipt Item',filters={'parent': f'{name}'}, fields=['quality_inspection'])\nif doc.gate_entry and doc.qc_done == 0:  \n    gate_entry = doc.gate_entry\n    parent = frappe.get_doc('Gate Entry', gate_entry)\n    for l in doc.items:\n        if l.quality_inspection:\n            qc_data = frappe.db.get_value('Quality Inspection', l.quality_inspection,['item_name', 'status','report_date','sample_size','sample_uom','inspected_by','remarks'], as_dict=1)\n            parent.append(\"qc_details\", {\n                'qc': l.quality_inspection,\n                'item_name': qc_data.item_name,\n                'qc_status' : qc_data.status,\n                'qc_date' : qc_data.report_date,\n                'qc_time': '',\n                'inspected_by': qc_data.inspected_by,\n                'qc_remarks' : qc_data.remarks,\n                'sample_size': str(qc_data.sample_size) +\" \"+ str(qc_data.sample_uom),\n            })\n            \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1        \n    parent.save()\n    doc.qc_done = 1\n            \n            \n            ",
   "script_type": "DocType Event"
  },
  {
@@ -22,11 +22,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Save",
   "event_frequency": "All",
-  "modified": "2023-07-19 15:15:21.961637",
+  "modified": "2023-07-20 13:23:26.186204",
   "module": "Advantisquartz",
   "name": "Gate entry status update",
   "reference_doctype": "Gate Entry",
-  "script": "if doc.entry_type == \"Inward\" and doc.purpose == 'Raw Material':\n    if doc.gate_in_date:\n        doc.in_operation = \"Gate In\"\n    if doc.gate_in_date and doc.is_weight_in == 1:\n        doc.in_operation = \"Weighment\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done == 1:\n        doc.in_operation = \"Sampling\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details:\n        doc.in_operation = \"Quality Check\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.grn == 1:\n        doc.in_operation = \"GRN\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.is_unloaded == 1:\n        doc.in_operation = \"Unloading\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.is_unloaded == 1 and doc.net_weight:\n        doc.in_operation = \"Tare Weight\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.is_unloaded == 1 and doc.net_weight and doc.is_gate_out:\n        doc.in_operation = \"GRN\"\n",
+  "script": "if doc.entry_type == \"Inward\" and doc.purpose == 'Raw Material':\n    if doc.gate_in_date:\n        doc.in_operation = \"Gate In\"\n    if doc.gate_in_date and doc.is_weight_in == 1:\n        doc.in_operation = \"Weighment\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done == 1:\n        doc.in_operation = \"Sampling\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details:\n        doc.in_operation = \"Quality Check\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.grn == 1:\n        doc.in_operation = \"GRN\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.is_unloaded == 1:\n        doc.in_operation = \"Unloading\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.is_unloaded == 1 and doc.net_weight:\n        doc.in_operation = \"Tare Weight\"\n    if doc.gate_in_date and doc.is_weight_in == 1 and doc.sampling_done and doc.qc_details and doc.is_unloaded == 1 and doc.net_weight and doc.is_gate_out:\n        doc.in_operation = \"Gate Out\"\n",
   "script_type": "DocType Event"
  },
  {
@@ -37,11 +37,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-07-11 10:34:52.212898",
+  "modified": "2023-07-21 18:27:53.226610",
   "module": "Advantisquartz",
   "name": "tax",
   "reference_doctype": null,
-  "script": "a = frappe.form_dict[\"no\"]\n\nresult = frappe.db.sql(\"\"\"\n    SELECT tr.tax_rate\n    FROM `tabItem Tax Template` it\n    JOIN `tabItem Tax Template Detail` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", a)\n\n# Extract the tax rates from the result set\ntax_rates = [row[0] for row in result]\n\n# Compute the sum of tax rates\ntotal = sum(tax_rates)\ntotal_2 = str(total)\nfrappe.msgprint(total_2)\nfrappe.response[\"total\"]=total_2\n",
+  "script": "a = frappe.form_dict[\"no\"]\n\nresult = frappe.db.sql(\"\"\"\n    SELECT tr.tax_rate\n    FROM `tabItem Tax Template` it\n    JOIN `tabItem Tax Template Detail` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", a)\n\n# Extract the tax rates from the result set\ntax_rates = [row[0] for row in result]\n\n# Compute the sum of tax rates\ntotal = sum(tax_rates)\ntotal_2 = str(total)\nfrappe.msgprint(total_2)\nfrappe.response[\"total\"]=total_2\n\n",
   "script_type": "API"
  },
  {
@@ -52,11 +52,26 @@
   "doctype": "Server Script",
   "doctype_event": "After Submit",
   "event_frequency": "All",
-  "modified": "2023-07-19 15:15:21.976549",
+  "modified": "2023-07-21 16:46:16.738716",
   "module": "Advantisquartz",
   "name": "Update GRN status in QC",
   "reference_doctype": "Purchase Receipt",
   "script": "if doc.gate_entry:\n    frappe.db.set_value(\"Gate Entry\",doc.gate_entry,'grn',1);\n    frappe.db.commit",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "receive_qty",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2023-07-21 18:23:41.619678",
+  "module": "Advantisquartz",
+  "name": "receive_qty",
+  "reference_doctype": null,
+  "script": "b = frappe.form_dict[\"purchase\"]\nif b:\n    receive = frappe.db.sql(\"\"\"\n    SELECT tr.received_qty\n    FROM `tabPurchase Order` it\n    JOIN `tabPurchase Order Item` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", b)\n\nreceive1 = \"\"\nfor a in receive:\n    for b in a:\n        if receive1 == \"\":\n            receive1 = b\n        else:\n            receive1 = f'{receive1}{\",\"}{b}'\nreceive2 = str(receive1)\nfrappe.response[\"receive\"] = receive2\nfrappe.msgprint(receive2)",
+  "script_type": "API"
  }
 ]

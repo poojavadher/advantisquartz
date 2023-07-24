@@ -1,0 +1,339 @@
+[
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-07-12 15:43:07.887980",
+  "module": "Advantisquartz",
+  "name": "Purchase Order Delay and Approved",
+  "prepared_report": 0,
+  "query": "SELECT\n    po.name AS \"Purchase Order Id\",\n    po.transaction_date AS \"Created Date\",\n    po.approved_date AS \"Approved Date\",\n    IF(po.approved_date IS NULL, DATEDIFF(CURRENT_DATE, po.transaction_date), 0) AS delay_days\nFROM\n    `tabPurchase Order` po\n",
+  "ref_doctype": "Purchase Order",
+  "reference_report": null,
+  "report_name": "Purchase Order Delay and Approved",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Purchase Order Delay and Approved",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Purchase Order Delay and Approved",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Purchase Order Delay and Approved",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Purchase Order Delay and Approved",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Auditor"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-07-24 11:15:17.263792",
+  "module": "Advantisquartz",
+  "name": "Material Issue Scrap Item Report",
+  "prepared_report": 0,
+  "query": "SELECT \nse.name as 'Material Issue No',\nse.posting_date as 'Date',\nsed.item_code as 'Item Code',\nsed.item_name as 'Item Name',\nsed.qty as 'Require Qty',\nse.party_name as 'Require Person Name',\nse.issue_location as 'Location',\n'' as 'Application',\nse.remark as \"Remark\",\nsed.qty as \"Old Qty(Scrap)\",\nsed.uom as \"UOM\",\n'' as \"Problem\",\n'' as \"last issue date\"\nfrom `tabStock Entry` se \njoin `tabStock Entry Detail` sed on se.name = sed.parent",
+  "ref_doctype": "Stock Entry",
+  "reference_report": null,
+  "report_name": "Material Issue Scrap Item Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Material Issue Scrap Item Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Material Issue Scrap Item Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "Material Issue Scrap Item Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "Material Issue Scrap Item Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-07-24 12:18:01.452250",
+  "module": "Advantisquartz",
+  "name": "Material Issue Report",
+  "prepared_report": 0,
+  "query": "select \nse.posting_date as \"Issue Date\",\nse.name as \"Part No\",\nsed.item_name as \"Item Name\",\nsed.qty as \"Quantity\",\nsed.basic_rate as \"Unit Price\",\nsed.amount as \"Amount\"\nfrom `tabStock Entry` se \njoin `tabStock Entry Detail` sed on se.name = sed.parent\n\nwhere\nse.stock_entry_type =\"Material Issue\"",
+  "ref_doctype": "Stock Entry",
+  "reference_report": null,
+  "report_name": "Material Issue Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Material Issue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Material Issue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "Material Issue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "Material Issue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [
+   {
+    "fieldname": "sed.item_group",
+    "fieldtype": "Link",
+    "label": "Group",
+    "options": "Item Group",
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 180
+   },
+   {
+    "fieldname": "se.posting_date",
+    "fieldtype": "Date",
+    "label": "Date",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "se.name",
+    "fieldtype": "Link",
+    "label": "Part No",
+    "options": "Stock Entry",
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "sed.description",
+    "fieldtype": "Data",
+    "label": "Description Of Goods",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "sed.qty",
+    "fieldtype": "Float",
+    "label": "Quantity",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "sed.uom",
+    "fieldtype": "Link",
+    "label": "Uom",
+    "options": "UOM",
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "sed.basic_rate",
+    "fieldtype": "Float",
+    "label": "Rate",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "sed.amount",
+    "fieldtype": "Float",
+    "label": "Amount",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "se.department",
+    "fieldtype": "Data",
+    "label": "DepartMent",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 180
+   },
+   {
+    "fieldname": "se.owner",
+    "fieldtype": "Data",
+    "label": "UserName",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "se.remark",
+    "fieldtype": "Data",
+    "label": "Remark",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 200
+   },
+   {
+    "fieldname": "se.issue_location",
+    "fieldtype": "Data",
+    "label": "Location",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "se.shift",
+    "fieldtype": "Data",
+    "label": "Shift",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "se.machine",
+    "fieldtype": "Data",
+    "label": "Machine",
+    "options": null,
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   }
+  ],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-07-24 12:41:19.632076",
+  "module": "Advantisquartz",
+  "name": "Material Machine Wise Isssue Report",
+  "prepared_report": 0,
+  "query": "select\nsed.item_group as 'Group',\nse.posting_date as \"Date\",\nse.name as \"Part No\",\nsed.description as \"Description Of Goods\",\nsed.qty as \"Quantity\",\nsed.uom as \"UOM\",\nsed.basic_rate as \"Rate\",\nsed.amount as \"Amount\",\nse.department as \"Department\",\nse.owner as \"Username\",\nse.remark as \"Remark\",\nse.issue_location as \"Location\",\nse.shift as \"shift\",\nse.machine as \"Machine\"\nfrom `tabStock Entry` se\njoin `tabStock Entry Detail` sed on se.name = sed.parent\nwhere\nse.stock_entry_type = \"Material Issue\"",
+  "ref_doctype": "Stock Entry",
+  "reference_report": null,
+  "report_name": "Material Machine Wise Isssue Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "Material Machine Wise Isssue Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   }
+  ]
+ }
+]

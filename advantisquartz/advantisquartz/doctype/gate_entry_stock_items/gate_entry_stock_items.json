@@ -8,6 +8,7 @@
  "field_order": [
   "item",
   "qty",
+  "uom",
   "status",
   "parent_doctype",
   "parentdoc"
@@ -46,12 +47,19 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Qty"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "UOM",
+   "options": "UOM"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-15 14:06:52.066344",
+ "modified": "2023-07-21 14:54:07.336515",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry Stock Items",

@@ -254,5 +254,12 @@ fixtures = [
                 "advantisquartz"
             ]
         ]
-    ]}
+        ]},
+        {"dt":"Report","filters":[
+        [
+            "module","in",[
+                "advantisquartz"
+            ]
+        ]
+        ]}
 ]
