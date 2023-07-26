@@ -9,6 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "column_break_de9qw",
+  "scan_barcode",
   "section_break_jolkl",
   "polish_item",
   "amended_from"
@@ -28,7 +30,8 @@
    "fieldname": "polish_item",
    "fieldtype": "Table",
    "label": "Polish Item",
-   "options": "Polish Item"
+   "options": "Polish Item",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -38,12 +41,22 @@
    "options": "Polish Serial No Update",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_de9qw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scan_barcode",
+   "fieldtype": "Data",
+   "label": "Scan Barcode",
+   "options": "Barcode"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-19 10:42:58.454585",
+ "modified": "2023-07-25 10:11:04.363661",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Serial No Update",

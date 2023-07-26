@@ -9,6 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "column_break_s9txc",
+  "barcode_scanner",
   "section_break_58esz",
   "press_item",
   "amended_from"
@@ -38,12 +40,22 @@
    "options": "Serial No Update",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_s9txc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "barcode_scanner",
+   "fieldtype": "Data",
+   "label": "Barcode Scanner",
+   "options": "Barcode"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-21 12:02:44.781225",
+ "modified": "2023-07-24 19:11:27.937718",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Serial No Update",

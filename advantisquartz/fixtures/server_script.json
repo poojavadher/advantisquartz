@@ -37,11 +37,26 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-07-21 18:27:53.226610",
+  "modified": "2023-07-26 10:37:27.704443",
   "module": "Advantisquartz",
   "name": "tax",
   "reference_doctype": null,
-  "script": "a = frappe.form_dict[\"no\"]\n\nresult = frappe.db.sql(\"\"\"\n    SELECT tr.tax_rate\n    FROM `tabItem Tax Template` it\n    JOIN `tabItem Tax Template Detail` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", a)\n\n# Extract the tax rates from the result set\ntax_rates = [row[0] for row in result]\n\n# Compute the sum of tax rates\ntotal = sum(tax_rates)\ntotal_2 = str(total)\nfrappe.msgprint(total_2)\nfrappe.response[\"total\"]=total_2\n\n",
+  "script": "a = frappe.form_dict[\"no\"]\n\nresult = frappe.db.sql(\"\"\"\n    SELECT tr.tax_rate\n    FROM `tabItem Tax Template` it\n    JOIN `tabItem Tax Template Detail` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", a)\n\n# Extract the tax rates from the result set\ntax_rates = [row[0] for row in result]\n\n# Compute the sum of tax rates\ntotal = sum(tax_rates)\ntotal_2 = str(total)\nfrappe.response[\"total\"]=total_2\n\n",
+  "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "packing",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2023-07-26 10:52:48.908714",
+  "module": "Advantisquartz",
+  "name": "packing",
+  "reference_doctype": null,
+  "script": "a = frappe.form_dict[\"packing_list\"]\n\n# Fetch serial numbers and item codes from the database\nitems = frappe.db.sql(\"\"\"SELECT item_code, serial_no FROM `tabPacking List Item` WHERE parent=%s \"\"\", a)\nsales_order = frappe.db.sql(\"\"\"SELECT sales_order FROM `tabPacking list` WHERE name=%s \"\"\", a)\nserial_count = frappe.db.sql( \"\"\"\n    SELECT  item_code,COUNT(serial_no) AS serial_count \n    FROM `tabPacking List Item` \n    WHERE parent = %s \n    GROUP BY item_code\n\"\"\", a)\nserial_count1 = \"\"\nfor a in serial_count:\n    for b in a:\n        if serial_count1 == \"\":\n            serial_count1 = b\n        else:\n            serial_count1 = f'{serial_count1}{\",\"}{b}'\nserial_count2 = str(serial_count1)\nfrappe.msgprint(serial_count2)\n# Create a list to store items and their serial numbers\nitem_serial_list = []\nfor item in items:\n    item_code = item[0]\n    serial = item[1]\n    item_serial_list.append({\"item_code\": item_code, \"serial_no\": serial})\n\n# Process item_code and serial_no\nitem_codes = []\nserial_numbers = []\nfor item_serial in item_serial_list:\n    item_code = item_serial[\"item_code\"]\n    serial_no = item_serial[\"serial_no\"]\n\n    if item_code not in item_codes:\n        item_codes.append(item_code)\n        serial_numbers.append([serial_no])\n    else:\n        index = item_codes.index(item_code)\n        serial_numbers[index].append(serial_no)\n\n# Print the item codes and serial numbers\nitem1 = \",\".join(item_codes)\nitem_serial_combined = \",\".join([\"\\n\".join(serials) for serials in serial_numbers])\n\n# Print sales order\nsales_order1 = \"\"\nfor sale in sales_order:\n    for order in sale:\n        if sales_order1 == \"\":\n            sales_order1 = order\n\nfrappe.response[\"item_code\"] = item1\nfrappe.response[\"serial_no\"] = item_serial_combined\nfrappe.response[\"serial_count\"] = serial_count2\nfrappe.response[\"sales_order\"] = sales_order1\n",
   "script_type": "API"
  },
  {
@@ -61,17 +76,32 @@
  },
  {
   "allow_guest": 0,
+  "api_method": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Insert",
+  "event_frequency": "All",
+  "modified": "2023-07-26 10:40:58.134241",
+  "module": "Advantisquartz",
+  "name": "Add Purchase receipt item to gate entry",
+  "reference_doctype": "Purchase Receipt",
+  "script": "if doc.gate_entry: \n    gate_entry = doc.gate_entry\n    gate_doc = frappe.get_doc('Gate Entry', gate_entry)\n    for item in doc.items:\n        if item.linked_to_gate_entry == 0:\n            gate_doc.append(\"stock_item_tab\", {\n                        'item': item.item_code,\n                        'qty': item.qty + item.rejected_qty,\n                        'uom' : item.uom\n                    })\n            item.linked_to_gate_entry = 1\n    doc.save()\n    gate_doc.save()",
+  "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
   "api_method": "receive_qty",
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-07-21 18:23:41.619678",
+  "modified": "2023-07-26 10:37:37.250618",
   "module": "Advantisquartz",
   "name": "receive_qty",
   "reference_doctype": null,
-  "script": "b = frappe.form_dict[\"purchase\"]\nif b:\n    receive = frappe.db.sql(\"\"\"\n    SELECT tr.received_qty\n    FROM `tabPurchase Order` it\n    JOIN `tabPurchase Order Item` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", b)\n\nreceive1 = \"\"\nfor a in receive:\n    for b in a:\n        if receive1 == \"\":\n            receive1 = b\n        else:\n            receive1 = f'{receive1}{\",\"}{b}'\nreceive2 = str(receive1)\nfrappe.response[\"receive\"] = receive2\nfrappe.msgprint(receive2)",
+  "script": "b = frappe.form_dict[\"purchase\"]\nif b:\n    receive = frappe.db.sql(\"\"\"\n    SELECT tr.received_qty\n    FROM `tabPurchase Order` it\n    JOIN `tabPurchase Order Item` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", b)\n\nreceive1 = \"\"\nfor a in receive:\n    for b in a:\n        if receive1 == \"\":\n            receive1 = b\n        else:\n            receive1 = f'{receive1}{\",\"}{b}'\nreceive2 = str(receive1)\nfrappe.response[\"receive\"] = receive2\n",
   "script_type": "API"
  }
 ]

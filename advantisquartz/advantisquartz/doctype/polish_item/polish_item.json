@@ -18,6 +18,7 @@
  ],
  "fields": [
   {
+   "fetch_from": "slab_no.item_code",
    "fieldname": "item_code",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -25,14 +26,14 @@
    "options": "Item"
   },
   {
-   "fetch_from": "item_code.item_name",
+   "fetch_from": "slab_no.item_name",
    "fieldname": "item_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Item Name"
   },
   {
-   "fetch_from": "item_code.item_group",
+   "fetch_from": "slab_no.item_group",
    "fieldname": "item_group",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -67,7 +68,7 @@
    "fieldname": "batch",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Batch"
+   "label": "Lot No"
   },
   {
    "fieldname": "grade",
@@ -79,7 +80,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-17 17:27:07.523504",
+ "modified": "2023-07-25 10:47:50.674829",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Item",

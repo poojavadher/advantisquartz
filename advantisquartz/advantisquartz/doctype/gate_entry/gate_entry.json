@@ -81,6 +81,7 @@
    "label": "Driver Name"
   },
   {
+   "default": "+91-",
    "fieldname": "driver_mobile_no",
    "fieldtype": "Phone",
    "label": "Driver Mobile No."
@@ -438,7 +439,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-07-21 18:27:31.215138",
+ "modified": "2023-07-25 12:30:47.642577",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
