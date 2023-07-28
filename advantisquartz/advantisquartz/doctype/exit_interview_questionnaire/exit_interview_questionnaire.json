@@ -9,12 +9,69 @@
  "field_order": [
   "employee",
   "employee_name",
+  "supervisor",
+  "hod",
   "date",
   "column_break_7g26d",
   "joining",
   "designation",
   "department",
+  "hiring_source",
+  "total_experience",
   "section_break_tnvjf",
+  "que1",
+  "ans1",
+  "section_break_vd7by",
+  "que2",
+  "all",
+  "partlly",
+  "not_at_all",
+  "section_break_4rq18",
+  "que3",
+  "details",
+  "section_break_34ilz",
+  "que4",
+  "reason",
+  "section_break_21oxc",
+  "que5",
+  "ans5",
+  "section_break_qh3hj",
+  "que6",
+  "no",
+  "yes",
+  "if_yes_please_specify",
+  "section_break_otvpr",
+  "h57_what_new_things_have_you_learned_during_your_stay_with_ush5",
+  "ans7",
+  "section_break_z31qy",
+  "que8",
+  "no1",
+  "yes1",
+  "section_break_gm2bm",
+  "que9",
+  "name_of_new_company",
+  "new_designation",
+  "new_department",
+  "does_your_new_role_offer_a_better_salary",
+  "does_your_new_role_offer_greater_responsiblity",
+  "does_your_new_employer_offer_more_flexible_working_hours",
+  "column_break_f8pyp",
+  "new_salary",
+  "location_city",
+  "state",
+  "is_your_new_role_in_a_more_convenient_location",
+  "does_your_new_role_offer_more_interesting_work",
+  "section_break_4cuui",
+  "que10",
+  "most_satisfied_with",
+  "column_break_l22fo",
+  "least_satisfied_with",
+  "section_break_p73ka",
+  "que11",
+  "ans11",
+  "section_break_v01sr",
+  "que12",
+  "ans12",
   "amended_from"
  ],
  "fields": [
@@ -35,7 +92,7 @@
   {
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date",
+   "label": "Leaving Date",
    "reqd": 1
   },
   {
@@ -59,42 +116,319 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Employee Increment",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Employee Increment",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fetch_from": "employee.date_of_joining",
    "fieldname": "joining",
    "fieldtype": "Read Only",
    "label": "Joining"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Link",
+   "label": "Supervisor",
+   "options": "User"
+  },
+  {
+   "fieldname": "hod",
+   "fieldtype": "Link",
+   "label": "HOD",
+   "options": "User"
+  },
+  {
+   "fieldname": "hiring_source",
+   "fieldtype": "Select",
+   "label": "Hiring Source",
+   "options": "\nDIRECT\nREFERAL\nCAMPUS"
+  },
+  {
+   "fieldname": "total_experience",
+   "fieldtype": "Data",
+   "label": "Total Experience"
+  },
+  {
+   "fieldname": "que1",
+   "fieldtype": "Heading",
+   "label": "<h5> 1) What were your expectations at the time of joining?</h5> "
+  },
+  {
+   "fieldname": "ans1",
+   "fieldtype": "Select",
+   "options": "\nNear to the native place\nBetter organization\nBetter learning opportunities\nBetter culture\nBetter job profile\nBetter package/ salary\nUpward designation\nAn attitude of colleagues/ boss\nAny other"
+  },
+  {
+   "fieldname": "que2",
+   "fieldtype": "Heading",
+   "label": "<h5> 2) Were all your expectations fulfilled? </h5> "
+  },
+  {
+   "default": "0",
+   "fieldname": "all",
+   "fieldtype": "Check",
+   "label": "All"
+  },
+  {
+   "default": "0",
+   "fieldname": "partlly",
+   "fieldtype": "Check",
+   "label": "Partlly"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_at_all",
+   "fieldtype": "Check",
+   "label": "Not at all"
+  },
+  {
+   "fieldname": "section_break_vd7by",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_4rq18",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "que3",
+   "fieldtype": "Heading",
+   "label": "<h5> 3) Please rate your satisfaction level on following: (1 being low &amp; 5 being high) </h5> "
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "options": "Exit Interview Question"
+  },
+  {
+   "fieldname": "que4",
+   "fieldtype": "Heading",
+   "label": "<h5>4) Section 9: Reason for leaving (Please select &amp; elaborate wherever aplicable)</h5>"
+  },
+  {
+   "fieldname": "section_break_34ilz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Table",
+   "options": "Exit Interview Reason"
+  },
+  {
+   "fieldname": "section_break_21oxc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ans5",
+   "fieldtype": "Select",
+   "options": "\nNear to the native place\nHigh rise in salary\nHigher designation\nJob Profile\nAny other reason"
+  },
+  {
+   "fieldname": "que5",
+   "fieldtype": "Heading",
+   "label": "<h5>5) What is most applicable in the new position?</h5>"
+  },
+  {
+   "fieldname": "section_break_qh3hj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "que6",
+   "fieldtype": "Heading",
+   "label": "<h5>6) Does any policy or practice made your job difficult?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "yes",
+   "fieldtype": "Check",
+   "label": "Yes"
+  },
+  {
+   "default": "0",
+   "fieldname": "no",
+   "fieldtype": "Check",
+   "label": "No"
+  },
+  {
+   "fieldname": "section_break_otvpr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.yes === 1",
+   "description": "(You may also suggest, as how that particular policy/ practice can be improved)",
+   "fieldname": "if_yes_please_specify",
+   "fieldtype": "Data",
+   "label": "If Yes, Please specify "
+  },
+  {
+   "fieldname": "h57_what_new_things_have_you_learned_during_your_stay_with_ush5",
+   "fieldtype": "Heading",
+   "label": "<h5>7) What new things have you learned during your stay with us?</h5>",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ans7",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "section_break_z31qy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Exit Interview Questionnaire",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "no1",
+   "fieldtype": "Check",
+   "label": "No "
+  },
+  {
+   "default": "0",
+   "fieldname": "yes1",
+   "fieldtype": "Check",
+   "label": "Yes"
+  },
+  {
+   "fieldname": "section_break_gm2bm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "que9",
+   "fieldtype": "Heading",
+   "label": "<h5>9) Would you like to share with us details about your new assignment?</h5>"
+  },
+  {
+   "fieldname": "name_of_new_company",
+   "fieldtype": "Data",
+   "label": "Name of New Company"
+  },
+  {
+   "fieldname": "new_designation",
+   "fieldtype": "Data",
+   "label": "New Designation "
+  },
+  {
+   "fieldname": "new_department",
+   "fieldtype": "Data",
+   "label": "New Department"
+  },
+  {
+   "fieldname": "new_salary",
+   "fieldtype": "Data",
+   "label": "<br><br>New Salary"
+  },
+  {
+   "fieldname": "location_city",
+   "fieldtype": "Data",
+   "label": "Location (City)"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "column_break_f8pyp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "does_your_new_role_offer_a_better_salary",
+   "fieldtype": "Select",
+   "label": "Does your new role offer a better salary?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "does_your_new_role_offer_greater_responsiblity",
+   "fieldtype": "Select",
+   "label": "Does your new role offer greater responsiblity?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "does_your_new_employer_offer_more_flexible_working_hours",
+   "fieldtype": "Select",
+   "label": "Does your new employer offer more flexible working hours?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "is_your_new_role_in_a_more_convenient_location",
+   "fieldtype": "Select",
+   "label": "Is your new role in a more convenient location?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "does_your_new_role_offer_more_interesting_work",
+   "fieldtype": "Select",
+   "label": "Does your new role offer more interesting work?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_4cuui",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "most_satisfied_with",
+   "fieldtype": "Link",
+   "label": "<br>Most satisfied with:",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_l22fo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "least_satisfied_with",
+   "fieldtype": "Link",
+   "label": "<br><br> <br>Least satisfied with:",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_break_p73ka",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "que10",
+   "fieldtype": "Heading",
+   "label": "<h5>10) Which aspects of your job were you:</h5>"
+  },
+  {
+   "fieldname": "que11",
+   "fieldtype": "Heading",
+   "label": "<h5>11) In what way has the organisation not met your expectations?</h5>"
+  },
+  {
+   "fieldname": "ans11",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "section_break_v01sr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "que12",
+   "fieldtype": "Heading",
+   "label": "<h5>12) What are your suggestions for overall improvement?</h5>"
+  },
+  {
+   "fieldname": "ans12",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "que8",
+   "fieldtype": "Heading",
+   "label": "<h5>8) Would you like to work with us again in case an opportunity is available to you in future?</h5>"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2023-07-26 10:52:40.942880",
+ "modified": "2023-07-26 16:17:54.723270",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Exit Interview Questionnaire",
  "owner": "Administrator",
  "permissions": [
   {
-   "amend": 1,
-   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -105,7 +439,6 @@
    "role": "System Manager",
    "select": 1,
    "share": 1,
-   "submit": 1,
    "write": 1
   }
  ],

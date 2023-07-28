@@ -9,6 +9,7 @@
   "serial_no",
   "batch_no",
   "select_type",
+  "column_break_hvt1e",
   "width",
   "length",
   "weight"
@@ -48,12 +49,16 @@
    "fieldname": "weight",
    "fieldtype": "Data",
    "label": "Weight"
+  },
+  {
+   "fieldname": "column_break_hvt1e",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-25 11:15:29.142810",
+ "modified": "2023-07-28 15:37:38.704445",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Press Item Serial",

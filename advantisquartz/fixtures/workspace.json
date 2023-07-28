@@ -1,7 +1,7 @@
 [
  {
   "charts": [],
-  "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}}]",
+  "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}},{\"id\":\"Ug4QtSaiCU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -44,7 +44,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2023-07-11 17:37:59.907751",
+  "modified": "2023-07-26 10:54:58.485789",
   "module": "Advantisquartz",
   "name": "Gate Pass",
   "number_cards": [],
@@ -55,6 +55,21 @@
   "roles": [],
   "sequence_id": 7.0,
   "shortcuts": [
+   {
+    "color": "Grey",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "label": "Dashboard",
+    "link_to": "Gate Entry",
+    "parent": "Gate Pass",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "Dashboard",
+    "url": null
+   },
    {
     "color": "Orange",
     "doc_view": "List",

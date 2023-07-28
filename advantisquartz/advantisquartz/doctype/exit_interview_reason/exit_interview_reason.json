@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-26 13:02:23.458829",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "economic_reason",
+  "organization_job_releted_reason",
+  "personal_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "economic_reason",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Economic Reason",
+   "options": "\nBetter Compensation\nBenefits/ Incentives\nAny Other"
+  },
+  {
+   "fieldname": "organization_job_releted_reason",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Organization/ Job Releted Reason",
+   "options": "\nJob Satisfactions\nBetter Career Opportunity Elsewhere\nLack of Growth Opportunities\nJob Fit\nIssues with Supervisor or Colleagues\nPerformance Rating\nAny Other"
+  },
+  {
+   "fieldname": "personal_reason",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Personal Reason",
+   "options": "\nHealth Problems\nLocation\nFurther Studies\nFamily Circumstances\nTiming\nAny Other"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Exit Interview Reason",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-26 13:18:35.992525",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Exit Interview Reason",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

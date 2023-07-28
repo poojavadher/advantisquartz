@@ -11,6 +11,7 @@
   "serial_no",
   "production_weight",
   "production_length",
+  "column_break_uspbu",
   "production_width",
   "production_grade",
   "sales_length",
@@ -48,7 +49,7 @@
    "label": "Production Width"
   },
   {
-   "fetch_from": "serial_no._serial_no_quality",
+   "fetch_from": "serial_no.quality",
    "fieldname": "production_grade",
    "fieldtype": "Data",
    "label": "Production Grade"
@@ -74,12 +75,16 @@
    "in_list_view": 1,
    "label": "Item Code",
    "options": "Item"
+  },
+  {
+   "fieldname": "column_break_uspbu",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-19 11:29:22.360611",
+ "modified": "2023-07-28 16:09:11.642541",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing List Item",
