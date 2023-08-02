@@ -206,6 +206,7 @@ fixtures = [
     "Custom DocPerm",
     "Property Setter",
     "Role",
+    "Document Naming Rule",
     {"dt":"Workspace","filters":[
         [
             "module","in",[

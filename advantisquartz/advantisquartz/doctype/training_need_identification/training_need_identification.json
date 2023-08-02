@@ -7,53 +7,28 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "employee",
-  "employee_name",
-  "column_break_7g26d",
-  "designation",
   "department",
+  "column_break_gj0cx",
+  "date",
   "section_break_tnvjf",
   "training_details",
   "urgency_scale",
+  "training_need_identification_by",
   "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Employee",
-   "options": "Employee",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "employee.employee_name",
-   "fieldname": "employee_name",
-   "fieldtype": "Read Only",
-   "label": "Employee Name"
-  },
-  {
-   "fieldname": "column_break_7g26d",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fetch_from": "employee.designation",
-   "fieldname": "designation",
-   "fieldtype": "Read Only",
-   "label": "Designation"
-  },
-  {
-   "fetch_from": "employee.department",
    "fieldname": "department",
-   "fieldtype": "Read Only",
-   "label": "Department"
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
   },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Training Need Certificate",
+   "options": "Training Need Identification",
    "print_hide": 1,
    "read_only": 1
   },
@@ -72,12 +47,27 @@
    "fieldtype": "Small Text",
    "label": "Urgency Scale ",
    "read_only": 1
+  },
+  {
+   "fieldname": "training_need_identification_by",
+   "fieldtype": "Link",
+   "label": "TRAINING NEED IDENTIFICATION BY",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_gj0cx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-25 15:08:19.727264",
+ "modified": "2023-08-02 15:46:08.184055",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Training Need Identification",

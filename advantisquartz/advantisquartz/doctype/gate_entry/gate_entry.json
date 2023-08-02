@@ -11,6 +11,7 @@
   "naming_series",
   "entry_type",
   "purpose",
+  "supplier",
   "invoice_no",
   "invoice_date",
   "column_break_om2y0",
@@ -429,6 +430,13 @@
    "fieldname": "lock_weight_out_details",
    "fieldtype": "Check",
    "label": "Lock Weight Out Details"
+  },
+  {
+   "depends_on": "eval: doc.entry_type == 'Inward';",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -439,7 +447,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-07-25 12:30:47.642577",
+ "modified": "2023-08-02 18:13:09.361446",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",

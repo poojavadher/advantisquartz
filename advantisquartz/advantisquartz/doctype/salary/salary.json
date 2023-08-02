@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-08-01 13:48:55.308996",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "present_gross_salary",
+  "expected_gross_salary",
+  "offered_gross_salary",
+  "offered_position",
+  "training__probation",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "present_gross_salary",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Present Gross Salary"
+  },
+  {
+   "fieldname": "expected_gross_salary",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Expected Gross Salary"
+  },
+  {
+   "fieldname": "offered_gross_salary",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Offered Gross Salary"
+  },
+  {
+   "fieldname": "offered_position",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Offered Position"
+  },
+  {
+   "fieldname": "training__probation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Training / Probation"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Salary",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-08-02 13:33:06.800026",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Salary",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
