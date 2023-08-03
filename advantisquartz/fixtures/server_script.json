@@ -133,5 +133,20 @@
   "reference_doctype": null,
   "script": "a = frappe.form_dict[\"serial\"]\n\nlot_no = frappe.db.sql(\"\"\"SELECT custom_batch_no FROM `tabSerial No` WHERE name=%s \"\"\", a)\nlot_no1 = \"\"\n\nfor lot in lot_no:\n    for no_lot in lot:\n        if lot_no1 == \"\":\n            lot_no1 = no_lot\n    \nfrappe.msgprint(a)\nfrappe.msgprint(lot_no1)\nfrappe.response[\"lot_no\"] = lot_no1\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "purchase",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2023-08-02 19:30:36.008511",
+  "module": "Advantisquartz",
+  "name": "purchase",
+  "reference_doctype": null,
+  "script": "a =  frappe.form_dict[\"supplier_quotation\"]\nif(a):\n    request = frappe.db.sql(\"select sqi.request_for_quotation from `tabSupplier Quotation` sq join `tabSupplier Quotation Item` sqi on sq.name = sqi.parent where sq.name = %s\",a, as_dict=True)\n    frappe.response[\"request\"]=request[0]['request_for_quotation']",
+  "script_type": "API"
  }
 ]

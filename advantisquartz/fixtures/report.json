@@ -9,6 +9,49 @@
   "filters": [],
   "is_standard": "No",
   "javascript": null,
+  "json": "{\"columns\":[{\"fieldtype\":\"Link\",\"options\":\"Item\",\"width\":120,\"label\":\"Item Code\",\"fieldname\":\"item_code\",\"id\":\"item_code\",\"name\":\"Item Code\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"\",\"width\":120,\"label\":\"Item Name\",\"fieldname\":\"item_name\",\"id\":\"item_name\",\"name\":\"Item Name\",\"editable\":false,\"compareValue\":null},{\"fieldname\":\"remarks\",\"fieldtype\":\"Text\",\"label\":\"Remarks\",\"insert_after_index\":1,\"link_field\":\"purchase_order\",\"doctype\":\"Purchase Order\",\"width\":100,\"id\":\"remarks\",\"name\":\"Remarks\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Link\",\"options\":\"Item Group\",\"width\":120,\"label\":\"Item Group\",\"fieldname\":\"item_group\",\"id\":\"item_group\",\"name\":\"Item Group\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"\",\"width\":150,\"label\":\"Description\",\"fieldname\":\"description\",\"id\":\"description\",\"name\":\"Description\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Float\",\"width\":100,\"label\":\"Qty\",\"fieldname\":\"qty\",\"id\":\"qty\",\"name\":\"Qty\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Link\",\"options\":\"UOM\",\"width\":80,\"label\":\"UOM\",\"fieldname\":\"uom\",\"id\":\"uom\",\"name\":\"UOM\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Currency\",\"width\":120,\"label\":\"Rate\",\"fieldname\":\"rate\",\"id\":\"rate\",\"name\":\"Rate\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Currency\",\"width\":120,\"label\":\"Amount\",\"fieldname\":\"amount\",\"id\":\"amount\",\"name\":\"Amount\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Link\",\"options\":\"Purchase Order\",\"width\":120,\"label\":\"Purchase Order\",\"fieldname\":\"purchase_order\",\"id\":\"purchase_order\",\"name\":\"Purchase Order\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Date\",\"width\":140,\"label\":\"Transaction Date\",\"fieldname\":\"transaction_date\",\"id\":\"transaction_date\",\"name\":\"Transaction Date\",\"editable\":false},{\"fieldtype\":\"Link\",\"options\":\"Supplier\",\"width\":130,\"label\":\"Supplier\",\"fieldname\":\"supplier\",\"id\":\"supplier\",\"name\":\"Supplier\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"\",\"width\":150,\"label\":\"Supplier Name\",\"fieldname\":\"supplier_name\",\"id\":\"supplier_name\",\"name\":\"Supplier Name\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Link\",\"options\":\"Project\",\"width\":130,\"label\":\"Project\",\"fieldname\":\"project\",\"id\":\"project\",\"name\":\"Project\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Float\",\"width\":120,\"label\":\"Received Qty\",\"fieldname\":\"received_qty\",\"id\":\"received_qty\",\"name\":\"Received Qty\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Link\",\"options\":\"Company\",\"width\":null,\"label\":\"Company\",\"fieldname\":\"company\",\"id\":\"company\",\"name\":\"Company\",\"editable\":false,\"compareValue\":null}],\"filters\":{}}",
+  "letter_head": "LetterHead",
+  "modified": "2023-08-02 18:32:28.727184",
+  "module": "Advantisquartz",
+  "name": "Purchase order remark wise report",
+  "prepared_report": 0,
+  "query": "",
+  "ref_doctype": "Purchase Order",
+  "reference_report": "Item-wise Purchase History",
+  "report_name": "Purchase order remark wise report",
+  "report_script": null,
+  "report_type": "Custom Report",
+  "roles": [
+   {
+    "parent": "Purchase order remark wise report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Purchase order remark wise report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Purchase order remark wise report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
   "json": null,
   "letter_head": "LetterHead",
   "modified": "2023-07-12 15:43:07.887980",
@@ -998,6 +1041,61 @@
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "Stock User"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"columns\":[{\"fieldtype\":\"Link\",\"options\":\"Material Request\",\"width\":120,\"label\":\"Material Request\",\"fieldname\":\"material_request\",\"id\":\"material_request\",\"name\":\"Material Request\",\"editable\":false,\"compareValue\":null},{\"fieldname\":\"created_name\",\"fieldtype\":\"Data\",\"label\":\"Created Name\",\"insert_after_index\":0,\"link_field\":\"material_request\",\"doctype\":\"Material Request\",\"width\":100,\"id\":\"created_name\",\"name\":\"Created Name\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Date\",\"width\":100,\"label\":\"Date\",\"fieldname\":\"date\",\"id\":\"date\",\"name\":\"Date\",\"editable\":false},{\"fieldtype\":\"Link\",\"options\":\"Item\",\"width\":120,\"label\":\"Item Code\",\"fieldname\":\"item_code\",\"id\":\"item_code\",\"name\":\"Item Code\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Float\",\"width\":100,\"label\":\"Qty\",\"fieldname\":\"qty\",\"id\":\"qty\",\"name\":\"Qty\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"\",\"width\":150,\"label\":\"Item Name\",\"fieldname\":\"item_name\",\"id\":\"item_name\",\"name\":\"Item Name\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"\",\"width\":200,\"label\":\"Description\",\"fieldname\":\"description\",\"id\":\"description\",\"name\":\"Description\",\"editable\":false,\"compareValue\":null},{\"fieldtype\":\"Link\",\"options\":\"Company\",\"width\":null,\"label\":\"Company\",\"fieldname\":\"company\",\"id\":\"company\",\"name\":\"Company\",\"editable\":false,\"compareValue\":null}],\"filters\":{}}",
+  "letter_head": "LetterHead",
+  "modified": "2023-08-02 18:32:09.915484",
+  "module": "Advantisquartz",
+  "name": "Material Request",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Material Request",
+  "reference_report": "Material Requests for which Supplier Quotations are not created",
+  "report_name": "Material Request",
+  "report_script": null,
+  "report_type": "Custom Report",
+  "roles": [
+   {
+    "parent": "Material Request",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Material Request",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Material Request",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Material Request",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Material Request",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "MR Creator"
    }
   ]
  }
