@@ -60,6 +60,12 @@
     "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
     "parenttype": "Dashboard"
+   },
+   {
+    "card": "abc",
+    "parent": "AQ Buying Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
    }
   ],
   "chart_options": null,
@@ -77,8 +83,54 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-06-26 18:15:09.635720",
+  "modified": "2023-08-09 16:47:34.514622",
   "module": "Advantisquartz",
   "name": "AQ Buying Dashboard"
+ },
+ {
+  "cards": [
+   {
+    "card": "QC Pending",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Asset Repairing",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Raw Material In",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Store & Spare In",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Completed Gate Entry",
+    "parent": "Gate Entry",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Gate Entry",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2023-08-10 10:46:53.173476",
+  "module": "Advantisquartz",
+  "name": "Gate Entry"
  }
 ]

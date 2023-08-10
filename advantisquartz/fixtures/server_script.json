@@ -2,16 +2,16 @@
  {
   "allow_guest": 0,
   "api_method": null,
-  "disabled": 0,
+  "disabled": 1,
   "docstatus": 0,
   "doctype": "Server Script",
-  "doctype_event": "Before Save",
+  "doctype_event": "After Submit",
   "event_frequency": "All",
-  "modified": "2023-07-21 17:13:47.997063",
+  "modified": "2023-08-09 12:55:59.871068",
   "module": "Advantisquartz",
   "name": "Link QC to Gate entry On submit Purchase Receipt Enabled",
   "reference_doctype": "Purchase Receipt",
-  "script": "# qc_list = frappe.db.get_list('Purchase Receipt Item',filters={'parent': f'{name}'}, fields=['quality_inspection'])\nif doc.gate_entry and doc.qc_done == 0:  \n    gate_entry = doc.gate_entry\n    parent = frappe.get_doc('Gate Entry', gate_entry)\n    for l in doc.items:\n        if l.quality_inspection:\n            qc_data = frappe.db.get_value('Quality Inspection', l.quality_inspection,['item_name', 'status','report_date','sample_size','sample_uom','inspected_by','remarks'], as_dict=1)\n            parent.append(\"qc_details\", {\n                'qc': l.quality_inspection,\n                'item_name': qc_data.item_name,\n                'qc_status' : qc_data.status,\n                'qc_date' : qc_data.report_date,\n                'qc_time': '',\n                'inspected_by': qc_data.inspected_by,\n                'qc_remarks' : qc_data.remarks,\n                'sample_size': str(qc_data.sample_size) +\" \"+ str(qc_data.sample_uom),\n            })\n            \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1        \n    parent.save()\n    doc.qc_done = 1\n            \n            \n            ",
+  "script": "# qc_list = frappe.db.get_list('Purchase Receipt Item',filters={'parent': f'{name}'}, fields=['quality_inspection'])\nif doc.gate_entry:  \n    gate_entry = doc.gate_entry\n    parent = frappe.get_doc('Gate Entry', gate_entry)\n    for l in doc.items:\n        if l.qc_done == 0:\n            qc_data = frappe.db.get_value('Quality Inspection', l.quality_inspection,['item_name', 'status','report_date','sample_size','sample_uom','inspected_by','remarks'], as_dict=1)\n            parent.append(\"qc_details\", {\n                'qc': l.quality_inspection,\n                'item_name': qc_data.item_name,\n                'qc_status' : qc_data.status,\n                'qc_date' : qc_data.report_date,\n                'qc_time': '',\n                'inspected_by': qc_data.inspected_by,\n                'qc_remarks' : qc_data.remarks,\n                'sample_size': str(qc_data.sample_size) +\" \"+ str(qc_data.sample_uom),\n            })\n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1        \n    parent.save()\n    ",
   "script_type": "DocType Event"
  },
  {
@@ -148,5 +148,20 @@
   "reference_doctype": null,
   "script": "a =  frappe.form_dict[\"supplier_quotation\"]\nif(a):\n    request = frappe.db.sql(\"select sqi.request_for_quotation from `tabSupplier Quotation` sq join `tabSupplier Quotation Item` sqi on sq.name = sqi.parent where sq.name = %s\",a, as_dict=True)\n    frappe.response[\"request\"]=request[0]['request_for_quotation']",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Submit",
+  "event_frequency": "All",
+  "modified": "2023-08-10 10:44:56.222609",
+  "module": "Advantisquartz",
+  "name": "QC Link To gate Entry",
+  "reference_doctype": "Quality Inspection",
+  "script": "if doc.reference_type == \"Purchase Receipt\":\n    ref_doc = doc.reference_name\n    gate_entry = frappe.db.get_value(\"Purchase Receipt\",ref_doc,'gate_entry')\n    parent = frappe.get_doc('Gate Entry', gate_entry)\n    parent.append(\"qc_details\", {\n            'qc': doc.name,\n            'item_name': doc.item_name,\n            'qc_status' : doc.status,\n            'qc_date' : doc.report_date,\n            'qc_time': '',\n            'inspected_by': doc.inspected_by,\n            'qc_remarks' : doc.remarks,\n            'sample_size': str(doc.sample_size) +\" \"+ str(doc.sample_uom),\n    }) \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1 \n    parent.save()",
+  "script_type": "DocType Event"
  }
 ]

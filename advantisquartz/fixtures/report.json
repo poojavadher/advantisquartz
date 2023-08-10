@@ -1098,5 +1098,470 @@
     "role": "MR Creator"
    }
   ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [
+   {
+    "fieldname": "mr.name",
+    "fieldtype": "Link",
+    "label": "Indent No",
+    "options": "Material Request",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "po.name",
+    "fieldtype": "Link",
+    "label": "Po No",
+    "options": "Purchase Order",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.gate_entry",
+    "fieldtype": "Link",
+    "label": "Gatepass No",
+    "options": "Gate Entry",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.name",
+    "fieldtype": "Link",
+    "label": "GRN NO",
+    "options": "Purchase Receipt",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mr.transaction_date",
+    "fieldtype": "Date",
+    "label": "TimeStamp",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mr.schedule_date",
+    "fieldtype": "Date",
+    "label": "Indent Required By",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mri.item_name",
+    "fieldtype": "Data",
+    "label": "Indent Requisition Attachment",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mr.name",
+    "fieldtype": "Link",
+    "label": "Requisition No",
+    "options": "Material Request",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mri.actual_qty",
+    "fieldtype": "Float",
+    "label": "Available Stock",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mr.creation",
+    "fieldtype": "Datetime",
+    "label": "Material Planned",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "material_comment.modified",
+    "fieldtype": "Datetime",
+    "label": "Material Actual",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mr.name",
+    "fieldtype": "Link",
+    "label": "Requisition No For Approval",
+    "options": "Material Request",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "Approved Requisition",
+    "fieldtype": "Data",
+    "label": "Work Status",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mr.remarks",
+    "fieldtype": "Data",
+    "label": "Remarks",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "Time Delay",
+    "fieldtype": "Data",
+    "label": "Time Delay",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "supplier.creation",
+    "fieldtype": "Datetime",
+    "label": "Planned",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "supplier.name",
+    "fieldtype": "Link",
+    "label": "Quatation Link",
+    "options": "Supplier Quotation",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "supplier.workflow_state",
+    "fieldtype": "Data",
+    "label": "Status",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "Supplier Quotation Time Delay",
+    "fieldtype": "Data",
+    "label": "Supplier Quotation Time Delay",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "po.creation",
+    "fieldtype": "Datetime",
+    "label": "Purchase Planned Date",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "purchase_comment.modified",
+    "fieldtype": "Datetime",
+    "label": "Purchase Actual Date",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "po.name",
+    "fieldtype": "Link",
+    "label": "Po No",
+    "options": "Purchase Order",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "Purchase Order Time Delay",
+    "fieldtype": "Data",
+    "label": "Purchase Order Time Delay",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.creation",
+    "fieldtype": "Datetime",
+    "label": "Gate Entry Planned",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.modified",
+    "fieldtype": "Datetime",
+    "label": "Gate Entry Actual",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.name ",
+    "fieldtype": "Link",
+    "label": "GatePass No",
+    "options": "Gate Entry",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.creation",
+    "fieldtype": "Datetime",
+    "label": "Receipt Planned",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "receipt_comment.modified",
+    "fieldtype": "Datetime",
+    "label": "Receipt Actual",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.name",
+    "fieldtype": "Link",
+    "label": "GRN NO",
+    "options": "Purchase Receipt",
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "activity_grn.full_name",
+    "fieldtype": "Data",
+    "label": "Submitted By",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "Receipt Time Delay",
+    "fieldtype": "Data",
+    "label": "Receipt Time Delay",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.creation_date",
+    "fieldtype": "Datetime",
+    "label": "Quality Planned",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.modified_date",
+    "fieldtype": "Datetime",
+    "label": "Quality Actual",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.remarks",
+    "fieldtype": "Data",
+    "label": "Remarks",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grn.inspected_by",
+    "fieldtype": "Data",
+    "label": "Submited by",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "Quality Time Delay",
+    "fieldtype": "Data",
+    "label": "Quality Time Delay",
+    "options": null,
+    "parent": "Purchase FMS Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   }
+  ],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-08-09 19:35:10.560345",
+  "module": "Advantisquartz",
+  "name": "Purchase FMS Report",
+  "prepared_report": 0,
+  "query": "with po as( Select po.name,pod.material_request, po.creation,\n pod.parent from \n`tabPurchase Order` po   join `tabPurchase Order Item` pod on pod.parent = po.name\nwhere po.status != \"Cancelled\"),\n\n grn as (select grn.name ,grn.gate_entry,grn_child.material_request,gt.creation,gt.modified,\nqt.name as \"quality\",qt.reference_type as \"purchase_name\",qt.reference_name as \"receipt_name\",qt.creation as \"creation_date\",qt.modified as \"modified_date\",\nqt.remarks,qt.inspected_by\nfrom `tabPurchase Receipt` grn join `tabPurchase Receipt Item` grn_child on grn_child.parent = grn.name\nleft outer join `tabGate Entry` gt on gt.name = grn.gate_entry\nleft outer join `tabQuality Inspection` qt on qt.name = grn_child.quality_inspection), \n\nmaterial_comment as(select cmt.reference_name,cmt.modified\nfrom `tabComment` cmt where cmt.reference_doctype =\"Material Request\"\nand cmt.content =\"Pending\"),\n\n supplier as( Select su.name,su.workflow_state,su.transaction_date,su.creation,sud.material_request,\n sud.parent from \n`tabSupplier Quotation` su   join `tabSupplier Quotation Item` sud on sud.parent = su.name\nwhere su.status != \"Cancelled\"),\n\nsupplier_comment as(select cmt.reference_name,cmt.modified\nfrom `tabComment` cmt where cmt.reference_doctype =\"Supplier Quotation\"\nand cmt.content =\"Approved\"),\n\npurchase_comment as(select cmt.reference_name,cmt.modified\nfrom `tabComment` cmt where cmt.reference_doctype =\"Purchase Order\"\nand cmt.content =\"To Receive and Bill\"),\n\nreceipt_comment as(select cmt.reference_name,cmt.modified\nfrom `tabComment` cmt where cmt.reference_doctype =\"Purchase Receipt\"\nand cmt.content =\"To Bill\"),\n\ngate_entry as (select gt.name, gt.modified from `tabGate Entry` gt\nwhere gt.docstatus = \"Submitted\"),\n\ngate_entrys as (select gt.name, gt.creation from `tabGate Entry` gt\nwhere gt.docstatus = \"Draft\"),\n \nactivity_grn as (select at.reference_name, at.full_name \nfrom `tabActivity Log` at where at.reference_doctype = \"Purchase Receipt\"),\n\nquality as (select qt.name,qt.reference_type,qt.reference_name,qt.creation,qt.modified,qt.remarks,qt.inspected_by\nfrom `tabQuality Inspection` qt where qt.reference_type = \"Purchase Receipt\" and\nqt.docstatus =\"Submitted\"\n)\n\n\nselect \nmr.name  as \"Indent No\",\npo.name as \"Po No\",\ngrn.gate_entry as \"Gatepass No\",\ngrn.name as \"GRN NO\",\nmr.transaction_date as \"TimeStamp\",\nmr.schedule_date as \"Indent Required By\",\nmri.item_name as \"Indent Requisition Attachment\",\nmr.name as \"Requisition No\",\nmri.actual_qty as \"Available Stock\",\nmr.creation as \"Material Planned\",\nmaterial_comment.modified as \"Material Actual\",\nmr.name as \"Requisition No For Approval\",\n\"Approved Requisition\" as \"Work Status\",\nmr.remarks as \"Remarks\",\nCASE \n    WHEN material_comment.modified IS NOT NULL THEN TIMEDIFF(material_comment.modified, mr.creation)\n    ELSE TIMEDIFF(NOW(), mr.creation)\n  END AS \"Time Delay\",\n  \nsupplier.creation as \"Planned\",\nsupplier_comment.modified as \"Actual\",\nsupplier.name as \"Quatation Link\",\nsupplier.workflow_state as \"Status\",\nCASE\n    WHEN supplier_comment.modified IS NOT NULL THEN\n        IF(supplier.creation + INTERVAL 2 DAY > supplier_comment.modified, 0, DATEDIFF( supplier_comment.modified,supplier.creation + INTERVAL 2 DAY))\n    ELSE\n        IF(supplier.creation + INTERVAL 2 DAY > NOW(), 0, DATEDIFF( NOW(),supplier.creation + INTERVAL 2 DAY))\nEND AS \"Supplier Quotation Time Delay\",\npo.creation as \"Purchase Planned Date\",\npurchase_comment.modified as \"Purchase Actual Date\",\npo.name as \"Po No\",\nCASE\n    WHEN purchase_comment.modified IS NOT NULL THEN\n        IF(po.creation + INTERVAL 1 DAY > purchase_comment.modified, 0, DATEDIFF( purchase_comment.modified,po.creation + INTERVAL 1 DAY))\n    ELSE\n        IF(po.creation + INTERVAL 1 DAY > NOW(), 0, DATEDIFF( NOW(),po.creation + INTERVAL 1 DAY))\nEND AS \"Purchase Order Time Delay\",\ngrn.creation as \"Gate Entry Planned\",\ngrn.modified as \"Gate Entry Actual\",\ngrn.name as \"GatePass No\",\ngrn.creation as \"Receipt Planned\",\nreceipt_comment.modified as \"Receipt Actual\",\ngrn.name as \"GRN NO\",\nactivity_grn.full_name as \"Submitted By\",\nCASE\n    WHEN receipt_comment.modified IS NOT NULL THEN\n        IF(grn.creation + INTERVAL 2 DAY > receipt_comment.modified, 0, DATEDIFF( receipt_comment.modified,grn.creation + INTERVAL 2 DAY))\n    ELSE\n        IF(grn.creation + INTERVAL 2 DAY > NOW(), 0, DATEDIFF( NOW(),grn.creation + INTERVAL 2 DAY))\nEND AS \"Receipt Time Delay\",\ngrn.creation_date as \"Quality Planned\",\ngrn.modified_date as \"Quality Actual\",\ngrn.remarks as \"Remarks\",\ngrn.inspected_by as \"Submited by\",\nCASE\n    WHEN grn.modified_date IS NOT NULL THEN\n        IF(grn.creation_date + INTERVAL 2 DAY > grn.modified_date, 0, DATEDIFF( grn.modified_date,grn.creation_date + INTERVAL 2 DAY))\n    ELSE\n        IF(grn.creation_date + INTERVAL 2 DAY > NOW(), 0, DATEDIFF( NOW(),grn.creation_date + INTERVAL 2 DAY))\nEND AS \"Quality Time Delay\"\n\nfrom `tabMaterial Request` mr left outer join `tabMaterial Request Item` mri on mr.name = mri.parent\nleft outer join po on po.material_request=mr.name \nleft outer join grn on grn.material_request = mr.name\nleft outer join material_comment on material_comment.reference_name = mr.name\nleft outer join supplier on supplier.material_request = mr.name\nleft outer join supplier_comment on supplier_comment.reference_name = supplier.name\nleft outer join purchase_comment on purchase_comment.reference_name = po.name\nleft outer join gate_entry on gate_entry.name = grn.gate_entry\nleft outer join gate_entrys on gate_entrys.name = grn.gate_entry\nleft outer join receipt_comment on receipt_comment.reference_name = grn.name\nleft outer join activity_grn on activity_grn.reference_name = grn.name\nleft outer join quality on quality.reference_name=grn.name\n\n",
+  "ref_doctype": "Request for Quotation",
+  "reference_report": null,
+  "report_name": "Purchase FMS Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Purchase FMS Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Purchase FMS Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Purchase FMS Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Purchase FMS Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "Purchase FMS Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Request for Quotation"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-08-08 18:09:17.748086",
+  "module": "Advantisquartz",
+  "name": "Daily Purchase Order",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Purchase Order",
+  "reference_report": null,
+  "report_name": "Daily Purchase Order",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Daily Purchase Order",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Daily Purchase Order",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Daily Purchase Order",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Daily Purchase Order",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   }
+  ]
  }
 ]

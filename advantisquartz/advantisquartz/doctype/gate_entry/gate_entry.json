@@ -395,7 +395,8 @@
    "default": "0",
    "fieldname": "grn",
    "fieldtype": "Check",
-   "label": "GRN"
+   "label": "GRN",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -413,6 +414,7 @@
   },
   {
    "default": "0",
+   "depends_on": "eval:frappe.user.has_role('System Manager') || frappe.user.has_role('Accounts Manager') || doc.lock_quality_inspection === 1",
    "fieldname": "lock_quality_inspection",
    "fieldtype": "Check",
    "label": "Lock Quality Inspection"
@@ -447,7 +449,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-08-02 18:13:09.361446",
+ "modified": "2023-08-09 15:39:32.044113",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",

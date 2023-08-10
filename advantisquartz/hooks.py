@@ -242,13 +242,13 @@ fixtures = [
     #         ]
     #     ]
     # ]},
-    # {"dt":"Dashboard","filters":[
-    #     [
-    #         "module","in",[
-    #             "advantisquartz"
-    #         ]
-    #     ]
-    # ]},
+    {"dt":"Dashboard","filters":[
+        [
+            "module","in",[
+                "advantisquartz"
+            ]
+        ]
+    ]},
         {"dt":"Print Format","filters":[
         [
             "module","in",[
