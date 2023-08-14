@@ -14,17 +14,21 @@
   "supplier",
   "invoice_no",
   "invoice_date",
+  "outward_for",
+  "outward_entry",
   "column_break_om2y0",
   "in_operation",
-  "remarks",
   "gate_in_date",
   "gate_in_time",
+  "remarks",
   "column_break_e9ulk",
   "is_gate_out",
   "gate_out_date",
   "gate_out_time",
   "section_break_zwtny",
   "asset_repair",
+  "section_break_fmet7",
+  "get_data",
   "stock_item_tab",
   "section_break_s4rhw",
   "driver_name",
@@ -280,8 +284,6 @@
    "options": "\nRaw Material\nStore & Spare\nAsset Repair\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther"
   },
   {
-   "depends_on": "eval:doc.purpose=='Other'",
-   "description": "Add Remarks for any other purpose",
    "fieldname": "remarks",
    "fieldtype": "Data",
    "label": "Remarks"
@@ -332,7 +334,7 @@
    "options": "Gate Entry Stock Items"
   },
   {
-   "depends_on": "eval:doc.lock_fields === 1",
+   "depends_on": "eval:doc.lock_fields === 1 && doc.entry_type != 'Outward';",
    "fieldname": "weight_specification_tab",
    "fieldtype": "Tab Break",
    "label": "Weight Specification"
@@ -350,6 +352,7 @@
    "label": "Sampling Done"
   },
   {
+   "depends_on": "eval:doc.entry_type == \"Inward\";",
    "fieldname": "in_operation",
    "fieldtype": "Select",
    "label": "Inward Operation",
@@ -439,6 +442,29 @@
    "fieldtype": "Link",
    "label": "Supplier",
    "options": "Supplier"
+  },
+  {
+   "depends_on": "eval: doc.entry_type = \"Outward\";",
+   "fieldname": "outward_for",
+   "fieldtype": "Link",
+   "label": "Outward For",
+   "options": "DocType"
+  },
+  {
+   "depends_on": "eval: doc.outward_for;",
+   "fieldname": "outward_entry",
+   "fieldtype": "Dynamic Link",
+   "label": "Outward Entry",
+   "options": "outward_for"
+  },
+  {
+   "fieldname": "section_break_fmet7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_data",
+   "fieldtype": "Button",
+   "label": "Get Data \u21b4"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -449,7 +475,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-08-09 15:39:32.044113",
+ "modified": "2023-08-11 13:48:16.885403",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
