@@ -444,14 +444,15 @@
    "options": "Supplier"
   },
   {
-   "depends_on": "eval: doc.entry_type = \"Outward\";",
+   "depends_on": "eval: doc.entry_type == 'Outward';",
    "fieldname": "outward_for",
    "fieldtype": "Link",
    "label": "Outward For",
+   "mandatory_depends_on": "eval: doc.entry_type == 'Outward';",
    "options": "DocType"
   },
   {
-   "depends_on": "eval: doc.outward_for;",
+   "depends_on": "eval: doc.entry_type == 'Outward';",
    "fieldname": "outward_entry",
    "fieldtype": "Dynamic Link",
    "label": "Outward Entry",
@@ -462,6 +463,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "depends_on": "eval: doc.entry_type == 'Outward';",
    "fieldname": "get_data",
    "fieldtype": "Button",
    "label": "Get Data \u21b4"
@@ -475,7 +477,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-08-11 13:48:16.885403",
+ "modified": "2023-08-14 13:27:02.951159",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",

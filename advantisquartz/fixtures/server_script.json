@@ -163,5 +163,20 @@
   "reference_doctype": "Quality Inspection",
   "script": "if doc.reference_type == \"Purchase Receipt\":\n    ref_doc = doc.reference_name\n    gate_entry = frappe.db.get_value(\"Purchase Receipt\",ref_doc,'gate_entry')\n    parent = frappe.get_doc('Gate Entry', gate_entry)\n    parent.append(\"qc_details\", {\n            'qc': doc.name,\n            'item_name': doc.item_name,\n            'qc_status' : doc.status,\n            'qc_date' : doc.report_date,\n            'qc_time': '',\n            'inspected_by': doc.inspected_by,\n            'qc_remarks' : doc.remarks,\n            'sample_size': str(doc.sample_size) +\" \"+ str(doc.sample_uom),\n    }) \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1 \n    parent.save()",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 1,
+  "api_method": "get_child_for_parent",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2023-08-11 13:36:24.395071",
+  "module": "Advantisquartz",
+  "name": "Get Items To gate entry child table for outward entry",
+  "reference_doctype": null,
+  "script": "parent = str(frappe.form_dict['doc_name'])\nchild = str(frappe.form_dict['child_table'])\n# frappe.msgprint(parent)\n\nquery = f\"SELECT * FROM `{child}` WHERE parent = %s\"\nresult = frappe.db.sql(query, (parent,), as_dict=True)\n# frappe.msgprint(result[0].item_name)\n\nfrappe.response['result'] = result \n",
+  "script_type": "API"
  }
 ]
