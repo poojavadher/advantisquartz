@@ -334,10 +334,10 @@
   "doctype": "Client Script",
   "dt": "Leave Allocation",
   "enabled": 1,
-  "modified": "2023-08-14 13:31:19.546546",
+  "modified": "2023-08-14 14:47:57.258022",
   "module": "Advantisquartz",
   "name": "Get date after 20 days",
-  "script": "frappe.ui.form.on('Leave Allocation', {\n\tfrom_date(frm) {\n\t    var from_date = cur_frm.doc.from_date;\n\t    console.log(from_date);\n\t    var fromDateObj = new Date(from_date);\n\t    fromDateObj.setDate(fromDateObj.getDate() + 19);\n\t    var resultDate = fromDateObj.toISOString().split('T')[0];\n\t    console.log(resultDate);\n\t    frm.set_value('to_date', resultDate);\n        frm.refresh_field('to_date');\n\t   // var result;\n    //     var leave_type = cur_frm.doc.leave_type;\n    //     frappe.call({\n    //         method: \"frappe.client.get_list\",\n    //         args: {\n    //             doctype: \"Leave Type\",\n    //             filters: {\n    //                 name: leave_type\n    //             },\n    //             fields: [\"is_privilege_leave\"]\n    //         },\n    //         callback: function (response) {\n    //             result =  response.message[0];\n    //             console.log(result);\n                \n    //         }\n    //     });\n        \n\t}\n})",
+  "script": "frappe.ui.form.on('Leave Allocation', {\n    from_date(frm) {\n        var leave_type = cur_frm.doc.leave_type;\n        frappe.call({\n            method: \"frappe.client.get_list\",\n            args: {\n                doctype: \"Leave Type\",\n                filters: {\n                    name: leave_type\n                },\n                fields: [\"is_privilege_leave\"]\n            },\n            callback: function(response) {\n                var result = response.message[0];\n                console.log(result);\n\n                if (result && result.is_privilege_leave === 1) {\n                    var from_date = cur_frm.doc.from_date;\n                    console.log(from_date);\n                    var fromDateObj = new Date(from_date);\n                    fromDateObj.setDate(fromDateObj.getDate() + 19);\n                    var resultDate = fromDateObj.toISOString().split('T')[0];\n                    console.log(resultDate);\n                    frm.set_value('to_date', resultDate);\n                    frm.refresh_field('to_date');\n                }\n            }\n        });\n    }\n});\n\n\n",
   "view": "Form"
  }
 ]

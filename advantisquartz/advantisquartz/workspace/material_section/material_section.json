@@ -1,0 +1,69 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Request\",\"col\":3}},{\"id\":\"j23kJ2c5_o\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Issue\",\"col\":3}}]",
+ "creation": "2023-08-04 16:54:40.066818",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "stock",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Material Section",
+ "links": [
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Video",
+   "link_count": 0,
+   "link_to": "Video",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Video Settings",
+   "link_count": 0,
+   "link_to": "Video Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-08-16 13:45:55.745289",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Material Section",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}",
+   "label": "Material Request",
+   "link_to": "Material Request",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Material Issue",
+   "link_to": "Stock Entry",
+   "stats_filter": "{\"stock_entry_type\":[\"=\",\"Material Issue\"]}",
+   "type": "DocType"
+  }
+ ],
+ "title": "Material Section"
+}

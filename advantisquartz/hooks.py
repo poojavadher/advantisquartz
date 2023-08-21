@@ -112,7 +112,16 @@ app_license = "MIT"
 
 # Scheduled Tasks
 # ---------------
-
+scheduler_events = {
+    "create_allocation": {
+       "18 13 * * *": [
+          "advantisquartz.advantisquartz.doctype.api.generate_leave_allocation"
+        ]
+    },
+    # "daily": [
+	# 	"advantisquartz.advantisquartz.doctype.api.generate_leave_allocation"
+	# ]
+}
 # scheduler_events = {
 #	"all": [
 #		"advantisquartz.tasks.all"

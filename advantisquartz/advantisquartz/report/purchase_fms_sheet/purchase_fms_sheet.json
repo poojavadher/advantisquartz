@@ -1,7 +1,7 @@
 {
  "add_total_row": 0,
  "columns": [],
- "creation": "2023-08-08 18:09:17.748086",
+ "creation": "2023-08-16 10:19:12.006971",
  "disable_prepared_report": 0,
  "disabled": 0,
  "docstatus": 0,
@@ -10,15 +10,15 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "LetterHead",
- "modified": "2023-08-16 10:10:16.791067",
+ "modified": "2023-08-16 10:19:12.006971",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
- "name": "Daily Purchase Order",
+ "name": "Purchase FMS Sheet",
  "owner": "Administrator",
  "prepared_report": 0,
  "query": "",
  "ref_doctype": "Purchase Order",
- "report_name": "Daily Purchase Order",
+ "report_name": "Purchase FMS Sheet",
  "report_type": "Script Report",
  "roles": [
   {
