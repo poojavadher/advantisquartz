@@ -11,31 +11,8 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Material Section",
- "links": [
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Video",
-   "link_count": 0,
-   "link_to": "Video",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Video Settings",
-   "link_count": 0,
-   "link_to": "Video Settings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  }
- ],
- "modified": "2023-08-16 13:45:55.745289",
+ "links": [],
+ "modified": "2023-08-21 18:27:32.741944",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Material Section",
