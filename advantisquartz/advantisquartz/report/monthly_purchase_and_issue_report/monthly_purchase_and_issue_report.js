@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
-frappe.query_reports["Purchase FMS Sheet"] = {
+frappe.query_reports["Monthly Purchase And Issue report"] = {
 	"filters": [
 
 	]

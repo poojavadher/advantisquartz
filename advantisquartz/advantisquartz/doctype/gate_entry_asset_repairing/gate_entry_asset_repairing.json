@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "asset_repair",
+  "asset_item",
   "asset_status",
   "description"
  ],
@@ -33,12 +34,19 @@
    "fieldtype": "Long Text",
    "in_list_view": 1,
    "label": "Error Description"
+  },
+  {
+   "fetch_from": "asset_repair.asset_name",
+   "fieldname": "asset_item",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Asset Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-14 14:50:16.858780",
+ "modified": "2023-08-22 13:26:35.036180",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry Asset Repairing",
