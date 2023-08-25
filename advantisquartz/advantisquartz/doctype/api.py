@@ -1,11 +1,74 @@
 import frappe
 import datetime
+import math
+from frappe.utils.file_manager import save_file_on_filesystem
 
 
-# @frappe.whitelist(allow_guest=True)
-# def total_leaves():
-#     total_leave = frappe.db.get_value("Leave Type", fieldname="max_leaves_allowed", filters={"leave_type_name": "Privilege Leave (Employee)"})
-#     return total_leave
+@frappe.whitelist(allow_guest=True)
+def generate_txt(selected_date):
+    salary_slips = frappe.get_all("Salary Slip", filters={
+        "start_date": ["<=", selected_date],
+        "end_date": [">=", selected_date],
+        "docstatus": 1
+    }, fields=['name', 'employee', 'uan', 'gross_pay', 'leave_without_pay', 'absent_days'])
+    # return salary_slips
+    output_data = []
+    # stored_basic_amount = None
+    
+    if salary_slips:
+        for salary_slip in salary_slips:
+            leave_without_pay = salary_slip.leave_without_pay
+            absent_days = salary_slip.absent_days
+            ncp_days = leave_without_pay + absent_days
+            if ncp_days == 0.0:
+                ncp_days = 0
+            uan = salary_slip.uan
+            gross_pay = salary_slip.gross_pay
+            employee_name = frappe.get_value("Employee", salary_slip.employee, "employee_name")
+            salary_detail_data = frappe.get_all('Salary Detail', filters={
+                'parent': salary_slip.name,
+                'salary_component': ['in', ['Basic', 'Provident Fund']]
+            }, fields=['salary_component', 'amount'])
+
+            basic_amount = None
+            pf_amount = None
+
+            for detail in salary_detail_data:
+                if detail['salary_component'] == 'Basic':
+                    basic_amount = format_amount(detail['amount'])
+                    eps = basic_amount * (8.33 / 100)
+                    # print("EPS:", eps)
+                    # stored_basic_amount = basic_amount
+                elif detail['salary_component'] == 'Provident Fund':
+                    pf_amount = format_amount(detail['amount'])
+                    # print("pf:", pf_amount)
+
+            diff = pf_amount - eps
+            # print("diff:", diff)
+            gross_pay_formatted = format_amount(gross_pay)
+            ncp_days_formatted = format_amount(ncp_days)
+
+            employee_output = f"{uan}#~#{employee_name}#~#{math.ceil(gross_pay_formatted)}#~#{math.ceil(basic_amount)}#~#{math.ceil(basic_amount)}#~#{math.ceil(basic_amount)}#~#{math.ceil(pf_amount)}#~#{math.ceil(eps)}#~#{math.ceil(diff)}#~#{math.ceil(ncp_days_formatted)}#~#0"
+
+            output_data.append(employee_output)
+
+        final_output = "\n".join(output_data)
+        print(final_output)
+        txt_file_path = "PF_ECR.txt"
+        save_file_on_filesystem(txt_file_path, content=final_output, is_private=0)
+        return txt_file_path
+            
+    else: 
+        frappe.msgprint("Salary slip does not exist for given dates.")
+
+def format_amount(amount):
+    if amount == int(amount):
+        return float(amount)
+    else:
+        return float(amount)
+
+
+
 
 @frappe.whitelist(allow_guest=True)
 def generate_leave_allocation():
@@ -90,278 +153,3 @@ def generate_leave_allocation():
     # return "yes" 
 
 
-# ---------------------------------------------------------------------------------------------------------------
-
-# import frappe
-# import datetime
-
-# @frappe.whitelist(allow_guest=True)
-# def generate_leave_allocation():
-#     current_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
-    
-#     all_emp = frappe.db.get_list('Leave Allocation',filters={'leave_type': 'Privilege Leave (Employee)'},fields=['employee_name'])
-#     # return all_emp
-#     for emp in all_emp:
-#         employee_name = emp.employee_name
-#         last_doc =  frappe.get_last_doc("Leave Allocation", filters={"employee_name": employee_name, "docstatus": 1})
-        
-#         if last_doc:
-#             to_date = last_doc.to_date
-#             next_date = to_date + datetime.timedelta(days=1) 
-#             specific_fields = {
-#                 "emp": last_doc.employee,
-#                 "emp_name": last_doc.employee_name,
-#                 "leave_type": last_doc.leave_type,
-#                 "to_date": last_doc.to_date,
-#                 "next_date": next_date  # Removed the extra period here
-#             }
-#         else:
-#             specific_fields = None
-#             to_date = None 
-        
-#         if to_date and to_date.strftime('%Y-%m-%d') == current_date:  # Check if to_date is not None
-#             new_leave_allocation = next_date + datetime.timedelta(days=19)
-#             leave_period = frappe.get_all("Leave Period", filters={"from_date": ("<=", next_date), "to_date": (">=", next_date)}, fields=["name", "from_date", "to_date"])
-            
-#             if leave_period:
-#                 leave_period = leave_period[0]
-                
-#                 from_date_leave_period = leave_period.get("from_date")
-#                 to_date_leave_period = leave_period.get("to_date")
-                
-#                 count_leave_allocations = frappe.get_all("Leave Allocation", filters={"employee": specific_fields["emp"], "from_date": (">=", from_date_leave_period), "to_date": ("<=", to_date_leave_period)})
-#                 count = len(count_leave_allocations)
-                
-#                 if count < 15 :
-#                     existing_allocation = frappe.get_all("Leave Allocation", filters={"employee": specific_fields["emp"], "from_date": next_date, "to_date": new_leave_allocation})
-                    
-#                     if not existing_allocation:
-#                         if new_leave_allocation <= to_date_leave_period:
-#                             new_allocation = frappe.new_doc("Leave Allocation")
-#                             new_allocation.employee = specific_fields["emp"]
-#                             new_allocation.leave_type = specific_fields["leave_type"]
-#                             new_allocation.from_date = next_date
-#                             new_allocation.to_date = new_leave_allocation
-#                             new_allocation.new_leaves_allocated = "1"
-#                             new_allocation.carry_forward = 1
-#                             new_allocation.insert(ignore_permissions=True)
-#                             frappe.db.commit()
-#                         else:
-#                             new_allocation = frappe.new_doc("Leave Allocation")
-#                             new_allocation.employee = specific_fields["emp"]
-#                             new_allocation.leave_type = specific_fields["leave_type"]
-#                             new_allocation.from_date = next_date
-#                             new_allocation.to_date = to_date_leave_period
-#                             new_allocation.new_leaves_allocated = "1"
-#                             new_allocation.carry_forward = 1
-#                             new_allocation.insert(ignore_permissions=True)
-#                             frappe.db.commit()
-#                     else:
-#                         frappe.msgprint("Leave allocation already exists for the given period")
-#                 else: 
-#                     frappe.msgprint("Can't allocate leaves more than 15")
-#             else:
-#                 frappe.msgprint("Create Leave Period for the current month")
-            
-#             return "yes"
-#         else:
-#             return "NO"
-        
-
-
-
-
-
-# -----------------------------------------------------------------------------------------
-
-
-
-
-
-# import frappe
-# import datetime
-
-# @frappe.whitelist(allow_guest=True)
-# def generate_leave_allocation():
-#     current_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
-    
-#     last_doc = frappe.get_last_doc("Leave Allocation", filters={"employee_name": "Pooja", "docstatus": 1})
-#     # return last_doc
-#     if last_doc:
-#         to_date = last_doc.to_date
-#         # return to_date
-#         next_date = to_date + datetime.timedelta(days=1) 
-#         specific_fields = {
-#             "emp": last_doc.employee,
-#             "emp_name": last_doc.employee_name,
-#             "leave_type": last_doc.leave_type,
-#             "to_date": last_doc.to_date,
-#             "next_date": next_date.strftime('%Y-%m-%d')
-#         }
-#     else:
-#         specific_fields = None
-    
-#     # return to_date, current_date
-#     if to_date == current_date:
-#         # return "yes"
-#         new_leave_allocation = next_date + datetime.timedelta(days=19)
-#         leave_period = frappe.get_all("Leave Period", filters={"from_date": ("<=", next_date), "to_date": (">=", next_date)}, fields=["name", "from_date", "to_date"])
-        
-#         if leave_period:
-#             leave_period = leave_period[0]
-            
-#             from_date_leave_period = leave_period.get("from_date")
-#             to_date_leave_period = leave_period.get("to_date")
-            
-#             count_leave_allocations = frappe.get_all("Leave Allocation", filters={"employee": specific_fields["emp"], "from_date": (">=", from_date_leave_period), "to_date": ("<=", to_date_leave_period)})
-#             count = len(count_leave_allocations)
-#             # return count
-            
-#             if count < 15 :
-            
-#                 existing_allocation = frappe.get_all("Leave Allocation", filters={"employee": specific_fields["emp"], "from_date": next_date, "to_date": new_leave_allocation})
-                
-#                 if not existing_allocation:
-                
-#                     if new_leave_allocation <= to_date_leave_period:
-#                         print("\n\n\n\n\n", "yes", "\n\n\n\n\n")
-#                         new_allocation = frappe.new_doc("Leave Allocation")
-#                         new_allocation.employee = specific_fields["emp"]
-#                         new_allocation.leave_type = specific_fields["leave_type"]
-#                         new_allocation.from_date = next_date
-#                         new_allocation.to_date = new_leave_allocation
-#                         new_allocation.new_leaves_allocated = "1"
-#                         new_allocation.carry_forward = 1
-#                         new_allocation.insert(ignore_permissions=True)
-#                         frappe.db.commit()
-
-#                     else:
-#                         print("\n\n\n\n\n", "no", "\n\n\n\n\n")
-#                         new_allocation = frappe.new_doc("Leave Allocation")
-#                         new_allocation.employee = specific_fields["emp"]
-#                         new_allocation.leave_type = specific_fields["leave_type"]
-#                         new_allocation.from_date = next_date
-#                         new_allocation.to_date = to_date_leave_period
-#                         new_allocation.new_leaves_allocated = "1"
-#                         new_allocation.carry_forward = 1
-#                         new_allocation.insert(ignore_permissions=True)
-#                         frappe.db.commit()
-                        
-#                 else:
-#                     frappe.msgprint("Leave allocation already exists for the given period")
-                    
-#             else: 
-#                 frappe.msgprint("Can't allocate leaves more than 15")
-
-#         else:
-#             frappe.msgprint("Create Leave Period for current month")
-            
-#         return "yes"
-
-#     else:
-#         return "NO"
-        
-        
-        
-        # -----------------------------------------------------------------------------------
-        
-        
-        
-        
-    # new_leave_allocation = next_date + datetime.timedelta(days=20)
-    # leave_period = frappe.get_all("Leave Period", filters={"from_date": ("<=", current_date), "to_date": (">=", current_date)}, fields=["name", "from_date", "to_date"])
-    
-    
-    # leave_period = get_leave_period_for_date(current_date)
-    # new_leave_allocation = next_date + datetime.timedelta(days=20)
-    
-    # if specific_fields and leave_period:
-    #     from_date = leave_period.get("from_date")
-    #     to_date = leave_period.get("to_date")
-        
-    #     if from_date <= next_date <= to_date:
-    #         print("\n\n\n\n\n", next_date, "\n\n\n\n\n")
-    #         # return "yes"
-    #         new_allocation = frappe.new_doc("Leave Allocation")
-    #         new_allocation.employee = specific_fields["emp"]
-    #         new_allocation.leave_type = specific_fields["leave_type"]
-    #         new_allocation.from_date = specific_fields["next_date"]
-    #         new_allocation.to_date = new_leave_allocation
-    #         new_allocation.new_leaves_allocated = "1"
-    #         new_allocation.carry_forward = 1
-    #         new_allocation.insert(ignore_permissions=True)
-    #         frappe.db.commit()
-            
-    #     else:
-    #         print("\n\n\n\n\n", "no", "\n\n\n\n\n")
-    #         new_allocation = frappe.new_doc("Leave Allocation")
-    #         new_allocation.employee = specific_fields["emp"]
-    #         new_allocation.leave_type = specific_fields["leave_type"]
-    #         new_allocation.from_date = specific_fields["next_date"]
-    #         new_allocation.to_date = to_date
-    #         new_allocation.new_leaves_allocated = "1"
-    #         new_allocation.carry_forward = 1
-    #         new_allocation.insert(ignore_permissions=True)
-    #         frappe.db.commit()
-        
-    # return "no"
-
-# def get_leave_period_for_date(current_date):
-#     leave_period = frappe.get_all("Leave Period",
-#                                    filters={"from_date": ("<=", current_date), "to_date": (">=", current_date)},
-#                                    fields=["name", "from_date", "to_date"])
-    
-#     if leave_period:
-#         return leave_period[0]
-#     else:
-#         return None
-
-
-
-
-
-
-
-
-# import frappe
-# import datetime
-
-# @frappe.whitelist(allow_guest=True)
-# def generate_leave_allocation():
-#     current_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
-    
-#     last_doc = frappe.get_last_doc("Leave Allocation", filters={"employee_name":"Pooja"})
-#     # return last_doc
-#     if last_doc:
-#         to_date = last_doc.to_date
-#         next_date = (to_date + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-#         specific_fields = {
-#             "emp": last_doc.employee,
-#             "emp_name": last_doc.employee_name,
-#             "leave_type" : last_doc.leave_type,
-#             "to_date": last_doc.to_date,
-#             "next_date": next_date
-#         }
-#         # return specific_fields, current_date
-#     else:
-#         None
-        
-#     leave_period = frappe.get_all("Leave Period", filters={"from_date": ("<=", current_date), "to_date": (">=", current_date)}, fields=["name", "from_date", "to_date"])
-#     # return leave_period[0]
-    
-#     # if to_date == current_date:
-#     #     return "yes"
-#     # else:
-#     #     return "no" 
-        
-#     # new_allocation = frappe.new_doc("Leave Allocation")
-#     # new_allocation.employee = specific_fields["emp"]
-#     # new_allocation.leave_type = specific_fields["leave_type"]
-#     # new_allocation.from_date = specific_fields["next_date"]
-#     # new_allocation.to_date = "2023-10-10"
-#     # new_allocation.new_leaves_allocated = "1"
-#     # new_allocation.carry_forward = 1
-#     # new_allocation.insert(ignore_permissions=True)
-#     # frappe.db.commit()
-    
-#     # return "ok"

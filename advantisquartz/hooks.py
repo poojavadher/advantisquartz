@@ -113,8 +113,8 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 scheduler_events = {
-    "create_allocation": {
-       "18 13 * * *": [
+    "generate_leave_allocation": {
+       "00 00 * * *": [
           "advantisquartz.advantisquartz.doctype.api.generate_leave_allocation"
         ]
     },
@@ -216,13 +216,6 @@ fixtures = [
     "Property Setter",
     "Role",
     "Document Naming Rule",
-    {"dt":"Workspace","filters":[
-        [
-            "module","in",[
-               "advantisquartz"
-            ],
-        ]
-    ]},
     {"dt":"Server Script","filters":[
         [
             "module","in",[
