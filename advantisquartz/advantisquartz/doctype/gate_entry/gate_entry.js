@@ -56,17 +56,6 @@ frappe.ui.form.on('Gate Entry', {
 	        frappe.db.set_value("Asset Repair",asset_repair,'gate_out_entry',' ');
 	    }
 	},
-	party_type(frm) {
-        if (frm.doc.entry_type == "Outward"){
-            frm.set_query("outward_for",function(){
-        	    return{
-        	        filters:{
-        	            'name': ["in",["Delivery Note","Purchase Receipt","Asset Repair"]]
-        	        }
-        	    };
-    	    });
-        }
-	},
 	outward_for(frm) {
         if(frm.doc.outward_for == "Purchase Receipt"){
             frm.set_query("outward_entry",function(){
@@ -168,6 +157,15 @@ frappe.ui.form.on('Gate Entry', {
 	  },
 	
 	  purpose(frm) {
+		if (frm.doc.entry_type == "Outward"){
+            frm.set_query("outward_for",function(){
+        	    return{
+        	        filters:{
+        	            'name': ["in",["Delivery Note","Purchase Receipt","Asset Repair"]]
+        	        }
+        	    };
+    	    });
+        }
 		checkLock(frm);
 	  },
 	
@@ -338,25 +336,14 @@ function checkLock(frm) {
 	  frm.set_df_property('truck_no', 'reqd', !isLocked);
 	  frm.set_df_property('supplier', 'reqd', !isLocked);
 	  frm.set_df_property('party_type', 'reqd', !isLocked);
-	  // frm.set_df_property('invoice_no', 'reqd', !isLocked);
-	  // frm.set_df_property('invoice_date', 'reqd', !isLocked);
 	} else if (frm.doc.entry_type === 'Outward') {
 	  frm.set_df_property('purpose', 'reqd', !isLocked);
-	  frm.set_df_property('supplier', 'reqd', !isLocked);
-	  frm.set_df_property('party_type', 'reqd', !isLocked);
 	  frm.set_df_property('driver_name', 'reqd', !isLocked);
 	  frm.set_df_property('driver_mobile_no', 'reqd', !isLocked);
 	  frm.set_df_property('truck_no', 'reqd', !isLocked);
-	  // frm.set_df_property('invoice_no', 'reqd', false);
-	  // frm.set_df_property('invoice_date', 'reqd', false);
 	} else {
 	  frm.set_df_property('entry_type', 'reqd', !isLocked);
-	  
 	}
-	// if(frm.doc.purpose == "Other"){
-	//   frm.set_df_property('supplier', 'reqd', 0);
-	//   frm.set_df_property('party_type', 'reqd', 0);
-	// }
   }
   
   function toggleWeightLock(frm) {

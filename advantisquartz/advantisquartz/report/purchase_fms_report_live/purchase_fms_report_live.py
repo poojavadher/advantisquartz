@@ -55,7 +55,8 @@ def execute(filters=None):
             if matching_purchase and matching_purchase.name == po_cmt_entries.reference_name:
                 matching_cmt_purchase = po_cmt_entries
                 break
-        
+            else:
+                matching_cmt_purchase = None
         if matching_purchase and matching_cmt:
             end_time = matching_cmt.modified
             time_difference = end_time - start_time
