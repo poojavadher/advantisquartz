@@ -32,24 +32,28 @@
   },
   {
    "fetch_from": "serial_no.gross_weight",
+   "fetch_if_empty": 1,
    "fieldname": "production_weight",
    "fieldtype": "Float",
    "label": "Production Weight"
   },
   {
    "fetch_from": "serial_no.length",
+   "fetch_if_empty": 1,
    "fieldname": "production_length",
    "fieldtype": "Float",
    "label": "Production Length"
   },
   {
    "fetch_from": "serial_no.width",
+   "fetch_if_empty": 1,
    "fieldname": "production_width",
    "fieldtype": "Float",
    "label": "Production Width"
   },
   {
    "fetch_from": "serial_no.quality",
+   "fetch_if_empty": 1,
    "fieldname": "production_grade",
    "fieldtype": "Data",
    "label": "Production Grade"
@@ -84,7 +88,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-01 18:42:38.537387",
+ "modified": "2023-08-31 18:40:06.229313",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing List Item",

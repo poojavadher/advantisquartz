@@ -55,8 +55,7 @@ def execute(filters=None):
             if matching_purchase and matching_purchase.name == po_cmt_entries.reference_name:
                 matching_cmt_purchase = po_cmt_entries
                 break
-            else:
-                matching_cmt_purchase = None
+            
         if matching_purchase and matching_cmt:
             end_time = matching_cmt.modified
             time_difference = end_time - start_time
@@ -75,11 +74,12 @@ def execute(filters=None):
                     quotation_delay = (current_date -two_days_after_creation)
                                 
         # ... Similar logic for other time calculations ...
-        if matching_purchase:
+        if matching_purchase and matching_cmt_purchase:
             purchase_starttime = matching_purchase.creation
             purchase_endtime = matching_cmt_purchase.modified
             current_date = datetime.now()
             one_days_after_creation = purchase_starttime + timedelta(days=1)
+    
             if purchase_endtime:
                 if purchase_endtime > one_days_after_creation:
                     purchase_delay = (purchase_endtime - one_days_after_creation).days
@@ -87,7 +87,15 @@ def execute(filters=None):
                     purchase_delay = 0
             elif current_date:
                 if current_date > one_days_after_creation:
-                    purchase_delay = (current_date -one_days_after_creation)
+                    purchase_delay = (current_date - one_days_after_creation)
+                else:
+                    purchase_delay = None
+        else:
+    # Handle the case when either matching_purchase or matching_cmt_purchase is None
+            purchase_starttime = None
+            purchase_endtime = None
+            purchase_delay = None
+
         
         if matching_receipt:                                
             receipt_starttime = matching_receipt.creation_by
@@ -142,7 +150,7 @@ def execute(filters=None):
             "quotation_status":matching_quotation.status if matching_quotation else None,
             "supplier_quotation_delay":quotation_delay if matching_quotation else None,
             "purchase_planned":matching_purchase.creation if matching_purchase else None,
-            "purchase_actual":matching_cmt_purchase.modified if matching_purchase else None,
+            "purchase_actual":purchase_endtime,
             "purchase_order_no":matching_purchase.name if matching_purchase else None,
             "gate_planned":matching_receipt.creation if matching_receipt else None,
             "gate_actual":matching_receipt.modified if matching_receipt else None,
@@ -151,7 +159,7 @@ def execute(filters=None):
             "receipt_actual":matching_receipt.modification if matching_receipt else None,
             "purchase_receipt_no":matching_receipt.name if matching_receipt else None,
             "submitted_by":matching_receipt.full_name if matching_receipt else None,
-            "purchase_order_time_delay":purchase_delay if matching_receipt else None,
+            "purchase_order_time_delay":purchase_delay if purchase_delay else None,
             "receipt_time_delay":receipt_delay if matching_receipt else None, 
             "quality_planned":matching_receipt.quality_creation if matching_receipt else None,
             "quality_actual":matching_receipt.quality_modified if matching_receipt else None,             
