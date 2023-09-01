@@ -251,18 +251,25 @@ fixtures = [
             ]
         ]
     ]},
-        {"dt":"Print Format","filters":[
+    {"dt":"Print Format","filters":[
+        [
+        "module","in",[
+                "advantisquartz"
+            ]
+        ]
+    ]},
+    {"dt":"Report","filters":[
         [
             "module","in",[
                 "advantisquartz"
             ]
         ]
-        ]},
-        {"dt":"Report","filters":[
+    ]},
+    {"dt":"Notification","filters":[
         [
             "module","in",[
                 "advantisquartz"
             ]
         ]
-        ]}
+    ]}
 ]

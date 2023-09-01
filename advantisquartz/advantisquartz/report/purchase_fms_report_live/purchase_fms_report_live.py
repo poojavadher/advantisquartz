@@ -361,3 +361,13 @@ def get_purchase_modified_comment(filters):
     return query.run(as_dict=True)
 
 
+def get_purchase_invoice(filters):
+    pui = frappe.qb.DocType("Purchase Invoice")
+    pii = frappe.qb.DocType("Purchase Invoice Item")
+    
+    query =(
+        frappe.qb.from_(pui).join(pii).on(pui.name == pii.parent)
+        .select(
+            
+        )
+    )

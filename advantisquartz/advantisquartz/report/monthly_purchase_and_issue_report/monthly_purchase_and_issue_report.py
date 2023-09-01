@@ -43,6 +43,7 @@ def execute(filters=None):
         if item_code in item_data_dict:
             item_data_dict[item_code]["item_issue_qty"] += ledger.issue_qty
             item_data_dict[item_code]["item_receipt_qty"] += ledger.receipt_qty
+        
     for deliver_item in deliver:
         item_code = deliver_item.itemCode
         if item_code in item_data_dict:
