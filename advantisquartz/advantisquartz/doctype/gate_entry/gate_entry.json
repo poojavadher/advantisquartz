@@ -26,6 +26,8 @@
   "is_gate_out",
   "gate_out_date",
   "gate_out_time",
+  "challan_no",
+  "challan_date",
   "section_break_zwtny",
   "asset_repair",
   "section_break_fmet7",
@@ -473,6 +475,16 @@
    "fieldtype": "Link",
    "label": "Party Type ",
    "options": "DocType"
+  },
+  {
+   "fieldname": "challan_no",
+   "fieldtype": "Data",
+   "label": "Challan No."
+  },
+  {
+   "fieldname": "challan_date",
+   "fieldtype": "Date",
+   "label": "Challan Date"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -483,7 +495,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-08-29 12:05:54.362557",
+ "modified": "2023-09-04 15:34:38.303505",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",

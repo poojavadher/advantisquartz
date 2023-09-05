@@ -217,6 +217,36 @@ frappe.ui.form.on('Gate Entry', {
 					}
 				});
 				dl.show();
+			})	
+		}
+		if(!frm.is_new() && (!frm.doc.challan_no || !frm.doc.challan_date)){
+			frm.add_custom_button(__('Update challan Details'), function(){
+				let dl = new frappe.ui.Dialog({
+					title: 'Enter Details',
+					fields: [{
+						label: 'Challan No.',
+						fieldname: 'challan_no',
+						fieldtype: 'Data',
+						reqd: 1
+						},	
+						{
+						label: 'Challan Data',
+						fieldname: 'challan_date',
+						fieldtype: 'Date',
+						reqd: 1
+						}
+					],
+					primary_action_label: 'Update',
+					primary_action(values) {
+						frappe.db.set_value('Gate Entry', frm.doc.name, {
+							'challan_no': values.challan_no,
+							'challan_date': values.challan_date
+						})
+						dl.hide();
+						location.reload();
+					}
+				});
+				dl.show();
 			})
 		}
 		
@@ -322,7 +352,7 @@ frappe.ui.form.on('Gate Entry', {
 
 
 function checkLock(frm) {
-	const allFields = ['naming_series', 'entry_type', 'purpose','party_type',"supplier", 'invoice_no','outward_for','outward_entry','invoice_date', 'stock_item_tab', 'driver_name', 'driver_mobile_no', 'truck_no','remarks'];
+	const allFields = ['naming_series', 'entry_type', 'purpose','party_type',"supplier", 'invoice_no','challan_no','challan_date','outward_for','outward_entry','invoice_date', 'stock_item_tab', 'driver_name', 'driver_mobile_no', 'truck_no','remarks'];
   
 	const isLocked = frm.doc.lock_fields;
 	for (const field of allFields) {
