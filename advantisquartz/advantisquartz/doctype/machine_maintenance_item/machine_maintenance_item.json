@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-06 12:25:07.186300",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "description_of_goods",
+  "item_name",
+  "hsn_code",
+  "source_warehouse",
+  "uom",
+  "qty",
+  "unit",
+  "rate",
+  "total",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Machine Maintenance Item",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "description_of_goods",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Description of Goods",
+   "options": "Item"
+  },
+  {
+   "columns": 1,
+   "fetch_from": "description_of_goods.gst_hsn_code",
+   "fetch_if_empty": 1,
+   "fieldname": "hsn_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "HSN Code"
+  },
+  {
+   "columns": 1,
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "UOM"
+  },
+  {
+   "columns": 1,
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "total",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Total"
+  },
+  {
+   "fetch_from": "description_of_goods.item_name",
+   "fetch_if_empty": 1,
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
+  },
+  {
+   "columns": 2,
+   "fieldname": "source_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-12 16:04:30.908023",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Machine Maintenance Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

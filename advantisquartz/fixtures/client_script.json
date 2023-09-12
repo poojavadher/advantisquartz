@@ -306,5 +306,38 @@
   "name": "PF_ECR",
   "script": "frappe.listview_settings['Salary Slip'] = {\n    onload: function (listview) {\n        listview.page.add_inner_button('PF-ECR', function () {\n            let d = new frappe.ui.Dialog({\n                title: 'Select Date for PF-ECR',\n                fields: [\n                    {\n                        label: 'Date',\n                        fieldname: 'date',\n                        fieldtype: 'Date',\n                        reqd: 1\n                    },\n                    // {\n                    //     label: 'File Type',\n                    //     fieldname: 'file_type',\n                    //     fieldtype: 'Select',\n                    //     options: [\n                    //         \"\",\n                    //         \"Text File\",\n                    //         \"Excel File\"\n                    //     ],\n                    //     reqd: 1\n                    // }\n                ],\n                size: 'small',\n                primary_action_label: 'Submit',\n                primary_action(values) {\n                    // console.log(values);\n                    // console.log(\"Callback executed with values:\", values);\n                    // if (values.file_type === \"Text file\") {\n                    frappe.call({\n                        method: 'advantisquartz.advantisquartz.doctype.api.generate_txt',\n                        args: {\n                            selected_date: values.date,\n                            // file_type: values.file_type\n                        },\n                        callback: function (response) {\n                            console.log(response);\n                            if (response.message) {\n                                var link = document.createElement('a');\n                                link.href = '/files/' + response.message;\n                                link.download = 'PF_ECR.txt';\n                                link.click();\n                            }\n                        }\n                    });\n                    // }\n                    d.hide();\n                }\n            });\n\n            d.show();\n        });\n    }\n};",
   "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Quality Inspection",
+  "enabled": 1,
+  "modified": "2023-09-12 15:56:58.585260",
+  "module": "Advantisquartz",
+  "name": "Create rows according to bag no in QC",
+  "script": "frappe.ui.form.on('Quality Inspection', {\n\tbags_or_drums(frm) {\n\t    var bags =  parseInt(frm.doc.bags_or_drums);\n        var row;\n        frm.clear_table(\"mesh_qc\");\n        for (var i = 0; i < bags; i++) {\n            row = frm.add_child(\"mesh_qc\");\n            row.description = \"\";\n            frm.refresh_field(\"mesh_qc\");\n        }\n\t},\n\tseive_mesh_qc(frm) {\n        var row;\n        frm.clear_table(\"lab_sections_and_mesh_no\");\n        for (var i = 0; i < 7; i++) {\n            row = frm.add_child(\"lab_sections_and_mesh_no\");\n            row.lab_section = \"\";\n            frm.refresh_field(\"lab_sections_and_mesh_no\");\n        }\n\t}\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Receipt",
+  "enabled": 1,
+  "modified": "2023-09-11 17:09:06.042043",
+  "module": "Advantisquartz",
+  "name": "Link machine maintenance with purchase receipt",
+  "script": "frappe.ui.form.on('Purchase Receipt', {\n    supplier(frm) {\n        var supplier = cur_frm.doc.supplier;\n        console.log(supplier);\n        frappe.call({\n            method: \"frappe.client.get_list\",\n            args: {\n                doctype: \"Machine Maintenance\",\n                filters: {\n                    supplier: supplier,\n                },\n                fields: [\"name\"],\n            },\n            callback: function (response) {\n                console.log(response);\n                var machineMaintenanceOptions = response.message.map(function (item) {\n                    return item.name;\n                });\n                console.log(machineMaintenanceOptions);\n                frm.fields_dict.machine_maintenance.get_query = function () {\n                    return {\n                        filters: [\n                            ['Machine Maintenance', 'name', 'in', machineMaintenanceOptions]\n                        ]\n                    };\n                };\n                frm.refresh_field('machine_maintenance');\n            }\n        });\n    }\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Invoice",
+  "enabled": 1,
+  "modified": "2023-09-11 17:25:52.915271",
+  "module": "Advantisquartz",
+  "name": "Link machine maintenance with purchase inv",
+  "script": "frappe.ui.form.on('Purchase Invoice', {\n    supplier(frm) {\n        var supplier = cur_frm.doc.supplier;\n        console.log(supplier);\n        frappe.call({\n            method: \"frappe.client.get_list\",\n            args: {\n                doctype: \"Machine Maintenance\",\n                filters: {\n                    supplier: supplier,\n                },\n                fields: [\"name\"],\n            },\n            callback: function (response) {\n                console.log(response);\n                var machineMaintenanceOptions = response.message.map(function (item) {\n                    return item.name;\n                });\n                console.log(machineMaintenanceOptions);\n                frm.fields_dict.machine_maintenance.get_query = function () {\n                    return {\n                        filters: [\n                            ['Machine Maintenance', 'name', 'in', machineMaintenanceOptions]\n                        ]\n                    };\n                };\n                frm.refresh_field('machine_maintenance');\n            }\n        });\n    }\n});\n",
+  "view": "Form"
  }
 ]

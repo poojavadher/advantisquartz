@@ -1,0 +1,162 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-06 11:44:30.421381",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "supplier",
+  "supplier_name",
+  "item",
+  "challan_total_value",
+  "more_info",
+  "gstin",
+  "supplier_primary_address",
+  "column_break_ogfov",
+  "mode_of_transport",
+  "date__time_of_supply",
+  "place_of_supply",
+  "term_condition_tab",
+  "term_condition",
+  "terms_and_condition",
+  "sample_returnable",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Machine Maintenance",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fetch_if_empty": 1,
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Supplier Name"
+  },
+  {
+   "fetch_from": "supplier.gstin",
+   "fetch_if_empty": 1,
+   "fieldname": "gstin",
+   "fieldtype": "Data",
+   "label": "GSTIN"
+  },
+  {
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mode of Transport",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_primary_address",
+   "fetch_if_empty": 1,
+   "fieldname": "supplier_primary_address",
+   "fieldtype": "Data",
+   "label": "Supplier Primary Address"
+  },
+  {
+   "fieldname": "date__time_of_supply",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Date & Time of Supply",
+   "reqd": 1
+  },
+  {
+   "fieldname": "place_of_supply",
+   "fieldtype": "Data",
+   "label": "Place of Supply"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Table",
+   "label": "Item",
+   "options": "Machine Maintenance Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "challan_total_value",
+   "fieldtype": "Currency",
+   "label": "Challan Total Value",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "term_condition",
+   "fieldtype": "Link",
+   "label": "Term & Condition",
+   "options": "Terms and Conditions"
+  },
+  {
+   "default": "0",
+   "fieldname": "sample_returnable",
+   "fieldtype": "Check",
+   "label": "Sample Returnable"
+  },
+  {
+   "fetch_from": "term_condition.terms",
+   "fetch_if_empty": 1,
+   "fieldname": "terms_and_condition",
+   "fieldtype": "Text Editor"
+  },
+  {
+   "fieldname": "term_condition_tab",
+   "fieldtype": "Tab Break",
+   "label": "Term & Condition"
+  },
+  {
+   "fieldname": "more_info",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "column_break_ogfov",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-09-12 14:51:47.111771",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Machine Maintenance",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

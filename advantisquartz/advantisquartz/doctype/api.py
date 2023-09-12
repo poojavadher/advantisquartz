@@ -3,6 +3,43 @@ import datetime
 import math
 from frappe.utils.file_manager import save_file_on_filesystem
 
+# @frappe.whitelist(allow_guest=True)
+# def generate_stock_entry(description_of_goods, qty, rate):
+#     # print("\n\n", description_of_goods, "\n\n", qty, "\n\n", rate, "\n\n")
+#     new_stock_entry = frappe.new_doc("Stock Entry")
+#     new_stock_entry.stock_entry_type = 'Material Issue'
+#     new_stock_entry.append("items",{
+#         "item_code":description_of_goods,
+#         "qty": qty,
+#         "basic_rate":rate,
+#         "s_warehouse": "Finished Goods - AQL"
+#     })
+#     new_stock_entry.insert(ignore_permissions=True)
+#     frappe.db.commit()
+#     return description_of_goods, qty, rate
+
+# @frappe.whitelist(allow_guest=True)
+# def generate_stock_entry(item_data):
+    # print("\n\n\n",item_data,"\n\n\n")
+    # print(f"\n\n\n {item_data} \n\n\n")
+    # new_stock_entry = frappe.new_doc("Stock Entry")
+    # new_stock_entry.stock_entry_type = 'Material Issue'
+
+    # for i in range(len(qty)):
+    #     new_stock_entry.append("items", {
+    #         "item_code": description_of_goods,
+    #         "qty": qty,
+    #         "basic_rate": rate,
+    #         "s_warehouse": "Finished Goods - AQL"
+    #     })
+
+    # new_stock_entry.insert(ignore_permissions=True)
+    # frappe.db.commit()
+    # return "Stock Entry created successfully"
+
+
+
+
 
 @frappe.whitelist(allow_guest=True)
 def generate_txt(selected_date):
