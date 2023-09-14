@@ -3,6 +3,36 @@ import datetime
 import math
 from frappe.utils.file_manager import save_file_on_filesystem
 
+@frappe.whitelist(allow_guest=True)
+def get_employee_bonus(employee, from_date, to_date):
+    if not (employee and from_date and to_date):
+        return None  
+
+    from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
+    to_date = datetime.datetime.strptime(to_date, '%Y-%m-%d')
+
+    salary_slips = frappe.get_all("Salary Slip", filters={
+        "docstatus": 1,
+        "employee": employee,
+        "start_date": (">=", from_date),
+        "end_date": ("<=", to_date)
+    }, fields=['name', 'start_date', 'end_date'])
+
+    if not salary_slips:
+        return None  
+
+    get_salary_data = frappe.get_all('Salary Detail', filters={
+        'parent': ['in', [ss['name'] for ss in salary_slips]],
+        'salary_component': 'Basic'  
+    }, fields=['amount'])
+
+    low = [entry['amount'] for entry in get_salary_data if entry['amount'] <= 7000]
+    medium = [entry['amount'] for entry in get_salary_data if entry['amount'] > 7000]
+    high = [entry['amount'] for entry in get_salary_data if entry['amount'] > 21000]
+    
+    return salary_slips, get_salary_data, low
+
+
 # @frappe.whitelist(allow_guest=True)
 # def generate_stock_entry(description_of_goods, qty, rate):
 #     # print("\n\n", description_of_goods, "\n\n", qty, "\n\n", rate, "\n\n")
@@ -17,26 +47,6 @@ from frappe.utils.file_manager import save_file_on_filesystem
 #     new_stock_entry.insert(ignore_permissions=True)
 #     frappe.db.commit()
 #     return description_of_goods, qty, rate
-
-# @frappe.whitelist(allow_guest=True)
-# def generate_stock_entry(item_data):
-    # print("\n\n\n",item_data,"\n\n\n")
-    # print(f"\n\n\n {item_data} \n\n\n")
-    # new_stock_entry = frappe.new_doc("Stock Entry")
-    # new_stock_entry.stock_entry_type = 'Material Issue'
-
-    # for i in range(len(qty)):
-    #     new_stock_entry.append("items", {
-    #         "item_code": description_of_goods,
-    #         "qty": qty,
-    #         "basic_rate": rate,
-    #         "s_warehouse": "Finished Goods - AQL"
-    #     })
-
-    # new_stock_entry.insert(ignore_permissions=True)
-    # frappe.db.commit()
-    # return "Stock Entry created successfully"
-
 
 
 
@@ -105,10 +115,9 @@ def format_amount(amount):
         return float(amount)
 
 
-
-
 @frappe.whitelist(allow_guest=True)
 def generate_leave_allocation():
+    return "Hello"
     current_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
     
     l_type = frappe.db.get_list('Leave Type', fields="name", filters={"is_privilege_leave":1})

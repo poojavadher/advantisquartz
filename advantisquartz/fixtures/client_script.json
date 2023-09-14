@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "Quality Inspection",
+  "enabled": 1,
+  "modified": "2023-09-14 13:46:46.189095",
+  "module": "Advantisquartz",
+  "name": "Get mesh qc template to Quality Inspection",
+  "script": "frappe.ui.form.on('Quality Inspection', {\n\tmesh_qc_template(frm) {\n\t    if (frm.doc.mesh_qc_template){\n\t       frappe.model.with_doc(\"Mesh QC Template\", frm.doc.mesh_qc_template, function() {\n                var tabletransfer= frappe.model.get_doc(\"Mesh QC Template\", frm.doc.mesh_qc_template);\n                $.each(tabletransfer.parameters, function(index, row){\n                    var d = frm.add_child(\"lab_sections_and_mesh_no\");\n                    d.lab_section = row.lab_section;\n                    d.mesh_no = row.mesh_no;\n                    frm.refresh_field(\"lab_sections_and_mesh_no\");\n                });\n            });\n\t    }\n\t    else{\n\t        frm.clear_table(\"lab_sections_and_mesh_no\");\n\t        frm.refresh_field(\"lab_sections_and_mesh_no\");\n\t    }\n\t}\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Sales Invoice",
   "enabled": 1,
   "modified": "2023-08-24 18:38:47.282057",
@@ -312,10 +323,10 @@
   "doctype": "Client Script",
   "dt": "Quality Inspection",
   "enabled": 1,
-  "modified": "2023-09-12 15:56:58.585260",
+  "modified": "2023-09-13 12:00:37.845411",
   "module": "Advantisquartz",
   "name": "Create rows according to bag no in QC",
-  "script": "frappe.ui.form.on('Quality Inspection', {\n\tbags_or_drums(frm) {\n\t    var bags =  parseInt(frm.doc.bags_or_drums);\n        var row;\n        frm.clear_table(\"mesh_qc\");\n        for (var i = 0; i < bags; i++) {\n            row = frm.add_child(\"mesh_qc\");\n            row.description = \"\";\n            frm.refresh_field(\"mesh_qc\");\n        }\n\t},\n\tseive_mesh_qc(frm) {\n        var row;\n        frm.clear_table(\"lab_sections_and_mesh_no\");\n        for (var i = 0; i < 7; i++) {\n            row = frm.add_child(\"lab_sections_and_mesh_no\");\n            row.lab_section = \"\";\n            frm.refresh_field(\"lab_sections_and_mesh_no\");\n        }\n\t}\n});",
+  "script": "frappe.ui.form.on('Quality Inspection', {\n\tbags_or_drums(frm) {\n\t    var bags =  parseInt(frm.doc.bags_or_drums);\n        var row;\n        frm.clear_table(\"mesh_qc\");\n        for (var i = 0; i < bags; i++) {\n            row = frm.add_child(\"mesh_qc\");\n            row.description = \"\";\n            frm.refresh_field(\"mesh_qc\");\n        }\n\t}\n});",
   "view": "Form"
  },
  {
@@ -338,6 +349,17 @@
   "module": "Advantisquartz",
   "name": "Link machine maintenance with purchase inv",
   "script": "frappe.ui.form.on('Purchase Invoice', {\n    supplier(frm) {\n        var supplier = cur_frm.doc.supplier;\n        console.log(supplier);\n        frappe.call({\n            method: \"frappe.client.get_list\",\n            args: {\n                doctype: \"Machine Maintenance\",\n                filters: {\n                    supplier: supplier,\n                },\n                fields: [\"name\"],\n            },\n            callback: function (response) {\n                console.log(response);\n                var machineMaintenanceOptions = response.message.map(function (item) {\n                    return item.name;\n                });\n                console.log(machineMaintenanceOptions);\n                frm.fields_dict.machine_maintenance.get_query = function () {\n                    return {\n                        filters: [\n                            ['Machine Maintenance', 'name', 'in', machineMaintenanceOptions]\n                        ]\n                    };\n                };\n                frm.refresh_field('machine_maintenance');\n            }\n        });\n    }\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Retention Bonus",
+  "enabled": 1,
+  "modified": "2023-09-14 15:34:22.990198",
+  "module": "Advantisquartz",
+  "name": "Get Bonus",
+  "script": "frappe.ui.form.on('Retention Bonus', {\n    get_salary_slip(frm) {\n        var monthly_bonus = cur_frm.doc.monthly_bonus;\n        var emp = cur_frm.doc.employee;\n        var from_date = cur_frm.doc.from_date;\n        var to_date = cur_frm.doc.to_date;\n\n        if (monthly_bonus === 1 && emp && from_date && to_date) {\n            frappe.call({\n                method: \"advantisquartz.advantisquartz.doctype.api.get_employee_bonus\",\n                args: {\n                    employee: emp,\n                    from_date: from_date,\n                    to_date: to_date\n                },\n                async: false,\n                callback: function (response) {\n                    console.log(response.message);\n\n                    frm.clear_table(\"employee_bonus\");\n\n                    var salary_slips = response.message[0];\n                    var get_salary_data = response.message[1];\n\n                    for (var i = 0; i < salary_slips.length; i++) {\n                        var row = frm.add_child(\"employee_bonus\");\n                        row.salary_slip = salary_slips[i].name;\n                        row.basic_salary = get_salary_data[i].amount;\n                    }\n\n                    frm.refresh_field(\"employee_bonus\");\n                }\n            });\n        }\n    }\n});\n\n\n\n// frappe.ui.form.on('Retention Bonus', {\n//     // employee(frm) {\n//     //     // Your existing code for the employee field\n//     //     var emp = cur_frm.doc.employee;\n//     //     if (emp) {\n//     //         var monthly_bonus = cur_frm.doc.monthly_bonus;\n//     //         var from_date = cur_frm.doc.from_date;\n//     //         var to_date = cur_frm.doc.to_date;\n\n//     //         // if (monthly_bonus === 1 && from_date && to_date) {\n//     //         //     // Move the code to a function (if needed)\n//     //         //     frappe.call({\n//     //         //         method: \"advantisquartz.advantisquartz.doctype.api.get_employee_bonus\",\n//     //         //         args: {\n//     //         //             employee: emp,\n//     //         //             from_date: from_date,\n//     //         //             to_date: to_date\n//     //         //         },\n//     //         //         async: false,\n//     //         //         callback: function (response) {\n//     //         //             console.log(response.message);\n//     //         //         }\n//     //         //     });\n//     //         // }\n//     //     }\n//     // },\n\n//     get_salary_slip(frm) {\n//         var monthly_bonus = cur_frm.doc.monthly_bonus;\n//         var emp = cur_frm.doc.employee;\n//         var from_date = cur_frm.doc.from_date;\n//         var to_date = cur_frm.doc.to_date;\n        \n//         if (monthly_bonus === 1 && emp && from_date && to_date) {\n//             frappe.call({\n//                 method: \"advantisquartz.advantisquartz.doctype.api.get_employee_bonus\",\n//                 args: {\n//                     employee: emp,\n//                     from_date: from_date,\n//                     to_date: to_date\n//                 },\n//                 async: false,\n//                 callback: function (response) {\n//                     console.log(response.message);\n//                 }\n//             });\n//         }\n//     }\n// });\n\n\n",
   "view": "Form"
  }
 ]

@@ -1,12 +1,13 @@
 {
  "actions": [],
- "autoname": "autoincrement",
- "creation": "2023-09-06 11:44:30.421381",
+ "autoname": "naming_series:",
+ "creation": "2023-09-13 15:33:31.137486",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "supplier",
   "supplier_name",
   "item",
@@ -34,53 +35,10 @@
    "reqd": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Machine Maintenance",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fetch_from": "supplier.supplier_name",
-   "fetch_if_empty": 1,
    "fieldname": "supplier_name",
    "fieldtype": "Data",
    "label": "Supplier Name"
-  },
-  {
-   "fetch_from": "supplier.gstin",
-   "fetch_if_empty": 1,
-   "fieldname": "gstin",
-   "fieldtype": "Data",
-   "label": "GSTIN"
-  },
-  {
-   "fieldname": "mode_of_transport",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Mode of Transport",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "supplier.supplier_primary_address",
-   "fetch_if_empty": 1,
-   "fieldname": "supplier_primary_address",
-   "fieldtype": "Data",
-   "label": "Supplier Primary Address"
-  },
-  {
-   "fieldname": "date__time_of_supply",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Date & Time of Supply",
-   "reqd": 1
-  },
-  {
-   "fieldname": "place_of_supply",
-   "fieldtype": "Data",
-   "label": "Place of Supply"
   },
   {
    "fieldname": "item",
@@ -96,10 +54,61 @@
    "options": "Currency"
   },
   {
+   "fieldname": "more_info",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fetch_from": "supplier.gstin",
+   "fieldname": "gstin",
+   "fieldtype": "Autocomplete",
+   "label": "GSTIN"
+  },
+  {
+   "fetch_from": "supplier.supplier_primary_address",
+   "fieldname": "supplier_primary_address",
+   "fieldtype": "Link",
+   "label": "Supplier Primary Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "column_break_ogfov",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mode of Transport",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date__time_of_supply",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Date & Time of Supply",
+   "reqd": 1
+  },
+  {
+   "fieldname": "place_of_supply",
+   "fieldtype": "Data",
+   "label": "Place of Supply"
+  },
+  {
+   "fieldname": "term_condition_tab",
+   "fieldtype": "Tab Break",
+   "label": "Term & Condition"
+  },
+  {
    "fieldname": "term_condition",
    "fieldtype": "Link",
    "label": "Term & Condition",
    "options": "Terms and Conditions"
+  },
+  {
+   "fetch_from": "term_condition.terms",
+   "fieldname": "terms_and_condition",
+   "fieldtype": "Text Editor"
   },
   {
    "default": "0",
@@ -108,34 +117,37 @@
    "label": "Sample Returnable"
   },
   {
-   "fetch_from": "term_condition.terms",
-   "fetch_if_empty": 1,
-   "fieldname": "terms_and_condition",
-   "fieldtype": "Text Editor"
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Machine Maintenance",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
-   "fieldname": "term_condition_tab",
-   "fieldtype": "Tab Break",
-   "label": "Term & Condition"
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Machine Maintenance",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
-   "fieldname": "more_info",
-   "fieldtype": "Tab Break",
-   "label": "More Info"
-  },
-  {
-   "fieldname": "column_break_ogfov",
-   "fieldtype": "Column Break"
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-12 14:51:47.111771",
+ "modified": "2023-09-13 15:41:12.902574",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Machine Maintenance",
- "naming_rule": "Autoincrement",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {

@@ -139,7 +139,7 @@ frappe.ui.form.on('Gate Entry', {
 						row.item = r.result[i].description_of_goods;
 						row.item_name = r.result[i].item_name;
 						row.qty = r.result[i].qty;
-						row.uom = r.result[i].uom;
+						row.uom = r.result[i].unit;
 						row.parent_doctype = r.result[i].parenttype;
 						row.parentdoc = r.result[i].parent;
 					}
