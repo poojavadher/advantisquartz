@@ -235,7 +235,7 @@
   "doctype": "Client Script",
   "dt": "Material Request",
   "enabled": 0,
-  "modified": "2023-08-31 18:36:19.389793",
+  "modified": "2023-09-19 15:41:01.068843",
   "module": "Advantisquartz",
   "name": "Created By Name",
   "script": "frappe.ui.form.on('Material Request', {\n    onload: function(frm) {\n        if (frm.is_new()) {  // Check if the form is new\n            var a = frm.doc.transaction_date;\n            frm.set_value('schedule_date', frappe.datetime.add_days(a, 7));\n        }\n    }\n});\nfrappe.ui.form.on('Material Request', {\n    schedule_date: function(frm) {\n      \tfrm.doc.items.forEach(function(child) {\n      \t    child.schedule_date = cur_frm.doc.schedule_date\n      \t})\n    }\n});\n\nfrappe.ui.form.on('Material Request', {\n    refresh: function(frm) {\n        if (frappe.user_roles.includes(\"MR Creator\")) {\n             frm.fields_dict['items'].grid.toggle_display('rate');\n\n        }\n        else{\n            console.log(\"all\")\n        }\n    }\n});\n",

@@ -19,10 +19,8 @@ def execute(filters=None):
     
     # Create a dictionary for each item to accumulate relevant data
     item_data_dict = {}
-    
-    # Iterate over purchases and populate the dictionary
-    for purchase_item in purchases:
-        item_code = purchase_item.itemCode
+    for item in items:
+        item_code = item.item_code
         if item_code not in item_data_dict:
             item_data_dict[item_code] = {
                 "purchase_qty": 0,
@@ -35,6 +33,9 @@ def execute(filters=None):
                 "item_receipt_qty":0,
                 "before_receipt_qty":0
             }
+    # Iterate over purchases and populate the dictionary
+    for purchase_item in purchases:
+        item_code = purchase_item.itemCode
         item_data_dict[item_code]["purchase_qty"] += purchase_item.purchase_qty
     
     # Iterate over ledgers and delivers to accumulate item issue quantity
@@ -76,12 +77,28 @@ def execute(filters=None):
     # Iterate over items to generate the final report data
     for item in items:
         item_code = item.item_code
-        
-        data.append({
+        if item_code in item_data_dict:
+            item_issue_qty = item_data_dict[item_code]["item_issue_qty"] if item_data_dict[item_code] else 1
+            before_issue_qty = item_data_dict[item_code]["before_issue_qty"]
+            before_purchase_qty = item_data_dict[item_code]["before_purchase_qty"]  
+            before_stock_rec = item_data_dict[item_code]["before_stock_re_qty"] + before_purchase_qty + item_data_dict[item_code]["stock_re_qty"] + item_data_dict[item_code]["before_receipt_qty"] + item_data_dict[item_code]["item_receipt_qty"]
+            before_delivery_issue_qty = item_data_dict[item_code]["before_delivery_issue_qty"]
+            before_delivery_issue_qty_sum = before_delivery_issue_qty + before_issue_qty
+            opening_qty = before_stock_rec - before_delivery_issue_qty_sum 
+            closing_qty_pre = opening_qty + item_data_dict[item_code]["purchase_qty"]
+            closing_qty = closing_qty_pre - item_issue_qty
+            
+            data.append({
                 "item_code": item_code,
                 "item_name": item.item_name,
                 "stock_uom": item.stock_uom,
+                "purchase_qty": item_data_dict[item_code]["purchase_qty"],
+                "issue_qty": item_issue_qty,
+                "opening_qty": opening_qty,
+                "closing_qty": closing_qty
             })
+        
+        
     
     return columns, data
     
