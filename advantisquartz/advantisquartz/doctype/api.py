@@ -3,6 +3,28 @@ import datetime
 import math
 from frappe.utils.file_manager import save_file_on_filesystem
 
+# @frappe.whitelist(allow_guest=True)
+# def get_gratuity(employee):
+#     salary_slips = frappe.get_all("Salary Slip", filters={ "employee": employee, "docstatus": 1 }, fields=['name', 'employee', 'start_date', 'end_date'])
+#     return salary_slips
+
+@frappe.whitelist(allow_guest=True)
+def get_gratuity(employee):
+    today = datetime.date.today()
+    salary_slips = frappe.get_all("Salary Slip", filters={"employee": employee, "docstatus": 1}, fields=['name', 'employee', 'start_date', 'end_date'])
+    
+    if salary_slips:
+        salary_slips.sort(key=lambda slip: abs((slip['end_date'] - today).days))
+        get_basic_salary = frappe.get_all('Salary Detail', filters={
+            'parent': ['in', [ss['name'] for ss in salary_slips]],
+            'salary_component': 'Basic'  
+        }, fields=['amount'])
+        return get_basic_salary[0]
+        # return salary_slips[0], get_basic_salary[0]
+    else:
+        return None
+
+
 @frappe.whitelist(allow_guest=True)
 def get_employee_bonus(employee, from_date, to_date):
     if not (employee and from_date and to_date):
@@ -25,30 +47,8 @@ def get_employee_bonus(employee, from_date, to_date):
         'parent': ['in', [ss['name'] for ss in salary_slips]],
         'salary_component': 'Basic'  
     }, fields=['amount'])
-
-    low = [entry['amount'] for entry in get_salary_data if entry['amount'] <= 7000]
-    medium = [entry['amount'] for entry in get_salary_data if entry['amount'] > 7000]
-    high = [entry['amount'] for entry in get_salary_data if entry['amount'] > 21000]
     
-    return salary_slips, get_salary_data, low
-
-
-# @frappe.whitelist(allow_guest=True)
-# def generate_stock_entry(description_of_goods, qty, rate):
-#     # print("\n\n", description_of_goods, "\n\n", qty, "\n\n", rate, "\n\n")
-#     new_stock_entry = frappe.new_doc("Stock Entry")
-#     new_stock_entry.stock_entry_type = 'Material Issue'
-#     new_stock_entry.append("items",{
-#         "item_code":description_of_goods,
-#         "qty": qty,
-#         "basic_rate":rate,
-#         "s_warehouse": "Finished Goods - AQL"
-#     })
-#     new_stock_entry.insert(ignore_permissions=True)
-#     frappe.db.commit()
-#     return description_of_goods, qty, rate
-
-
+    return salary_slips, get_salary_data
 
 
 @frappe.whitelist(allow_guest=True)

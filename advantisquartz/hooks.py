@@ -98,6 +98,10 @@ app_license = "MIT"
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
+override_doctype_class = {
+	"Gratuity": "advantisquartz.overrides.Gratuity"
+}
+
 # Document Events
 # ---------------
 # Hook on document methods and events

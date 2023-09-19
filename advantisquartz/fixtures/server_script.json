@@ -92,16 +92,16 @@
  {
   "allow_guest": 0,
   "api_method": "receive_qty",
-  "disabled": 0,
+  "disabled": 1,
   "docstatus": 0,
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-07-31 11:51:01.325817",
+  "modified": "2023-09-18 18:36:36.948147",
   "module": "Advantisquartz",
   "name": "receive_qty",
   "reference_doctype": null,
-  "script": "a = frappe.form_dict[\"item_code\"]\nb = frappe.form_dict[\"purchase\"]\nfrappe.msgprint(a)\nfrappe.msgprint(b)\nif b:\n    receive = frappe.db.sql(\"\"\"\n        SELECT tr.received_qty\n        FROM `tabPurchase Order` it\n        JOIN `tabPurchase Order Item` tr ON tr.parent = it.name\n        WHERE it.name = %s AND tr.item_code = %s\n    \"\"\", (b, a))  # Pass parameters as a tuple (b, a) to fill the placeholders\n\nreceive1 = \"\"\nfor row in receive:  # Iterate through rows of the result\n    for val in row:  # Iterate through columns of each row\n        if receive1 == \"\":\n            receive1 = str(val)\n        else:\n            receive1 = f\"{receive1},{val}\"\n\nfrappe.response[\"receive\"] = receive1\n",
+  "script": "a = frappe.form_dict[\"item_code\"]\nb = frappe.form_dict[\"purchase\"]\n\nif b:\n    receive = frappe.db.sql(\"\"\"\n        SELECT tr.received_qty\n        FROM `tabPurchase Order` it\n        JOIN `tabPurchase Order Item` tr ON tr.parent = it.name\n        WHERE it.name = %s AND tr.item_code = %s\n    \"\"\", (b, a))  # Pass parameters as a tuple (b, a) to fill the placeholders\n\nreceive1 = \"\"\n\n\nfor a in receive:\n    for b in a:\n        if receive1 == \"\":\n            receive1 = b\n        else:\n            receive1 = f'{receive1}{\",\"}{b}'\nreceive2 = str(receive1)\n            \nfrappe.response[\"receive\"] = receive2\n",
   "script_type": "API"
  },
  {
@@ -172,11 +172,26 @@
   "doctype": "Server Script",
   "doctype_event": "Before Submit",
   "event_frequency": "All",
-  "modified": "2023-08-10 10:44:56.222609",
+  "modified": "2023-09-15 15:00:51.895045",
   "module": "Advantisquartz",
   "name": "QC Link To gate Entry",
   "reference_doctype": "Quality Inspection",
-  "script": "if doc.reference_type == \"Purchase Receipt\":\n    ref_doc = doc.reference_name\n    gate_entry = frappe.db.get_value(\"Purchase Receipt\",ref_doc,'gate_entry')\n    parent = frappe.get_doc('Gate Entry', gate_entry)\n    parent.append(\"qc_details\", {\n            'qc': doc.name,\n            'item_name': doc.item_name,\n            'qc_status' : doc.status,\n            'qc_date' : doc.report_date,\n            'qc_time': '',\n            'inspected_by': doc.inspected_by,\n            'qc_remarks' : doc.remarks,\n            'sample_size': str(doc.sample_size) +\" \"+ str(doc.sample_uom),\n    }) \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1 \n    parent.save()",
+  "script": "if doc.reference_type == \"Purchase Receipt\" and doc.gate_entry:\n    parent = frappe.get_doc('Gate Entry', doc.gate_entry)\n    parent.append(\"qc_details\", {\n            'qc': doc.name,\n            'item_name': doc.item_name,\n            'qc_status' : doc.status,\n            'qc_date' : doc.report_date,\n            'qc_time': '',\n            'inspected_by': doc.inspected_by,\n            'qc_remarks' : doc.remarks,\n            'sample_size': str(doc.sample_size) +\" \"+ str(doc.sample_uom),\n    }) \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1 \n    parent.save()",
+  "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Submit",
+  "event_frequency": "All",
+  "modified": "2023-09-18 18:59:25.549257",
+  "module": "Advantisquartz",
+  "name": "purchase qty",
+  "reference_doctype": "Purchase Receipt",
+  "script": "for item in doc.items:\n    # Get the qty field value from the Purchase Order's child table\n    qty = frappe.db.get_value('Purchase Order Item', filters={'parent': item.purchase_order, 'item_code': item.item_code}, fieldname='received_qty')\n    \n    # Do something with the 'qty' value\n    item.po_received_qty = qty",
   "script_type": "DocType Event"
  }
 ]

@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2023-09-13 15:33:31.137486",
  "default_view": "List",
@@ -23,7 +24,8 @@
   "term_condition",
   "terms_and_condition",
   "sample_returnable",
-  "amended_from"
+  "amended_from",
+  "connections_tab"
  ],
  "fields": [
   {
@@ -138,12 +140,17 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Naming Series"
+  },
+  {
+   "fieldname": "connections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-13 15:41:12.902574",
+ "modified": "2023-09-14 18:50:52.874095",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Machine Maintenance",

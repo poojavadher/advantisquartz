@@ -65,9 +65,10 @@
   },
   {
    "fieldname": "grade",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Grade"
+   "label": "Grade",
+   "options": "\nPREMIUM\nSTANDARD\nECONOMY\nREJECTED\nREPAIR\nREPOLISH"
   },
   {
    "fieldname": "column_break_echeq",
@@ -77,7 +78,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-28 15:35:11.943055",
+ "modified": "2023-09-18 16:50:01.980405",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Item",
