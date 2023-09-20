@@ -77,6 +77,13 @@
   "chart_options": null,
   "charts": [
    {
+    "chart": "Purchase Order Trends Bar",
+    "parent": "AQ Buying Dashboard",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   },
+   {
     "chart": "Material Request Analysis",
     "parent": "AQ Buying Dashboard",
     "parentfield": "charts",
@@ -89,7 +96,7 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-08-11 15:35:42.960030",
+  "modified": "2023-09-20 13:03:21.481759",
   "module": "Advantisquartz",
   "name": "AQ Buying Dashboard"
  },

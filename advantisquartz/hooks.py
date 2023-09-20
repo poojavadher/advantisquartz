@@ -244,7 +244,7 @@ fixtures = [
     {"dt":"Dashboard","filters":[
         [
             "module","in",[
-                "advantisquartz","Quality Management"
+                "advantisquartz","AQ Buying Dashboard"
             ]
         ]
     ]},

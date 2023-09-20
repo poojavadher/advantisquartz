@@ -3,11 +3,6 @@ import datetime
 import math
 from frappe.utils.file_manager import save_file_on_filesystem
 
-# @frappe.whitelist(allow_guest=True)
-# def get_gratuity(employee):
-#     salary_slips = frappe.get_all("Salary Slip", filters={ "employee": employee, "docstatus": 1 }, fields=['name', 'employee', 'start_date', 'end_date'])
-#     return salary_slips
-
 @frappe.whitelist(allow_guest=True)
 def get_gratuity(employee):
     today = datetime.date.today()

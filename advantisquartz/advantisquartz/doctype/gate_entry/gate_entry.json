@@ -28,10 +28,8 @@
   "gate_out_time",
   "challan_no",
   "challan_date",
-  "section_break_zwtny",
-  "asset_repair",
-  "section_break_fmet7",
   "get_data",
+  "section_break_qaj4p",
   "stock_item_tab",
   "section_break_s4rhw",
   "driver_name",
@@ -320,17 +318,6 @@
    "label": "Net Weight"
   },
   {
-   "fieldname": "section_break_zwtny",
-   "fieldtype": "Section Break"
-  },
-  {
-   "depends_on": "eval:doc.purpose==\"Asset Repair\" || doc.purpose == \"Asset Returnable\";",
-   "fieldname": "asset_repair",
-   "fieldtype": "Table",
-   "label": "Asset Repair Status",
-   "options": "Gate Entry Asset Repairing"
-  },
-  {
    "fieldname": "stock_item_tab",
    "fieldtype": "Table",
    "label": "Stock Item",
@@ -461,10 +448,6 @@
    "options": "outward_for"
   },
   {
-   "fieldname": "section_break_fmet7",
-   "fieldtype": "Section Break"
-  },
-  {
    "depends_on": "eval: doc.entry_type == 'Outward';",
    "fieldname": "get_data",
    "fieldtype": "Button",
@@ -485,6 +468,10 @@
    "fieldname": "challan_date",
    "fieldtype": "Date",
    "label": "Challan Date"
+  },
+  {
+   "fieldname": "section_break_qaj4p",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -495,7 +482,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-09-04 15:34:38.303505",
+ "modified": "2023-09-20 10:46:51.315156",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
