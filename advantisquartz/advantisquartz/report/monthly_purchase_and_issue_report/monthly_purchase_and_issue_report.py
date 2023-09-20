@@ -31,7 +31,9 @@ def execute(filters=None):
                 "before_stock_re_qty":0,
                 "stock_re_qty":0,
                 "item_receipt_qty":0,
-                "before_receipt_qty":0
+                "before_receipt_qty":0,
+                "item_manufacture_qty":0,
+                "before_manufacture_qty":0
             }
     # Iterate over purchases and populate the dictionary
     for purchase_item in purchases:
@@ -44,6 +46,7 @@ def execute(filters=None):
         if item_code in item_data_dict:
             item_data_dict[item_code]["item_issue_qty"] += ledger.issue_qty
             item_data_dict[item_code]["item_receipt_qty"] += ledger.receipt_qty
+            item_data_dict[item_code]["item_manufacture_qty"] += ledger.manufacture_qty
         
     for deliver_item in deliver:
         item_code = deliver_item.itemCode
@@ -58,6 +61,8 @@ def execute(filters=None):
         if item_code in item_data_dict:
             item_data_dict[item_code]["before_issue_qty"] += before_issuess.issue_qty
             item_data_dict[item_code]["before_receipt_qty"] += before_issuess.receipt_qty
+            item_data_dict[item_code]["before_manufacture_qty"] += before_issuess.manufacture_qty
+            
     for before_delivery in before_deliver:
         item_code = before_delivery.itemCode
         if item_code in item_data_dict:
@@ -81,7 +86,7 @@ def execute(filters=None):
             item_issue_qty = item_data_dict[item_code]["item_issue_qty"] if item_data_dict[item_code] else 1
             before_issue_qty = item_data_dict[item_code]["before_issue_qty"]
             before_purchase_qty = item_data_dict[item_code]["before_purchase_qty"]  
-            before_stock_rec = item_data_dict[item_code]["before_stock_re_qty"] + before_purchase_qty + item_data_dict[item_code]["stock_re_qty"] + item_data_dict[item_code]["before_receipt_qty"] + item_data_dict[item_code]["item_receipt_qty"]
+            before_stock_rec = item_data_dict[item_code]["before_stock_re_qty"] + before_purchase_qty + item_data_dict[item_code]["stock_re_qty"] + item_data_dict[item_code]["before_receipt_qty"] + item_data_dict[item_code]["item_receipt_qty"] + item_data_dict[item_code]["item_manufacture_qty"] + item_data_dict[item_code]["before_manufacture_qty"]
             before_delivery_issue_qty = item_data_dict[item_code]["before_delivery_issue_qty"]
             before_delivery_issue_qty_sum = before_delivery_issue_qty + before_issue_qty
             opening_qty = before_stock_rec - before_delivery_issue_qty_sum 
@@ -156,25 +161,7 @@ def get_purchase(filters):
     main_query = frappe.db.sql(query, as_dict=True)
     return main_query
 
-def get_issue(filters):
-    query = (
-        f"""
-        SELECT 
-            it.item_code AS 'itemCode',
-            ABS(SUM(CASE WHEN it.dependant_sle_voucher_detail_no IS NULL THEN it.actual_qty ELSE 0 END)) AS 'issue_qty'
-        FROM
-            `tabStock Ledger Entry` it
-       
-        WHERE
-            it.actual_qty < 0
-            AND YEAR(it.posting_date) = {filters.get("year")}
-            AND MONTH(it.posting_date) = {filters.get("month")}
-        GROUP BY
-            it.item_code
-        """
-    )
-    main_query = frappe.db.sql(query, as_dict=True)
-    return main_query
+
 
 
 def get_stock_issue(filters):
@@ -183,13 +170,14 @@ def get_stock_issue(filters):
         SELECT 
             sed.item_code AS 'itemCode',
             SUM((CASE WHEN  sed.t_warehouse IS NULL THEN sed.qty ELSE 0 END)) AS 'issue_qty',
-            SUM((CASE WHEN  se.stock_entry_type = "Material Receipt" THEN sed.qty ELSE 0 END)) AS 'receipt_qty'
+            SUM((CASE WHEN  se.stock_entry_type = "Material Receipt" THEN sed.qty ELSE 0 END)) AS 'receipt_qty',
+            SUM((CASE WHEN  sed.is_finished_item = 1 THEN sed.qty ELSE 0 END)) AS 'manufacture_qty'
             FROM
             `tabStock Entry` se JOIN `tabStock Entry Detail` sed on se.name = sed.parent 
             WHERE
             se.docstatus != "Draft"
             and
-            se.docstatus != "Cancelled"
+            se.docstatus != "Cancelled  "
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
             GROUP BY
@@ -249,7 +237,8 @@ def get_before_month_issue(filters):
             sed.item_code AS 'itemCode',
             SUM((CASE WHEN MONTH(se.posting_date) < {filters.get("month")} AND  sed.t_warehouse IS NULL THEN sed.qty ELSE 0 END))
             AS 'issue_qty',
-            SUM((CASE WHEN  se.stock_entry_type ="Material Receipt" AND MONTH(se.posting_date) < {filters.get("month")} THEN sed.qty ELSE 0 END)) AS 'receipt_qty'
+            SUM((CASE WHEN  se.stock_entry_type ="Material Receipt" AND MONTH(se.posting_date) < {filters.get("month")} THEN sed.qty ELSE 0 END)) AS 'receipt_qty',
+            SUM((CASE WHEN sed.is_finished_item = 1 AND MONTH(se.posting_date)<{filters.get("month")} THEN sed.qty ELSE 0 END)) AS 'manufacture_qty'
             FROM
             `tabStock Entry` se JOIN `tabStock Entry Detail` sed on se.name = sed.parent 
             WHERE

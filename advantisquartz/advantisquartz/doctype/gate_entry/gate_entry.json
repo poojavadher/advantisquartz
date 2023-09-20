@@ -28,8 +28,8 @@
   "gate_out_time",
   "challan_no",
   "challan_date",
-  "get_data",
   "section_break_qaj4p",
+  "get_data",
   "stock_item_tab",
   "section_break_s4rhw",
   "driver_name",
@@ -482,7 +482,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-09-20 10:46:51.315156",
+ "modified": "2023-09-20 17:36:53.288083",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Entry",
