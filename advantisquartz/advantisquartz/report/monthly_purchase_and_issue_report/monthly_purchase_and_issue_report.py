@@ -175,7 +175,7 @@ def get_stock_issue(filters):
             FROM
             `tabStock Entry` se JOIN `tabStock Entry Detail` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft"
+            se.docstatus != "Draft" 
             and
             se.docstatus != "Cancelled  "
             AND YEAR(se.posting_date) = {filters.get("year")}
