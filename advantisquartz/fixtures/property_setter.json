@@ -3943,13 +3943,13 @@
   "doctype_or_field": "DocField",
   "field_name": "employee_number",
   "is_system_generated": 0,
-  "modified": "2023-09-20 16:53:01.572409",
+  "modified": "2023-09-22 15:09:56.327300",
   "module": null,
   "name": "Employee-employee_number-reqd",
   "property": "reqd",
   "property_type": "Check",
   "row_name": null,
-  "value": "1"
+  "value": "0"
  },
  {
   "default_value": null,
