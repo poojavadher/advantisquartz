@@ -7,11 +7,11 @@
   "doctype": "Server Script",
   "doctype_event": "After Insert",
   "event_frequency": "All",
-  "modified": "2023-09-14 10:06:59.393772",
+  "modified": "2023-09-23 13:30:22.641215",
   "module": "Advantisquartz",
   "name": "Item Naming for finish goods",
   "reference_doctype": "Item",
-  "script": "if doc is not None and doc.finish_good_:\n    trimmed_url = \"\"\n    driver=\"\"\n    new_item = \"S-\"+str(doc.finish_good_id)+\"-\"+str(doc.thickness)\n    frappe.rename_doc(\"Item\", doc.name , new_item, merge=False)\n  \n    frappe.response['type'] = 'redirect'\n    frappe.response['location'] = \"/app/item\"\n    \nif doc.item_name == doc.description:\n    doc.description = \"\"\n",
+  "script": "if doc is not None and doc.finish_good_:\n    trimmed_url = \"\"\n    driver=\"\"\n    new_item = \"S-\"+str(doc.finish_good_id)+\"-\"+str(doc.thickness)\n    frappe.rename_doc(\"Item\", doc.name , new_item, merge=False)\n  \n    frappe.response['type'] = 'redirect'\n    frappe.response['location'] = \"/app/item\"\n",
   "script_type": "DocType Event"
  },
  {
@@ -172,11 +172,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Submit",
   "event_frequency": "All",
-  "modified": "2023-09-15 15:00:51.895045",
+  "modified": "2023-09-23 11:19:28.554184",
   "module": "Advantisquartz",
   "name": "QC Link To gate Entry",
   "reference_doctype": "Quality Inspection",
-  "script": "if doc.reference_type == \"Purchase Receipt\" and doc.gate_entry:\n    parent = frappe.get_doc('Gate Entry', doc.gate_entry)\n    parent.append(\"qc_details\", {\n            'qc': doc.name,\n            'item_name': doc.item_name,\n            'qc_status' : doc.status,\n            'qc_date' : doc.report_date,\n            'qc_time': '',\n            'inspected_by': doc.inspected_by,\n            'qc_remarks' : doc.remarks,\n            'sample_size': str(doc.sample_size) +\" \"+ str(doc.sample_uom),\n    }) \n    if (parent.lock_quality_inspection == 0 ):\n        parent.lock_quality_inspection = 1 \n    parent.save()",
+  "script": "if doc.reference_type == \"Purchase Receipt\":\n    gate_entry = frappe.db.get_value(\"Purchase Receipt\",doc.reference_name,'gate_entry')\n    if gate_entry:\n        parent = frappe.get_doc('Gate Entry', gate_entry)\n        parent.append(\"qc_details\", {\n                'qc': doc.name,\n                'item_name': doc.item_name,\n                'qc_status' : doc.status,\n                'qc_date' : doc.report_date,\n                'qc_time': '',\n                'inspected_by': doc.inspected_by,\n                'qc_remarks' : doc.remarks,\n                'sample_size': str(doc.sample_size) +\" \"+ str(doc.sample_uom),\n        }) \n        if (parent.lock_quality_inspection == 0 ):\n            parent.lock_quality_inspection = 1 \n        parent.save()",
   "script_type": "DocType Event"
  },
  {

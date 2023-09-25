@@ -175,9 +175,9 @@ def get_stock_issue(filters):
             FROM
             `tabStock Entry` se JOIN `tabStock Entry Detail` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft" 
-            and
-            se.docstatus != "Cancelled  "
+            se.docstatus != 0
+           and
+            se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
             GROUP BY
@@ -196,9 +196,9 @@ def get_delivery_issue(filters):
             FROM
             `tabDelivery Note` se JOIN `tabDelivery Note Item` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft"
-            and
-            se.docstatus != "Cancelled"
+           se.docstatus != 0
+           and
+            se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
              GROUP BY
@@ -242,9 +242,9 @@ def get_before_month_issue(filters):
             FROM
             `tabStock Entry` se JOIN `tabStock Entry Detail` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft"
-            and
-            se.docstatus != "Cancelled"
+            se.docstatus != 0
+           and
+            se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             
             GROUP BY
@@ -263,9 +263,9 @@ def get_before_month_delivery_issue(filters):
             FROM
             `tabDelivery Note` se JOIN `tabDelivery Note Item` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft"
-            and
-            se.docstatus != "Cancelled"
+           se.docstatus != 0
+           and
+            se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             
             GROUP BY
@@ -285,9 +285,9 @@ def get_before_month_stock_reconciliation(filters):
             FROM
             `tabStock Reconciliation` se JOIN `tabStock Reconciliation Item` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft"
-            and
-            se.docstatus != "Cancelled"
+            se.docstatus != 0
+           and
+            se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             
             GROUP BY
@@ -308,9 +308,9 @@ def get_stock_reconciliation(filters):
             FROM
             `tabStock Reconciliation` se JOIN `tabStock Reconciliation Item` sed on se.name = sed.parent 
             WHERE
-            se.docstatus != "Draft"
-            and
-            se.docstatus != "Cancelled"
+           se.docstatus != 0
+           and
+            se.docstatus != 2
           AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
             

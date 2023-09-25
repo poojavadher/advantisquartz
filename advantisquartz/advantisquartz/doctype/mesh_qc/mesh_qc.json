@@ -7,7 +7,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "description",
   "mesh_no_1",
   "mesh_no_2",
   "mesh_no_3",
@@ -15,18 +14,12 @@
   "mesh_no_5",
   "mesh_no_6",
   "mesh_no_7",
+  "mesh_no_8",
   "status",
   "reason",
   "qty"
  ],
  "fields": [
-  {
-   "columns": 2,
-   "fieldname": "description",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Description "
-  },
   {
    "columns": 1,
    "fieldname": "mesh_no_1",
@@ -96,12 +89,19 @@
    "fieldname": "reason",
    "fieldtype": "Data",
    "label": "Reason"
+  },
+  {
+   "columns": 2,
+   "fieldname": "mesh_no_8",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "8# "
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-14 10:24:18.521248",
+ "modified": "2023-09-23 11:17:43.015438",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Mesh QC",

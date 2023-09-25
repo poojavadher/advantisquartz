@@ -24,17 +24,9 @@
   "terms_and_condition",
   "sample_returnable",
   "connections_tab",
-  "amended_from",
   "amended_from"
  ],
  "fields": [
-  {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "label": "Naming Series",
-   "options": "MT-.#",
-   "reqd": 1
-  },
   {
    "fieldname": "supplier",
    "fieldtype": "Link",
@@ -69,6 +61,7 @@
   },
   {
    "fetch_from": "supplier.gstin",
+   "fetch_if_empty": 1,
    "fieldname": "gstin",
    "fieldtype": "Autocomplete",
    "label": "GSTIN"
@@ -92,6 +85,7 @@
    "reqd": 1
   },
   {
+   "fetch_if_empty": 1,
    "fieldname": "date__time_of_supply",
    "fieldtype": "Datetime",
    "in_list_view": 1,
@@ -147,12 +141,19 @@
    "options": "Machine Maintenance",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "MT-.#",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 14:53:40.707247",
+ "modified": "2023-09-23 17:15:06.104988",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Machine Maintenance",
