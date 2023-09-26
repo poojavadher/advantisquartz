@@ -10,6 +10,9 @@
   "naming_series",
   "supplier",
   "supplier_name",
+  "column_break_dg5oz",
+  "remarks",
+  "section_break_42v0u",
   "item",
   "challan_total_value",
   "more_info",
@@ -22,7 +25,6 @@
   "term_condition_tab",
   "term_condition",
   "terms_and_condition",
-  "sample_returnable",
   "connections_tab",
   "amended_from"
  ],
@@ -44,6 +46,7 @@
   {
    "fieldname": "item",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Item",
    "options": "Machine Maintenance Item",
    "reqd": 1
@@ -114,24 +117,9 @@
    "fieldtype": "Text Editor"
   },
   {
-   "default": "0",
-   "fieldname": "sample_returnable",
-   "fieldtype": "Check",
-   "label": "Sample Returnable"
-  },
-  {
    "fieldname": "connections_tab",
    "fieldtype": "Tab Break",
    "label": "Connections"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Machine Maintenance",
-   "print_hide": 1,
-   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -148,12 +136,25 @@
    "label": "Naming Series",
    "options": "MT-.#",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_dg5oz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_42v0u",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-23 17:15:06.104988",
+ "modified": "2023-09-26 16:04:59.356136",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Machine Maintenance",

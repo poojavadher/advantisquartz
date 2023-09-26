@@ -8,14 +8,16 @@
  "engine": "InnoDB",
  "field_order": [
   "description_of_goods",
-  "item_name",
   "hsn_code",
   "source_warehouse",
-  "qty",
-  "unit",
   "rate",
-  "total",
   "status",
+  "returned",
+  "column_break_jpto5",
+  "item_name",
+  "unit",
+  "qty",
+  "total",
   "amended_from"
  ],
  "fields": [
@@ -44,7 +46,7 @@
    "options": "GST HSN Code"
   },
   {
-   "columns": 2,
+   "columns": 1,
    "fieldname": "source_warehouse",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -88,12 +90,12 @@
    "options": "Currency"
   },
   {
-   "allow_on_submit": 1,
+   "columns": 1,
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
-   "options": "\nReturnable\nNon-returnable\nReturned",
-   "read_only_depends_on": "eval: doc.status=\"Returned\";"
+   "options": "\nReturnable\nNon-returnable"
   },
   {
    "fieldname": "amended_from",
@@ -105,20 +107,25 @@
    "read_only": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Machine Maintenance Item",
-   "print_hide": 1,
+   "allow_on_submit": 1,
+   "columns": 1,
+   "default": "0",
+   "fieldname": "returned",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Returned",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jpto5",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-23 17:16:00.452739",
+ "modified": "2023-09-26 11:31:50.133955",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Machine Maintenance Item",

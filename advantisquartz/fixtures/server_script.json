@@ -193,5 +193,20 @@
   "reference_doctype": "Purchase Receipt",
   "script": "for item in doc.items:\n    # Get the qty field value from the Purchase Order's child table\n    qty = frappe.db.get_value('Purchase Order Item', filters={'parent': item.purchase_order, 'item_code': item.item_code}, fieldname='received_qty')\n    \n    # Do something with the 'qty' value\n    item.po_received_qty = qty",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 1,
+  "api_method": "get_mm_child",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2023-09-25 19:02:12.893323",
+  "module": "Advantisquartz",
+  "name": "Get Machine Maintenance child",
+  "reference_doctype": null,
+  "script": "mach =  str(frappe.form_dict['mach'])\n\nquery = f\"SELECT * FROM `tabMachine Maintenance Item` WHERE parent = %s and status = %s \"\nresult = frappe.db.sql(query, (mach,'Returnable',), as_dict=True)\n    # frappe.msgprint(result[0].item_name)\nfrappe.response['result'] = result ",
+  "script_type": "API"
  }
 ]
