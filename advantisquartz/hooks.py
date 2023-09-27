@@ -99,7 +99,8 @@ app_license = "MIT"
 # }
 
 override_doctype_class = {
-	"Gratuity": "advantisquartz.overrides.Gratuity"
+	"Gratuity": "advantisquartz.overrides.Gratuity",
+    "Employee Checkin": "advantisquartz.employee_checkin.EmployeeCheckin"
 }
 
 # Document Events
@@ -155,6 +156,9 @@ scheduler_events = {
 # override_whitelisted_methods = {
 #	"frappe.desk.doctype.event.event.get_events": "advantisquartz.event.get_events"
 # }
+override_whitelisted_methods = {
+	"hrms.hr.doctype.employee_checkin.employee_checkin.add_log_based_on_employee_field": "advantisquartz.employee_checkin.add_log_based_on_employee_field"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,

@@ -52,7 +52,7 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-08-31 16:33:42.539857",
+  "modified": "2023-09-27 15:15:59.734472",
   "module": "Advantisquartz",
   "name": "packing",
   "reference_doctype": null,
