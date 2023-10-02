@@ -212,6 +212,8 @@ def get_columns(filters):
         {"label": _("Remarks"), "fieldname": "quality_remarks", "fieldtype": "Data"},
         {"label": _("Quality Submitted By"), "fieldname": "quality_submitted_by", "fieldtype": "Data"},
         {"label": _("Quality Delay"), "fieldname": "quality_delay", "fieldtype": "Data"},
+        {"label": _("Payment Planned"), "fieldname": "payment_planned", "fieldtype": "Datetime"},
+        {"label": _("Payment Actual"), "fieldname": "payment_actual", "fieldtype": "Datetime"},
 
         
 	]
