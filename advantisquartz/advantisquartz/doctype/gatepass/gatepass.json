@@ -1,0 +1,221 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:GATE-{MM}-{####}",
+ "creation": "2023-10-10 10:43:37.536628",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select_type",
+  "no_of_person",
+  "empcode",
+  "column_break_ihtt1",
+  "date",
+  "employee_name",
+  "visitor_name",
+  "section_break_d3gka",
+  "purpose",
+  "related_department",
+  "from",
+  "to_meet_with",
+  "column_break_up9jo",
+  "remarks",
+  "mobile",
+  "section_break_jkrxj",
+  "out_time",
+  "company_staff",
+  "contractor_labour",
+  "vehicle_no",
+  "column_break_ridiu",
+  "in_time",
+  "company_labour",
+  "approved_by",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "select_type",
+   "fieldtype": "Select",
+   "label": "Select Type ",
+   "options": "Employee\nVisitor"
+  },
+  {
+   "fieldname": "no_of_person",
+   "fieldtype": "Data",
+   "label": "No. Of Person"
+  },
+  {
+   "fieldname": "column_break_ihtt1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "fetch_from": "empcode.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.select_type == \"Visitor\"",
+   "fieldname": "visitor_name",
+   "fieldtype": "Data",
+   "label": "Visitor Name"
+  },
+  {
+   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "fieldname": "empcode",
+   "fieldtype": "Link",
+   "label": "EMP.Code",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_d3gka",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Data",
+   "label": "Purpose"
+  },
+  {
+   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "fetch_from": "empcode.department",
+   "fieldname": "related_department",
+   "fieldtype": "Data",
+   "label": "Related Department"
+  },
+  {
+   "depends_on": "eval:doc.select_type == \"Visitor\"",
+   "fieldname": "from",
+   "fieldtype": "Data",
+   "label": "From"
+  },
+  {
+   "fieldname": "to_meet_with",
+   "fieldtype": "Link",
+   "label": "To Meet With",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_up9jo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "depends_on": "eval:doc.select_type == \"Visitor\"",
+   "fieldname": "mobile",
+   "fieldtype": "Phone",
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "section_break_jkrxj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "out_time",
+   "fieldtype": "Time",
+   "label": "Out Time"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "fieldname": "company_staff",
+   "fieldtype": "Check",
+   "label": "Company Staff"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "fieldname": "contractor_labour",
+   "fieldtype": "Check",
+   "label": "Contractor Labour"
+  },
+  {
+   "fieldname": "vehicle_no",
+   "fieldtype": "Data",
+   "label": "Vehicle No."
+  },
+  {
+   "fieldname": "column_break_ridiu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "in_time",
+   "fieldtype": "Time",
+   "label": "In Time"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "fieldname": "company_labour",
+   "fieldtype": "Check",
+   "label": "Company Labour"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "GatePass",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-10 17:41:42.070121",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "GatePass",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Gate Entry Operator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

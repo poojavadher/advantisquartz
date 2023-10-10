@@ -1,7 +1,7 @@
 {
  "charts": [],
  "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}},{\"id\":\"Ug4QtSaiCU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}}]",
- "creation": "2023-07-18 16:50:39.591396",
+ "creation": "2023-10-04 18:53:47.649730",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Gate Pass",
  "links": [],
- "modified": "2023-08-21 18:18:21.639524",
+ "modified": "2023-10-10 10:14:33.727758",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Pass",

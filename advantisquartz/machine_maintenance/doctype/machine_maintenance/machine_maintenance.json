@@ -10,8 +10,10 @@
   "naming_series",
   "supplier",
   "supplier_name",
+  "default_company",
   "column_break_dg5oz",
   "remarks",
+  "warehouse",
   "section_break_42v0u",
   "item",
   "challan_total_value",
@@ -149,14 +151,39 @@
   {
    "fieldname": "section_break_42v0u",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "default_company",
+   "fieldtype": "Link",
+   "label": "Company ",
+   "options": "Company"
+  },
+  {
+   "description": "<div class=\"text-danger\">Select Warehouse Carefully as it will affect stock directly.</div>",
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Default Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2023-09-26 16:04:59.356136",
+ "links": [
+  {
+   "link_doctype": "Stock Entry",
+   "link_fieldname": "asset_maintenance",
+   "table_fieldname": "name"
+  },
+  {
+   "link_doctype": "Purchase Receipt",
+   "link_fieldname": "machine_maintenance",
+   "table_fieldname": "name"
+  }
+ ],
+ "modified": "2023-10-10 15:53:57.238925",
  "modified_by": "Administrator",
- "module": "Advantisquartz",
+ "module": "Machine Maintenance",
  "name": "Machine Maintenance",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",

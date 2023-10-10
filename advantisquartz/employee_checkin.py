@@ -99,26 +99,40 @@ def add_log_based_on_employee_field(
 			)
 		)
 	
-	Shift = frappe.db.get_values(
-		"Shift Assignment",
-		{employee: employee_field_value},
-		["name", "shift_type"],
-		as_dict=True,
-	)
-	if Shift:
-		Shift_Type = employee[1]
-	else:
-		frappe.throw(
-			_("No Shift Assignment found for the given employee'{}': {}").format(
-				employee_field_value, shift
-			)
-		)
+	# Shift = frappe.db.get_value(
+	# 	"Shift Type",
+	# 	["name", shift],
+	# 	as_dict=True,
+	# )
+	# if Shift:
+	# 	Shift_Type = Shift
+	# else:
+	# 	frappe.throw(
+	# 		_("No Shift Assignment found for the given employee'{}': {}").format(
+	# 			employee_field_value, shift
+	# 		)
+	# 	)
+ 
+	# Shift = frappe.db.get_values(
+	# 	"Shift Assignment",
+	# 	{employee: employee_field_value},
+	# 	["name", "shift_type"],
+	# 	as_dict=True,
+	# )
+	# if Shift:
+	# 	Shift_Type = employee[1]
+	# else:
+	# 	frappe.throw(
+	# 		_("No Shift Assignment found for the given employee'{}': {}").format(
+	# 			employee_field_value, shift
+	# 		)
+	# 	)
 
 	doc = frappe.new_doc("Employee Checkin")
 	doc.employee = employee.name
 	doc.employee_name = employee.employee_name
 	doc.time = timestamp
-	doc.shift = Shift_Type
+	doc.shift = shift
 	doc.device_id = device_id
 	doc.log_type = log_type
 	if cint(skip_auto_attendance) == 1:

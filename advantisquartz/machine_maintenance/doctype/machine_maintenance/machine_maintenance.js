@@ -175,3 +175,13 @@ frappe.ui.form.on('Machine Maintenance', {
 	// 		}
 	// 	});
 });
+
+frappe.ui.form.on("Machine Maintenance Item", "description_of_goods", function(frm, cdt, cdn) {
+    var d = locals[cdt][cdn];
+	d.source_warehouse = frm.doc.warehouse;
+	frm.refresh_field('item');
+	// frappe.db.get_value("Item Default", {"parent": d.description_of_goods,'company':frm.doc.company}, "default_warehouse", function(value) {
+	// 	d.source_warehouse = value.default_warehouse;
+	// });
+	// frm.refresh_field('item');
+});
