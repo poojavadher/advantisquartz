@@ -80,24 +80,31 @@ def add_log_based_on_employee_field(
 	:param skip_auto_attendance: (optional)Skip auto attendance field will be set for this log(0/1).
 	:param employee_fieldname: (Default: attendance_device_id)Name of the field in Employee DocType based on which employee lookup will happen.
 	"""
+ 
+	print("\n\n\n\n", employee_field_value, timestamp, shift, log_type, "\n\n\n\n")
 
 	if not employee_field_value or not timestamp or not shift:
 		frappe.throw(_("'employee_field_value' and 'timestamp' and 'shift' are required."))
-
-	employee = frappe.db.get_values(
-		"Employee",
-		{employee_fieldname: employee_field_value},
-		["name", "employee_name", employee_fieldname],
-		as_dict=True,
-	)
+  
+	employee = frappe.db.get_value('Employee', {'employee': employee_field_value}, ['employee','employee_name'])
 	if employee:
-		employee = employee[0]
-	else:
-		frappe.throw(
-			_("No Employee found for the given employee field value. '{}': {}").format(
-				employee_fieldname, employee_field_value
-			)
-		)
+		emp = employee[0]
+		emp_nm = employee[1]
+
+	# employee = frappe.db.get_values(
+	# 	"Employee",
+	# 	{employee_fieldname: employee_field_value},
+	# 	["name", "employee_name", employee_fieldname],
+	# 	as_dict=True,
+	# )
+	# if employee:
+	# 	employee = employee[0]
+	# else:
+	# 	frappe.throw(
+	# 		_("No Employee found for the given employee field value. '{}': {}").format(
+	# 			employee_fieldname, employee_field_value
+	# 		)
+	# 	)
 	
 	# Shift = frappe.db.get_value(
 	# 	"Shift Type",
@@ -129,8 +136,8 @@ def add_log_based_on_employee_field(
 	# 	)
 
 	doc = frappe.new_doc("Employee Checkin")
-	doc.employee = employee.name
-	doc.employee_name = employee.employee_name
+	doc.employee = emp
+	doc.employee_name = emp_nm
 	doc.time = timestamp
 	doc.shift = shift
 	doc.device_id = device_id

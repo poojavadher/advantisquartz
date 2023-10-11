@@ -152,5 +152,82 @@
   ],
   "workflow_name": "Supplier Quotation WorkFlow",
   "workflow_state_field": "workflow_state"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "GatePass",
+  "is_active": 1,
+  "modified": "2023-10-11 12:09:41.892805",
+  "name": "Gatepass",
+  "override_status": 0,
+  "send_email_alert": 1,
+  "states": [
+   {
+    "allow_edit": "Gate Entry Operator",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Gatepass",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending",
+    "update_field": "",
+    "update_value": null
+   },
+   {
+    "allow_edit": "Gate Entry Operator",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Gatepass",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Employee",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Gatepass",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": null,
+    "update_value": null
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Approve",
+    "allow_self_approval": 0,
+    "allowed": "Gate Entry Operator",
+    "condition": "doc.select_type == \"Employee\"",
+    "next_state": "Approved",
+    "parent": "Gatepass",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 0,
+    "allowed": "Employee",
+    "condition": "doc.select_type == \"Visitor\" and doc.to_meet_with == \"rutu\"",
+    "next_state": "Approved",
+    "parent": "Gatepass",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending"
+   }
+  ],
+  "workflow_name": "Gatepass",
+  "workflow_state_field": "workflow_state"
  }
 ]

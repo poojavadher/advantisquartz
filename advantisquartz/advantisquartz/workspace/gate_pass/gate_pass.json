@@ -1,7 +1,7 @@
 {
  "charts": [],
- "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}},{\"id\":\"Ug4QtSaiCU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}}]",
- "creation": "2023-10-04 18:53:47.649730",
+ "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}},{\"id\":\"Ug4QtSaiCU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"7eOe_4KGpp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"E4-1n6pc46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Pass Visitor\",\"col\":3}},{\"id\":\"HorazePaL_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Pass Employee\",\"col\":3}}]",
+ "creation": "2023-10-10 17:46:13.493271",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Gate Pass",
  "links": [],
- "modified": "2023-10-10 10:14:33.727758",
+ "modified": "2023-10-10 18:05:12.383493",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Gate Pass",
@@ -34,10 +34,26 @@
   {
    "color": "Orange",
    "doc_view": "List",
+   "label": "Gate Pass Visitor",
+   "link_to": "GatePass",
+   "stats_filter": "{\"select_type\":[\"=\",\"Visitor\"]}",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
    "format": "{}",
    "label": "Gate Out Entry",
    "link_to": "Gate Entry",
    "stats_filter": "{\"entry_type\":[\"=\",\"Outward\"]}",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "List",
+   "label": "Gate Pass Employee",
+   "link_to": "GatePass",
+   "stats_filter": "{\"select_type\":[\"=\",\"Employee\"]}",
    "type": "DocType"
   },
   {
