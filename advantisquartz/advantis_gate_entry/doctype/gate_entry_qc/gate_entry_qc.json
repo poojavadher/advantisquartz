@@ -1,0 +1,116 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-04 15:34:56.271513",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "qc",
+  "column_break_vzrzt",
+  "item_name",
+  "column_break_x0un9",
+  "qc_status",
+  "section_break_ovdpb",
+  "qc_date",
+  "column_break_8cbxy",
+  "qc_time",
+  "column_break_ozzux",
+  "inspected_by",
+  "section_break_eqqkm",
+  "qc_remarks",
+  "column_break_kubhq",
+  "sample_size"
+ ],
+ "fields": [
+  {
+   "fieldname": "qc",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "QC",
+   "options": "Quality Inspection",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_x0un9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qc_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "QC Status"
+  },
+  {
+   "fieldname": "qc_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "QC Date"
+  },
+  {
+   "fieldname": "qc_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "QC Time"
+  },
+  {
+   "fieldname": "qc_remarks",
+   "fieldtype": "Text",
+   "label": "QC Remarks"
+  },
+  {
+   "fieldname": "sample_size",
+   "fieldtype": "Data",
+   "label": "Sample Size"
+  },
+  {
+   "fieldname": "section_break_ovdpb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_8cbxy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_eqqkm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_kubhq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ozzux",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item name"
+  },
+  {
+   "fieldname": "column_break_vzrzt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "qc.inspected_by",
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By",
+   "options": "User"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-19 14:19:09.991748",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Gate Entry QC",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

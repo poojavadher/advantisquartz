@@ -10,6 +10,7 @@
   "item_name",
   "slab_no",
   "weight",
+  "repair_contractor_name",
   "column_break_echeq",
   "length",
   "width",
@@ -73,12 +74,17 @@
   {
    "fieldname": "column_break_echeq",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "repair_contractor_name",
+   "fieldtype": "Data",
+   "label": "Repair Contractor Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-18 16:50:01.980405",
+ "modified": "2023-10-11 13:14:21.428840",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Item",

@@ -9,9 +9,11 @@
   "serial_no",
   "batch_no",
   "select_type",
+  "manufacturing_contractor_name",
   "column_break_hvt1e",
   "width",
   "length",
+  "remarks",
   "weight"
  ],
  "fields": [
@@ -53,12 +55,22 @@
   {
    "fieldname": "column_break_hvt1e",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "manufacturing_contractor_name",
+   "fieldtype": "Data",
+   "label": "Manufacturing Contractor Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-07-28 15:37:38.704445",
+ "modified": "2023-10-11 13:15:55.933493",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Press Item Serial",

@@ -77,7 +77,7 @@
   "chart_options": null,
   "charts": [
    {
-    "chart": "Purchase Order Trends Bar",
+    "chart": "Purchase Order Trends Bar With Close Status",
     "parent": "AQ Buying Dashboard",
     "parentfield": "charts",
     "parenttype": "Dashboard",
@@ -96,7 +96,7 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-09-20 13:03:21.481759",
+  "modified": "2023-10-11 13:37:40.770509",
   "module": "Advantisquartz",
   "name": "AQ Buying Dashboard"
  },

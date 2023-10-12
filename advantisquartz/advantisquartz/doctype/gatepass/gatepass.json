@@ -11,27 +11,28 @@
   "naming_series",
   "select_type",
   "no_of_person",
-  "empcode",
-  "column_break_ihtt1",
   "date",
+  "column_break_ihtt1",
+  "empcode",
   "employee_name",
+  "related_department",
   "visitor_name",
   "section_break_d3gka",
   "purpose",
-  "related_department",
   "from",
   "to_meet_with",
+  "approver_email",
   "column_break_up9jo",
   "remarks",
-  "mobile",
   "section_break_jkrxj",
   "out_time",
   "company_staff",
   "contractor_labour",
+  "company_labour",
   "vehicle_no",
   "column_break_ridiu",
   "in_time",
-  "company_labour",
+  "mobile",
   "approved_by",
   "amended_from"
  ],
@@ -39,8 +40,10 @@
   {
    "fieldname": "select_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Select Type ",
-   "options": "Employee\nVisitor"
+   "options": "Employee\nVisitor",
+   "reqd": 1
   },
   {
    "fieldname": "no_of_person",
@@ -52,12 +55,14 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Date",
+   "reqd": 1
   },
   {
-   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "depends_on": "empcode",
    "fetch_from": "empcode.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
@@ -76,6 +81,7 @@
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "label": "EMP.Code",
+   "mandatory_depends_on": "eval:doc.select_type == \"Employee\"",
    "options": "Employee"
   },
   {
@@ -85,10 +91,11 @@
   {
    "fieldname": "purpose",
    "fieldtype": "Data",
-   "label": "Purpose"
+   "label": "Purpose",
+   "reqd": 1
   },
   {
-   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "depends_on": "empcode",
    "fetch_from": "empcode.department",
    "fieldname": "related_department",
    "fieldtype": "Data",
@@ -101,10 +108,12 @@
    "label": "From"
   },
   {
+   "depends_on": "eval:doc.select_type == \"Visitor\";",
    "fieldname": "to_meet_with",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "label": "To Meet With",
+   "mandatory_depends_on": "eval:doc.select_type == \"Visitor\";",
    "options": "Employee"
   },
   {
@@ -147,6 +156,7 @@
    "label": "Contractor Labour"
   },
   {
+   "depends_on": "eval:doc.select_type == \"Visitor\";",
    "fieldname": "vehicle_no",
    "fieldtype": "Data",
    "label": "Vehicle No."
@@ -185,14 +195,23 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "GatePass No.",
-   "options": "GP-.DD.-.MM.-.YY.-.##"
+   "options": "GP-.DD.-.MM.-.YY.-.##",
+   "reqd": 1
+  },
+  {
+   "depends_on": "to_meet_with",
+   "fetch_from": "to_meet_with.user_id",
+   "fieldname": "approver_email",
+   "fieldtype": "Data",
+   "label": "Approver Email"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-11 11:31:02.261162",
+ "modified": "2023-10-11 14:13:33.417764",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "GatePass",
@@ -221,6 +240,19 @@
    "report": 1,
    "role": "Gate Entry Operator",
    "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
