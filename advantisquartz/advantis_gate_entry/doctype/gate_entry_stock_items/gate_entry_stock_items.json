@@ -23,6 +23,26 @@
    "options": "Item"
   },
   {
+   "fetch_from": "item.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -42,34 +62,14 @@
    "in_list_view": 1,
    "label": "Parent",
    "options": "parent_doctype"
-  },
-  {
-   "fieldname": "uom",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "UOM",
-   "options": "UOM"
-  },
-  {
-   "fetch_from": "item.item_name",
-   "fieldname": "item_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Item Name"
-  },
-  {
-   "fieldname": "qty",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Qty"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-11 12:50:31.382845",
+ "modified": "2023-10-12 12:51:35.155295",
  "modified_by": "Administrator",
- "module": "Advantisquartz",
+ "module": "Advantis Gate Entry",
  "name": "Gate Entry Stock Items",
  "owner": "Administrator",
  "permissions": [],

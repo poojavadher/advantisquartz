@@ -76,173 +76,12 @@
  ],
  "fields": [
   {
-   "fieldname": "invoice_no",
-   "fieldtype": "Data",
-   "label": "Invoice No."
-  },
-  {
-   "fieldname": "driver_name",
-   "fieldtype": "Data",
-   "label": "Driver Name"
-  },
-  {
-   "default": "+91-",
-   "fieldname": "driver_mobile_no",
-   "fieldtype": "Phone",
-   "label": "Driver Mobile No."
-  },
-  {
-   "fieldname": "column_break_om2y0",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "Today",
-   "fieldname": "gate_in_date",
-   "fieldtype": "Date",
-   "label": "Gate in Date",
-   "read_only": 1
-  },
-  {
-   "default": "Now",
-   "fieldname": "gate_in_time",
-   "fieldtype": "Time",
-   "label": "Gate in Time",
-   "read_only": 1
-  },
-  {
-   "fieldname": "truck_no",
-   "fieldtype": "Data",
-   "label": "Truck No."
-  },
-  {
-   "fieldname": "invoice_date",
-   "fieldtype": "Date",
-   "label": "Invoice Date"
-  },
-  {
-   "depends_on": "is_weight_in",
-   "fieldname": "weight_in_date",
-   "fieldtype": "Date",
-   "label": "Weight In Date",
-   "read_only_depends_on": "is_weight_in"
-  },
-  {
-   "depends_on": "is_weight_in",
-   "fieldname": "weight_in",
-   "fieldtype": "Float",
-   "label": "Weight in (Weight)"
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "is_weight_in",
-   "fieldname": "weight_in_time",
-   "fieldtype": "Time",
-   "label": "Weight in Time",
-   "read_only_depends_on": "is_weight_in"
-  },
-  {
-   "depends_on": "is_unloaded",
-   "fieldname": "unloading_date",
-   "fieldtype": "Date",
-   "label": "Unloading Date",
-   "read_only_depends_on": "is_unloaded"
-  },
-  {
-   "depends_on": "is_unloaded",
-   "fieldname": "unloading_time",
-   "fieldtype": "Time",
-   "label": "Unloading Time",
-   "read_only_depends_on": "is_unloaded"
-  },
-  {
-   "default": "0",
-   "depends_on": "is_weight_out",
-   "description": "Tare Weight",
-   "fieldname": "weight_out",
-   "fieldtype": "Float",
-   "label": "Weight Out (Weight)"
-  },
-  {
-   "depends_on": "is_weight_out",
-   "fieldname": "weight_out_date",
-   "fieldtype": "Date",
-   "label": "Weight Out Date",
-   "read_only_depends_on": "is_weight_out"
-  },
-  {
-   "depends_on": "is_weight_out",
-   "fieldname": "weight_out_time",
-   "fieldtype": "Time",
-   "label": "Weight Out TIme",
-   "read_only_depends_on": "is_weight_out"
-  },
-  {
-   "depends_on": "is_gate_out",
-   "fieldname": "gate_out_date",
-   "fieldtype": "Date",
-   "label": "Gate Out Date ",
-   "read_only_depends_on": "is_gate_out"
-  },
-  {
-   "depends_on": "is_gate_out",
-   "fieldname": "gate_out_time",
-   "fieldtype": "Time",
-   "label": "Gate Out Time",
-   "read_only_depends_on": "is_gate_out"
-  },
-  {
-   "fieldname": "section_break_s4rhw",
-   "fieldtype": "Section Break",
-   "label": "Driver Details"
-  },
-  {
-   "fieldname": "column_break_mbtk2",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_x9qy7",
-   "fieldtype": "Section Break",
-   "label": "Weight Out Details"
-  },
-  {
-   "fieldname": "column_break_jx1uc",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Gate Entry",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_tbmnr",
-   "fieldtype": "Section Break",
-   "label": "Unloading Details",
-   "read_only_depends_on": "is_weight_in"
-  },
-  {
-   "fieldname": "column_break_fr4yd",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Gate Entry NO.",
    "options": "GT-.MM.-.YY.-.####",
    "reqd": 1
-  },
-  {
-   "fieldname": "section_break_pawp6",
-   "fieldtype": "Section Break",
-   "label": "Weight In Details"
-  },
-  {
-   "fieldname": "column_break_52oid",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "entry_type",
@@ -252,32 +91,6 @@
    "options": "\nInward\nOutward\nOther"
   },
   {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "is_gate_out",
-   "fieldtype": "Check",
-   "label": "Is Gate Out",
-   "read_only_depends_on": "eval:doc.is_gate_out == 1"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_weight_in",
-   "fieldtype": "Check",
-   "label": "Is Weight In"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_unloaded",
-   "fieldtype": "Check",
-   "label": "Is Unloaded"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_weight_out",
-   "fieldtype": "Check",
-   "label": "Is weight Out"
-  },
-  {
    "fieldname": "purpose",
    "fieldtype": "Select",
    "in_standard_filter": 1,
@@ -285,146 +98,10 @@
    "options": "\nRaw Material\nStore & Spare\nAsset Repair\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther"
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Data",
-   "label": "Remarks"
-  },
-  {
-   "fieldname": "qc_details",
-   "fieldtype": "Table",
-   "label": "QC Details",
-   "options": "Gate Entry QC"
-  },
-  {
-   "fieldname": "column_break_e9ulk",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "uom",
+   "fieldname": "party_type",
    "fieldtype": "Link",
-   "label": "UOM",
-   "options": "UOM"
-  },
-  {
-   "depends_on": "is_unloaded",
-   "fieldname": "unloading_person",
-   "fieldtype": "Data",
-   "label": "Unloading Person Name"
-  },
-  {
-   "depends_on": "weight_out",
-   "fieldname": "net_weight",
-   "fieldtype": "Float",
-   "label": "Net Weight"
-  },
-  {
-   "fieldname": "stock_item_tab",
-   "fieldtype": "Table",
-   "label": "Stock Item",
-   "options": "Gate Entry Stock Items"
-  },
-  {
-   "depends_on": "eval:doc.lock_fields === 1;",
-   "fieldname": "weight_specification_tab",
-   "fieldtype": "Tab Break",
-   "label": "Weight Specification"
-  },
-  {
-   "depends_on": "eval:doc.sampling_done;",
-   "fieldname": "sampling_person_name",
-   "fieldtype": "Small Text",
-   "label": "Sampling Person Name"
-  },
-  {
-   "default": "0",
-   "fieldname": "sampling_done",
-   "fieldtype": "Check",
-   "label": "Sampling Done"
-  },
-  {
-   "depends_on": "eval:doc.entry_type == \"Inward\";",
-   "fieldname": "in_operation",
-   "fieldtype": "Select",
-   "label": "Inward Operation",
-   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nGRN\nUnloading\nTare Weight\nGate Out",
-   "read_only": 1
-  },
-  {
-   "fieldname": "sampling_details_section",
-   "fieldtype": "Section Break",
-   "label": "Sampling Details"
-  },
-  {
-   "fieldname": "quality_inspection_section",
-   "fieldtype": "Section Break",
-   "label": "Quality Inspection"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:doc.entry_type == \"Inward\"  && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no ||\ndoc.entry_type == \"Outward\"  && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no",
-   "fieldname": "lock_fields",
-   "fieldtype": "Check",
-   "label": "Lock Fields"
-  },
-  {
-   "depends_on": "eval:doc.sampling_done;",
-   "fieldname": "sample_date",
-   "fieldtype": "Date",
-   "label": "Sample Date",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.sampling_done;",
-   "fieldname": "sample_time",
-   "fieldtype": "Time",
-   "label": "Sample Time",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_tth4t",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "grn",
-   "fieldtype": "Check",
-   "label": "GRN",
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:doc.is_weight_in === 1 && doc.weight_in || doc.uom  ||\ndoc.is_weight_in === 0 && doc.uom\n",
-   "fieldname": "lock_weight",
-   "fieldtype": "Check",
-   "label": "Lock Weight"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:doc.sampling_done === 1 && doc.sampling_person_name \n",
-   "fieldname": "lock_sampling",
-   "fieldtype": "Check",
-   "label": "Lock Sampling"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:frappe.user.has_role('System Manager') || frappe.user.has_role('Accounts Manager') || doc.lock_quality_inspection === 1",
-   "fieldname": "lock_quality_inspection",
-   "fieldtype": "Check",
-   "label": "Lock Quality Inspection"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:doc.is_unloaded === 1 && doc.unloading_person",
-   "fieldname": "lock_unload_details",
-   "fieldtype": "Check",
-   "label": "Lock Unload Details"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:doc.is_weight_out === 1 && doc.weight_out && doc.net_weight",
-   "fieldname": "lock_weight_out_details",
-   "fieldtype": "Check",
-   "label": "Lock Weight Out Details"
+   "label": "Party Type ",
+   "options": "DocType"
   },
   {
    "fieldname": "supplier",
@@ -448,16 +125,71 @@
    "options": "outward_for"
   },
   {
-   "depends_on": "eval: doc.entry_type == 'Outward';",
-   "fieldname": "get_data",
-   "fieldtype": "Button",
-   "label": "Get Data \u21b4"
+   "fieldname": "column_break_om2y0",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "party_type",
-   "fieldtype": "Link",
-   "label": "Party Type ",
-   "options": "DocType"
+   "depends_on": "eval:doc.entry_type == \"Inward\";",
+   "fieldname": "in_operation",
+   "fieldtype": "Select",
+   "label": "Inward Operation",
+   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nGRN\nUnloading\nTare Weight\nGate Out",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "gate_in_date",
+   "fieldtype": "Date",
+   "label": "Gate in Date",
+   "read_only": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "gate_in_time",
+   "fieldtype": "Time",
+   "label": "Gate in Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "invoice_no",
+   "fieldtype": "Data",
+   "label": "Invoice No."
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date"
+  },
+  {
+   "fieldname": "column_break_e9ulk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "is_gate_out",
+   "fieldtype": "Check",
+   "label": "Is Gate Out",
+   "read_only_depends_on": "eval:doc.is_gate_out == 1"
+  },
+  {
+   "depends_on": "is_gate_out",
+   "fieldname": "gate_out_date",
+   "fieldtype": "Date",
+   "label": "Gate Out Date ",
+   "read_only_depends_on": "is_gate_out"
+  },
+  {
+   "depends_on": "is_gate_out",
+   "fieldname": "gate_out_time",
+   "fieldtype": "Time",
+   "label": "Gate Out Time",
+   "read_only_depends_on": "is_gate_out"
   },
   {
    "fieldname": "challan_no",
@@ -472,6 +204,274 @@
   {
    "fieldname": "section_break_qaj4p",
    "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval: doc.entry_type == 'Outward';",
+   "fieldname": "get_data",
+   "fieldtype": "Button",
+   "label": "Get Data \u21b4"
+  },
+  {
+   "fieldname": "stock_item_tab",
+   "fieldtype": "Table",
+   "label": "Stock Item",
+   "options": "Gate Entry Stock Items"
+  },
+  {
+   "fieldname": "section_break_s4rhw",
+   "fieldtype": "Section Break",
+   "label": "Driver Details"
+  },
+  {
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name"
+  },
+  {
+   "default": "+91-",
+   "fieldname": "driver_mobile_no",
+   "fieldtype": "Phone",
+   "label": "Driver Mobile No."
+  },
+  {
+   "fieldname": "column_break_mbtk2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "truck_no",
+   "fieldtype": "Data",
+   "label": "Truck No."
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.entry_type == \"Inward\"  && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no ||\ndoc.entry_type == \"Outward\"  && doc.purpose && doc.driver_name && doc.driver_mobile_no && doc.truck_no",
+   "fieldname": "lock_fields",
+   "fieldtype": "Check",
+   "label": "Lock Fields"
+  },
+  {
+   "depends_on": "eval:doc.lock_fields === 1;",
+   "fieldname": "weight_specification_tab",
+   "fieldtype": "Tab Break",
+   "label": "Weight Specification"
+  },
+  {
+   "fieldname": "section_break_pawp6",
+   "fieldtype": "Section Break",
+   "label": "Weight In Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_weight_in",
+   "fieldtype": "Check",
+   "label": "Is Weight In"
+  },
+  {
+   "depends_on": "is_weight_in",
+   "fieldname": "weight_in",
+   "fieldtype": "Float",
+   "label": "Weight in (Weight)"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_weight_in === 1 && doc.weight_in || doc.uom  ||\ndoc.is_weight_in === 0 && doc.uom\n",
+   "fieldname": "lock_weight",
+   "fieldtype": "Check",
+   "label": "Lock Weight"
+  },
+  {
+   "fieldname": "column_break_52oid",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "is_weight_in",
+   "fieldname": "weight_in_date",
+   "fieldtype": "Date",
+   "label": "Weight In Date",
+   "read_only_depends_on": "is_weight_in"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "is_weight_in",
+   "fieldname": "weight_in_time",
+   "fieldtype": "Time",
+   "label": "Weight in Time",
+   "read_only_depends_on": "is_weight_in"
+  },
+  {
+   "fieldname": "sampling_details_section",
+   "fieldtype": "Section Break",
+   "label": "Sampling Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "sampling_done",
+   "fieldtype": "Check",
+   "label": "Sampling Done"
+  },
+  {
+   "depends_on": "eval:doc.sampling_done;",
+   "fieldname": "sample_date",
+   "fieldtype": "Date",
+   "label": "Sample Date",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.sampling_done;",
+   "fieldname": "sample_time",
+   "fieldtype": "Time",
+   "label": "Sample Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tth4t",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.sampling_done;",
+   "fieldname": "sampling_person_name",
+   "fieldtype": "Small Text",
+   "label": "Sampling Person Name"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.sampling_done === 1 && doc.sampling_person_name \n",
+   "fieldname": "lock_sampling",
+   "fieldtype": "Check",
+   "label": "Lock Sampling"
+  },
+  {
+   "fieldname": "quality_inspection_section",
+   "fieldtype": "Section Break",
+   "label": "Quality Inspection"
+  },
+  {
+   "fieldname": "qc_details",
+   "fieldtype": "Table",
+   "label": "QC Details",
+   "options": "Gate Entry QC"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:frappe.user.has_role('System Manager') || frappe.user.has_role('Accounts Manager') || doc.lock_quality_inspection === 1",
+   "fieldname": "lock_quality_inspection",
+   "fieldtype": "Check",
+   "label": "Lock Quality Inspection"
+  },
+  {
+   "default": "0",
+   "fieldname": "grn",
+   "fieldtype": "Check",
+   "label": "GRN",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_tbmnr",
+   "fieldtype": "Section Break",
+   "label": "Unloading Details",
+   "read_only_depends_on": "is_weight_in"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_unloaded",
+   "fieldtype": "Check",
+   "label": "Is Unloaded"
+  },
+  {
+   "depends_on": "is_unloaded",
+   "fieldname": "unloading_person",
+   "fieldtype": "Data",
+   "label": "Unloading Person Name"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_unloaded === 1 && doc.unloading_person",
+   "fieldname": "lock_unload_details",
+   "fieldtype": "Check",
+   "label": "Lock Unload Details"
+  },
+  {
+   "fieldname": "column_break_fr4yd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "is_unloaded",
+   "fieldname": "unloading_date",
+   "fieldtype": "Date",
+   "label": "Unloading Date",
+   "read_only_depends_on": "is_unloaded"
+  },
+  {
+   "depends_on": "is_unloaded",
+   "fieldname": "unloading_time",
+   "fieldtype": "Time",
+   "label": "Unloading Time",
+   "read_only_depends_on": "is_unloaded"
+  },
+  {
+   "fieldname": "section_break_x9qy7",
+   "fieldtype": "Section Break",
+   "label": "Weight Out Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_weight_out",
+   "fieldtype": "Check",
+   "label": "Is weight Out"
+  },
+  {
+   "default": "0",
+   "depends_on": "is_weight_out",
+   "description": "Tare Weight",
+   "fieldname": "weight_out",
+   "fieldtype": "Float",
+   "label": "Weight Out (Weight)"
+  },
+  {
+   "depends_on": "weight_out",
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "label": "Net Weight"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.is_weight_out === 1 && doc.weight_out && doc.net_weight",
+   "fieldname": "lock_weight_out_details",
+   "fieldtype": "Check",
+   "label": "Lock Weight Out Details"
+  },
+  {
+   "fieldname": "column_break_jx1uc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "is_weight_out",
+   "fieldname": "weight_out_date",
+   "fieldtype": "Date",
+   "label": "Weight Out Date",
+   "read_only_depends_on": "is_weight_out"
+  },
+  {
+   "depends_on": "is_weight_out",
+   "fieldname": "weight_out_time",
+   "fieldtype": "Time",
+   "label": "Weight Out TIme",
+   "read_only_depends_on": "is_weight_out"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gate Entry",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -482,9 +482,9 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-09-20 17:36:53.288083",
+ "modified": "2023-10-12 12:51:24.614729",
  "modified_by": "Administrator",
- "module": "Advantisquartz",
+ "module": "Advantis Gate Entry",
  "name": "Gate Entry",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
