@@ -1557,5 +1557,72 @@
     "role": "Accounts Manager"
    }
   ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": "LetterHead",
+  "modified": "2023-10-13 13:32:51.467542",
+  "module": "Advantisquartz",
+  "name": "Raw Material Details of Finish Good",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Stock Entry",
+  "reference_report": null,
+  "report_name": "Raw Material Details of Finish Good",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "MR Creator"
+   },
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Raw Material Details of Finish Good",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Maintenance Manager"
+   }
+  ]
  }
 ]

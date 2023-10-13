@@ -1,7 +1,7 @@
 {
  "charts": [],
- "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}},{\"id\":\"Ug4QtSaiCU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"7eOe_4KGpp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"E4-1n6pc46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Pass Visitor\",\"col\":3}},{\"id\":\"HorazePaL_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Pass Employee\",\"col\":3}}]",
- "creation": "2023-10-10 17:46:13.493271",
+ "content": "[{\"id\":\"NvbnJ-qF5s\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Shortcuts</b></span>\",\"col\":12}},{\"id\":\"TtCy30kF46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate In Entry \",\"col\":3}},{\"id\":\"g8Ji8bzRMG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate Out Entry\",\"col\":3}},{\"id\":\"Ug4QtSaiCU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"gYgOhYlyGb\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LmEeb3DSn0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Gate Pass\",\"col\":3}},{\"id\":\"5eQO9OMjwb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Visitor Gate Pass\",\"col\":3}}]",
+ "creation": "2023-10-12 10:56:29.261515",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -12,8 +12,8 @@
  "is_hidden": 0,
  "label": "Gate Pass",
  "links": [],
- "modified": "2023-10-10 18:05:12.383493",
- "modified_by": "Administrator",
+ "modified": "2023-10-12 16:51:21.865804",
+ "modified_by": "pooja@sanskartechnolab.com",
  "module": "Advantisquartz",
  "name": "Gate Pass",
  "number_cards": [],
@@ -25,19 +25,19 @@
  "sequence_id": 8.0,
  "shortcuts": [
   {
+   "color": "Yellow",
+   "doc_view": "List",
+   "label": "Employee Gate Pass",
+   "link_to": "GatePass",
+   "stats_filter": "{\"select_type\":[\"=\",\"Employee\"]}",
+   "type": "DocType"
+  },
+  {
    "color": "Grey",
    "doc_view": "List",
    "label": "Dashboard",
    "link_to": "Gate Entry",
    "type": "Dashboard"
-  },
-  {
-   "color": "Orange",
-   "doc_view": "List",
-   "label": "Gate Pass Visitor",
-   "link_to": "GatePass",
-   "stats_filter": "{\"select_type\":[\"=\",\"Visitor\"]}",
-   "type": "DocType"
   },
   {
    "color": "Orange",
@@ -49,11 +49,11 @@
    "type": "DocType"
   },
   {
-   "color": "Yellow",
+   "color": "Orange",
    "doc_view": "List",
-   "label": "Gate Pass Employee",
+   "label": "Visitor Gate Pass",
    "link_to": "GatePass",
-   "stats_filter": "{\"select_type\":[\"=\",\"Employee\"]}",
+   "stats_filter": "{\"select_type\":[\"=\",\"Visitor\"]}",
    "type": "DocType"
   },
   {

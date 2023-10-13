@@ -3,9 +3,9 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "question-sign",
-  "modified": "2023-05-26 15:47:01.656301",
+  "modified": "2023-10-13 15:51:21.555791",
   "name": "Pending",
-  "style": "",
+  "style": "Danger",
   "workflow_state_name": "Pending"
  },
  {
@@ -25,5 +25,32 @@
   "name": "Approved",
   "style": "Success",
   "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-10-12 16:39:55.101864",
+  "name": "Approve",
+  "style": "Success",
+  "workflow_state_name": "Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-10-12 16:46:24.447002",
+  "name": "Cancelled",
+  "style": "Danger",
+  "workflow_state_name": "Cancelled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-10-13 15:51:35.901371",
+  "name": "Gate Out",
+  "style": "Warning",
+  "workflow_state_name": "Gate Out"
  }
 ]
