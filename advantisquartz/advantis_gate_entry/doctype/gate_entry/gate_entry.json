@@ -16,7 +16,6 @@
   "outward_for",
   "outward_entry",
   "column_break_om2y0",
-  "in_operation",
   "gate_in_date",
   "gate_in_time",
   "remarks",
@@ -127,14 +126,6 @@
   {
    "fieldname": "column_break_om2y0",
    "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.entry_type == \"Inward\";",
-   "fieldname": "in_operation",
-   "fieldtype": "Select",
-   "label": "Inward Operation",
-   "options": "\nGate In\nWeighment\nSampling\nQuality Check\nGRN\nUnloading\nTare Weight\nGate Out",
-   "read_only": 1
   },
   {
    "default": "Today",
@@ -482,7 +473,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-10-12 12:51:24.614729",
+ "modified": "2023-10-17 16:49:17.835159",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",

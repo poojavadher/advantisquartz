@@ -10,7 +10,11 @@ class GatePass(Document):
 			owner_name = frappe.session.user
 			self.approved_by = owner_name
 
-	# def before_update_after_submit(self):
-	# 	if self.gate_out == 1:
-	# 		self.out_time = frappe.datetime.now_time()
-	# 		self.reload()
+	def on_submit(self):
+		if self.select_type == "Employee" and self.workflow_state == "Approved":
+			try:
+				self.out_time = frappe.utils.now()
+				self.save()
+				self.reload()
+			except Exception as e:
+				frappe.msgprint(f"Error: {str(e)}")

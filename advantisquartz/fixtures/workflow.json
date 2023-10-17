@@ -158,7 +158,7 @@
   "doctype": "Workflow",
   "document_type": "GatePass",
   "is_active": 1,
-  "modified": "2023-10-13 16:47:29.815771",
+  "modified": "2023-10-17 13:38:39.796180",
   "name": "Gatepass",
   "override_status": 0,
   "send_email_alert": 0,
@@ -218,15 +218,28 @@
    {
     "allow_edit": "Gate Entry Operator",
     "doc_status": "1",
-    "is_optional_state": 0,
+    "is_optional_state": 1,
     "message": null,
     "next_action_email_template": null,
     "parent": "Gatepass",
     "parentfield": "states",
     "parenttype": "Workflow",
     "state": "Gate Out",
-    "update_field": "gate_out",
-    "update_value": "1"
+    "update_field": "",
+    "update_value": ""
+   },
+   {
+    "allow_edit": "Gate Entry Operator",
+    "doc_status": "1",
+    "is_optional_state": 1,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Gatepass",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Gate In",
+    "update_field": null,
+    "update_value": null
    },
    {
     "allow_edit": "Gate Entry Operator",
@@ -266,21 +279,10 @@
     "state": "Pending"
    },
    {
-    "action": "Cancel",
-    "allow_self_approval": 1,
+    "action": "Gate Out",
+    "allow_self_approval": 0,
     "allowed": "Gate Entry Operator",
     "condition": "doc.select_type == \"Visitor\"",
-    "next_state": "Cancelled",
-    "parent": "Gatepass",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approved"
-   },
-   {
-    "action": "Gate Out",
-    "allow_self_approval": 1,
-    "allowed": "Gate Entry Operator",
-    "condition": null,
     "next_state": "Gate Out",
     "parent": "Gatepass",
     "parentfield": "transitions",
@@ -297,6 +299,28 @@
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Gate Out"
+   },
+   {
+    "action": "Gate In",
+    "allow_self_approval": 0,
+    "allowed": "Gate Entry Operator",
+    "condition": "doc.select_type == \"Employee\" ",
+    "next_state": "Gate In",
+    "parent": "Gatepass",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 0,
+    "allowed": "Gate Entry Operator",
+    "condition": "doc.select_type == \"Employee\" ",
+    "next_state": "Cancelled",
+    "parent": "Gatepass",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Gate In"
    }
   ],
   "workflow_name": "Gatepass",

@@ -33,6 +33,7 @@
   "company_labour",
   "vehicle_no",
   "column_break_ridiu",
+  "gate_in",
   "in_time",
   "mobile",
   "approved_by",
@@ -61,6 +62,7 @@
    "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Date",
    "read_only": 1,
    "reqd": 1
@@ -70,6 +72,7 @@
    "fetch_from": "empcode.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Employee Name",
    "read_only": 1
   },
@@ -77,6 +80,7 @@
    "depends_on": "eval:doc.select_type == \"Visitor\"",
    "fieldname": "visitor_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Visitor Name"
   },
   {
@@ -117,6 +121,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
@@ -197,7 +202,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "GatePass No.",
+   "label": "Naming Series",
    "options": "GP-.DD.-.MM.-.YY.-.##",
    "reqd": 1
   },
@@ -221,17 +226,26 @@
   {
    "allow_on_submit": 1,
    "default": "0",
-   "depends_on": "eval:doc.select_type == \"Visitor\" ",
+   "depends_on": "eval:doc.select_type == \"Visitor\" && doc.workflow_state ==\"Gate Out\"",
    "fieldname": "gate_out",
    "fieldtype": "Check",
    "label": "Gate Out",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "depends_on": "eval:doc.select_type == \"Employee\" && doc.workflow_state == \"Gate In\";",
+   "fieldname": "gate_in",
+   "fieldtype": "Check",
+   "label": "Gate In",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-13 15:35:16.334211",
+ "modified": "2023-10-17 16:11:50.924164",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "GatePass",

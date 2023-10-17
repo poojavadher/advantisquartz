@@ -103,13 +103,13 @@
  {
   "cards": [
    {
-    "card": "QC Pending",
+    "card": "Asset Repairing",
     "parent": "Gate Entry",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
-    "card": "Asset Repairing",
+    "card": "Asset Returnable",
     "parent": "Gate Entry",
     "parentfield": "cards",
     "parenttype": "Dashboard"
@@ -122,6 +122,24 @@
    },
    {
     "card": "Store & Spare In",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Sell Delivery",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Visitor On Visit Today",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Employee Go Out But Not Returned",
     "parent": "Gate Entry",
     "parentfield": "cards",
     "parenttype": "Dashboard"
@@ -142,7 +160,7 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-08-10 10:46:53.173476",
+  "modified": "2023-10-17 16:33:21.244374",
   "module": "Advantisquartz",
   "name": "Gate Entry"
  }

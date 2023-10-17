@@ -1,22 +1,6 @@
 [
  {
   "default_value": null,
-  "doc_type": "GatePass",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "naming_series",
-  "is_system_generated": 0,
-  "modified": "2023-10-11 12:10:02.713813",
-  "module": null,
-  "name": "GatePass-naming_series-options",
-  "property": "options",
-  "property_type": "Text",
-  "row_name": null,
-  "value": "GP-.DD.-.MM.-.YY.-.##"
- },
- {
-  "default_value": null,
   "doc_type": "Machine Maintenance Log",
   "docstatus": 0,
   "doctype": "Property Setter",

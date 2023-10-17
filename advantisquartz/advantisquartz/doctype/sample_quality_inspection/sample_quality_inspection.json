@@ -1,0 +1,202 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-10-16 15:55:02.295133",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sample_code",
+  "sample_name",
+  "sample_weight",
+  "sample_party_name",
+  "mesh_qc",
+  "status",
+  "column_break_fxipq",
+  "inspection_type",
+  "date",
+  "remarks",
+  "section_break_cph3u",
+  "quality_inspection_template",
+  "readings",
+  "mesh_qc_template",
+  "lab_sections_and_mesh_no",
+  "mesh_qc_readings",
+  "section_break_udc0a",
+  "inspected_by",
+  "column_break_wucy9",
+  "verified_by",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sample_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sample Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sample_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sample Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sample_party_name",
+   "fieldtype": "Data",
+   "label": "Sample Party Name",
+   "permlevel": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fxipq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Report Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Accepted\nRejected",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_cph3u",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:!doc.mesh_qc;",
+   "fieldname": "quality_inspection_template",
+   "fieldtype": "Link",
+   "label": "Quality Inspection Template",
+   "options": "Quality Inspection Template"
+  },
+  {
+   "depends_on": "eval:!doc.mesh_qc;",
+   "fieldname": "readings",
+   "fieldtype": "Table",
+   "label": "Readings",
+   "options": "Quality Inspection Reading"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sample Quality Inspection",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "mesh_qc",
+   "fieldtype": "Check",
+   "label": "Mesh QC"
+  },
+  {
+   "depends_on": "eval:doc.mesh_qc;",
+   "fieldname": "lab_sections_and_mesh_no",
+   "fieldtype": "Table",
+   "label": "Lab Sections And Mesh No",
+   "options": "Lab Sections And Mesh No"
+  },
+  {
+   "depends_on": "eval:doc.mesh_qc;",
+   "fieldname": "mesh_qc_readings",
+   "fieldtype": "Table",
+   "label": "Mesh QC Readings",
+   "options": "Mesh QC"
+  },
+  {
+   "depends_on": "eval:doc.mesh_qc;",
+   "fieldname": "mesh_qc_template",
+   "fieldtype": "Link",
+   "label": "Mesh QC Template",
+   "options": "Mesh QC Template"
+  },
+  {
+   "fieldname": "inspection_type",
+   "fieldtype": "Select",
+   "label": "Inspection Type",
+   "options": "Incoming\nOutgoing",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_udc0a",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By",
+   "mandatory_depends_on": "eval:doc.quality_inspection_template || doc.mesh_qc_template;",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wucy9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "label": "Verified By"
+  },
+  {
+   "fieldname": "sample_weight",
+   "fieldtype": "Data",
+   "label": "Sample Weight"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Naming Series",
+   "options": "SAMP-QC-.DD./.MM./.YY.-.#",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-17 10:58:18.457129",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Sample Quality Inspection",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

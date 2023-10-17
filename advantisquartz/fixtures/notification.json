@@ -253,7 +253,7 @@
   "is_standard": 0,
   "message": "",
   "method": "after_insert",
-  "modified": "2023-10-12 18:13:29.352592",
+  "modified": "2023-10-16 13:14:06.396900",
   "module": "Advantisquartz",
   "name": "Employee Gate pass",
   "print_format": null,
@@ -276,7 +276,7 @@
   "sender_email": null,
   "set_property_after_alert": null,
   "slack_webhook_url": null,
-  "subject": "Gate Pass Request {{ doc.employee_name }}",
+  "subject": "Gate Pass Request {{ doc.empcode }} : {{ doc.employee_name }}",
   "value_changed": null
  },
  {
