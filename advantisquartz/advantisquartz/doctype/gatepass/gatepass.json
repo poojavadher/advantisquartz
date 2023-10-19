@@ -11,9 +11,17 @@
  "field_order": [
   "naming_series",
   "select_type",
+  "section_break_ruift",
+  "company_staff",
+  "column_break_bgnf5",
+  "company_labour",
+  "column_break_ycyjr",
+  "contractor_labour",
+  "section_break_xmfgu",
   "no_of_person",
   "date",
   "column_break_ihtt1",
+  "field_worker_name",
   "empcode",
   "employee_name",
   "related_department",
@@ -28,9 +36,6 @@
   "section_break_jkrxj",
   "gate_out",
   "out_time",
-  "company_staff",
-  "contractor_labour",
-  "company_labour",
   "vehicle_no",
   "column_break_ridiu",
   "gate_in",
@@ -84,12 +89,12 @@
    "label": "Visitor Name"
   },
   {
-   "depends_on": "eval:doc.select_type == \"Employee\"",
+   "depends_on": "eval:doc.company_staff == 1",
    "fieldname": "empcode",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "label": "EMP.Code",
-   "mandatory_depends_on": "eval:doc.select_type == \"Employee\"",
+   "mandatory_depends_on": "eval:doc.company_staff == 1",
    "options": "Employee"
   },
   {
@@ -240,12 +245,35 @@
    "fieldtype": "Check",
    "label": "Gate In",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bgnf5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xmfgu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_ruift",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.company_labour == 1 || doc.contractor_labour == 1;",
+   "fieldname": "field_worker_name",
+   "fieldtype": "Data",
+   "label": "Field Worker Name",
+   "mandatory_depends_on": "eval:doc.company_labour == 1 || doc.contractor_labour == 1;"
+  },
+  {
+   "fieldname": "column_break_ycyjr",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-17 16:11:50.924164",
+ "modified": "2023-10-18 18:55:09.368607",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "GatePass",

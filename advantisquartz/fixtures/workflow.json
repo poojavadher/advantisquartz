@@ -158,7 +158,7 @@
   "doctype": "Workflow",
   "document_type": "GatePass",
   "is_active": 1,
-  "modified": "2023-10-17 13:38:39.796180",
+  "modified": "2023-10-18 19:01:10.037604",
   "name": "Gatepass",
   "override_status": 0,
   "send_email_alert": 0,
@@ -258,9 +258,9 @@
   "transitions": [
    {
     "action": "Approve",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "Gate Entry Operator",
-    "condition": "doc.select_type == \"Employee\"",
+    "condition": "",
     "next_state": "Approved",
     "parent": "Gatepass",
     "parentfield": "transitions",
@@ -272,6 +272,17 @@
     "allow_self_approval": 0,
     "allowed": "Employee",
     "condition": "doc.select_type == \"Visitor\"",
+    "next_state": "Approved",
+    "parent": "Gatepass",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
+    "condition": "doc.select_type == \"Employee\" and doc.company_staff == 0",
     "next_state": "Approved",
     "parent": "Gatepass",
     "parentfield": "transitions",

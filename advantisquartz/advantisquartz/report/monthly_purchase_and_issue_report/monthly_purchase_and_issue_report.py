@@ -136,10 +136,14 @@ def get_item(filters):
 		)
         )
     return query.run(as_dict= True)
-
 def get_purchase(filters):
-    query = (
-        f"""
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND its.warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
+
+    query = f"""
         SELECT 
             its.item_code AS 'itemCode',
             its.item_name AS 'itemName',
@@ -150,17 +154,15 @@ def get_purchase(filters):
             `tabPurchase Receipt Item` its ON it.name = its.parent
         WHERE
             it.status != "Draft"
-            AND
-            it.status != "Cancelled"
+            AND it.status != "Cancelled"
             AND YEAR(it.posting_date) = {filters.get("year")}
             AND MONTH(it.posting_date) = {filters.get("month")}
+            {warehouse_filter}
         GROUP BY
-            its.item_code
-        """
-    )
+            its.item_code, its.warehouse
+    """
     main_query = frappe.db.sql(query, as_dict=True)
     return main_query
-
 
 
 
@@ -180,8 +182,9 @@ def get_stock_issue(filters):
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
+          
             GROUP BY
-            sed.item_code
+            sed.item_code,sed.s_warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
@@ -201,8 +204,9 @@ def get_delivery_issue(filters):
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
+          
              GROUP BY
-            sed.item_code
+            sed.item_code,sed.warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
@@ -223,8 +227,9 @@ def get_before_month_purchase(filters):
             AND 
             it.status != "Cancelled"
             AND YEAR(it.posting_date) = {filters.get("year")}
+          
         GROUP BY
-            its.item_code
+            its.item_code,its.warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
@@ -246,9 +251,9 @@ def get_before_month_issue(filters):
            and
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
-            
+           
             GROUP BY
-            sed.item_code
+            sed.item_code,sed.s_warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
@@ -267,9 +272,9 @@ def get_before_month_delivery_issue(filters):
            and
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
-            
+           
             GROUP BY
-            sed.item_code
+            sed.item_code,sed.warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
@@ -289,9 +294,9 @@ def get_before_month_stock_reconciliation(filters):
            and
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
-            
+           
             GROUP BY
-            sed.item_code
+            sed.item_code,sed.warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
@@ -313,9 +318,9 @@ def get_stock_reconciliation(filters):
             se.docstatus != 2
           AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
-            
+          
             GROUP BY
-            sed.item_code
+            sed.item_code,sed.warehouse
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)

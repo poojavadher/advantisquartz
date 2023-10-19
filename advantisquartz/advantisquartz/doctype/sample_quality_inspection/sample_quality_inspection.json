@@ -50,8 +50,7 @@
    "fieldname": "sample_party_name",
    "fieldtype": "Data",
    "label": "Sample Party Name",
-   "permlevel": 1,
-   "reqd": 1
+   "permlevel": 1
   },
   {
    "fieldname": "column_break_fxipq",
@@ -74,7 +73,7 @@
   },
   {
    "fieldname": "remarks",
-   "fieldtype": "Small Text",
+   "fieldtype": "Text Editor",
    "label": "Remarks"
   },
   {
@@ -176,7 +175,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-17 10:58:18.457129",
+ "modified": "2023-10-18 18:23:28.849369",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Quality Inspection",

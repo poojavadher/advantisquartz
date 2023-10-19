@@ -1624,5 +1624,66 @@
     "role": "Maintenance Manager"
    }
   ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Sample Quality Inspection\",\"date\",\"Timespan\",\"this week\",false],[\"Sample Quality Inspection\",\"modified\",\"Timespan\",\"this week\",false]],\"fields\":[[\"name\",\"Sample Quality Inspection\"],[\"docstatus\",\"Sample Quality Inspection\"],[\"sample_code\",\"Sample Quality Inspection\"],[\"sample_name\",\"Sample Quality Inspection\"],[\"status\",\"Sample Quality Inspection\"],[\"mesh_qc\",\"Sample Quality Inspection\"],[\"date\",\"Sample Quality Inspection\"],[\"remarks\",\"Sample Quality Inspection\"],[\"owner\",\"Sample Quality Inspection\"],[\"inspected_by\",\"Sample Quality Inspection\"],[\"verified_by\",\"Sample Quality Inspection\"]],\"order_by\":\"`tabSample Quality Inspection`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":60,\"sample_code\":88,\"sample_name\":125,\"status\":120,\"mesh_qc\":120,\"date\":95,\"remarks\":120,\"owner\":120,\"inspected_by\":120,\"verified_by\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2023-10-18 12:18:22.894826",
+  "module": "Advantisquartz",
+  "name": "Weekly Sample QC",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Sample Quality Inspection",
+  "reference_report": null,
+  "report_name": "Weekly Sample QC",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Weekly Sample QC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Weekly Sample QC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "Weekly Sample QC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "Weekly Sample QC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Weekly Sample QC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Weekly Sample QC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   }
+  ]
  }
 ]

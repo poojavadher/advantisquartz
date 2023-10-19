@@ -43,7 +43,7 @@ def get_columns(filter=None):
 		{"label": _("repack Material name "), "fieldname": "repack_material_name", "fieldtype": "Data"},
 		{"label": _("repack Material date "), "fieldname": "repack_material_date", "fieldtype": "Date"},
 		{"label": _("repack Material brand name "), "fieldname": "repack_material_brand_name", "fieldtype": "Data"}
-    
+
 	]
     
     return columns
@@ -91,7 +91,6 @@ def get_raw_data(filters):
 			(sle.stock_entry_type == "Manufacture")
 			&(sed.s_warehouse != "")
 				& (sle.docstatus == 1)
-			
 		)
 		
 	)
@@ -104,9 +103,7 @@ def get_repack_data(filters):
     query = (
         f"""
         SELECT 
-            
-           
-           (CASE WHEN  sed.is_finished_item = 1  THEN sed.item_code ELSE "" END) AS 'repack_main_material_code',
+            (CASE WHEN  sed.is_finished_item = 1  THEN sed.item_code ELSE "" END) AS 'repack_main_material_code',
             (CASE WHEN  sed.is_finished_item = 0  THEN sed.item_name ELSE "" END) AS 'repack_material_names',
             (CASE WHEN  sed.is_finished_item = 0 THEN sed.item_code ELSE "" END) AS 'repack_material_codes',
             se.posting_date
@@ -114,13 +111,11 @@ def get_repack_data(filters):
             `tabStock Entry` se JOIN `tabStock Entry Detail` sed on se.name = sed.parent 
             WHERE
             se.docstatus != 0
-           and
+            and
             se.docstatus != 2
-        	and
+            and
             se.stock_entry_type = "Repack"
-         
         """
     )
     main_query = frappe.db.sql(query, as_dict=True)
-   
     return main_query

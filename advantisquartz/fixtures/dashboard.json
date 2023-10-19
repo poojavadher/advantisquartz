@@ -96,72 +96,8 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-10-11 13:37:40.770509",
+  "modified": "2023-10-18 17:06:30.102917",
   "module": "Advantisquartz",
   "name": "AQ Buying Dashboard"
- },
- {
-  "cards": [
-   {
-    "card": "Asset Repairing",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Asset Returnable",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Raw Material In",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Store & Spare In",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Sell Delivery",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Visitor On Visit Today",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Employee Go Out But Not Returned",
-    "parent": "Gate Entry",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   }
-  ],
-  "chart_options": null,
-  "charts": [
-   {
-    "chart": "Completed Gate Entry",
-    "parent": "Gate Entry",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   }
-  ],
-  "dashboard_name": "Gate Entry",
-  "docstatus": 0,
-  "doctype": "Dashboard",
-  "is_default": 0,
-  "is_standard": 0,
-  "modified": "2023-10-17 16:33:21.244374",
-  "module": "Advantisquartz",
-  "name": "Gate Entry"
  }
 ]

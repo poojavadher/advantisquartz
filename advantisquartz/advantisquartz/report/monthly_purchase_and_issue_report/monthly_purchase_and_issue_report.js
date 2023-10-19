@@ -35,6 +35,15 @@ frappe.query_reports["Monthly Purchase And Issue report"] = {
 					{ value: 2024, label: __("2024") }
 			],
 			default: new Date().getFullYear(), // Get the current year using JavaScript
+			reqd: 0,
+			
+		},
+		{
+			fieldname: "warehouse",
+			label: __("Warehouse"),
+			fieldtype: "Link",
+			options:"Warehouse",
+			
 			reqd: 0
 		}
 	]		

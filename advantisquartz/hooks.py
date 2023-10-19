@@ -224,6 +224,7 @@ fixtures = [
     "Property Setter",
     "Role",
     "Document Naming Rule",
+    "Workflow Action Master",
     {"dt":"Server Script","filters":[
         [
             "module","in",[
