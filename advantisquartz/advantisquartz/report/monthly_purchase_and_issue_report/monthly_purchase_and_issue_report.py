@@ -167,6 +167,11 @@ def get_purchase(filters):
 
 
 def get_stock_issue(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND sed.s_warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
         f"""
         SELECT 
@@ -182,7 +187,7 @@ def get_stock_issue(filters):
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
-          
+           {warehouse_filter}
             GROUP BY
             sed.item_code,sed.s_warehouse
         """
@@ -191,6 +196,11 @@ def get_stock_issue(filters):
     return main_query
 
 def get_delivery_issue(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND sed.warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
         f"""
         SELECT 
@@ -204,7 +214,7 @@ def get_delivery_issue(filters):
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
-          
+           {warehouse_filter}
              GROUP BY
             sed.item_code,sed.warehouse
         """
@@ -212,6 +222,11 @@ def get_delivery_issue(filters):
     main_query = frappe.db.sql(query, as_dict=True)
     return main_query
 def get_before_month_purchase(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND its.warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
         f"""
         SELECT 
@@ -227,7 +242,7 @@ def get_before_month_purchase(filters):
             AND 
             it.status != "Cancelled"
             AND YEAR(it.posting_date) = {filters.get("year")}
-          
+           {warehouse_filter}
         GROUP BY
             its.item_code,its.warehouse
         """
@@ -236,6 +251,11 @@ def get_before_month_purchase(filters):
     return main_query
 
 def get_before_month_issue(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND sed.s_warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
        f"""
         SELECT 
@@ -251,7 +271,7 @@ def get_before_month_issue(filters):
            and
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
-           
+            {warehouse_filter}
             GROUP BY
             sed.item_code,sed.s_warehouse
         """
@@ -260,6 +280,11 @@ def get_before_month_issue(filters):
     return main_query
 
 def get_before_month_delivery_issue(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND sed.warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
        f"""
         SELECT 
@@ -272,7 +297,7 @@ def get_before_month_delivery_issue(filters):
            and
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
-           
+            {warehouse_filter}
             GROUP BY
             sed.item_code,sed.warehouse
         """
@@ -282,6 +307,11 @@ def get_before_month_delivery_issue(filters):
 
 
 def get_before_month_stock_reconciliation(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND sed.warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
        f"""
         SELECT 
@@ -294,7 +324,7 @@ def get_before_month_stock_reconciliation(filters):
            and
             se.docstatus != 2
             AND YEAR(se.posting_date) = {filters.get("year")}
-           
+            {warehouse_filter}
             GROUP BY
             sed.item_code,sed.warehouse
         """
@@ -305,6 +335,11 @@ def get_before_month_stock_reconciliation(filters):
 
 
 def get_stock_reconciliation(filters):
+    warehouse = filters.get("warehouse", None)
+    if warehouse:
+        warehouse_filter = f' AND sed.warehouse = "{warehouse}"'
+    else:
+        warehouse_filter = ""
     query = (
        f"""
         SELECT 
@@ -318,7 +353,7 @@ def get_stock_reconciliation(filters):
             se.docstatus != 2
           AND YEAR(se.posting_date) = {filters.get("year")}
             AND MONTH(se.posting_date) = {filters.get("month")}
-          
+           {warehouse_filter}
             GROUP BY
             sed.item_code,sed.warehouse
         """
