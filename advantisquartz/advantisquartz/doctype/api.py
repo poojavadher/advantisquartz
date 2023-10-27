@@ -112,7 +112,7 @@ def format_amount(amount):
 
 @frappe.whitelist(allow_guest=True)
 def generate_leave_allocation():
-    return "Hello"
+    # return "Hello"
     current_date = datetime.datetime.now().date().strftime('%Y-%m-%d')
     
     l_type = frappe.db.get_list('Leave Type', fields="name", filters={"is_privilege_leave":1})

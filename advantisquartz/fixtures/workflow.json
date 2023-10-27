@@ -81,7 +81,7 @@
   "doctype": "Workflow",
   "document_type": "Supplier Quotation",
   "is_active": 1,
-  "modified": "2023-07-21 17:55:15.291107",
+  "modified": "2023-10-27 12:13:06.792663",
   "name": "Supplier Quotation WorkFlow",
   "override_status": 0,
   "send_email_alert": 0,
@@ -129,7 +129,7 @@
   "transitions": [
    {
     "action": "Approve",
-    "allow_self_approval": 1,
+    "allow_self_approval": 0,
     "allowed": "All",
     "condition": null,
     "next_state": "Approved",
@@ -140,7 +140,7 @@
    },
    {
     "action": "Reject",
-    "allow_self_approval": 1,
+    "allow_self_approval": 0,
     "allowed": "All",
     "condition": null,
     "next_state": "Rejected",

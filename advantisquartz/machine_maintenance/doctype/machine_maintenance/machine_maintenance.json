@@ -159,12 +159,10 @@
    "options": "Company"
   },
   {
-   "description": "<div class=\"text-danger\">Select Warehouse Carefully as it will affect stock directly.</div>",
    "fieldname": "warehouse",
    "fieldtype": "Link",
    "label": "Default Warehouse",
-   "options": "Warehouse",
-   "reqd": 1
+   "options": "Warehouse"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -181,7 +179,7 @@
    "table_fieldname": "name"
   }
  ],
- "modified": "2023-10-10 15:53:57.238925",
+ "modified": "2023-10-26 16:50:43.723842",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance",

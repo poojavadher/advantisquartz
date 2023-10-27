@@ -17,6 +17,7 @@
   "status",
   "column_break_fxipq",
   "inspection_type",
+  "material_type",
   "date",
   "remarks",
   "section_break_cph3u",
@@ -60,6 +61,7 @@
    "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Report Date",
    "reqd": 1
   },
@@ -170,12 +172,19 @@
    "label": "Naming Series",
    "options": "SAMP-QC-.DD./.MM./.YY.-.#",
    "reqd": 1
+  },
+  {
+   "fieldname": "material_type",
+   "fieldtype": "Select",
+   "label": "Material Type",
+   "options": "Raw Material\nFinish Good",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-18 18:23:28.849369",
+ "modified": "2023-10-25 16:07:28.487076",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Quality Inspection",

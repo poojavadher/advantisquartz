@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"FWnh06l-HD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Maintenance Status Report\",\"col\":4}},{\"id\":\"IKGh05yPm8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9JJT-oTgC7\",\"type\":\"card\",\"data\":{\"card_name\":\"Outward Machine Mintenance\",\"col\":4}},{\"id\":\"ymPNzcGhDV\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance Schedule\",\"col\":4}}]",
+ "content": "[{\"id\":\"FWnh06l-HD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Maintenance Status Report\",\"col\":4}},{\"id\":\"IKGh05yPm8\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9JJT-oTgC7\",\"type\":\"card\",\"data\":{\"card_name\":\"Outward Machine Maintenance\",\"col\":4}},{\"id\":\"ymPNzcGhDV\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance Schedule\",\"col\":4}}]",
  "creation": "2023-10-10 10:12:29.748536",
  "custom_blocks": [],
  "docstatus": 0,
@@ -10,26 +10,8 @@
  "icon": "setting-gear",
  "idx": 0,
  "is_hidden": 0,
- "label": "Machine Mintenance",
+ "label": "Machine Maintenance Mod",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Outward Machine Mintenance",
-   "link_count": 1,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Machine Maintenance",
-   "link_count": 0,
-   "link_to": "Machine Maintenance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -67,12 +49,30 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outward Machine Maintenance",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Machine Maintenance",
+   "link_count": 0,
+   "link_to": "Machine Maintenance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-10-10 17:10:08.782465",
+ "modified": "2023-10-25 15:16:58.834557",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
- "name": "Machine Mintenance",
+ "name": "Machine Maintenance Mod",
  "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
@@ -91,5 +91,5 @@
    "type": "DocType"
   }
  ],
- "title": "Machine Mintenance"
+ "title": "Machine Maintenance Mod"
 }
