@@ -58,5 +58,23 @@ frappe.ui.form.on('GatePass', {
 		if (frm.doc.select_type == "Visitor"){
 			frm.set_value('in_time',frappe.datetime.now_time())
 		}
-	}
+	},
+	company_staff: function(frm){
+		if(frm.doc.company_staff == 1){
+			frm.set_value('company_labour',0);
+			frm.set_value('contractor_labour',0);
+		}
+	},
+	company_labour: function(frm){
+		if(frm.doc.company_labour == 1){
+			frm.set_value('company_staff',0);
+			frm.set_value('contractor_labour',0);
+		}
+	},
+	contractor_labour: function(frm){
+		if(frm.doc.contractor_labour == 1){
+			frm.set_value('company_labour',0);
+			frm.set_value('company_staff',0);
+		}
+	},
 });

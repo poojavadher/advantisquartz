@@ -51,62 +51,59 @@ def get_columns(filter=None):
     return columns
 
 def get_finish_data(filters):
-    sle = frappe.qb.DocType("Stock Entry")
-    sed = frappe.qb.DocType("Stock Entry Detail")
     query = (
-		frappe.qb.from_(sle)
-		.join(sed)
-		.on(sle.name == sed.parent)
-		.select(
-				
-			sed.item_name,
-			sle.posting_date,
-			sed.item_code,
-            sle.name
-			
-		)
-		.where(
-			(sle.stock_entry_type == "Manufacture")
-			&(sed.is_finished_item == 1)
-				& (sle.docstatus == 1)
-			
-		)
-		
-	)
-    return query.run(as_dict=True)
-
+        f"""    
+        SELECT 
+            sed.item_code,
+            sed.item_name,
+            se.name,
+            se.posting_date
+        FROM
+            `tabStock Entry` se
+        JOIN `tabStock Entry Detail` sed on se.name = sed.parent
+        WHERE
+            se.docstatus != 0
+            AND se.docstatus != 2
+            AND se.stock_entry_type = "Manufacture"
+            AND sed.is_finished_item = 1
+       
+        """
+    )
+    main_query = frappe.db.sql(query, as_dict=True)
+    return main_query
+    
+    
 def get_raw_data(filters):
-    sle = frappe.qb.DocType("Stock Entry")
-    sed = frappe.qb.DocType("Stock Entry Detail")
     query = (
-		frappe.qb.from_(sle)
-		.join(sed)
-		.on(sle.name == sed.parent)
-		.select(
-			sle.name,	
-			sed.item_name,
-			sle.posting_date,
-			sed.item_code
-		)
-		.where(
-			(sle.stock_entry_type == "Manufacture")
-			
-				& (sle.docstatus == 1)
-    &(sed.is_finished_item == 0)
-		)
-		
-	)
-    return query.run(as_dict=True)
+        f"""    
+        SELECT 
+            sed.item_code,
+            sed.item_name,
+            se.name,
+            se.posting_date
+        FROM
+            `tabStock Entry` se
+        JOIN `tabStock Entry Detail` sed on se.name = sed.parent
+        WHERE
+            se.docstatus != 0
+            AND se.docstatus != 2
+            AND se.stock_entry_type = "Manufacture"
+            AND sed.is_finished_item = 0
+        
+        """
+    )
+    main_query = frappe.db.sql(query, as_dict=True)
+    return main_query
 
 
 
 
 def get_repack_data(filters):
     query = (
-        f"""
+        f"""    
         SELECT 
             (CASE WHEN  sed.is_finished_item = 0  THEN sed.item_name ELSE "" END) AS 'repack_material_names',
-            (CASE WHEN  sed.is_finished_item = 0 THEN sed.item_code ELSE "" END) AS 'repack_material_codes',
+            (CASE WHEN  sed.is_finished_item = 0 THEN sed.item_code ELSE "" END) AS 'repack_material_codes' ,
             (CASE WHEN  sed.is_finished_item = 0 THEN sed.brand ELSE "" END) AS 'repack_material_brand_name',
             fg.item_code AS 'fg_good',
             se.posting_date
@@ -124,4 +121,3 @@ def get_repack_data(filters):
     main_query = frappe.db.sql(query, as_dict=True)
     
     return main_query
-   
