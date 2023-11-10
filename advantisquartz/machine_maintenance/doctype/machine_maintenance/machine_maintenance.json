@@ -20,6 +20,7 @@
   "more_info",
   "gstin",
   "supplier_primary_address",
+  "address",
   "column_break_ogfov",
   "mode_of_transport",
   "date__time_of_supply",
@@ -66,16 +67,14 @@
   },
   {
    "fetch_from": "supplier.gstin",
-   "fetch_if_empty": 1,
    "fieldname": "gstin",
-   "fieldtype": "Autocomplete",
+   "fieldtype": "Data",
    "label": "GSTIN"
   },
   {
-   "fetch_from": "supplier.supplier_primary_address",
    "fieldname": "supplier_primary_address",
    "fieldtype": "Link",
-   "label": "Supplier Primary Address",
+   "label": "Select Supplier Address",
    "options": "Address"
   },
   {
@@ -163,6 +162,12 @@
    "fieldtype": "Link",
    "label": "Default Warehouse",
    "options": "Warehouse"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -179,7 +184,7 @@
    "table_fieldname": "name"
   }
  ],
- "modified": "2023-10-26 16:50:43.723842",
+ "modified": "2023-11-09 18:19:06.460631",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance",

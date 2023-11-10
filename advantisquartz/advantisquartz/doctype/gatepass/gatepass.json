@@ -30,6 +30,7 @@
   "purpose",
   "from",
   "to_meet_with",
+  "to_meet_with_name",
   "approver_email",
   "column_break_up9jo",
   "remarks",
@@ -268,12 +269,19 @@
   {
    "fieldname": "column_break_ycyjr",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "to_meet_with.employee_name",
+   "fieldname": "to_meet_with_name",
+   "fieldtype": "Data",
+   "label": "To Meet With Person Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-18 18:55:09.368607",
+ "modified": "2023-11-06 13:30:46.808032",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "GatePass",

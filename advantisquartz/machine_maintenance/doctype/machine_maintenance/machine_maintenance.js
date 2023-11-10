@@ -34,6 +34,16 @@ frappe.ui.form.on('Machine Maintenance', {
 			frm.refresh_field('challan_total_value');
 		}
 	},
+	
+	// supplier:function(frm){
+	// 	frm.set_query("supplier_primary_address", function () {
+	// 		return {
+	// 			filters: {
+	// 				'address_title': frm.doc.supplier,
+	// 			}
+	// 		};
+	// 	});
+	// }
 
 	// on_submit: function (frm) {
 	// 	var id = cur_frm.doc.name;
@@ -83,4 +93,24 @@ frappe.ui.form.on("Machine Maintenance Item", "description_of_goods", function(f
 	// 	d.source_warehouse = value.default_warehouse;
 	// });
 	// frm.refresh_field('item');
+});
+
+
+frappe.ui.form.on("Machine Maintenance", "supplier_primary_address", function(frm, cdt, cdn) {
+    if(frm.doc.supplier_primary_address){
+      return frm.call({
+      method: "frappe.contacts.doctype.address.address.get_address_display",
+      args: {
+         "address_dict": frm.doc.supplier_primary_address
+      },
+      callback: function(r) {
+        if(r.message)
+            frm.set_value("address", r.message);
+        
+      }
+     });
+    }
+    else{
+        frm.set_value("address", "");
+    }
 });
