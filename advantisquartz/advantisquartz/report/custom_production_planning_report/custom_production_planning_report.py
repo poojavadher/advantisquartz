@@ -68,7 +68,6 @@ class ProductionPlanReport(object):
 					child.stock_uom,
 					child.warehouse,
 					child.parent.as_("name"),
-					
 					child.item_code.as_("production_item"),
 					child.stock_qty.as_("qty_to_manufacture"),
 					child.item_name.as_("production_item_name"),
