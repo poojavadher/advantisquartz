@@ -68,7 +68,7 @@ def generate_txt(selected_date):
             gross_pay = salary_slip.gross_pay
             employee_name = frappe.get_value("Employee", salary_slip.employee, "employee_name")
             salary_detail_data = frappe.get_all('Salary Detail', filters={
-                'parent': salary_slip.name,
+                'parent': salary_slip.name, 
                 'salary_component': ['in', ['Basic', 'Provident Fund']]
             }, fields=['salary_component', 'amount'])
 

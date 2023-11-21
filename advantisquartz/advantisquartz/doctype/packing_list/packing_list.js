@@ -39,7 +39,7 @@ frappe.ui.form.on('Packing list', {
                 },
                 add_filters_group: 1,
                 action(selections) {
-                    console.log(selections);
+                    // console.log(selections);
                     d.dialog.hide();
 
                     var child_table = frm.doc.items || [];
@@ -197,7 +197,8 @@ frappe.ui.form.on('Packing list', {
             var serial = d.serial_no;
             frappe.db.set_value('Serial No', serial, {
                 'status': "Active",
-                "serial_type": "Finish"
+                "serial_type": "Finish",
+                "packing_list" : " "
             });
         });
     },
