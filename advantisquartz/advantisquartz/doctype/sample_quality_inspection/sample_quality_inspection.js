@@ -2,6 +2,22 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Sample Quality Inspection', {
+	onload:function(frm){
+		frm.set_query('sample_code1', () => {
+			return {
+				filters: {
+					naming_series: ["in",["Samp-RMTS-.#", "Samp-SALE-.#"]]
+				}
+			}
+		})
+		frm.set_query('party_type', () => {
+			return {
+				filters: {
+					name: ["in",["Customer", "Supplier"]]
+				}
+			}
+		})
+	},
 	mesh_qc_template(frm) {
 	    if (frm.doc.mesh_qc_template){
 	       frappe.model.with_doc("Mesh QC Template", frm.doc.mesh_qc_template, function() {

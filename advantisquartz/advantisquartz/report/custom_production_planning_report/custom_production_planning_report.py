@@ -57,12 +57,13 @@ class ProductionPlanReport(object):
 
 			if self.filters.docnames:
 				query = query.where(parent.name.isin(self.filters.docnames))
-
+			
 		else:
 			child = frappe.qb.DocType(f"{doctype} Item")
+			work_order = frappe.qb.DocType("Work Order")
 			query = (
 				frappe.qb.from_(parent)
-				.from_(child)
+				.from_(child).join(work_order).on(work_order.sales_order == child.parent)
 				.select(
 					child.bom_no,
 					child.stock_uom,
@@ -71,11 +72,12 @@ class ProductionPlanReport(object):
 					child.item_code.as_("production_item"),
 					child.stock_qty.as_("qty_to_manufacture"),
 					child.item_name.as_("production_item_name"),
+					work_order.production_plan,
 					
 				)
 				.where(parent.name == child.parent)
 			)
-
+			
 			if self.filters.docnames:
 				query = query.where(child.parent.isin(self.filters.docnames))
 
@@ -104,13 +106,15 @@ class ProductionPlanReport(object):
 
 		if self.filters.company:
 			query = query.where(parent.company == self.filters.company)
-
+		
 		self.orders = query.run(as_dict=True)
   
 	def get_picked_qty(self):
 		picked_qty_dict = {}
 		if self.filters.based_on == "Sales Order":
 			sales_order_names = [d.name for d in self.orders]
+			production_item = [d.production_item for d in self.orders]
+			
 			for sales_order_name in sales_order_names:
 				picked_qty = frappe.db.sql(
 					"""
@@ -136,14 +140,44 @@ class ProductionPlanReport(object):
 				production_actual_creation_date = frappe.db.get_value("Work Order", {"sales_order": sales_order_name}, "actual_start_date")
 				production_actual_date = production_actual_creation_date.date() if production_actual_creation_date else None
 				picked_qty_dict[sales_order_name]['production_actual_date'] = production_actual_date
-				
+    
 				production_qty_list = frappe.db.get_value("Work Order",{"sales_order":sales_order_name},"produced_qty")
 				production_qty = production_qty_list if production_qty_list else None
 				picked_qty_dict[sales_order_name]['production_qty'] = production_qty
 
-		
-		
-			
+				
+				
+				for production_item_name in production_item:
+					serial_no_date_list = frappe.db.get_value("Serial No",{"sales_order":sales_order_name,"item_code":production_item_name},"purchase_date")
+					serial_no_date = serial_no_date_list if serial_no_date_list else None
+					picked_qty_dict[sales_order_name]['serial_no_date'] = serial_no_date
+    
+					polish_date_list = frappe.db.get_value("Serial No",{"sales_order":sales_order_name,"item_code":production_item_name},"polish_date")
+					polish_date = polish_date_list if polish_date_list else None
+					picked_qty_dict[sales_order_name]['polish_date'] = polish_date
+     
+					qc_date_list = frappe.db.get_value("Serial No",{"sales_order":sales_order_name,"item_code":production_item_name},"qc_date")
+					qc_date = qc_date_list if qc_date_list else None
+					picked_qty_dict[sales_order_name]['qc_date'] = qc_date
+
+					finish_serial_count = frappe.db.count("Serial No", {"sales_order": sales_order_name, "item_code": production_item_name, "serial_type": "finish"})
+					finish_serial = finish_serial_count if finish_serial_count else None
+					picked_qty_dict[sales_order_name]['finish_serial'] = finish_serial
+			production_order_names = [d.production_plan for d in self.orders]
+			for production_order_name in production_order_names:
+				productins_qty = frappe.db.sql(
+					"""
+					SELECT item_code,quantity
+					FROM `tabMaterial Request Plan Item`
+					WHERE parent = %s
+					GROUP BY item_code
+					""",
+					production_order_name,
+					as_dict=True,
+				)
+				picked_qty_dict[production_order_name] = {d.item_code:d.quantity for d in productins_qty}
+				
+				 
 		return picked_qty_dict
 
 	def get_raw_materials(self):
@@ -151,7 +185,7 @@ class ProductionPlanReport(object):
 			return
 		self.warehouses = [d.warehouse for d in self.orders]
 		self.item_codes = [d.production_item for d in self.orders]
-		print("\n\n\n",self.orders,"\n\n\n")
+		
 		if self.filters.based_on == "Work Order":
 			work_orders = [d.name for d in self.orders]
 
@@ -232,31 +266,58 @@ class ProductionPlanReport(object):
 			self.item_details[d.parent] = d
 		
 	def get_bin_details(self):
-		if not (self.orders and self.raw_materials_dict):
-			return
+		data = self.orders
+		for datas in data:
+			
+			if not (self.orders and self.raw_materials_dict):
+				return
 
-		self.bin_details = {}
-		self.mrp_warehouses = []
-		if self.filters.raw_material_warehouse:
-			self.mrp_warehouses.extend(get_child_warehouses(self.filters.raw_material_warehouse))
-			self.warehouses.extend(self.mrp_warehouses)
+			self.bin_details = {}
+			self.mrp_warehouses = []
+			if self.filters.raw_material_warehouse:
+				self.mrp_warehouses.extend(get_child_warehouses(self.filters.raw_material_warehouse))
+				self.warehouses.extend(self.mrp_warehouses)
+			raw_material_warehouse = frappe.get_all(
+				"Production Plan",
+				fields=["for_warehouse"],
+				filters={"name":datas.production_plan },
+			)
+			for warehouse_raw in raw_material_warehouse:
+				
+				for d in frappe.get_all(
+				"Bin",
+				fields=["warehouse", "item_code", "actual_qty", "ordered_qty", "reserved_qty_for_production_plan","projected_qty"],
+				filters={"item_code": ("in", self.item_codes),"warehouse": ("in", warehouse_raw.for_warehouse)},
+				):
+					key = (d.item_code, warehouse_raw.for_warehouse)
+					if key not in self.bin_details:
+						self.bin_details.setdefault(key, d)
+					d.raw_material_available = d.actual_qty
+					d.rm_to_be_procurred = d.reserved_qty_for_production_plan
 
-		for d in frappe.get_all(
-			"Bin",
-			fields=["warehouse", "item_code", "actual_qty", "ordered_qty", "projected_qty"],
-			filters={"item_code": ("in", self.item_codes), "warehouse": ("in", self.warehouses)},
-		):
-			key = (d.item_code, d.warehouse)
-			if key not in self.bin_details:
-				self.bin_details.setdefault(key, d)
-		
 	def get_purchase_details(self):
 		if not (self.orders and self.raw_materials_dict):
 			return
-
+		datas = self.orders
+		
 		self.purchase_details = {}
-
-		purchased_items = frappe.get_all(
+		for data in datas:
+			request_items = frappe.get_all("Material Request Item",
+                            fields=["item_code","schedule_date as rm_arrival_date" ,"qty as request_qty", "warehouse"],
+			filters={
+				"item_code": ("in", self.item_codes),
+				"warehouse": ("in", self.warehouses),
+				"production_plan":data.production_plan,
+				"docstatus": 1,
+			},
+			group_by="item_code",
+			)    
+   
+			
+			
+			
+			
+			purchased_items = frappe.get_all(
 			"Purchase Order Item",
 			fields=["item_code", "min(schedule_date) as arrival_date", "qty as arrival_qty", "warehouse"],
 			filters={
@@ -265,11 +326,18 @@ class ProductionPlanReport(object):
 				"docstatus": 1,
 			},
 			group_by="item_code, warehouse",
-		)
-		for d in purchased_items:
-			key = (d.item_code, d.warehouse)
-			if key not in self.purchase_details:
-				self.purchase_details.setdefault(key, d)
+			)
+			for d in purchased_items:
+				key = (d.item_code, d.warehouse)
+				if key not in self.purchase_details:
+					for rq_item in request_items:
+							self.purchase_details.setdefault(key, d)
+							
+							d.rm_arrival_expected_date = rq_item.rm_arrival_date
+							d.arrival_date = rq_item.rm_arrival_date
+			
+						
+					
 		
 	def prepare_data(self):
 		picked_qty_dict = self.get_picked_qty()
@@ -311,16 +379,29 @@ class ProductionPlanReport(object):
    
 			production_qty = picked_qty_dict.get(d.name,{}).get('production_qty')
 			d.production_qty = production_qty
+	
+			serial_no_date = picked_qty_dict.get(d.name,{}).get('serial_no_date')
+			d.press_date = serial_no_date
+			
+			polish_date = picked_qty_dict.get(d.name,{}).get('polish_date')
+			d.polish_date = polish_date
+
+			qc_date = picked_qty_dict.get(d.name,{}).get('qc_date')
+			d.qc_date = qc_date
+   
+			finish_serial = picked_qty_dict.get(d.name,{}).get('finish_serial')
+			d.fg_qty_after_qc = finish_serial
 			self.update_raw_materials(d, key)
 			
 	def update_raw_materials(self, data, key):
 		self.index = 0
 		self.raw_materials_dict.get(key)
-
+		pro_qty_dict = self.get_picked_qty()
 		warehouses = self.mrp_warehouses or []
 		for d in self.raw_materials_dict.get(key):
 			if self.filters.based_on != "Work Order":
-				d.required_qty = d.required_qty_per_unit * data.qty_to_manufacture
+				d.required_qty = d.required_qty_per_unit * data.pending_to_be_produce
+				
 				
 			if not warehouses:
 				warehouses = [data.warehouse]
@@ -336,6 +417,9 @@ class ProductionPlanReport(object):
 				warehouses = get_child_warehouses(self.filters.raw_material_warehouse)
 			
 			d.remaining_qty = d.required_qty
+			
+		
+			
 			self.pick_materials_from_warehouses(d, data, warehouses)
 
 			if (
@@ -345,8 +429,11 @@ class ProductionPlanReport(object):
 				d.warehouse = self.filters.raw_material_warehouse
 				d.required_qty = d.remaining_qty
 				d.allotted_qty = 0
+				
 				row.update(d)
 				self.data.append(row)
+			
+			
 			
 	def pick_materials_from_warehouses(self, args, order_data, warehouses):
 		for index, warehouse in enumerate(warehouses):
@@ -385,7 +472,7 @@ class ProductionPlanReport(object):
 					row.update(self.purchase_details.get(key))
 
 				self.data.append(row)
-
+		
 	def get_args(self):
 		return frappe._dict(
 			{
@@ -475,213 +562,21 @@ class ProductionPlanReport(object):
 					"width": 110,
 				},
 				{"label": _("Required Qty"), "fieldname": "required_qty", "fieldtype": "Float", "width": 100},
-    			{"label": _("Raw Material Required"), "fieldname": "raw_required_qty", "fieldtype": "Float", "width": 100},
-				{"label": _("Allotted Qty"), "fieldname": "allotted_qty", "fieldtype": "Float", "width": 100},
+    			{"label": _("Raw Material Available"), "fieldname": "raw_material_available", "fieldtype": "Float", "width": 200},
+				{"label": _("RM to be Procurred"), "fieldname": "rm_to_be_procurred", "fieldtype": "Float", "width": 200},
+				{"label": _("RM Arrival Expected Date"), "fieldname": "rm_arrival_expected_date", "fieldtype": "Date", "width": 200},
+				
 				{
 					"label": _("Expected Arrival Date"),
 					"fieldname": "arrival_date",
 					"fieldtype": "Date",
 					"width": 160,
 				},
-				{
-					"label": _("Arrival Quantity"),
-					"fieldname": "arrival_qty",
-					"fieldtype": "Float",
-					"width": 140,
-				},
+        {"label": _("Press Date"), "fieldname": "press_date", "fieldtype": "Date", "width": 200},
+        {"label": _("Polish Date"), "fieldname": "polish_date", "fieldtype": "Date", "width": 200},
+         {"label": _("QC Date"), "fieldname": "qc_date", "fieldtype": "Date", "width": 200},
+		{"label":_("FG Qty after QC"),"fieldname":"fg_qty_after_qc","fieldtype":"Float","width":200},
+				
 			]
 		)
 
-
-# # Copyright (c) 2023, pooja@sanskartechnolab.com and contributors
-# # For license information, please see license.txt
-
-# # import frappe
-
-
-# # def execute(filters=None):
-# # 	columns, data = [], []
-# # 	return columns, data
-
-
-# import frappe
-# import math
-# from datetime import datetime, timedelta
-# from dateutil.relativedelta import relativedelta
-
-# def execute(filters=None):
-#     columns = [
-# 		{
-#             "label": "Sales Order", 
-#             "fieldname": "sales_order", 
-#             "fieldtype": "Data", 
-#             "width": 100
-#         },
-#         {
-#             "label": "Item Code",
-#             "fieldname": "item_code",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Item Name",
-#             "fieldname": "item_name",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Warehouse",
-#             "fieldname": "warehouse",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Order Qty",
-#             "fieldname": "order_qty",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Planned Delivery Date",
-#             "fieldname": "planned_delivery_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Available Stock",
-#             "fieldname": "available_stock",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Reserve Stock against order",
-#             "fieldname": "reserve_stock_against_order",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Packing List Date",
-#             "fieldname": "packing_list_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Pending to Be Produce",
-#             "fieldname": "pending_to_be_produce",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "BOM",
-#             "fieldname": "bom",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Production Planning Date",
-#             "fieldname": "production_planning_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Production Actual Date",
-#             "fieldname": "production_actual_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Production Qty",
-#             "fieldname": "production_qty",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Raw Material Required",
-#             "fieldname": "raw_material_required",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Raw Material Available",
-#             "fieldname": "raw_material_available",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "RM to be Procurred",
-#             "fieldname": "rm_to_be_procurred",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "RM Arrival Expected Date",
-#             "fieldname": "rm_arrival_expected_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "RM Arrival Date",
-#             "fieldname": "rm_arrival_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Press Date",
-#             "fieldname": "press_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "Polish Date",
-#             "fieldname": "polish_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "QC Date",
-#             "fieldname": "qc_date",
-#             "fieldtype": "Data",
-#             "width": 100
-#         },
-#         {
-#             "label": "FG Qty after QC",
-#             "fieldname": "fg_qty_after_qc",
-#             "fieldtype": "Data",
-#             "width": 100
-#         }
-#     ]
-
-#     data = []
-    
-#     data.append({
-#         "sales_order": "8716723418394", 
-#         "item_code": "abc",
-#         "item_name": "",
-#         "warehouse": "",
-#         "order_qty": "",
-#         "planned_delivery_date": "",
-#         "available_stock": "",
-#         "reserve_stock_against_order": "",
-#         "packing_list_date": "",
-#         "pending_to_be_produce": "",
-#         "bom": "",
-#         "production_planning_date": "",
-#         "production_actual_date": "",
-#         "production_qty": "",
-#         "raw_material_required": "",
-#         "raw_material_available": "",
-#         "rm_to_be_procurred": "",
-# 		"rm_arrival_expected_date": "",
-# 		"rm_arrival_date": "",
-# 		"press_date": "",
-# 		"polish_date": "",
-# 		"qc_date": "",
-# 		"fg_qty_after_qc": ""
-#     })
-
-#     return columns, data
-
-    
- 
-    
- 

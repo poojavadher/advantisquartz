@@ -12,6 +12,7 @@
  "field_order": [
   "naming_series",
   "sales_order",
+  "uom",
   "column_break_w2yc2",
   "container_no",
   "barcode_scanner",
@@ -76,12 +77,18 @@
    "fieldtype": "Check",
    "label": "Delivered",
    "read_only": 1
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-12 13:35:53.773636",
+ "modified": "2023-11-23 12:42:25.877052",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing list",

@@ -76,23 +76,16 @@ frappe.ui.form.on('Packing list', {
         frm.fields_dict["items"].grid.add_custom_button(__('Download'), function () {
             // Fetch child table data
             const childTableData = frm.doc.items;
+            const fieldMapping = {};
 
             // Define a mapping of custom field names to child table field names
-            const fieldMapping = {
-
-                "container_no": "container_no",
-                "item_code": "item_code",
-                "serial_no": "serial_no",
-                "production_weight": "production_weight",
-                "production_length": "production_length",
-                "production_width": "production_width",
-                "production_grade": "production_grade",
-                "sales_length": "sales_length",
-                "sales_grade": "sales_grade",
-                "sales_weight": "sales_weight"
-
-                // Map "qty" to "lot_no" field in the child table
-            };
+            frm.fields_dict["items"].grid.docfields.forEach(childField => {
+                if (childField.fieldname !== 'name' && 
+                    childField.fieldtype !== 'Column Break' && 
+                    childField.fieldtype !== 'Section Break') {
+                    fieldMapping[childField.fieldname] = childField.fieldname;
+                }
+            });
 
             // Create a CSV string with custom field names as the first row
             const csvContent = "data:text/csv;charset=utf-8,"

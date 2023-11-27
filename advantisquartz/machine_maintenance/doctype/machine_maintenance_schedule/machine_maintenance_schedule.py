@@ -77,6 +77,8 @@ def calculate_next_due_date(
 		next_due_date = add_days(start_date, 1)
 	if periodicity == "Weekly":
 		next_due_date = add_days(start_date, 7)
+	if periodicity == "2 Weekly":
+		next_due_date = add_days(start_date, 15)
 	if periodicity == "Monthly":
 		next_due_date = add_months(start_date, 1)
 	if periodicity == "Yearly":

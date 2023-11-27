@@ -10,11 +10,15 @@
  "field_order": [
   "naming_series",
   "sample_code",
+  "sample_code1",
   "sample_name",
   "sample_weight",
+  "party_type",
+  "party",
   "sample_party_name",
   "mesh_qc",
   "status",
+  "requirements",
   "column_break_fxipq",
   "inspection_type",
   "material_type",
@@ -38,20 +42,15 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Sample Code",
-   "reqd": 1
+   "read_only": 1
   },
   {
+   "fetch_from": "sample_code1.item_name",
    "fieldname": "sample_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Sample Name",
    "reqd": 1
-  },
-  {
-   "fieldname": "sample_party_name",
-   "fieldtype": "Data",
-   "label": "Sample Party Name",
-   "permlevel": 1
   },
   {
    "fieldname": "column_break_fxipq",
@@ -70,7 +69,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Accepted\nRejected",
+   "options": "Pending\nIn Progress\nIn Review\nAccepted\nRejected\nClosed",
    "reqd": 1
   },
   {
@@ -136,7 +135,7 @@
    "fieldname": "inspection_type",
    "fieldtype": "Select",
    "label": "Inspection Type",
-   "options": "Incoming\nOutgoing",
+   "options": "Color Matching\nNew Design\nExperiment\nIncoming\nOutgoing",
    "reqd": 1
   },
   {
@@ -179,12 +178,42 @@
    "label": "Material Type",
    "options": "Raw Material\nFinish Good",
    "reqd": 1
+  },
+  {
+   "fieldname": "requirements",
+   "fieldtype": "Text Editor",
+   "label": "Requirements"
+  },
+  {
+   "fieldname": "sample_code1",
+   "fieldtype": "Link",
+   "label": "Sample Code",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Link",
+   "label": "Party Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Dynamic Link",
+   "label": "Party",
+   "options": "party_type"
+  },
+  {
+   "fieldname": "sample_party_name",
+   "fieldtype": "Data",
+   "label": "Sample Party Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-25 16:07:28.487076",
+ "modified": "2023-11-23 11:28:23.957486",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Quality Inspection",
