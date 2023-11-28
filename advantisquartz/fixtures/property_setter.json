@@ -4638,5 +4638,21 @@
   "property_type": "Small Text",
   "row_name": null,
   "value": "\nDaily\nWeekly\n2 Weekly\nMonthly\nQuarterly\nYearly\n2 Yearly\n3 Yearly"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Sample Quality Inspection",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "sample_code",
+  "is_system_generated": 0,
+  "modified": "2023-11-28 13:20:47.197676",
+  "module": null,
+  "name": "Sample Quality Inspection-sample_code-read_only",
+  "property": "read_only",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "1"
  }
 ]
