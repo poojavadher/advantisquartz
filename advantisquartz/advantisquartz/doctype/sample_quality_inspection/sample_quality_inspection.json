@@ -41,7 +41,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Sample Code",
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -206,7 +205,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-28 11:56:18.076410",
+ "modified": "2023-11-28 15:59:13.726206",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Quality Inspection",
