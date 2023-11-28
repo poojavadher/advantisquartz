@@ -10,7 +10,6 @@
  "field_order": [
   "naming_series",
   "sample_code",
-  "sample_code1",
   "sample_name",
   "sample_weight",
   "party_type",
@@ -42,7 +41,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Sample Code",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fetch_from": "sample_code1.item_name",
@@ -185,13 +185,6 @@
    "label": "Requirements"
   },
   {
-   "fieldname": "sample_code1",
-   "fieldtype": "Link",
-   "label": "Sample Code",
-   "options": "Item",
-   "reqd": 1
-  },
-  {
    "fieldname": "party_type",
    "fieldtype": "Link",
    "label": "Party Type",
@@ -213,7 +206,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 11:28:23.957486",
+ "modified": "2023-11-28 11:56:18.076410",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Quality Inspection",
