@@ -2,21 +2,23 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
-  "doctype_event": "Before Save",
+  "doctype_event": "After Save",
   "event_frequency": "All",
-  "modified": "2023-11-28 16:12:25.908048",
+  "modified": "2023-11-29 11:52:12.624671",
   "module": "Advantisquartz",
   "name": "stock qty",
   "reference_doctype": "Delivery Note",
-  "script": "# for item in doc.items:\n#     rounded_stock_qty = round(item.stock_qty)\n#     # frappe.msgprint(str(rounded_stock_qty))\n    \n#     # Assuming 'Delivery Note Item' is the child table name\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'stock_qty', rounded_stock_qty)\n\n#     serials = frappe.db.get_list('Serial No',\n#         filters={\n#             'item_code': item.item_code,\n#             'status': 'Hold'\n#         },\n#         fields=['name'],\n#         as_list=True\n#     )\n\n#     # Filter serial numbers based on the rounded_stock_qty\n#     filtered_serials = serials[:rounded_stock_qty]\n\n#     serial_names = [serial[0] for serial in filtered_serials]\n\n#     serial_id = '\\n'.join(serial_names)\n    \n#     frappe.msgprint(serial_id)\n    \n#     # Set the serial_id with line breaks in the 'Delivery Note Item'\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'serial_no', serial_id)\ntotal = 0\nfor item in doc.items:\n    result = 1 / item.uom_conversion_value;\n    amount = item.saleable_measurement * item.rate\n    frappe.msgprint(str(amount))\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'conversion_factor', result)\n    \n    finalResult = float(item.qty*result);\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'stock_qty', finalResult)\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'amount', amount)\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'base_amount', amount)\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'net_amount', amount)\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'base_net_amount', amount)\n    \n    total = total + amount\n    frappe.db.set_value('Delivery Note',{'name':\"hello\"},'total', amount)\n    frappe.msgprint(str(total))\n    doc.reload()",
+  "script": "for item in doc.items:\n    rounded_stock_qty = round(item.stock_qty)\n    # frappe.msgprint(str(rounded_stock_qty))\n    \n#     # Assuming 'Delivery Note Item' is the child table name\n    frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'stock_qty', rounded_stock_qty)\n\n#     serials = frappe.db.get_list('Serial No',\n#         filters={\n#             'item_code': item.item_code,\n#             'status': 'Hold'\n#         },\n#         fields=['name'],\n#         as_list=True\n#     )\n\n#     # Filter serial numbers based on the rounded_stock_qty\n#     filtered_serials = serials[:rounded_stock_qty]\n\n#     serial_names = [serial[0] for serial in filtered_serials]\n\n#     serial_id = '\\n'.join(serial_names)\n    \n#     frappe.msgprint(serial_id)\n    \n#     # Set the serial_id with line breaks in the 'Delivery Note Item'\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'serial_no', serial_id)\n# total = 0\n# for item in doc.items:\n#     result = 1 / item.uom_conversion_value;\n#     amount = item.saleable_measurement * item.rate\n#     frappe.msgprint(str(amount))\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'conversion_factor', result)\n    \n#     finalResult = float(item.qty*result);\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'stock_qty', finalResult)\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'amount', amount)\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'base_amount', amount)\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'net_amount', amount)\n#     frappe.db.set_value('Delivery Note Item', {'parent': doc.name, 'item_code': item.item_code}, 'base_net_amount', amount)\n    \n#     total = total + amount\n#     frappe.db.set_value('Delivery Note',{'name':doc.name},'total', amount)\n#     frappe.msgprint(str(total))\n# taxe_amount = doc.total \n# for index, item in enumerate(doc.taxes):\n#     if item.charge_type == \"On Net Total\":\n#         taxe = (doc.total * item.rate) / 100 \n#         taxe_amount = taxe_amount + taxe\n#         # Fetch the existing row from the child table by its index \n#         tax_row = frappe.get_doc('Sales Taxes and Charges', {'parent': doc.name, 'idx': index + 1}) \n#         # Adding 1 to the index to match the child table index \n#         # Update fields in the existing row with the new tax amount \n        \n#         # Update the 'total' field with the new tax amount \n#         frappe.msgprint(f'Tax Amount: {taxe}') \n#         tax_row.save() \n#         # Save the updated row \n#         # Optional: Display tax amount for each item \n     \n#     doc.reload()",
   "script_type": "DocType Event"
  },
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -32,6 +34,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -47,6 +50,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -62,6 +66,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -77,6 +82,7 @@
  {
   "allow_guest": 0,
   "api_method": "tax",
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -92,6 +98,7 @@
  {
   "allow_guest": 0,
   "api_method": "packing",
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -107,6 +114,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -122,6 +130,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -137,6 +146,7 @@
  {
   "allow_guest": 0,
   "api_method": "receive_qty",
+  "cron_format": null,
   "disabled": 1,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -152,6 +162,7 @@
  {
   "allow_guest": 0,
   "api_method": "serial",
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -167,6 +178,7 @@
  {
   "allow_guest": 0,
   "api_method": "serial_batch",
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -182,6 +194,7 @@
  {
   "allow_guest": 0,
   "api_method": "purchase",
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -197,6 +210,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 1,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -212,6 +226,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -227,6 +242,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -242,6 +258,7 @@
  {
   "allow_guest": 1,
   "api_method": "get_mm_child",
+  "cron_format": null,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
@@ -257,6 +274,7 @@
  {
   "allow_guest": 0,
   "api_method": null,
+  "cron_format": null,
   "disabled": 1,
   "docstatus": 0,
   "doctype": "Server Script",

@@ -21,11 +21,12 @@
   "column_break_fxipq",
   "inspection_type",
   "material_type",
+  "order",
   "date",
+  "readings",
   "remarks",
   "section_break_cph3u",
   "quality_inspection_template",
-  "readings",
   "mesh_qc_template",
   "lab_sections_and_mesh_no",
   "mesh_qc_readings",
@@ -175,7 +176,7 @@
    "fieldname": "material_type",
    "fieldtype": "Select",
    "label": "Material Type",
-   "options": "Raw Material\nFinish Good",
+   "options": "Raw  Material\nFinish Good",
    "reqd": 1
   },
   {
@@ -200,12 +201,18 @@
    "fieldtype": "Data",
    "label": "Sample Party Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "order",
+   "fieldtype": "Select",
+   "label": "Order",
+   "options": "Purchase\nSale"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-28 15:59:13.726206",
+ "modified": "2023-11-29 13:41:32.873393",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Quality Inspection",
