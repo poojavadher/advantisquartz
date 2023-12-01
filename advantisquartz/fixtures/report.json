@@ -1642,7 +1642,7 @@
   "name": "Weekly Sample QC",
   "prepared_report": 0,
   "query": null,
-  "ref_doctype": "Sample Quality Inspection",
+  "ref_doctype": "Lab Sample",
   "reference_report": null,
   "report_name": "Weekly Sample QC",
   "report_script": null,

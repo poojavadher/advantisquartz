@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2023-10-16 15:55:02.295133",
@@ -9,24 +10,21 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "material_type",
   "sample_code",
   "sample_name",
   "sample_weight",
-  "party_type",
-  "party",
   "sample_party_name",
   "mesh_qc",
-  "status",
   "requirements",
   "column_break_fxipq",
   "inspection_type",
-  "material_type",
-  "order",
   "date",
-  "readings",
+  "status",
   "remarks",
   "section_break_cph3u",
   "quality_inspection_template",
+  "readings",
   "mesh_qc_template",
   "lab_sections_and_mesh_no",
   "mesh_qc_readings",
@@ -42,6 +40,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Sample Code",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -100,7 +99,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Sample Quality Inspection",
+   "options": "Lab Sample",
    "print_hide": 1,
    "read_only": 1
   },
@@ -176,7 +175,7 @@
    "fieldname": "material_type",
    "fieldtype": "Select",
    "label": "Material Type",
-   "options": "Raw  Material\nFinish Good",
+   "options": "Raw Material\nFinish Good",
    "reqd": 1
   },
   {
@@ -185,37 +184,19 @@
    "label": "Requirements"
   },
   {
-   "fieldname": "party_type",
-   "fieldtype": "Link",
-   "label": "Party Type",
-   "options": "DocType"
-  },
-  {
-   "fieldname": "party",
-   "fieldtype": "Dynamic Link",
-   "label": "Party",
-   "options": "party_type"
-  },
-  {
    "fieldname": "sample_party_name",
    "fieldtype": "Data",
    "label": "Sample Party Name",
-   "read_only": 1
-  },
-  {
-   "fieldname": "order",
-   "fieldtype": "Select",
-   "label": "Order",
-   "options": "Purchase\nSale"
+   "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-29 13:41:32.873393",
+ "modified": "2023-12-01 10:28:13.865333",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
- "name": "Sample Quality Inspection",
+ "name": "Lab Sample",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

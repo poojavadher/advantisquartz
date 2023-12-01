@@ -327,7 +327,7 @@
   "days_in_advance": 0,
   "docstatus": 0,
   "doctype": "Notification",
-  "document_type": "Sample Quality Inspection",
+  "document_type": "Lab Sample",
   "enabled": 1,
   "event": "Method",
   "is_standard": 0,

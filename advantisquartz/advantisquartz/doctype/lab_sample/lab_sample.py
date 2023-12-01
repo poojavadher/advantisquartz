@@ -8,15 +8,9 @@ from erpnext.stock.doctype.quality_inspection_template.quality_inspection_templa
 	get_template_details,
 )
 
-class SampleQualityInspection(Document):
-	
+class LabSample(Document):
 	@frappe.whitelist()
 	def get_item_specification_details(self):
-		if not self.quality_inspection_template:
-			self.quality_inspection_template = frappe.db.get_value(
-				"Item", self.item_code, "quality_inspection_template"
-			)
-
 		if not self.quality_inspection_template:
 			return
 
@@ -31,11 +25,6 @@ class SampleQualityInspection(Document):
 	@frappe.whitelist()
 	def get_quality_inspection_template(self):
 		template = ""
-		if self.bom_no:
-			template = frappe.db.get_value("BOM", self.bom_no, "quality_inspection_template")
-
-		if not template:
-			template = frappe.db.get_value("BOM", self.item_code, "quality_inspection_template")
 
 		self.quality_inspection_template = template
 		self.get_item_specification_details()
