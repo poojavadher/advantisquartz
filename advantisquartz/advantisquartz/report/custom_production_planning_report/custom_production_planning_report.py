@@ -334,8 +334,7 @@ class ProductionPlanReport(object):
 							self.purchase_details.setdefault(key, d)
 							
 							d.rm_arrival_expected_date = rq_item.rm_arrival_date
-							d.arrival_date = rq_item.rm_arrival_date
-			
+							
 						
 					
 		
@@ -566,12 +565,7 @@ class ProductionPlanReport(object):
 				{"label": _("RM to be Procurred"), "fieldname": "rm_to_be_procurred", "fieldtype": "Float", "width": 200},
 				{"label": _("RM Arrival Expected Date"), "fieldname": "rm_arrival_expected_date", "fieldtype": "Date", "width": 200},
 				
-				{
-					"label": _("Expected Arrival Date"),
-					"fieldname": "arrival_date",
-					"fieldtype": "Date",
-					"width": 160,
-				},
+				
         {"label": _("Press Date"), "fieldname": "press_date", "fieldtype": "Date", "width": 200},
         {"label": _("Polish Date"), "fieldname": "polish_date", "fieldtype": "Date", "width": 200},
          {"label": _("QC Date"), "fieldname": "qc_date", "fieldtype": "Date", "width": 200},

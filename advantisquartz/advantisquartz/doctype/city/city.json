@@ -17,7 +17,6 @@
  ],
  "fields": [
   {
-   "allow_in_quick_entry": 1,
    "fieldname": "city",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -35,22 +34,24 @@
    "fieldtype": "Column Break"
   },
   {
-   "allow_in_quick_entry": 1,
    "fieldname": "state",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "State",
-   "options": "State"
+   "options": "State",
+   "reqd": 1
   },
   {
    "fetch_from": "state.country",
    "fieldname": "country",
    "fieldtype": "Data",
-   "label": "Country"
+   "label": "Country",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-29 12:54:13.461777",
+ "modified": "2023-12-06 16:00:52.558002",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "City",
@@ -99,7 +100,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

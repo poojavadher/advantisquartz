@@ -333,7 +333,7 @@
   "is_standard": 0,
   "message": "",
   "method": "after_insert",
-  "modified": "2023-10-18 12:13:36.984847",
+  "modified": "2023-12-01 13:46:49.098763",
   "module": "Advantisquartz",
   "name": "sample QC",
   "print_format": null,
@@ -356,7 +356,7 @@
   "sender_email": null,
   "set_property_after_alert": null,
   "slack_webhook_url": null,
-  "subject": "Sample QC For {{doc.inspection_type}} Item {{doc.sample_name}} ",
+  "subject": "Lab Sample For {{doc.inspection_type}} Item {{doc.sample_name}} ",
   "value_changed": null
  }
 ]
