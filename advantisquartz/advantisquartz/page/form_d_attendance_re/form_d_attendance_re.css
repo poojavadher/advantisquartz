@@ -1,0 +1,87 @@
+/* td {
+    border: 1px solid black;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px solid var(--border-color);
+/* } */
+.tooltip {
+    display: none;
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+}
+
+.layout-main-section {
+    background-color: #fff;
+    /* padding: 10px; */
+}
+
+/* .a {
+    white-space: nowrap;
+    padding: 0;
+} */
+
+.table {
+    font-size: 8px;
+    margin: 20px 0px;
+    page-break-after: auto;
+    /* page-break-inside: auto; */
+}
+
+/* body {
+    background-color: #000;
+} */
+/* tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+} */
+
+td {
+    width: 150px;
+}
+
+@media print {
+    .col-md-12 {
+        position: relative;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.col-md-12 {
+    position: relative;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+.table th,
+.table td {
+    width: fit-content;
+    padding: 0rem;
+    vertical-align: top;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.rotate-text {
+    white-space: nowrap;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+    /* width: 1px; */
+}
+
+.rotate-text span {
+    display: inline-block;
+    transform: rotate(90deg);
+    white-space: nowrap;
+}

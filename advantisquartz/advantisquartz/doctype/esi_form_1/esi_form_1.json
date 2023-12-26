@@ -1,0 +1,338 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:employee",
+ "creation": "2023-12-12 16:32:58.062473",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employers_code_no",
+  "employee",
+  "employee_name",
+  "date_of_birth",
+  "gender",
+  "branch_office",
+  "name_of_the_employer",
+  "column_break_b1plr",
+  "insurance_no",
+  "fathers__husbands_name",
+  "marital_status",
+  "date_of_appointment",
+  "dispensary",
+  "address_of_the_employer",
+  "section_break_phhpk",
+  "present_addresss",
+  "present_pin",
+  "present_email",
+  "previous_ins_no",
+  "column_break_e0kjg",
+  "permanent_addredd",
+  "permanent_pin",
+  "permanent_email",
+  "emplrs_code_no",
+  "section_break_c4yid",
+  "nominee_details",
+  "family_particulars_of_insured_person_section",
+  "family_particulars_of_insured_person",
+  "esi_corporation_temporary_identity_card_section",
+  "tname",
+  "ins_no",
+  "doe",
+  "tfh_name",
+  "tdob",
+  "column_break_eh36a",
+  "t_branch_office",
+  "t_dispensary",
+  "name_of_employer",
+  "address_of_employer",
+  "code_no_employer",
+  "validity_dated",
+  "emp_img"
+ ],
+ "fields": [
+  {
+   "fieldname": "employers_code_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employer's Code No.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurance_no",
+   "fieldtype": "Data",
+   "label": "Insurance No"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "fathers__husbands_name",
+   "fieldtype": "Data",
+   "label": "Father's / Husband's Name"
+  },
+  {
+   "fetch_from": "employee_name.date_of_birth",
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth",
+   "read_only": 1
+  },
+  {
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Marital Status",
+   "options": "\nMarried\nUnmarried\nWidow"
+  },
+  {
+   "fetch_from": "employee_name.gender",
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_of_appointment",
+   "fieldtype": "Date",
+   "label": "Date of Appointment"
+  },
+  {
+   "fieldname": "name_of_the_employer",
+   "fieldtype": "Data",
+   "label": "Name of the employer"
+  },
+  {
+   "fieldname": "address_of_the_employer",
+   "fieldtype": "Data",
+   "label": "Address of the employer"
+  },
+  {
+   "fieldname": "present_addresss",
+   "fieldtype": "Small Text",
+   "label": "Present Addresss"
+  },
+  {
+   "fieldname": "present_pin",
+   "fieldtype": "Int",
+   "label": "Pin"
+  },
+  {
+   "fieldname": "present_email",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "permanent_addredd",
+   "fieldtype": "Small Text",
+   "label": "Permanent Address"
+  },
+  {
+   "fieldname": "permanent_pin",
+   "fieldtype": "Int",
+   "label": "Pin"
+  },
+  {
+   "fieldname": "permanent_email",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "branch_office",
+   "fieldtype": "Data",
+   "label": "Branch office"
+  },
+  {
+   "fieldname": "dispensary",
+   "fieldtype": "Data",
+   "label": "Dispensary"
+  },
+  {
+   "fieldname": "previous_ins_no",
+   "fieldtype": "Data",
+   "label": "Previous Ins. No."
+  },
+  {
+   "fieldname": "emplrs_code_no",
+   "fieldtype": "Data",
+   "label": "Emplrs. Code No."
+  },
+  {
+   "fieldname": "nominee_details",
+   "fieldtype": "Table",
+   "label": "Nominee Details",
+   "options": "Nominee Details"
+  },
+  {
+   "fieldname": "family_particulars_of_insured_person",
+   "fieldtype": "Table",
+   "label": "Family Particulars of Insured Person",
+   "options": "Family Particulars of Insured Person"
+  },
+  {
+   "fieldname": "column_break_b1plr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_c4yid",
+   "fieldtype": "Section Break",
+   "label": "Nominee"
+  },
+  {
+   "fieldname": "family_particulars_of_insured_person_section",
+   "fieldtype": "Section Break",
+   "label": "Insured Person Details"
+  },
+  {
+   "fieldname": "section_break_phhpk",
+   "fieldtype": "Section Break",
+   "label": "Address and Contact Details"
+  },
+  {
+   "fieldname": "column_break_e0kjg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "esi_corporation_temporary_identity_card_section",
+   "fieldtype": "Section Break",
+   "label": "ESI CORPORATION - Temporary Identity Card"
+  },
+  {
+   "fieldname": "tname",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "ins_no",
+   "fieldtype": "Data",
+   "label": "Ins No"
+  },
+  {
+   "fieldname": "doe",
+   "fieldtype": "Date",
+   "label": "Date of Entry"
+  },
+  {
+   "fieldname": "tfh_name",
+   "fieldtype": "Data",
+   "label": "Father's / Husband's Name"
+  },
+  {
+   "fieldname": "tdob",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "t_branch_office",
+   "fieldtype": "Data",
+   "label": "Branch Office"
+  },
+  {
+   "fieldname": "t_dispensary",
+   "fieldtype": "Data",
+   "label": "Dispensary"
+  },
+  {
+   "fieldname": "name_of_employer",
+   "fieldtype": "Data",
+   "label": "Name of Employer"
+  },
+  {
+   "fieldname": "address_of_employer",
+   "fieldtype": "Data",
+   "label": "Address of Employer"
+  },
+  {
+   "fieldname": "code_no_employer",
+   "fieldtype": "Data",
+   "label": "Code No. of Employer"
+  },
+  {
+   "fieldname": "column_break_eh36a",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "validity_dated",
+   "fieldtype": "Date",
+   "label": "Validity Dated"
+  },
+  {
+   "fetch_from": "employee.image",
+   "fieldname": "emp_img",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "emp img"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-18 15:07:55.089533",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "ESI FORM-1",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
