@@ -34,7 +34,8 @@ frappe.ui.form.on('Packing list', {
                     status: "Active",
                     serial_type: "Finish",
                     item_code: null,
-                    quality: null
+                    quality: null,
+                    sales_order:cur_frm.doc.sales_order
 
                 },
                 add_filters_group: 1,

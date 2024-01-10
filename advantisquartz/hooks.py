@@ -277,7 +277,8 @@ fixtures = [
     {"dt":"Workspace","filters":[
         [
             "name","in",[
-                "Employee Request"
+                "Employee Request",
+                "Employee Lifecycle"
             ]
         ]
     ]}

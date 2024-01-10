@@ -4,13 +4,20 @@
  "docstatus": 0,
  "doctype": "Page",
  "idx": 0,
- "modified": "2023-12-18 16:50:07.144779",
+ "modified": "2023-12-26 17:00:15.787625",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "form-d-attendance-re",
  "owner": "Administrator",
  "page_name": "form-d-attendance-re",
- "roles": [],
+ "roles": [
+  {
+   "role": "HR Manager"
+  },
+  {
+   "role": "HR User"
+  }
+ ],
  "script": null,
  "standard": "Yes",
  "style": null,

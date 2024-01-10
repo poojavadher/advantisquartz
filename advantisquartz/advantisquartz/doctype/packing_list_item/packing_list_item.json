@@ -13,6 +13,7 @@
   "production_length",
   "production_width",
   "gross_measurement",
+  "carrate_no",
   "column_break_uspbu",
   "production_weight",
   "production_grade",
@@ -128,12 +129,17 @@
   {
    "fieldname": "column_break_c00om",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "carrate_no",
+   "fieldtype": "Float",
+   "label": "Carrate No"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-21 18:49:12.587347",
+ "modified": "2024-01-08 11:15:05.463282",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing List Item",
