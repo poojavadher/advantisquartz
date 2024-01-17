@@ -33,8 +33,10 @@
   "section_break_s4rhw",
   "driver_name",
   "driver_mobile_no",
+  "transporter_name",
   "column_break_mbtk2",
   "truck_no",
+  "lr_no",
   "lock_fields",
   "weight_specification_tab",
   "section_break_pawp6",
@@ -463,6 +465,19 @@
    "options": "Gate Entry",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.entry_type == \"Inward\"",
+   "fieldname": "transporter_name",
+   "fieldtype": "Link",
+   "label": "Transporter Name",
+   "options": "Supplier"
+  },
+  {
+   "depends_on": "eval:doc.entry_type == \"Inward\"",
+   "fieldname": "lr_no",
+   "fieldtype": "Float",
+   "label": "Lr No"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -473,7 +488,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2023-10-17 16:49:17.835159",
+ "modified": "2024-01-11 16:20:15.638175",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",

@@ -183,7 +183,7 @@ frappe.ui.form.on('Gate Entry', {
 			}
 		}
 	},
-
+	
 	// outward_for(frm) {
 	// 	if (outward_for == 'Machine Maintenance') {
 	// 		var supplier = cur_frm.doc.supplier;
@@ -232,7 +232,7 @@ frappe.ui.form.on('Gate Entry', {
 		toggleWeightOutLock(frm);
 		toggleQualityLock(frm);
 	},
-
+	
 	lock_fields(frm) {
 		checkLock(frm);
 	},
@@ -350,6 +350,19 @@ frappe.ui.form.on('Gate Entry', {
 			frm.set_df_property('lock_weight_out_details', 'read_only', frm.doc.lock_weight_out_details);
 			frm.set_df_property('lock_quality_inspection', 'read_only', frm.doc.lock_quality_inspection);
 		}
+		
+			if (frm.doc.entry_type == "Inward") {
+				frm.set_query("transporter_name",function(){
+					return{
+						filters:{
+							"is_transporter":1
+						   
+						}
+						
+					};
+				});
+			}
+		
 	},
 
 	sampling_done(frm) {
