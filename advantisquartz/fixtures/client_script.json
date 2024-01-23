@@ -471,5 +471,16 @@
   "name": "Packing List on Update Sales Order",
   "script": "frappe.ui.form.on('Packing list', {\n    refresh: function (frm) {\n        // Add a custom button to the form\n        frm.add_custom_button(__('Open Sales Order'), function () {\n            // Get the Sales Order reference from the current document\n            const salesOrder = frm.doc.sales_order;\n\n            // Check if a Sales Order is selected\n            if (salesOrder) {\n                // Open the Sales Order form\n                frappe.set_route('Form', 'Sales Order', salesOrder);\n            } else {\n                frappe.msgprint(__('Please select a Sales Order.'));\n            }\n        });\n    }\n});",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "ToDo",
+  "enabled": 1,
+  "modified": "2024-01-19 10:54:17.152523",
+  "module": "Advantisquartz",
+  "name": "Machine Maintenance Log change status",
+  "script": "frappe.ui.form.on('ToDo', {\n    onload: function(frm) {\n        if (!frm.doc.__islocal && frm.doc.status !== \"Closed\") {\n            frm.add_custom_button(\n                __(\"Close\"),\n                function () {\n                    frm.set_value(\"status\", \"Closed\");\n\n                    var referenceName = frm.doc.reference_name;\n                    var referenceType = frm.doc.reference_type;\n                    if(referenceType === 'Machine Maintenance Schedule')\n                    {\n                        frm.save(null, function () {\n                            frappe.call({\n                                method: 'frappe.client.get_list',\n                                args: {\n                                    doctype: 'Machine Maintenance Log',\n                                    filters: {\n                                        machine_maintenance_schedule: referenceName,\n                                        maintenance_status: 'Planned'\n                                    },\n                                    fields: ['*']\n                                },\n                                callback: function(response) {\n                                    var plannedMaintenanceLogs = response.message;\n    \n                                    console.log(plannedMaintenanceLogs)\n                                     plannedMaintenanceLogs.forEach(function(log) {\n                                         frappe.call({\n                                            method: 'set_submit',\n                                            args: {\n                                                reference_name: referenceName\n                                            },\n                                            callback: function(response) {\n                                                //console.log(response.reference_name)\n                                            }\n                                        });\n    \n                                    });\n                                }\n                            });\n                        });\n                    }\n                }\n            );\n        }\n    }\n});\n\n",
+  "view": "Form"
  }
 ]

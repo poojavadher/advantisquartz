@@ -17,7 +17,8 @@
   "mesh_no_8",
   "status",
   "reason",
-  "qty"
+  "qty",
+  "shade"
  ],
  "fields": [
   {
@@ -97,12 +98,17 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "8# "
+  },
+  {
+   "fieldname": "shade",
+   "fieldtype": "Data",
+   "label": "Shade"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-18 18:26:52.403556",
+ "modified": "2024-01-20 15:07:38.716227",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Mesh QC",

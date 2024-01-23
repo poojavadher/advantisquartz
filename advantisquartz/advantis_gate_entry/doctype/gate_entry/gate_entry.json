@@ -476,7 +476,7 @@
   {
    "depends_on": "eval:doc.entry_type == \"Inward\"",
    "fieldname": "lr_no",
-   "fieldtype": "Float",
+   "fieldtype": "Data",
    "label": "Lr No"
   }
  ],
@@ -488,7 +488,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2024-01-11 16:20:15.638175",
+ "modified": "2024-01-20 13:25:55.490876",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",
