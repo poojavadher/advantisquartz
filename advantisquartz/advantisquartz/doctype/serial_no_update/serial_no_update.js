@@ -89,9 +89,7 @@ frappe.ui.form.on('Serial No Update', {
                 'oven_operator_name':oven_operator_name,
                 'press_remarks':remarks,
                 'manufacturing_contact_name':manu_con_name,
-                'polish_date':cur_frm.doc.polish_date,
-                
-
+                'press_date':cur_frm.doc.press_date,
             });
 	    }); 
 	    

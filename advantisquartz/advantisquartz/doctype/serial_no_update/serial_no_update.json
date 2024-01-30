@@ -11,7 +11,7 @@
   "naming_series",
   "column_break_s9txc",
   "barcode_scanner",
-  "polish_date",
+  "press_date",
   "section_break_58esz",
   "press_item",
   "amended_from"
@@ -54,15 +54,15 @@
    "options": "Barcode"
   },
   {
-   "fieldname": "polish_date",
+   "fieldname": "press_date",
    "fieldtype": "Date",
-   "label": "Polish Date"
+   "label": "Press Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-27 15:22:30.745186",
+ "modified": "2024-01-30 13:21:57.246632",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Serial No Update",
