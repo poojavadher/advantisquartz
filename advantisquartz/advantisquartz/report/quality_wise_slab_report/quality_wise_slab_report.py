@@ -9,7 +9,7 @@ def execute(filters=None):
     columns = [
         {"label": "Company", "fieldname": "company", "width": 200},
         {"label": "Warehouse", "fieldname": "warehouse", "width": 200},
-        {"label": "Item Code", "fieldname": "item_code", "width": 220},
+        {"label": "Item Code", "fieldname": "item_code", "width": 220, "fieldtype": "Link", "options": "Item"},
         {"label": "Item Name", "fieldname": "item_name", "width": 230},
         {"label": "Status", "fieldname": "status", "width": 70},
         {"label": "P", "fieldname": "p", "width": 70},
@@ -79,5 +79,17 @@ def execute(filters=None):
             "status": status,
             **value
         })
+
+    data.append({
+        "company": "<b>Total</b>",
+        "warehouse": "",
+        "item_code": "",
+        "item_name": "",
+        "status": "",
+        "p": "<b>{}</b>".format(sum(value["p"] for value in quality_counts.values() if value["p"])),
+        "a": "<b>{}</b>".format(sum(value["a"] for value in quality_counts.values() if value["a"])),
+        "b": "<b>{}</b>".format(sum(value["b"] for value in quality_counts.values() if value["b"])),
+        "c": "<b>{}</b>".format(sum(value["c"] for value in quality_counts.values() if value["c"])),
+    })
 
     return columns, data

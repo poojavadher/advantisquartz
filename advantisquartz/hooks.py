@@ -278,7 +278,12 @@ fixtures = [
         [
             "name","in",[
                 "Employee Request",
-                "Employee Lifecycle"
+                "Employee Lifecycle",
+                "Buying",
+                "Stock",
+                "Manufacturing",
+                "Selling",
+                "Quality"
             ]
         ]
     ]}

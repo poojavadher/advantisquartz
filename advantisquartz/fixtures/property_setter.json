@@ -5543,13 +5543,13 @@
   "doctype_or_field": "DocField",
   "field_name": "lr_no",
   "is_system_generated": 0,
-  "modified": "2024-01-20 13:59:53.132840",
+  "modified": "2024-01-24 09:54:46.420253",
   "module": null,
   "name": "Purchase Receipt-lr_no-label",
   "property": "label",
   "property_type": "Data",
   "row_name": null,
-  "value": "Transport Receipt No"
+  "value": "LR No"
  },
  {
   "default_value": null,

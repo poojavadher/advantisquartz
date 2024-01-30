@@ -99,5 +99,69 @@
   "modified": "2023-10-18 17:06:30.102917",
   "module": "Advantisquartz",
   "name": "AQ Buying Dashboard"
+ },
+ {
+  "cards": [
+   {
+    "card": "Delivered Slabs",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Active Slabs",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Hold Slabs",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Quality P Slab",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Quality A Slab",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Quality B Slab",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Quality C Slab",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "FG Ageing Chart",
+    "parent": "AQ Stock Dashboard",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   }
+  ],
+  "dashboard_name": "AQ Stock Dashboard",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2024-01-29 18:37:18.725354",
+  "module": "Advantisquartz",
+  "name": "AQ Stock Dashboard"
  }
 ]

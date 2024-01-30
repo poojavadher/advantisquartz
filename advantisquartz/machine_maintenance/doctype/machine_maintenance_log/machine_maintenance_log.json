@@ -34,7 +34,7 @@
   {
    "fieldname": "machine_maintenance_schedule",
    "fieldtype": "Link",
-   "label": "Machine Maintenance Chedule",
+   "label": "Machine Maintenance Schedule",
    "options": "Machine Maintenance Schedule"
   },
   {
@@ -167,7 +167,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-17 19:01:12.281166",
+ "modified": "2024-01-29 10:56:37.885785",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance Log",

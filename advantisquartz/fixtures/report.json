@@ -1869,5 +1869,934 @@
     "role": "Manufacturing User"
    }
   ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"GatePass\",\"select_type\",\"=\",\"Visitor\",false],[\"GatePass\",\"date\",\"Timespan\",\"yesterday\",false]],\"fields\":[[\"workflow_state\",\"GatePass\"],[\"name\",\"GatePass\"],[\"docstatus\",\"GatePass\"],[\"select_type\",\"GatePass\"],[\"date\",\"GatePass\"],[\"visitor_name\",\"GatePass\"],[\"employee_name\",\"GatePass\"],[\"related_department\",\"GatePass\"],[\"to_meet_with\",\"GatePass\"],[\"out_time\",\"GatePass\"],[\"in_time\",\"GatePass\"],[\"purpose\",\"GatePass\"]],\"order_by\":\"`tabGatePass`.`modified` desc\",\"add_totals_row\":0,\"page_length\":100,\"column_widths\":{},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.510899",
+  "module": "Advantisquartz",
+  "name": "Visitor Gate Pass Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "GatePass",
+  "reference_report": null,
+  "report_name": "Visitor Gate Pass Report",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Visitor Gate Pass Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Visitor Gate Pass Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "Visitor Gate Pass Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Visitor Gate Pass Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Visitor Gate Pass Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"GatePass\",\"date\",\"Timespan\",\"yesterday\",false]],\"fields\":[[\"workflow_state\",\"GatePass\"],[\"name\",\"GatePass\"],[\"docstatus\",\"GatePass\"],[\"select_type\",\"GatePass\"],[\"date\",\"GatePass\"],[\"employee_name\",\"GatePass\"],[\"field_worker_name\",\"GatePass\"],[\"company_labour\",\"GatePass\"],[\"contractor_labour\",\"GatePass\"],[\"in_time\",\"GatePass\"],[\"out_time\",\"GatePass\"],[\"purpose\",\"GatePass\"]],\"order_by\":\"`tabGatePass`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"workflow_state\":120,\"name\":120,\"docstatus\":120,\"select_type\":120,\"date\":120,\"employee_name\":120,\"field_worker_name\":120,\"company_labour\":120,\"contractor_labour\":120,\"in_time\":120,\"out_time\":120,\"purpose\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.519815",
+  "module": "Advantisquartz",
+  "name": "Employee Gate Pass",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "GatePass",
+  "reference_report": null,
+  "report_name": "Employee Gate Pass",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Employee Gate Pass",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Employee Gate Pass",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "Employee Gate Pass",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Employee Gate Pass",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Employee Gate Pass",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Sample Quality Inspection\",\"sample_code\",\"like\",\"%tc%\",false],[\"Sample Quality Inspection\",\"docstatus\",\"=\",\"0\",false]],\"fields\":[[\"name\",\"Sample Quality Inspection\"],[\"docstatus\",\"Sample Quality Inspection\"],[\"sample_code\",\"Sample Quality Inspection\"],[\"sample_name\",\"Sample Quality Inspection\"],[\"sample_weight\",\"Sample Quality Inspection\"]],\"order_by\":\"`tabSample Quality Inspection`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"sample_code\":120,\"sample_name\":120,\"sample_weight\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.534337",
+  "module": "Advantisquartz",
+  "name": "QC Pending- Sales FG Sample",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Lab Sample",
+  "reference_report": null,
+  "report_name": "QC Pending- Sales FG Sample",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "QC Pending- Sales FG Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "QC Pending- Sales FG Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "QC Pending- Sales FG Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "QC Pending- Sales FG Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "QC Pending- Sales FG Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "QC Pending- Sales FG Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Sample Quality Inspection\",\"sample_code\",\"like\",\"%RM%\",false],[\"Sample Quality Inspection\",\"docstatus\",\"=\",\"0\",false]],\"fields\":[[\"name\",\"Sample Quality Inspection\"],[\"docstatus\",\"Sample Quality Inspection\"],[\"sample_code\",\"Sample Quality Inspection\"],[\"sample_name\",\"Sample Quality Inspection\"],[\"sample_weight\",\"Sample Quality Inspection\"]],\"order_by\":\"`tabSample Quality Inspection`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"sample_code\":120,\"sample_name\":120,\"sample_weight\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.542311",
+  "module": "Advantisquartz",
+  "name": "QC Pending- Raw material Sample",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Lab Sample",
+  "reference_report": null,
+  "report_name": "QC Pending- Raw material Sample",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "QC Pending- Raw material Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "QC Pending- Raw material Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "QC Pending- Raw material Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "QC Pending- Raw material Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "QC Pending- Raw material Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "QC Pending- Raw material Sample",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Sample Quality Inspection\",\"sample_code\",\"like\",\"%RM%\",false],[\"Sample Quality Inspection\",\"docstatus\",\"=\",\"0\",false]],\"fields\":[[\"name\",\"Sample Quality Inspection\"],[\"docstatus\",\"Sample Quality Inspection\"],[\"sample_code\",\"Sample Quality Inspection\"],[\"sample_name\",\"Sample Quality Inspection\"],[\"sample_weight\",\"Sample Quality Inspection\"]],\"order_by\":\"`tabSample Quality Inspection`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"sample_code\":120,\"sample_name\":120,\"sample_weight\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.550159",
+  "module": "Advantisquartz",
+  "name": "SAMPLE REPORT",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Lab Sample",
+  "reference_report": null,
+  "report_name": "SAMPLE REPORT",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "SAMPLE REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "SAMPLE REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "SAMPLE REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "SAMPLE REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "SAMPLE REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "SAMPLE REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Gate Entry\",\"gate_in_date\",\"Timespan\",\"yesterday\",false],[\"Gate Entry\",\"purpose\",\"=\",\"Sales Delivery\"]],\"fields\":[[\"name\",\"Gate Entry\"],[\"docstatus\",\"Gate Entry\"],[\"entry_type\",\"Gate Entry\"],[\"gate_in_date\",\"Gate Entry\"],[\"supplier\",\"Gate Entry\"],[\"invoice_no\",\"Gate Entry\"],[\"invoice_date\",\"Gate Entry\"],[\"naming_series\",\"Gate Entry\"],[\"purpose\",\"Gate Entry\"],[\"driver_name\",\"Gate Entry\"],[\"truck_no\",\"Gate Entry\"],[\"gate_in_time\",\"Gate Entry\"],[\"driver_mobile_no\",\"Gate Entry\"],[\"grn\",\"Gate Entry\"],[\"remarks\",\"Gate Entry\"],[\"item_name\",\"Gate Entry Stock Items\"],[\"gate_out_time\",\"Gate Entry\"],[\"is_weight_in\",\"Gate Entry\"],[\"is_weight_out\",\"Gate Entry\"],[\"net_weight\",\"Gate Entry\"],[\"weight_out\",\"Gate Entry\"]],\"order_by\":\"`tabGate Entry`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"docstatus\":120,\"entry_type\":120,\"gate_in_date\":120,\"supplier\":120,\"invoice_no\":120,\"invoice_date\":120,\"naming_series\":120,\"purpose\":120,\"driver_name\":120,\"truck_no\":120,\"gate_in_time\":120,\"driver_mobile_no\":120,\"grn\":120,\"remarks\":120,\"Gate Entry Stock Items:item_name\":120,\"gate_out_time\":120,\"is_weight_in\":120,\"is_weight_out\":120,\"net_weight\":120,\"weight_out\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.557967",
+  "module": "Advantisquartz",
+  "name": "SALES - GATE OUT REPORT",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Gate Entry",
+  "reference_report": null,
+  "report_name": "SALES - GATE OUT REPORT",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "All"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "SALES - GATE OUT REPORT",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[],\"fields\":[[\"name\",\"Machine Maintenance\"],[\"date__time_of_supply\",\"Machine Maintenance\"],[\"supplier\",\"Machine Maintenance\"],[\"item_name\",\"Machine Maintenance Item\"],[\"qty\",\"Machine Maintenance Item\"],[\"rate\",\"Machine Maintenance Item\"],[\"total\",\"Machine Maintenance Item\"],[\"status\",\"Machine Maintenance Item\"],[\"returned\",\"Machine Maintenance Item\"],[\"unit\",\"Machine Maintenance Item\"]],\"order_by\":\"`tabMachine Maintenance`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":73,\"date__time_of_supply\":120,\"supplier\":120,\"Machine Maintenance Item:item_name\":120,\"Machine Maintenance Item:qty\":62,\"Machine Maintenance Item:rate\":77,\"Machine Maintenance Item:total\":68,\"Machine Maintenance Item:status\":84,\"Machine Maintenance Item:returned\":96,\"Machine Maintenance Item:unit\":75},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.588472",
+  "module": "Advantisquartz",
+  "name": "Machine Maintenance Item Status",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Machine Maintenance",
+  "reference_report": null,
+  "report_name": "Machine Maintenance Item Status",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Maintenance Manager"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Machine Maintenance Item Status",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "All"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Gate Entry\",\"gate_in_date\",\"Timespan\",\"this week\",false],[\"Gate Entry\",\"grn\",\"=\",0,false],[\"Gate Entry\",\"entry_type\",\"!=\",\"Outward\",false],[\"Gate Entry\",\"purpose\",\"=\",\"Raw Material\"]],\"fields\":[[\"name\",\"Gate Entry\"],[\"docstatus\",\"Gate Entry\"],[\"entry_type\",\"Gate Entry\"],[\"gate_in_date\",\"Gate Entry\"],[\"supplier\",\"Gate Entry\"],[\"invoice_no\",\"Gate Entry\"],[\"invoice_date\",\"Gate Entry\"],[\"naming_series\",\"Gate Entry\"],[\"purpose\",\"Gate Entry\"],[\"driver_name\",\"Gate Entry\"],[\"truck_no\",\"Gate Entry\"],[\"gate_in_time\",\"Gate Entry\"],[\"driver_mobile_no\",\"Gate Entry\"],[\"grn\",\"Gate Entry\"],[\"remarks\",\"Gate Entry\"],[\"item_name\",\"Gate Entry Stock Items\"],[\"gate_out_time\",\"Gate Entry\"],[\"is_weight_in\",\"Gate Entry\"],[\"is_weight_out\",\"Gate Entry\"],[\"net_weight\",\"Gate Entry\"],[\"weight_out\",\"Gate Entry\"]],\"order_by\":\"`tabGate Entry`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"docstatus\":120,\"entry_type\":120,\"gate_in_date\":120,\"supplier\":120,\"invoice_no\":120,\"invoice_date\":120,\"naming_series\":120,\"purpose\":120,\"driver_name\":120,\"truck_no\":120,\"gate_in_time\":120,\"driver_mobile_no\":120,\"grn\":120,\"remarks\":120,\"Gate Entry Stock Items:item_name\":120,\"gate_out_time\":120,\"is_weight_in\":120,\"is_weight_out\":120,\"net_weight\":120,\"weight_out\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.637177",
+  "module": "Advantisquartz",
+  "name": "Raw Section GRN Pending",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Gate Entry",
+  "reference_report": null,
+  "report_name": "Raw Section GRN Pending",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "All"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Raw Section GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Gate Entry\",\"grn\",\"=\",0,false],[\"Gate Entry\",\"gate_in_date\",\"Timespan\",\"this month\",false],[\"Gate Entry\",\"purpose\",\"!=\",\"Sales Delivery\",false],[\"Gate Entry\",\"purpose\",\"=\",\"Store & Spare\"]],\"fields\":[[\"name\",\"Gate Entry\"],[\"docstatus\",\"Gate Entry\"],[\"entry_type\",\"Gate Entry\"],[\"gate_in_date\",\"Gate Entry\"],[\"supplier\",\"Gate Entry\"],[\"invoice_no\",\"Gate Entry\"],[\"invoice_date\",\"Gate Entry\"],[\"naming_series\",\"Gate Entry\"],[\"purpose\",\"Gate Entry\"],[\"driver_name\",\"Gate Entry\"],[\"truck_no\",\"Gate Entry\"],[\"gate_in_time\",\"Gate Entry\"],[\"driver_mobile_no\",\"Gate Entry\"],[\"grn\",\"Gate Entry\"],[\"remarks\",\"Gate Entry\"],[\"item_name\",\"Gate Entry Stock Items\"],[\"gate_out_time\",\"Gate Entry\"],[\"is_weight_in\",\"Gate Entry\"],[\"is_weight_out\",\"Gate Entry\"],[\"net_weight\",\"Gate Entry\"],[\"weight_out\",\"Gate Entry\"]],\"order_by\":\"`tabGate Entry`.`modified` desc\",\"page_length\":500,\"column_widths\":{\"name\":149,\"docstatus\":120,\"entry_type\":120,\"gate_in_date\":120,\"supplier\":120,\"invoice_no\":120,\"invoice_date\":120,\"naming_series\":120,\"purpose\":120,\"driver_name\":120,\"truck_no\":120,\"gate_in_time\":120,\"driver_mobile_no\":120,\"grn\":120,\"remarks\":120,\"Gate Entry Stock Items:item_name\":120,\"gate_out_time\":120,\"is_weight_in\":120,\"is_weight_out\":120,\"net_weight\":120,\"weight_out\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.661485",
+  "module": "Advantisquartz",
+  "name": "GRN Pending",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Gate Entry",
+  "reference_report": null,
+  "report_name": "GRN Pending",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "All"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "GRN Pending",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Gate Entry\",\"gate_in_date\",\"Timespan\",\"yesterday\",false]],\"fields\":[[\"name\",\"Gate Entry\"],[\"entry_type\",\"Gate Entry\"],[\"gate_in_date\",\"Gate Entry\"],[\"supplier\",\"Gate Entry\"],[\"invoice_no\",\"Gate Entry\"],[\"invoice_date\",\"Gate Entry\"],[\"purpose\",\"Gate Entry\"],[\"driver_name\",\"Gate Entry\"],[\"truck_no\",\"Gate Entry\"],[\"gate_in_time\",\"Gate Entry\"],[\"driver_mobile_no\",\"Gate Entry\"]],\"order_by\":\"`tabGate Entry`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":174,\"entry_type\":120,\"gate_in_date\":120,\"supplier\":120,\"invoice_no\":120,\"invoice_date\":120,\"purpose\":120,\"driver_name\":120,\"truck_no\":120,\"gate_in_time\":120,\"driver_mobile_no\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.670566",
+  "module": "Advantisquartz",
+  "name": "Daily Gate Entry",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Gate Entry",
+  "reference_report": null,
+  "report_name": "Daily Gate Entry",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "All"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Daily Gate Entry",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"filters\":[[\"Gate Entry\",\"gate_in_date\",\"Timespan\",\"yesterday\",false]],\"fields\":[[\"name\",\"Gate Entry\"],[\"docstatus\",\"Gate Entry\"],[\"entry_type\",\"Gate Entry\"],[\"gate_in_date\",\"Gate Entry\"],[\"supplier\",\"Gate Entry\"],[\"invoice_no\",\"Gate Entry\"],[\"invoice_date\",\"Gate Entry\"],[\"naming_series\",\"Gate Entry\"],[\"purpose\",\"Gate Entry\"],[\"driver_name\",\"Gate Entry\"],[\"truck_no\",\"Gate Entry\"],[\"gate_in_time\",\"Gate Entry\"]],\"order_by\":\"`tabGate Entry`.`modified` desc\",\"add_totals_row\":true,\"page_length\":20,\"column_widths\":{\"name\":120,\"docstatus\":120,\"entry_type\":120,\"gate_in_date\":120,\"supplier\":120,\"invoice_no\":120,\"invoice_date\":120,\"naming_series\":120,\"purpose\":120,\"driver_name\":120,\"truck_no\":120,\"gate_in_time\":120},\"group_by\":null}",
+  "letter_head": "LetterHead",
+  "modified": "2024-01-29 16:30:25.716428",
+  "module": "Advantisquartz",
+  "name": "Daily Gate Entry Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Gate Entry",
+  "reference_report": null,
+  "report_name": "Daily Gate Entry Report",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Gate Entry Operator"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "All"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales User"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Daily Gate Entry Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   }
+  ]
  }
 ]
