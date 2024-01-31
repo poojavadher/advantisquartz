@@ -39,6 +39,7 @@ frappe.ui.form.on('Packing list', {
 
                 },
                 add_filters_group: 1,
+                size: 'extra-large',
                 action(selections) {
                     // console.log(selections);
                     d.dialog.hide();
@@ -66,11 +67,37 @@ frappe.ui.form.on('Packing list', {
                     });
                 }
             });
-
         });
-
     }
 });
+
+frappe.ui.form.on('Packing list', {
+    refresh: function (frm) {
+        frm.add_custom_button(__('Get Serial No.'), function () {
+            var d = new frappe.ui.form.MultiSelectDialog({
+                doctype: "Serial No",
+                target: frm,
+                setters: {
+                    status: "Active",
+                },
+                add_filters_group: 1,
+                action(selections) {
+                    // console.log(selections);
+                    d.dialog.hide();
+
+                    // Display a "Hello" message after hiding the dialog
+                    frappe.msgprint("Hello");
+                },
+            });
+
+            // Set the width of the dialog box using !important
+            d.$wrapper.find('.modal-dialog').css("width", "800px !important");
+
+            d.show();
+        });
+    }
+});
+
 
 frappe.ui.form.on('Packing list', {
     refresh(frm) {

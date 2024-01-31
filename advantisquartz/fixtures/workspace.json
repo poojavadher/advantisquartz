@@ -9,7 +9,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"RTP9EI-PJk\",\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Selling\",\"col\":12}},{\"id\":\"roBCi4-zHl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Sales Order Trends\",\"col\":12}},{\"id\":\"3ildp-JMDR\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"n_xmf_1pzf\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"BEQzEhWrqF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"UDQOfQcwUE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PKUeeZcKBY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Analytics\",\"col\":3}},{\"id\":\"7vruZm8Njt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order Analysis\",\"col\":3}},{\"id\":\"uZoeavaM_f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"ZDwf41MVXu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ofQU1L-6-M\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Production Section</b><b></b></span>\",\"col\":12}},{\"id\":\"4CJUWs5PoU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan\",\"col\":3}},{\"id\":\"hXVFA6Dl_m\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan Summary\",\"col\":3}},{\"id\":\"hBiRjTH4A_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Planning Report\",\"col\":3}},{\"id\":\"qqi8_UoRus\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Weekly Production Plan\",\"col\":3}},{\"id\":\"AZE0_NRcTz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Sample\",\"col\":3}},{\"id\":\"h6U1IlnzQl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"Iyjb3hZndf\",\"type\":\"card\",\"data\":{\"card_name\":\"Selling\",\"col\":4}},{\"id\":\"zfIkVKAgZX\",\"type\":\"card\",\"data\":{\"card_name\":\"Items and Pricing\",\"col\":4}},{\"id\":\"6qAGQbRcKp\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"eBrd1P6db2\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"zqNCqQ1JFj\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}}]",
+  "content": "[{\"id\":\"RTP9EI-PJk\",\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Selling\",\"col\":12}},{\"id\":\"roBCi4-zHl\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Sales Order Trends\",\"col\":12}},{\"id\":\"3ildp-JMDR\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"n_xmf_1pzf\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"BEQzEhWrqF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"UDQOfQcwUE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"PKUeeZcKBY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Analytics\",\"col\":3}},{\"id\":\"7vruZm8Njt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order Analysis\",\"col\":3}},{\"id\":\"uZoeavaM_f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"Rqz7B0E54d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Advantis Selling\",\"col\":3}},{\"id\":\"ZDwf41MVXu\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ofQU1L-6-M\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Production Section</b><b></b></span>\",\"col\":12}},{\"id\":\"4CJUWs5PoU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan\",\"col\":3}},{\"id\":\"hXVFA6Dl_m\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan Summary\",\"col\":3}},{\"id\":\"hBiRjTH4A_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Planning Report\",\"col\":3}},{\"id\":\"qqi8_UoRus\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Weekly Production Plan\",\"col\":3}},{\"id\":\"AZE0_NRcTz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Sample\",\"col\":3}},{\"id\":\"h6U1IlnzQl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"Iyjb3hZndf\",\"type\":\"card\",\"data\":{\"card_name\":\"Selling\",\"col\":4}},{\"id\":\"zfIkVKAgZX\",\"type\":\"card\",\"data\":{\"card_name\":\"Items and Pricing\",\"col\":4}},{\"id\":\"6qAGQbRcKp\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"eBrd1P6db2\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"zqNCqQ1JFj\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -1044,7 +1044,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-01-29 16:39:54.452479",
+  "modified": "2024-01-31 17:39:52.397475",
   "module": "Selling",
   "name": "Selling",
   "number_cards": [],
@@ -1055,6 +1055,22 @@
   "roles": [],
   "sequence_id": 29.0,
   "shortcuts": [
+   {
+    "color": "Grey",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Advantis Selling",
+    "link_to": "Advantis Selling",
+    "parent": "Selling",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "Dashboard",
+    "url": null
+   },
    {
     "color": "Grey",
     "doc_view": null,
@@ -3333,7 +3349,7 @@
     "dependencies": null,
     "hidden": 0,
     "icon": null,
-    "is_query_report": 0,
+    "is_query_report": 1,
     "label": "Quality Wise Slab Report",
     "link_count": 0,
     "link_to": "Quality Wise Slab Report",
@@ -3346,7 +3362,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-01-29 16:53:04.014474",
+  "modified": "2024-01-31 17:40:42.386792",
   "module": "Stock",
   "name": "Stock",
   "number_cards": [],
