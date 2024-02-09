@@ -84,13 +84,13 @@
   "doctype": "Workflow",
   "document_type": "Supplier Quotation",
   "is_active": 1,
-  "modified": "2023-10-27 12:13:06.792663",
+  "modified": "2024-02-07 12:58:22.124414",
   "name": "Supplier Quotation WorkFlow",
   "override_status": 0,
   "send_email_alert": 0,
   "states": [
    {
-    "allow_edit": "All",
+    "allow_edit": "Purchase User",
     "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
@@ -104,7 +104,7 @@
     "update_value": "Pending"
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Purchase User",
     "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
@@ -118,7 +118,7 @@
     "update_value": "Approved"
    },
    {
-    "allow_edit": "All",
+    "allow_edit": "Purchase User",
     "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
@@ -135,8 +135,8 @@
   "transitions": [
    {
     "action": "Approve",
-    "allow_self_approval": 0,
-    "allowed": "All",
+    "allow_self_approval": 1,
+    "allowed": "Purchase User",
     "condition": null,
     "next_state": "Approved",
     "parent": "Supplier Quotation WorkFlow",
@@ -146,8 +146,8 @@
    },
    {
     "action": "Reject",
-    "allow_self_approval": 0,
-    "allowed": "All",
+    "allow_self_approval": 1,
+    "allowed": "Purchase User",
     "condition": null,
     "next_state": "Rejected",
     "parent": "Supplier Quotation WorkFlow",

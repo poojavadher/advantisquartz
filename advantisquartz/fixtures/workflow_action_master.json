@@ -2,20 +2,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2023-05-26 15:47:01.690927",
-  "name": "Approve",
-  "workflow_action_name": "Approve"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-05-26 15:47:01.694459",
-  "name": "Reject",
-  "workflow_action_name": "Reject"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2023-05-26 15:47:01.699316",
   "name": "Review",
   "workflow_action_name": "Review"
@@ -40,5 +26,19 @@
   "modified": "2023-10-16 12:21:12.908406",
   "name": "Gate In",
   "workflow_action_name": "Gate In"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-05-26 15:47:01.690927",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-05-26 15:47:01.694459",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
  }
 ]

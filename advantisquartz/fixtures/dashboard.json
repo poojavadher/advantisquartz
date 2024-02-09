@@ -2,6 +2,141 @@
  {
   "cards": [
    {
+    "card": "Production Pending",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "In Production",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Production Complete",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Ready To Inspection",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Ready To Dispatch",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Dispatched",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Partially Dispatch",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Order Cancel",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Paking list item Sales Grade P",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Paking list item Sales Grade A",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Paking list item Sales Grade B",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Paking list item Sales Grade C",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Total Incoming Payment",
+    "parent": "Advantis Selling",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Sales Order Trends",
+    "parent": "Advantis Selling",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   },
+   {
+    "chart": "UOM Wise Saleable Measurement",
+    "parent": "Advantis Selling",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "UOM Wise Gross Measurement",
+    "parent": "Advantis Selling",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Sale Order Received (In Qty-Sales UOM)",
+    "parent": "Advantis Selling",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Sale Order Completed (In Qty-Sales UOM)",
+    "parent": "Advantis Selling",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Sale Order Pending (In Qty-Sales UOM)",
+    "parent": "Advantis Selling",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Advantis Selling",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2024-02-06 16:22:49.280531",
+  "module": "Advantisquartz",
+  "name": "Advantis Selling"
+ },
+ {
+  "cards": [
+   {
     "card": "Material Request Pending for approval",
     "parent": "AQ Buying Dashboard",
     "parentfield": "cards",
@@ -96,7 +231,7 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2023-10-18 17:06:30.102917",
+  "modified": "2024-02-06 16:26:44.243651",
   "module": "Advantisquartz",
   "name": "AQ Buying Dashboard"
  },
@@ -160,7 +295,7 @@
   "doctype": "Dashboard",
   "is_default": 0,
   "is_standard": 0,
-  "modified": "2024-01-29 18:37:18.725354",
+  "modified": "2024-02-06 16:22:49.341265",
   "module": "Advantisquartz",
   "name": "AQ Stock Dashboard"
  }

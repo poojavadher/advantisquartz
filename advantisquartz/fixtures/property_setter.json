@@ -5710,5 +5710,21 @@
   "property_type": "Check",
   "row_name": null,
   "value": "1"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Workspace",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2024-02-06 17:38:11.773827",
+  "module": null,
+  "name": "Workspace-main-allow_import",
+  "property": "allow_import",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "1"
  }
 ]

@@ -100,7 +100,8 @@ app_license = "MIT"
 
 override_doctype_class = {
 	"Gratuity": "advantisquartz.overrides.Gratuity",
-    "Employee Checkin": "advantisquartz.employee_checkin.EmployeeCheckin"
+    "Employee Checkin": "advantisquartz.employee_checkin.EmployeeCheckin",
+    "Stock Reconciliation": "advantisquartz.stock_reconciliation.StockReconciliation"
 }
 
 # Document Events
@@ -248,8 +249,10 @@ fixtures = [
     ]},
     {"dt":"Dashboard","filters":[
         [
-            "module","in",[
-                "advantisquartz","AQ Buying Dashboard"
+            "name","in",[
+                "Advantis Selling",
+                "AQ Stock Dashboard",
+                "AQ Buying Dashboard"
             ]
         ]
     ]},
