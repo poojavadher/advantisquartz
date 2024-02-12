@@ -296,11 +296,11 @@
   "doctype": "Server Script",
   "doctype_event": "After Save",
   "event_frequency": "All",
-  "modified": "2024-01-08 15:23:40.274703",
+  "modified": "2024-02-12 17:24:06.926789",
   "module": "Advantisquartz",
   "name": "Batch Create Auto",
   "reference_doctype": "Stock Entry",
-  "script": "for item in doc.items:\n    if item.is_finished_item == 1:\n        frappe.get_doc(dict(\n                doctype = 'Batch',\n       \t        batch_id = item.batch_no,\n                item = item.item_code    )).insert()\n\n        ",
+  "script": "for item in doc.items:\n    if item.is_finished_item == 1 and doc.work_order:\n        frappe.get_doc(dict(\n                doctype = 'Batch',\n       \t        batch_id = item.batch_no,\n                item = item.item_code    )).insert()\n\n        ",
   "script_type": "DocType Event"
  },
  {
@@ -328,11 +328,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2024-01-10 13:56:29.311518",
+  "modified": "2024-02-12 15:30:32.670666",
   "module": "Advantisquartz",
   "name": "batch no. auto create",
   "reference_doctype": "Stock Entry",
-  "script": "if doc.is_new():\n    for item in doc.items:\n        if item.is_finished_item == 1:\n            batch_list = frappe.db.get_list('Batch', filters={'item': item.item_code}, fields=['batch_id'], as_list=True)\n            frappe.msgprint(\"Batch List: \" + str(batch_list))\n            batch = frappe.db.get_value(\"Work Order\", doc.work_order, fieldname='lot_no')\n            \n\n            if batch not in [i[0] for i in batch_list]:\n                \n                new_batch = frappe.get_doc({\n                    'doctype': 'Batch',\n                    'batch_id': batch,\n                    'item': item.item_code\n                })\n                new_batch.insert()\n            item.batch_no = batch\n",
+  "script": "if doc.is_new():\n    for item in doc.items:\n        if item.is_finished_item == 1:\n            batch_list = frappe.db.get_list('Batch', filters={'item': item.item_code}, fields=['batch_id'], as_list=True)\n            frappe.msgprint(\"Batch List: \" + str(batch_list))\n            batch = frappe.db.get_value(\"Work Order\", doc.work_order, fieldname='lot_no')\n            item.batch_no = batch\n",
   "script_type": "DocType Event"
  },
  {
@@ -382,5 +382,21 @@
   "reference_doctype": "Machine Maintenance Log",
   "script": "reference_name = frappe.form_dict[\"reference_name\"]\n\nmachine_maintenance_logs = frappe.get_list(\n    'Machine Maintenance Log',\n    filters={\n        'machine_maintenance_schedule': reference_name,\n        'maintenance_status': 'Planned'\n    },\n    fields=['name']\n)\n\nfor log in machine_maintenance_logs:\n    machine_maintenance_log = frappe.get_doc('Machine Maintenance Log', log['name'])\n\n    machine_maintenance_log.completion_date = frappe.utils.today()\n    machine_maintenance_log.maintenance_status = 'Completed'\n\n    machine_maintenance_log.submit()\n\nfrappe.response[\"reference_name\"] = reference_name\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 1,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Save",
+  "event_frequency": "All",
+  "modified": "2024-02-12 16:24:11.869996",
+  "module": "Advantisquartz",
+  "name": "Validate Batch in work order",
+  "reference_doctype": "Work Order",
+  "script": "prod_item = doc.production_item\nbatch =  frappe.db.get_list('Batch',filters={'item': prod_item },fields=['name'],as_list=True)\nif not batch:\n    frappe.throw(\"Following Batch Is Not Associated with Production Item In This Document\")\n    ",
+  "script_type": "DocType Event"
  }
 ]
