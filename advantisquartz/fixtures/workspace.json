@@ -1044,7 +1044,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-01-31 17:39:52.397475",
+  "modified": "2024-02-15 18:29:05.059773",
   "module": "Selling",
   "name": "Selling",
   "number_cards": [],
@@ -2063,7 +2063,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-01-29 16:35:56.718339",
+  "modified": "2024-02-15 18:29:03.980208",
   "module": "Buying",
   "name": "Buying",
   "number_cards": [],
@@ -3362,7 +3362,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-02-06 15:11:55.336757",
+  "modified": "2024-02-15 18:29:05.136137",
   "module": "Stock",
   "name": "Stock",
   "number_cards": [],
@@ -3805,7 +3805,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-01-29 16:40:36.241621",
+  "modified": "2024-02-15 18:29:05.007608",
   "module": "Quality Management",
   "name": "Quality",
   "number_cards": [],
@@ -4584,7 +4584,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2023-11-28 15:19:23.911910",
+  "modified": "2024-02-15 18:29:04.906515",
   "module": "Manufacturing",
   "name": "Manufacturing",
   "number_cards": [],
@@ -5219,7 +5219,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2024-01-16 17:35:48.680317",
+  "modified": "2024-02-15 18:29:04.328112",
   "module": "HR",
   "name": "Employee Lifecycle",
   "number_cards": [],
@@ -5318,7 +5318,7 @@
   "is_hidden": 0,
   "label": "Employee Request",
   "links": [],
-  "modified": "2023-11-10 09:55:34.541805",
+  "modified": "2024-02-15 18:29:03.676717",
   "module": "",
   "name": "Employee Request",
   "number_cards": [],
