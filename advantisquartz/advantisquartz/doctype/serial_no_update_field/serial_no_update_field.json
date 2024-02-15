@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "company",
   "serial_no_child",
   "amended_from"
  ],
@@ -33,12 +34,20 @@
    "fieldtype": "Table",
    "label": "Serial No Child ",
    "options": "Serial No Child"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-21 12:01:49.620861",
+ "modified": "2024-02-15 18:39:53.399965",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Serial No Update Field",

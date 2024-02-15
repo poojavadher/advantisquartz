@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "title",
+  "company",
   "parameters"
  ],
  "fields": [
@@ -23,11 +24,19 @@
    "fieldtype": "Table",
    "label": "Parameters",
    "options": "Lab Sections And Mesh No"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-13 11:27:56.205306",
+ "modified": "2024-02-15 18:41:11.306125",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Mesh QC Template",

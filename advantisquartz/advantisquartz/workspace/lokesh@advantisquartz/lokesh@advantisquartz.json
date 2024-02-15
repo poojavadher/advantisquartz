@@ -1,0 +1,464 @@
+{
+ "charts": [
+  {
+   "chart_name": "Bank Balance",
+   "label": "Bank Balance"
+  },
+  {
+   "chart_name": "Warehouse wise Stock Value",
+   "label": "Warehouse wise Stock Value"
+  },
+  {
+   "chart_name": "Purchase Receipt Trends",
+   "label": "Purchase Receipt Trends"
+  }
+ ],
+ "content": "[{\"id\":\"A7aqqhoZyc\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><i>--- Purchase ---</i></b></span><br>\",\"col\":12}},{\"id\":\"-Zss4mRn5V\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pending Purchase Orders \",\"col\":3}},{\"id\":\"Rr8OOzR4E7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Register\",\"col\":3}},{\"id\":\"udjn-FlgWQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Buying Dashboard\",\"col\":3}},{\"id\":\"qzi32hnCau\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><i>--- Stock ---</i></b><b></b></span>\",\"col\":12}},{\"id\":\"XXZbVR7c6i\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Dashbaord\",\"col\":3}},{\"id\":\"PhZXoJPZSd\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Warehouse wise Stock Value\",\"col\":12}},{\"id\":\"mqcZ823xjP\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock & Production\",\"col\":4}},{\"id\":\"KRSj6tQEsK\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><i>--- Production ---</i></b><b></b></span>\",\"col\":12}},{\"id\":\"4QueokrRPS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"BOM Wise Costing\",\"col\":3}},{\"id\":\"_8wNCnZUSa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"BOM Wise Costing Monthly\",\"col\":3}},{\"id\":\"2lKYCSp05s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manufacturing Dashboard\",\"col\":3}},{\"id\":\"K68rA-eDeJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><i>--- Sales ---</i></b><b></b></span>\",\"col\":12}},{\"id\":\"-YctqtenBM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"No of Slabs Avaialble\",\"col\":3}},{\"id\":\"xvkVECi2Oa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"No of Slabs Sold\",\"col\":3}},{\"id\":\"3Hx8vzKa__\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"No of Slabs Hold\",\"col\":3}},{\"id\":\"VVRYr7iirc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Target VS Achieved\",\"col\":3}},{\"id\":\"XC2-NBn7EH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Register\",\"col\":3}},{\"id\":\"nKhenq2e3w\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Selling Dashboard\",\"col\":3}},{\"id\":\"JozPYMrm-A\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"lww8Tf8b-w\",\"type\":\"card\",\"data\":{\"card_name\":\"Order Dispatch Status\",\"col\":4}},{\"id\":\"5kvYomdLYY\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b><i>--- Accounting ---</i></b><b></b></span>\",\"col\":12}},{\"id\":\"3YEnGvLraF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Dashboard\",\"col\":3}},{\"id\":\"wlda6csKBB\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Bank Balance\",\"col\":12}},{\"id\":\"GTyPn9JkC3\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"rvJw4zqbzC\",\"type\":\"card\",\"data\":{\"card_name\":\"Debtors & Creditors Daily Report\",\"col\":4}},{\"id\":\"AfQCTWp_LS\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Receipt Trends\",\"col\":12}}]",
+ "creation": "2024-02-08 11:23:44.526937",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 1,
+ "icon": "folder-normal",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Lokesh@advantisquartz",
+ "links": [
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Chart of Accounts",
+   "link_count": 0,
+   "link_to": "Account",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Company",
+   "link_count": 0,
+   "link_to": "Company",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer",
+   "link_count": 0,
+   "link_to": "Customer",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier",
+   "link_count": 0,
+   "link_to": "Supplier",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item",
+   "link_count": 0,
+   "link_to": "Item",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Warehouse",
+   "link_count": 0,
+   "link_to": "Warehouse",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Brand",
+   "link_count": 0,
+   "link_to": "Brand",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit of Measure (UOM)",
+   "link_count": 0,
+   "link_to": "UOM",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock Reconciliation",
+   "link_count": 0,
+   "link_to": "Stock Reconciliation",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lead",
+   "link_count": 0,
+   "link_to": "Lead",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer Group",
+   "link_count": 0,
+   "link_to": "Customer Group",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Territory",
+   "link_count": 0,
+   "link_to": "Territory",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Import Data",
+   "link_count": 0,
+   "link_to": "Data Import",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Opening Invoice Creation Tool",
+   "link_count": 0,
+   "link_to": "Opening Invoice Creation Tool",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Chart of Accounts Importer",
+   "link_count": 0,
+   "link_to": "Chart of Accounts Importer",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Letter Head",
+   "link_count": 0,
+   "link_to": "Letter Head",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Email Account",
+   "link_count": 0,
+   "link_to": "Email Account",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock & Production",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "FG Stock Balance",
+   "link_count": 0,
+   "link_to": "Stock Balance",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Work Order Summary(Daily Production)",
+   "link_count": 0,
+   "link_to": "Work Order Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock Ageing",
+   "link_count": 0,
+   "link_to": "Stock Ageing",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Order Dispatch Status",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Order",
+   "link_count": 0,
+   "link_to": "Sales Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Analytics",
+   "link_count": 0,
+   "link_to": "Sales Analytics",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Order Analysis",
+   "link_count": 0,
+   "link_to": "Sales Order Analysis",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Debtors & Creditors Daily Report",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Accounts Payable",
+   "link_count": 0,
+   "link_to": "Accounts Payable",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Accounts Payable Summary",
+   "link_count": 0,
+   "link_to": "Accounts Payable Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Accounts Receivable",
+   "link_count": 0,
+   "link_to": "Accounts Receivable",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Accounts Receivable Summary",
+   "link_count": 0,
+   "link_to": "Accounts Receivable Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-02-15 18:29:05.628514",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Lokesh@advantisquartz",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 40.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Accounts Dashboard",
+   "link_to": "Accounts",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "BOM Wise Costing",
+   "link_to": "BOM Wise Costing",
+   "type": "Report"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{} Active",
+   "label": "No of Slabs Avaialble",
+   "link_to": "Serial No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} ",
+   "label": "Pending Purchase Orders ",
+   "link_to": "Purchase Order",
+   "stats_filter": "[[\"Purchase Order\",\"per_received\",\"<\",100,false],[\"Purchase Order\",\"status\",\"not in\",[\"Draft\",\"Cancelled\",\"Closed\",null],false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} Delivered",
+   "label": "No of Slabs Sold",
+   "link_to": "Serial No",
+   "stats_filter": "[[\"Serial No\",\"status\",\"=\",\"Delivered\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "BOM Wise Costing Monthly",
+   "link_to": "BOM Wise Costing Monthly",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Purchase Register",
+   "link_to": "Purchase Register",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Buying Dashboard",
+   "link_to": "Buying",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Red",
+   "doc_view": "List",
+   "format": "{} Hold",
+   "label": "No of Slabs Hold",
+   "link_to": "Serial No",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Manufacturing Dashboard",
+   "link_to": "Manufacturing",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Stock Dashbaord",
+   "link_to": "Stock",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Target VS Achieved",
+   "link_to": "Sales Person Target Variance Based On Item Group",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Register",
+   "link_to": "Sales Register",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Selling Dashboard",
+   "link_to": "Selling",
+   "type": "Dashboard"
+  }
+ ],
+ "title": "Lokesh@advantisquartz"
+}

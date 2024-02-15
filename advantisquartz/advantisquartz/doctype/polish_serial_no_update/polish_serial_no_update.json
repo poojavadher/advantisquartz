@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "company",
   "column_break_de9qw",
   "scan_barcode",
   "section_break_jolkl",
@@ -51,12 +52,20 @@
    "fieldtype": "Data",
    "label": "Scan Barcode",
    "options": "Barcode"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-27 15:22:41.883225",
+ "modified": "2024-02-15 18:36:49.402362",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Serial No Update",

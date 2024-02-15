@@ -67,7 +67,7 @@ frappe.ui.form.on('Packing list', {
                     });
                 }
             });
-        });
+        }).css({"color":"white", "background-color": "#14141f", "font-weight": "800"});
     }
 });
 

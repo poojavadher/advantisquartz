@@ -10,6 +10,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "company",
   "material_type",
   "sample_code",
   "sample_name",
@@ -189,12 +190,19 @@
    "label": "Sample Party Name",
    "permlevel": 1,
    "print_hide": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-18 10:51:52.623548",
+ "modified": "2024-02-15 18:36:15.861377",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Lab Sample",

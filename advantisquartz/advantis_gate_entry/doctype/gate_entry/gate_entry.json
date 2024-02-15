@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "company",
   "entry_type",
   "purpose",
   "party_type",
@@ -478,6 +479,13 @@
    "fieldname": "lr_no",
    "fieldtype": "Data",
    "label": "Lr No"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -488,7 +496,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2024-01-20 13:25:55.490876",
+ "modified": "2024-02-15 18:44:44.908320",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",

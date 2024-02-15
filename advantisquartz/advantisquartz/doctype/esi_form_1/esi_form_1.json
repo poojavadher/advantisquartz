@@ -14,6 +14,7 @@
   "employee_name",
   "date_of_birth",
   "gender",
+  "company",
   "branch_office",
   "name_of_the_employer",
   "column_break_b1plr",
@@ -278,11 +279,19 @@
    "fieldtype": "Attach Image",
    "hidden": 1,
    "label": "emp img"
+  },
+  {
+   "fetch_from": "employee.company",
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-18 15:07:55.089533",
+ "modified": "2024-02-15 18:41:45.158019",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "ESI FORM-1",

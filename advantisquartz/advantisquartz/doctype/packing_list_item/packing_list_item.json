@@ -8,6 +8,7 @@
  "field_order": [
   "container_no",
   "item_code",
+  "item_description",
   "serial_no",
   "production_details_section",
   "production_length",
@@ -135,12 +136,19 @@
    "fieldname": "carrate_no",
    "fieldtype": "Float",
    "label": "Carrate No"
+  },
+  {
+   "fetch_from": "item_code.description",
+   "fetch_if_empty": 1,
+   "fieldname": "item_description",
+   "fieldtype": "Small Text",
+   "label": "Item Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-30 16:26:38.171524",
+ "modified": "2024-02-13 18:31:57.784529",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing List Item",

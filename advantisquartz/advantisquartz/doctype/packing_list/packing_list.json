@@ -11,17 +11,23 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "posting_date",
   "sales_order",
+  "company",
   "uom",
   "column_break_w2yc2",
   "container_no",
+  "vehicle_no",
   "barcode_scanner",
   "delivered",
   "section_break_8gyty",
   "items",
   "amended_from",
   "total_saleable_measurement",
-  "total_gross_measurement"
+  "total_gross_measurement",
+  "sample_item",
+  "section_break_olvsq",
+  "sample_packing_details"
  ],
  "fields": [
   {
@@ -97,12 +103,48 @@
    "fieldtype": "Float",
    "hidden": 1,
    "label": "Total Gross Measurement"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "description": "It will Auto Fetch From Delivery Note",
+   "fieldname": "vehicle_no",
+   "fieldtype": "Data",
+   "label": "Vehicle No"
+  },
+  {
+   "fieldname": "sample_item",
+   "fieldtype": "Table",
+   "label": "Sample Item",
+   "options": "Sample Item"
+  },
+  {
+   "fieldname": "sample_packing_details",
+   "fieldtype": "Data",
+   "label": "Sample Packing Details"
+  },
+  {
+   "fieldname": "section_break_olvsq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "sales_order.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-31 14:14:29.143444",
+ "modified": "2024-02-15 18:25:58.696743",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing list",

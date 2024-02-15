@@ -50,25 +50,25 @@
     "parenttype": "Dashboard"
    },
    {
-    "card": "Paking list item Sales Grade P",
+    "card": "Packing list item Sales Grade P",
     "parent": "Advantis Selling",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
-    "card": "Paking list item Sales Grade A",
+    "card": "Packing list item Sales Grade A",
     "parent": "Advantis Selling",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
-    "card": "Paking list item Sales Grade B",
+    "card": "Packing list item Sales Grade B",
     "parent": "Advantis Selling",
     "parentfield": "cards",
     "parenttype": "Dashboard"
    },
    {
-    "card": "Paking list item Sales Grade C",
+    "card": "Packing list item Sales Grade C",
     "parent": "Advantis Selling",
     "parentfield": "cards",
     "parenttype": "Dashboard"

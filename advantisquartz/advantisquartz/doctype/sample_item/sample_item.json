@@ -1,0 +1,119 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-02-14 11:03:31.604824",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_type",
+  "item_code",
+  "item_description",
+  "column_break_nfxiu",
+  "uom",
+  "quantity",
+  "measurements_section",
+  "production_length",
+  "production_width",
+  "gross_measurement",
+  "column_break_esvhj",
+  "sales_length",
+  "sales_width",
+  "saleable_measurement"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Item Type",
+   "options": "\nSample\nService\nOther"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "production_length",
+   "fieldtype": "Float",
+   "label": "Production Length"
+  },
+  {
+   "fieldname": "production_width",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Production Width"
+  },
+  {
+   "fieldname": "gross_measurement",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Gross Measurement"
+  },
+  {
+   "fieldname": "sales_length",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Sales Length"
+  },
+  {
+   "fieldname": "sales_width",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Sales Width"
+  },
+  {
+   "fieldname": "saleable_measurement",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Saleable Measurement"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "column_break_nfxiu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "measurements_section",
+   "fieldtype": "Section Break",
+   "label": "Measurements"
+  },
+  {
+   "fieldname": "column_break_esvhj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "item_code.description",
+   "fieldname": "item_description",
+   "fieldtype": "Text Editor",
+   "label": "Item Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-02-14 15:32:00.772047",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Sample Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

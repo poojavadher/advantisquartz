@@ -13,6 +13,7 @@
   "hod",
   "date",
   "column_break_7g26d",
+  "company",
   "joining",
   "designation",
   "department",
@@ -418,11 +419,18 @@
    "fieldname": "que8",
    "fieldtype": "Heading",
    "label": "<h5>8) Would you like to work with us again in case an opportunity is available to you in future?</h5>"
+  },
+  {
+   "fetch_from": "employee.company",
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-26 16:17:54.723270",
+ "modified": "2024-02-15 18:44:06.739763",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Exit Interview Questionnaire",
