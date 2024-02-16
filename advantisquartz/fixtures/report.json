@@ -2480,6 +2480,43 @@
   "docstatus": 0,
   "doctype": "Report",
   "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": "{}",
+  "letter_head": "LetterHead",
+  "modified": "2024-02-16 12:58:22.779857",
+  "module": "Advantisquartz",
+  "name": "Custom Work Order Consumed Materials",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Work Order",
+  "reference_report": null,
+  "report_name": "Custom Work Order Consumed Materials",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Custom Work Order Consumed Materials",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Custom Work Order Consumed Materials",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Manufacturing User"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
   "is_standard": "No",
   "javascript": null,
   "json": "{\"filters\":[[\"Gate Entry\",\"gate_in_date\",\"Timespan\",\"this week\",false],[\"Gate Entry\",\"grn\",\"=\",0,false],[\"Gate Entry\",\"entry_type\",\"!=\",\"Outward\",false],[\"Gate Entry\",\"purpose\",\"=\",\"Raw Material\"]],\"fields\":[[\"name\",\"Gate Entry\"],[\"docstatus\",\"Gate Entry\"],[\"entry_type\",\"Gate Entry\"],[\"gate_in_date\",\"Gate Entry\"],[\"supplier\",\"Gate Entry\"],[\"invoice_no\",\"Gate Entry\"],[\"invoice_date\",\"Gate Entry\"],[\"naming_series\",\"Gate Entry\"],[\"purpose\",\"Gate Entry\"],[\"driver_name\",\"Gate Entry\"],[\"truck_no\",\"Gate Entry\"],[\"gate_in_time\",\"Gate Entry\"],[\"driver_mobile_no\",\"Gate Entry\"],[\"grn\",\"Gate Entry\"],[\"remarks\",\"Gate Entry\"],[\"item_name\",\"Gate Entry Stock Items\"],[\"gate_out_time\",\"Gate Entry\"],[\"is_weight_in\",\"Gate Entry\"],[\"is_weight_out\",\"Gate Entry\"],[\"net_weight\",\"Gate Entry\"],[\"weight_out\",\"Gate Entry\"]],\"order_by\":\"`tabGate Entry`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"docstatus\":120,\"entry_type\":120,\"gate_in_date\":120,\"supplier\":120,\"invoice_no\":120,\"invoice_date\":120,\"naming_series\":120,\"purpose\":120,\"driver_name\":120,\"truck_no\":120,\"gate_in_time\":120,\"driver_mobile_no\":120,\"grn\":120,\"remarks\":120,\"Gate Entry Stock Items:item_name\":120,\"gate_out_time\":120,\"is_weight_in\":120,\"is_weight_out\":120,\"net_weight\":120,\"weight_out\":120},\"group_by\":null}",
