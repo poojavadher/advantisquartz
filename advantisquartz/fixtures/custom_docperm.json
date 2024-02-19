@@ -7871,7 +7871,7 @@
   "select": 0,
   "set_user_permissions": 0,
   "share": 1,
-  "submit": 0,
+  "submit": 1,
   "write": 1
  },
  {
@@ -8071,7 +8071,7 @@
   "select": 0,
   "set_user_permissions": 0,
   "share": 1,
-  "submit": 0,
+  "submit": 1,
   "write": 1
  },
  {
