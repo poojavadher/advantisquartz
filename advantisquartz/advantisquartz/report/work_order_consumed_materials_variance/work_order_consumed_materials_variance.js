@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
-frappe.query_reports["Custom Work Order Consumed Materials"] = {
+frappe.query_reports["Work Order Consumed Materials Variance"] = {
 	"filters": [
 		{
 			label: __("Company"),
@@ -52,11 +52,7 @@ frappe.query_reports["Custom Work Order Consumed Materials"] = {
 			fieldtype: "Select",
 			options: ["", "In Process", "Completed", "Stopped"]
 		},
-		{
-			label: __("Excess Materials Consumed"),
-			fieldname: "show_extra_consumed_materials",
-			fieldtype: "Check"
-		}
+		
 	],
 	"formatter": function(value, row, column, data, default_formatter) {
 		value = default_formatter(value, row, column, data);

@@ -12,6 +12,7 @@
   "company",
   "column_break_de9qw",
   "scan_barcode",
+  "posting_date",
   "section_break_jolkl",
   "polish_item",
   "amended_from"
@@ -60,12 +61,19 @@
    "label": "Company",
    "options": "Company",
    "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-02-15 18:36:49.402362",
+ "modified": "2024-02-21 16:29:10.094730",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Serial No Update",

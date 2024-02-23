@@ -101,7 +101,7 @@ app_license = "MIT"
 override_doctype_class = {
 	"Gratuity": "advantisquartz.overrides.Gratuity",
     "Employee Checkin": "advantisquartz.employee_checkin.EmployeeCheckin",
-    "Stock Reconciliation": "advantisquartz.stock_reconciliation.StockReconciliation"
+    # "Stock Reconciliation": "advantisquartz.stock_reconciliation.StockReconciliation"
 }
 
 # Document Events

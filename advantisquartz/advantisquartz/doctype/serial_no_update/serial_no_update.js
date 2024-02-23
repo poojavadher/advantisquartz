@@ -40,8 +40,9 @@ frappe.ui.form.on('Serial No Update', {
             var stage_i = d.stage_i;
             var stage_ii = d.stage_ii;
             var stage_iii = d.stage_iii;
-            var stage__iv = d.stage__iv;
+            var stage__iv = d.stage_iv;
             var stage_v = d.stage_v;
+            var stage_vi = d.custom_stage_vi;
             var bottemp = d.bottemp;
             var oven_operator_name = d.oven_operator_name
             var remarks = d.remarks;
@@ -85,6 +86,7 @@ frappe.ui.form.on('Serial No Update', {
                 'stage_iii':stage_iii,
                 'stage__iv':stage__iv,
                 'stage_v':stage_v,
+                'stage_vi':stage_vi,
                 'bottemp':bottemp,
                 'oven_operator_name':oven_operator_name,
                 'press_remarks':remarks,
