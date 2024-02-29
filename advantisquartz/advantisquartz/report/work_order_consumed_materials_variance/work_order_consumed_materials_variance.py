@@ -20,6 +20,7 @@ def execute(filters=None):
     previous_wo_name = ''
     wo_group_data = []  # List to hold data grouped by work order
     for wo_datas in wo_data:
+
         fo_qty += (wo_datas.required_qty / wo_datas.qty)
         formula_total += (wo_datas.required_qty / wo_datas.qty)
         cons_qty += (wo_datas.consumed_qty)
