@@ -46,7 +46,7 @@ def execute(filters=None):
                 rates = 0
                 for rate_data in wo_rate_data:
                     wo_creation_date = wo_data_name.posting_date
-                    if wo_data_name.item_code == rate_data.item_code and wo_creation_date > rate_data.posting_date:
+                    if wo_data_name.item_code == rate_data.item_code and rate_data.posting_date <= wo_creation_date:
                         rates = rate_data.valuation_rate
                         print("\n\n", rate_data, "\n\n")
                 wo_group_data.append({
@@ -66,22 +66,14 @@ def execute(filters=None):
 						"formula_qty_per": (((wo_data_name.required_qty/wo_data_name.qty)/formula_qty_per)*wo_data_name.qty)*100 if formula_qty_per != 0 else 0,
 "cons_qty_per": (wo_data_name.consumed_qty/consumed_qty_per)*100 if consumed_qty_per != 0 else 0,
 						"rm_rate":rates,
-						"rm_cost":(wo_data_name.consumed_qty * rates),
-						"cost_slab":((wo_data_name.consumed_qty * rates)/wo_data_name.qty),
+						"rm_cost":(wo_data_name.consumed_qty * wo_data_name.rate),
+						"cost_slab":((wo_data_name.consumed_qty * wo_data_name.rate)/wo_data_name.qty),
 						
-						"var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/(formula_qty_per/wo_data_name.qty))*100)-( (wo_data_name.consumed_qty/consumed_qty_per)*100) if formula_qty_per != 0 and consumed_qty_per !=0 else 0,
-						"var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
-                        "var_amt":(wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0)*(rates),
-                        
+						"var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/fo_qty)*100) - ( (wo_data_name.consumed_qty/cons_qty)*100),
+						"var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty,
 			    })
-               
             else:
-                rates_no = 0
-                for rate_data in wo_rate_data:
-                    wo_creation_date = wo_data_name.posting_date
-                    if wo_data_name.item_code == rate_data.item_code and wo_creation_date > rate_data.posting_date:
-                        rates_no = rate_data.valuation_rate
-                        print("\n\n", rate_data, "\n\n") 
+              
                 item_code_row = {
                 "name": '',
                 "status": '',
@@ -99,12 +91,12 @@ def execute(filters=None):
                 "formula_qty_per": (((wo_data_name.required_qty/wo_data_name.qty)/formula_qty_per)*wo_data_name.qty)*100 if formula_qty_per != 0 else 0,
 "cons_qty_per": (wo_data_name.consumed_qty/consumed_qty_per)*100 if consumed_qty_per != 0 else 0,
                 "uom":wo_data_name.uom,
-                "rm_rate":rates_no,
-                "rm_cost":wo_data_name.consumed_qty * rates_no,
-                "cost_slab":((wo_data_name.consumed_qty * rates_no)/wo_data_name.qty),
+                "rm_rate":wo_data_name.rate,
+                "rm_cost":wo_data_name.consumed_qty * wo_data_name.rate,
+                "cost_slab":((wo_data_name.consumed_qty * wo_data_name.rate)/wo_data_name.qty),
                 
-                "var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/(formula_qty_per/wo_data_name.qty))*100)-( (wo_data_name.consumed_qty/consumed_qty_per)*100) if formula_qty_per != 0 and consumed_qty_per !=0 else 0,
-                "var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
+                "var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/fo_qty)*100) - ( (wo_data_name.consumed_qty/cons_qty)*100),
+                "var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty,
             }
                 wo_group_data.append(item_code_row)
 
@@ -187,7 +179,6 @@ def get_columns():
   		{"label": _("COST/SLAB"), "fieldname": "cost_slab", "fieldtype": "Float", "width": 100,"precision":2},
       	{"label": _("VAR. FORMULA"), "fieldname": "var_formula", "fieldtype": "Float", "width": 150,"precision":2},
       	{"label": _("VAR.Qty"), "fieldname": "var_qty", "fieldtype": "Float", "width": 100,"precision":2},
-       {"label": _("VAR.AMT"), "fieldname": "var_amt", "fieldtype": "Float", "width": 100,"precision":2},
 
 
 		
@@ -263,7 +254,8 @@ def get_sum_work_order_data(filters):
     return frappe.db.sql(data_query, as_dict=True)
 
 def get_rate_order_data(filters):
-    
+    from_date = filters.get('from_date')
+    to_date = filters.get('to_date')
     data_query = f"""
         SELECT
             stl.item_code,
@@ -273,9 +265,11 @@ def get_rate_order_data(filters):
         FROM
             `tabStock Ledger Entry` stl 
         WHERE
-        
+        stl.posting_date BETWEEN '{from_date}' AND '{to_date}'
+        AND
              stl.valuation_rate IS NOT NULL
-        
+        GROUP BY
+            stl.item_code
     """
 
     return frappe.db.sql(data_query, as_dict=True)
