@@ -105,6 +105,7 @@ def execute(filters=None):
                 
                 "var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/(formula_qty_per/wo_data_name.qty))*100)-( (wo_data_name.consumed_qty/consumed_qty_per)*100) if formula_qty_per != 0 and consumed_qty_per !=0 else 0,
                 "var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
+                "var_amt":(wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0)*(rates),
             }
                 wo_group_data.append(item_code_row)
 
