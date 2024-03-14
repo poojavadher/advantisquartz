@@ -6,9 +6,6 @@ from datetime import datetime
 import frappe
 from frappe import _
 
-
-# ... (existing code)
-
 def execute(filters=None):
     columns, data = [], []
     columns = get_columns()
@@ -26,63 +23,66 @@ def execute(filters=None):
         fo_qty += (wo_datas.required_qty / wo_datas.qty)
         cons_qty += wo_datas.consumed_qty
         formula_total += (wo_datas.required_qty / wo_datas.qty)
+
     for wo_data_name in wo_data:
-            qty_rate = 0
+        qty_rate = 0
+        
+        if wo_data_name.name != previous_wo_name :                
+            if wo_group_data:
+            # If there is data for the previous work order, add a total row
+                total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","qty_prop","var_formula","var_qty"])
+                data.extend(wo_group_data)
+                data.append(total_row)
+                wo_group_data = []  # Reset the group for the new work order
+
+            formula_qty_per = 0
+            consumed_qty_per = 0
+            rates = 0
+
+            for work_data in wo_sum_data:
+                if work_data.name == wo_data_name.name:
+                    formula_qty_per += work_data.qty
+                    consumed_qty_per += work_data.consumed_qty
             
-            if wo_data_name.name != previous_wo_name :
-                
-                if wo_group_data:
-                # If there is data for the previous work order, add a total row
-                    total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","qty_prop","var_formula","var_qty"])
-                    data.extend(wo_group_data)
-                    data.append(total_row)
-                    wo_group_data = []  # Reset the group for the new work order
-                formula_qty_per = 0
-                consumed_qty_per = 0
-                for work_data in wo_sum_data:
-                    if work_data.name == wo_data_name.name:
-                        formula_qty_per += work_data.qty
-                        consumed_qty_per += work_data.consumed_qty
-                rates = 0
-                for rate_data in wo_rate_data:
-                    wo_creation_date = wo_data_name.posting_date
-                    if wo_data_name.item_code == rate_data.item_code and wo_creation_date > rate_data.posting_date:
-                        rates = rate_data.valuation_rate
-                        print("\n\n", rate_data, "\n\n")
-                wo_group_data.append({
-						"name": wo_data_name.name,
-                		"status": wo_data_name.status,
-                		"production_item":  wo_data_name.production_item,
-                		"qty": wo_data_name.qty,
-                		"produced_qty": wo_data_name.produced_qty,
-						"required_qty":wo_data_name.required_qty,
-						"consumed_qty":wo_data_name.consumed_qty,
-						"uom":wo_data_name.uom,
-						"raw_material_item_code":wo_data_name.item_code,
-                         "raw_material_name":wo_data_name.item_name,
-                         "consumed_material_item_code":wo_data_name.raw_code,
-                         
-						"formula_qty":(wo_data_name.required_qty/wo_data_name.qty),
-						"formula_qty_per": (((wo_data_name.required_qty/wo_data_name.qty)/formula_qty_per)*wo_data_name.qty)*100 if formula_qty_per != 0 else 0,
-"cons_qty_per": (wo_data_name.consumed_qty/consumed_qty_per)*100 if consumed_qty_per != 0 else 0,
-						"rm_rate":rates,
-						"rm_cost":(wo_data_name.consumed_qty * rates),
-						"cost_slab":((wo_data_name.consumed_qty * rates)/wo_data_name.qty),
-						
-						"var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/(formula_qty_per/wo_data_name.qty))*100)-( (wo_data_name.consumed_qty/consumed_qty_per)*100) if formula_qty_per != 0 and consumed_qty_per !=0 else 0,
-						"var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
+            for rate_data in wo_rate_data:
+                wo_creation_date = wo_data_name.posting_date
+                if wo_data_name.item_code == rate_data.item_code and wo_creation_date > rate_data.posting_date:
+                    rates = rate_data.valuation_rate
+                    # print("\n\n", rate_data, "\n\n")
+            wo_group_data.append({
+                        "name": wo_data_name.name,
+                        "status": wo_data_name.status,
+                        "production_item":  wo_data_name.production_item,
+                        "qty": wo_data_name.qty,
+                        "produced_qty": wo_data_name.produced_qty,
+                        "required_qty":wo_data_name.required_qty,
+                        "consumed_qty":wo_data_name.consumed_qty,
+                        "uom":wo_data_name.uom,
+                        "raw_material_item_code":wo_data_name.item_code,
+                        "raw_material_name":wo_data_name.item_name,
+                        "consumed_material_item_code":wo_data_name.raw_code,                         
+                        "formula_qty":(wo_data_name.required_qty/wo_data_name.qty),
+                        "formula_qty_per": (((wo_data_name.required_qty/wo_data_name.qty)/formula_qty_per)*wo_data_name.qty)*100 if formula_qty_per != 0 else 0,                        
+                        "cons_qty_per": (wo_data_name.consumed_qty/consumed_qty_per)*100 if consumed_qty_per != 0 else 0,
+                        "rm_rate":rates,
+                        "rm_cost":(wo_data_name.consumed_qty * rates),
+                        "cost_slab":((wo_data_name.consumed_qty * rates)/wo_data_name.qty),
+                        
+                        "var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/(formula_qty_per/wo_data_name.qty))*100)-( (wo_data_name.consumed_qty/consumed_qty_per)*100) if formula_qty_per != 0 and consumed_qty_per !=0 else 0,
+                        "var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
                         "var_amt":(wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0)*(rates),
                         
-			    })
+            })
                
-            else:
-                rates_no = 0
-                for rate_data in wo_rate_data:
-                    wo_creation_date = wo_data_name.posting_date
-                    if wo_data_name.item_code == rate_data.item_code and wo_creation_date > rate_data.posting_date:
-                        rates_no = rate_data.valuation_rate
-                        print("\n\n", rate_data, "\n\n") 
-                item_code_row = {
+        else:
+            rates_no = 0
+            for rate_data in wo_rate_data:
+                wo_creation_date = wo_data_name.posting_date
+                if wo_data_name.item_code == rate_data.item_code and wo_creation_date > rate_data.posting_date:
+                    rates_no = rate_data.valuation_rate
+                    # print("\n\n", rate_data, "\n\n") 
+                    
+            item_code_row = {
                 "name": '',
                 "status": '',
                 "production_item": '',
@@ -97,7 +97,7 @@ def execute(filters=None):
                 "required_qty":wo_data_name.required_qty,
                 "formula_qty":(wo_data_name.required_qty/wo_data_name.qty),
                 "formula_qty_per": (((wo_data_name.required_qty/wo_data_name.qty)/formula_qty_per)*wo_data_name.qty)*100 if formula_qty_per != 0 else 0,
-"cons_qty_per": (wo_data_name.consumed_qty/consumed_qty_per)*100 if consumed_qty_per != 0 else 0,
+                "cons_qty_per": (wo_data_name.consumed_qty/consumed_qty_per)*100 if consumed_qty_per != 0 else 0,
                 "uom":wo_data_name.uom,
                 "rm_rate":rates_no,
                 "rm_cost":wo_data_name.consumed_qty * rates_no,
@@ -107,9 +107,15 @@ def execute(filters=None):
                 "var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
                 "var_amt":(wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0)*(rates),
             }
+            item_already_exists = False
+            for item in wo_group_data:
+                if item['raw_material_item_code'] == item_code_row['raw_material_item_code']:
+                    item_already_exists = True
+                    break
+            if not item_already_exists:
                 wo_group_data.append(item_code_row)
 
-            previous_wo_name = wo_data_name.name
+        previous_wo_name = wo_data_name.name
 
     # Add the total row for the last work order in the data
     if wo_group_data:
@@ -118,6 +124,8 @@ def execute(filters=None):
         data.append(total_row)
 
     return columns, data
+
+
 
 def get_total_row(wo_group_data, fields_to_sum):
     total_row = {}
