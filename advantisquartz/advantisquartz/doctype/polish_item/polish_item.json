@@ -9,13 +9,13 @@
   "item_code",
   "item_name",
   "slab_no",
-  "weight",
+  "net_weight",
   "repair_contractor_name",
   "column_break_echeq",
   "length",
   "width",
   "batch",
-  "grade"
+  "qc_grade"
  ],
  "fields": [
   {
@@ -32,12 +32,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Item Name"
-  },
-  {
-   "fieldname": "weight",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Weight"
   },
   {
    "fetch_from": "eval:doc.item_code",
@@ -65,13 +59,6 @@
    "label": "Lot No"
   },
   {
-   "fieldname": "grade",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Grade",
-   "options": "\nP\nA\nB\nC"
-  },
-  {
    "fieldname": "column_break_echeq",
    "fieldtype": "Column Break"
   },
@@ -79,12 +66,25 @@
    "fieldname": "repair_contractor_name",
    "fieldtype": "Data",
    "label": "Repair Contractor Name"
+  },
+  {
+   "fieldname": "qc_grade",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "QC Grade",
+   "options": "\nP\nA\nB\nC"
+  },
+  {
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Net Weight"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-03 12:49:37.959471",
+ "modified": "2024-03-18 15:53:15.773329",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Polish Item",

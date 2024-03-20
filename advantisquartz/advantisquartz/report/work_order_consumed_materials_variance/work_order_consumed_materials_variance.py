@@ -30,7 +30,7 @@ def execute(filters=None):
         if wo_data_name.name != previous_wo_name :                
             if wo_group_data:
             # If there is data for the previous work order, add a total row
-                total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","qty_prop","var_formula","var_qty"])
+                total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","var_formula","var_qty","var_amt"])
                 data.extend(wo_group_data)
                 data.append(total_row)
                 wo_group_data = []  # Reset the group for the new work order
@@ -119,7 +119,7 @@ def execute(filters=None):
 
     # Add the total row for the last work order in the data
     if wo_group_data:
-        total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","qty_prop","var_formula","var_qty"])
+        total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","var_formula","var_qty","var_amt"])
         data.extend(wo_group_data)
         data.append(total_row)
 
