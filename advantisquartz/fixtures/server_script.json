@@ -104,11 +104,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-07-26 10:37:27.704443",
+  "modified": "2024-03-28 11:52:20.144382",
   "module": "Advantisquartz",
   "name": "tax",
   "reference_doctype": null,
-  "script": "a = frappe.form_dict[\"no\"]\n\nresult = frappe.db.sql(\"\"\"\n    SELECT tr.tax_rate\n    FROM `tabItem Tax Template` it\n    JOIN `tabItem Tax Template Detail` tr ON tr.parent = it.name\n    WHERE it.name = %s\n\"\"\", a)\n\n# Extract the tax rates from the result set\ntax_rates = [row[0] for row in result]\n\n# Compute the sum of tax rates\ntotal = sum(tax_rates)\ntotal_2 = str(total)\nfrappe.response[\"total\"]=total_2\n\n",
+  "script": "a = frappe.form_dict[\"no\"]\n\nresult = frappe.db.sql(\"\"\"\n    SELECT it.gst_rate\n    FROM `tabItem Tax Template` it\n   \n    WHERE it.name = %s\n\"\"\", a)\n\n# Extract the tax rates from the result set\ntax_rates = [row[0] for row in result]\n\n# Compute the sum of tax rates\ntotal = sum(tax_rates)\ntotal_2 = str(total)\nfrappe.response[\"total\"]=total_2\n\n",
   "script_type": "API"
  },
  {
