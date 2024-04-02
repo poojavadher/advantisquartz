@@ -345,10 +345,10 @@
   "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
-  "modified": "2023-09-20 16:51:52.153473",
+  "modified": "2024-04-01 17:18:00.840557",
   "module": "Advantisquartz",
   "name": "Set employee number",
-  "script": "frappe.ui.form.on('Employee', {\n\temployee(frm) {\n\t    var emp = frm.doc.employee;\n\t    frm.set_value('employee_number', emp);\n\t    frm.refresh_field('employee_number');\n\t}\n});",
+  "script": "frappe.ui.form.on('Employee', {\n\temployee(frm) {\n\t    var emp = frm.doc.employee;\n\t    frm.set_value('employee_number', emp);\n\t    frm.refresh_field('employee_number');\n\t}\n// \tafter_save(frm){\n// \t    var employee = frm.doc.employee;\n// \t    var employee_number = frm.doc.employee_number;\n\t    \n// \t    frm.toggle_display(['employee', 'employee_number'], 0);\n// \t}\n});\n\n// frappe.ui.form.on('Employee', {\n//     refresh(frm) {\n//         if (frm.doc.__islocal) {\n//             // This condition checks if the document is new or being updated\n//             var emp = frm.doc.employee;\n//             frm.set_value('employee_number', emp);\n//             frm.refresh_field('employee_number');\n//         }\n//     }\n// });\n\n// frappe.ui.form.on('Employee', {\n//     before_save(frm) {\n//         var emp = frm.doc.employee;\n//         frm.set_value('employee_number', emp);\n//         frm.refresh_field('employee_number');\n//     }\n// });\n\n",
   "view": "Form"
  },
  {

@@ -53,7 +53,7 @@ def execute(filters=None):
         "start_date": ["<=", from_date],
         "end_date": [">=", to_date],
         "docstatus": 1
-    }, fields=['name', 'esi_number', 'employee_name', 'gross_pay', 'payment_days', 'reason_code', 'relieving_date'])
+    }, fields=['name', 'esi_number', 'employee_name', 'gross_pay', 'payment_days', 'reason_code', 'custom_relieving_date'])
     
     # print("\n\n", salary_slips, "\n\n")
     
@@ -78,9 +78,9 @@ def execute(filters=None):
         payment_days = slip.get('payment_days')
         gross_pay = slip.get('gross_pay')
         reason_code = slip.get('reason_code')
-        relieving_date = slip.get('relieving_date')
-        if relieving_date:
-            relieving_date = datetime.strptime(relieving_date, '%Y-%m-%d').strftime('%d/%m/%Y')
+        custom_relieving_date = slip.get('custom_relieving_date')
+        if custom_relieving_date:
+            custom_relieving_date = datetime.strptime(custom_relieving_date, '%Y-%m-%d').strftime('%d/%m/%Y')
         
         data.append({
             "ip_number": esi_number, 
@@ -88,7 +88,7 @@ def execute(filters=None):
             "paid_days": math.ceil(payment_days),
             "monthly_wages": math.ceil(gross_pay),  
             "reason_code": reason_code,  
-            "last_working_day": relieving_date,
+            "last_working_day": custom_relieving_date,
         })
 
     return columns, data

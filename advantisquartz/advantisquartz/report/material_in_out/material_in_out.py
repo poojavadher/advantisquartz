@@ -6,20 +6,34 @@ from frappe import _
 
 
 def execute(filters=None):
-	columns = get_columns(filters)
-	purchase_data = get_purchase_data(filters)
-	data = []
-	for purchase in purchase_data:
-		data.append(purchase)
-	return columns, data
+    columns = get_columns(filters)
+    purchase_data = get_purchase_data(filters)
+    issue_data = get_issue_data(filters)
+    data = []
+    for purchase in purchase_data:
+        for issue in issue_data:
+            if purchase.item_code == issue.item_code:
+                data.append({
+                    "item_code":purchase.item_code,
+                    "item_name":purchase.item_name,
+                    "qty":purchase.qty,
+                    "issue_qty":issue.issue_qty,
+                    "max_of_required":purchase.qty - issue.issue_qty,
+                    "min_of_average_cum":issue.issue_qty/3
+                })
+        
+            
+    return columns, data
 
 
 def get_columns(filters):
     columns=[
-		{"label": _("Item Code"), "fieldname": "item_code", "fieldtype": "Link", "options":"Item"},
+		{"label": _("Item Code"), "fieldname": "item_code", "fieldtype": "Link", "options":"Item","width":200},
   		{"label": _("Item Name"), "fieldname": "item_name", "fieldtype": "Data"},
     {"label": _("Max of Stock"), "fieldname": "qty", "fieldtype": "Float"},
-    {"label": _("Issue Stock"), "fieldname": "issue_qty", "fieldtype": "Float"}
+    {"label": _("Issue Stock"), "fieldname": "issue_qty", "fieldtype": "Float"},
+    {"label": _("Max of Required"), "fieldname": "max_of_required", "fieldtype": "Float"},
+    {"label": _("Min of average cum"), "fieldname": "min_of_average_cum", "fieldtype": "Float"}
 	]
     
     return columns
@@ -54,12 +68,11 @@ def get_purchase_data(filters):
 def get_issue_data(filters):
     from_date = filters.get('from_date')
     to_date = filters.get('to_date')
-    supplier = filters.get('supplier_name')
     data_query = f"""
         SELECT
             sed.item_code,
             sed.item_name,
-            SUM(sed.qty) AS "qty"
+            SUM(sed.qty) AS "issue_qty"
             
         FROM
             `tabStock Entry` se 
@@ -67,6 +80,7 @@ def get_issue_data(filters):
             
         WHERE
             se.posting_date BETWEEN '{from_date}' AND '{to_date}'
+            AND sed.t_warehouse IS NULL
     """
     
     

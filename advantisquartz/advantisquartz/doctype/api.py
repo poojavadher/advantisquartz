@@ -4,6 +4,21 @@ import math
 from frappe.utils.file_manager import save_file_on_filesystem
 
 @frappe.whitelist(allow_guest=True)
+def set_attendance_date():
+    today = datetime.date.today()
+    yesterday_end_of_day = datetime.datetime.combine(today - datetime.timedelta(days=1), datetime.time(23, 59, 00))
+    y_datetime = yesterday_end_of_day.strftime("%Y-%m-%d %H:%M:%S")
+    
+    shift_types = frappe.get_all("Shift Type", fields=['name', 'last_sync_of_checkin'])
+    
+    for shift_type in shift_types:
+        frappe.db.set_value("Shift Type", shift_type['name'], "last_sync_of_checkin", y_datetime)
+        frappe.db.commit()
+    
+    # return y_datetime, shift_types
+
+
+@frappe.whitelist(allow_guest=True)
 def get_gratuity(employee):
     today = datetime.date.today()
     salary_slips = frappe.get_all("Salary Slip", filters={"employee": employee, "docstatus": 1}, fields=['name', 'employee', 'start_date', 'end_date'])

@@ -121,9 +121,15 @@ override_doctype_class = {
 scheduler_events = {
     "generate_leave_allocation": {
        "00 00 * * *": [
-          "advantisquartz.advantisquartz.doctype.api.generate_leave_allocation"
+            "advantisquartz.advantisquartz.doctype.api.generate_leave_allocation"
         ]
     },
+    "set_attendance_date":{
+        "50 23 * * *": [
+            "advantisquartz.advantisquartz.doctype.api.set_attendance_date"
+        ]
+    }
+    
     # "daily": [
 	# 	"advantisquartz.advantisquartz.doctype.api.generate_leave_allocation"
 	# ]

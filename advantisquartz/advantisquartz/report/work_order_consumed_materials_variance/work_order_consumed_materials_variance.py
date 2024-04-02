@@ -30,7 +30,7 @@ def execute(filters=None):
         if wo_data_name.name != previous_wo_name :                
             if wo_group_data:
             # If there is data for the previous work order, add a total row
-                total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","var_formula","var_qty","var_amt"])
+                total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","consume_qty","rm_cost/consumed_qty","rm_cost","cost_slab","var_formula","var_qty","var_amt"])
                 data.extend(wo_group_data)
                 data.append(total_row)
                 wo_group_data = []  # Reset the group for the new work order
@@ -57,6 +57,7 @@ def execute(filters=None):
                         "produced_qty": wo_data_name.produced_qty,
                         "required_qty":wo_data_name.required_qty,
                         "consumed_qty":wo_data_name.consumed_qty,
+                        "consume_qty":(wo_data_name.consumed_qty/wo_data_name.qty),
                         "uom":wo_data_name.uom,
                         "raw_material_item_code":wo_data_name.item_code,
                         "raw_material_name":wo_data_name.item_name,
@@ -93,6 +94,7 @@ def execute(filters=None):
                 "consumed_material_item_code":wo_data_name.raw_code,
                 
                 "consumed_qty":wo_data_name.consumed_qty,
+                "consume_qty":(wo_data_name.consumed_qty/wo_data_name.qty),
                 "transferred_qty":wo_data_name.transferred_qty,
                 "required_qty":wo_data_name.required_qty,
                 "formula_qty":(wo_data_name.required_qty/wo_data_name.qty),
@@ -105,7 +107,7 @@ def execute(filters=None):
                 
                 "var_formula":(((wo_data_name.required_qty/wo_data_name.qty)/(formula_qty_per/wo_data_name.qty))*100)-( (wo_data_name.consumed_qty/consumed_qty_per)*100) if formula_qty_per != 0 and consumed_qty_per !=0 else 0,
                 "var_qty":wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0,
-                "var_amt":(wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0)*(rates),
+                "var_amt":(wo_data_name.required_qty - wo_data_name.consumed_qty if  consumed_qty_per !=0 else 0)*(rates_no),
             }
             item_already_exists = False
             for item in wo_group_data:
@@ -119,9 +121,11 @@ def execute(filters=None):
 
     # Add the total row for the last work order in the data
     if wo_group_data:
-        total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","rm_rate","rm_cost","cost_slab","var_formula","var_qty","var_amt"])
+        total_row = get_total_row(wo_group_data, ["qty", "produced_qty","formula_qty","formula_qty_per","cons_qty_per","required_qty","consumed_qty","consume_qty","rm_cost/consumed_qty","rm_cost","cost_slab","var_formula","var_qty","var_amt"])
+        
         data.extend(wo_group_data)
         data.append(total_row)
+        
 
     return columns, data
 
@@ -142,6 +146,10 @@ def get_total_row(wo_group_data, fields_to_sum):
                     total_row[key] += float(value)
                 except ValueError:
                     pass  # Ignore non-numeric values
+
+    # Calculate RM Rate total
+    if total_row["consumed_qty"] != 0:
+        total_row["rm_rate"] = total_row["rm_cost"] / total_row["consumed_qty"]
 
     total_row["name"] = "Total"
     return total_row
@@ -188,8 +196,9 @@ def get_columns():
   		{"label": _("Formula Qty"), "fieldname": "formula_qty", "fieldtype": "Float", "width": 100,"precision":2},
   		{"label": _("Formula %"), "fieldname": "formula_qty_per", "fieldtype": "Float", "width": 100,"precision":2},
 		{"label": _("Cons %"), "fieldname": "cons_qty_per", "fieldtype": "Float", "width": 100,"precision":2},
-		{"label": _("Required Qty"), "fieldname": "required_qty", "fieldtype": "Float", "width": 100,"precision":2},
-		{"label": _("Consumed Qty"), "fieldname": "consumed_qty", "fieldtype": "Float", "width": 100,"precision":2},
+		{"label": _("Required Qty"), "fieldname": "required_qty", "fieldtype": "Float", "width": 120,"precision":2},
+		{"label": _("Consumed Qty"), "fieldname": "consumed_qty", "fieldtype": "Float", "width": 120,"precision":2},
+        {"label": _("Consume Qty"), "fieldname": "consume_qty", "fieldtype": "Float", "width": 120,"precision":2},
   		{"label": _("UOM"), "fieldname": "uom", "width": 130},
     	{"label": _("RM RATE"), "fieldname": "rm_rate", "fieldtype": "Float", "width": 100,"precision":2},
 		{"label": _("RM Cost"), "fieldname": "rm_cost", "fieldtype": "Float", "width": 100,"precision":2},

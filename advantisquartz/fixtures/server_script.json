@@ -478,5 +478,21 @@
   "reference_doctype": "Purchase Receipt",
   "script": "existing_pr = frappe.get_list(\n    \"Purchase Receipt\",\n    filters={\n        \"supplier\": doc.supplier,\n        \"bill_no\": doc.bill_no,\n        \"bill_date\": doc.bill_date,\n        \"gate_entry\": doc.gate_entry\n    },\n    fields=[\"name\"]\n)\n\nif existing_pr:\n    frappe.throw(\"Gate Entry Already Exists Against This Supplier With the Same Invoice No. and Date.\")",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "Daily",
+  "modified": "2024-04-01 17:18:38.683978",
+  "module": "Advantisquartz",
+  "name": "Process auto attendance",
+  "reference_doctype": null,
+  "script": "\"hrms.hr.doctype.shift_type.shift_type.process_auto_attendance_for_all_shifts\"",
+  "script_type": "Scheduler Event"
  }
 ]
