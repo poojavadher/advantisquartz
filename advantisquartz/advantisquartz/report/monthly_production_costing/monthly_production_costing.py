@@ -16,7 +16,8 @@ def execute(filters=None):
     total_amt = 0
     for work_data in work_order_data:
         total_qty += work_data.qty
-        total_qty_manufacture += work_data.manufacture_qty
+        total_qty_manufacture = work_data.manufacture_qty
+        
     for work_data in work_order_data:
         wo_creation_date = work_data.actual_end_date.date()
         for rates_data in rate_data:
@@ -67,6 +68,7 @@ def get_work_order_data(filters):
     to_date = filters.get('to_date')
     sub_item_group = filters.get('sub_item_group')
     attribute_value = filters.get('attribute_value')
+    item_code = filters.get('item_code')
     data_query = f"""
         SELECT
             wo.production_item,
@@ -86,10 +88,14 @@ def get_work_order_data(filters):
             AND item.item_sub_group = '{sub_item_group}'
             AND item.thickness = '{attribute_value}'
     """
-    
+    if item_code:
+        data_query += f" AND wo.production_item = '{item_code}'"
+        data_query += " GROUP BY wo.production_item, woi.item_code"
+    else:
+        data_query += " GROUP BY woi.item_code"
+
     
         
-    data_query += " GROUP BY wo.production_item, woi.item_code"
     return frappe.db.sql(data_query, as_dict=True)
 
 def get_rate_order_data(filters):

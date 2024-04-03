@@ -15,21 +15,6 @@ frappe.query_reports["Monthly Production Costing"] = {
 			reqd: 1
 		},
 		{
-			fieldname: "item_group",
-			label: __("Item Group"),
-			fieldtype: "Link",
-			options: "Item Group",
-			reqd: 0,
-			get_query: function() {
-				return {
-					filters: [
-						["Item Group", "is_group", "=", 1],
-						
-					]
-				};
-			}
-		},
-		{
 			fieldname: "sub_item_group",
 			label: __("Sub Item Group"),
 			fieldtype: "Link",
