@@ -22,8 +22,7 @@ def execute(filters=None):
                     "item_name":purchase.item_name,
                     "current_stock":stock.stock_qty,
                     "issue_qty":issue.issue_qty,
-                    # "max_of_required":purchase.qty - issue.issue_qty,
-                    # "min_of_average_cum":issue.issue_qty/3
+                    
                     })
         
             
@@ -96,8 +95,6 @@ def get_issue_data(filters):
 
 
 def get_stock_data(filters):
-    from_date = filters.get('from_date')
-    to_date = filters.get('to_date')
     data_query = f"""
         SELECT
             bin.item_code,
@@ -106,7 +103,8 @@ def get_stock_data(filters):
         FROM
             `tabBin` bin 
            
-            
+        WHERE 
+        bin.actual_qty > 0     
      
           
     """

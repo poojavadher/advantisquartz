@@ -14,6 +14,7 @@ def execute(filters=None):
     total_qty_manufacture = 0 
     total_qty_slab = 0
     total_amt = 0
+    total_amt_kg = 0
     for work_data in work_order_data:
         total_qty += work_data.qty
         total_qty_manufacture = work_data.manufacture_qty
@@ -27,22 +28,32 @@ def execute(filters=None):
         
         data.append({
             "raw_material": work_data.item_code,
+            "item_name":work_data.item_name,
             "rate": rates,
             "ratio":(work_data.qty / total_qty)*100,
             "qty": work_data.qty,
+            "amt_kg":rates * work_data.qty,
             "qty_kg_slab":work_data.qty/total_qty_manufacture,
             "amt":(work_data.qty/total_qty_manufacture)*rates
         })
         total_ratio += (work_data.qty / total_qty)*100
         total_qty_slab += float(work_data.qty/total_qty_manufacture)
         total_amt += (work_data.qty/total_qty_manufacture)*rates
+        total_amt_kg += (rates * work_data.qty)
+        
     # Append total row
     data.append({
         "raw_material": _("Total"),
         "ratio": total_ratio,
         "qty": total_qty,
         "qty_kg_slab":total_qty_slab,
-        "amt":total_amt
+        "amt":total_amt,
+        "amt_kg" : total_amt_kg
+    })
+    
+    data.append({
+        "raw_material": _("Total Produced Qty"),
+        "item_name":total_qty_manufacture
     })
 
     return columns, data
@@ -52,10 +63,12 @@ def execute(filters=None):
 def get_columns(filters):
     column =[
 		{"label":_("Raw Material"),"fieldname":"raw_material","fieldtype":"Link","options":"Item","width":200},
+        {"label":_("Item Name"),"fieldname":"item_name","fieldtype":"Data","width":200},
   		{"label":_("Grade"),"fieldname":"grade","fieldtype":"Data","width":120},
 		{"label":_("Rate"),"fieldname":"rate","fieldtype":"Float","width":120},
   		{"label":_("Ratio"),"fieldname":"ratio","fieldtype":"Float","width":120},
 		{"label":_("Qty(Kg)"),"fieldname":"qty","fieldtype":"Float","width":120},
+        {"label":_("Amount(Kg)"),"fieldname":"amt_kg","fieldtype":"Float","width":120},
 		{"label":_("Qty(Kg/Slab)"),"fieldname":"qty_kg_slab","fieldtype":"Float","width":120},
 		{"label":_("Amt.(Rs.)"),"fieldname":"amt","fieldtype":"Float","width":120}
   
@@ -86,7 +99,7 @@ def get_work_order_data(filters):
         WHERE
             wo.actual_end_date BETWEEN '{from_date}' AND '{to_date}'
             AND item.item_sub_group = '{sub_item_group}'
-            AND item.thickness = '{attribute_value}'
+            AND item.thickness like '%{attribute_value}%'
     """
     if item_code:
         data_query += f" AND wo.production_item = '{item_code}'"
