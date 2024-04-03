@@ -98,12 +98,16 @@ def get_work_order_data(filters):
 		JOIN `tabItem` item ON wo.production_item = item.name
         WHERE
             wo.actual_end_date BETWEEN '{from_date}' AND '{to_date}'
-            AND item.item_sub_group = '{sub_item_group}'
+            
             AND item.thickness like '%{attribute_value}%'
     """
     if item_code:
         data_query += f" AND wo.production_item = '{item_code}'"
         data_query += " GROUP BY wo.production_item, woi.item_code"
+    elif sub_item_group:
+       
+        data_query += f" AND item.item_sub_group = '{sub_item_group}'"
+        data_query += " GROUP BY woi.item_code"
     else:
         data_query += " GROUP BY woi.item_code"
 
