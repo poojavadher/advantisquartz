@@ -13,10 +13,13 @@ app_license = "MIT"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/advantisquartz/css/advantisquartz.css"
 # app_include_js = "/assets/advantisquartz/js/advantisquartz.js"
+app_include_js = "/assets/advantisquartz/js/image_view.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/advantisquartz/css/advantisquartz.css"
 # web_include_js = "/assets/advantisquartz/js/advantisquartz.js"
+# web_include_js = "/assets/advantisquartz/js/image_view.js"
+
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "advantisquartz/public/scss/website"
@@ -27,6 +30,8 @@ app_license = "MIT"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
+# page_js = {"page" : "public/js/image_view.js"}
+
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
