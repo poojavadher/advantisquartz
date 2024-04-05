@@ -6,17 +6,17 @@ frappe.ui.form.on('Polish Serial No Update', {
 	        $.each(frm.doc.polish_item || [], function(i, d) {
             var serial = d.slab_no;
             var batch_no = d.batch;
-            var weight = d.weight;
+            var weight = d.net_weight;
             var length = d.length;
             var width = d.width;
-            var grade = d.grade;
+            var grade = d.qc_grade;
             var polish_date_ = d.polish_date_;
             var thickness_in_mm_1 = d.thickness_in_mm_1;
             var thickness_in_mm_2 = d.thickness_in_mm_2;
             var thickness_in_mm_3 = d.thickness_in_mm_3 ;
             var thickness_in_mm_4 = d.thickness_in_mm_4;
             var thickness_in_mm_5 = d.thickness_in_mm_5;
-            var shift = d.shift;
+            var shift = d.custom_qc_shift;
             var repair = d.repair;
             var remarks_qc = d.remarks_qc;
             var thickness_1 = d.thickness_1;
@@ -25,12 +25,12 @@ frappe.ui.form.on('Polish Serial No Update', {
             var thickness_4 =  d.thickness_1;
             var thickness_5 = d.thickness_4 ;
             var thickness_6 = d.thickness_6 ;
-            var back__repairr = d.back__repairr;
+            var back__repairr = d.custom_back_repair_by;
             var repolish_reason = d.repolish_reason;
             var w_final_size = d.w_final_size;
             var qc_date = d.qc_date;
             var unloading_operator_name = d.unloading_operator_name;
-            var remarks = d.remarks;
+            var remarks = d.custom_remarks_other;
             var raw_slab_weight = d.raw_slab_weight;
             var bend = d.bend;
             var rp_1 = d.rp_1;

@@ -19,7 +19,7 @@ frappe.ui.form.on('Serial No Update', {
             var set_weight = d.set_weight;
             var hopper_weight = d.hopper_weight;
             var press_bar_weight = d.press_bar_weight;
-            var actual_or_laying_weight = d.actual_or_laying_weight;
+            var actual_or_laying_weight = d.laying_weights;
             var total_weight = d.total_weight;
             var floor_ = d.floor_;
             var operator_name = d.operator_name;
