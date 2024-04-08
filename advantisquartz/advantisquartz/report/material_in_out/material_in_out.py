@@ -8,29 +8,34 @@ from frappe import _
 def execute(filters=None):
     columns = get_columns(filters)
     purchase_data = get_purchase_data(filters)
+    bin_data = get_bin_data()
     issue_data = get_issue_data(filters)
-    stock_data = get_stock_data(filters)
     data = []
-    
-    for purchase in purchase_data:
+    # for item in purchase_data:
+    #     for bin in bin_data:
+    #         # for issue in issue_data:
+    #             if item.item_code == bin.item_code :
+    #                 data.append({"item_code":item.item_code,
+    #                          "item_name":item.item_name,
+    #                          "current_stock":bin.bin_qty})
+
+    for item in purchase_data:
         for issue in issue_data:
-            for stock in stock_data:
-                if purchase.item_code == issue.item_code and purchase.item_code == stock.item_code:
-                    
-                    data.append({
-                    "item_code":purchase.item_code,
-                    "item_name":purchase.item_name,
-                    "current_stock":stock.stock_qty,
-                    "issue_qty":issue.issue_qty,
-                    
-                    })
-        
+            if item.item_code == issue.item_code:
+                data.append({
+                    "item_code":item.item_code,
+                             "item_name":item.item_name,
+                             "current_stock":item.bin_qty,
+                             "issue_qty":issue.issue_qty
+                })    
+    
             
     return columns, data
 
 
 def get_columns(filters):
     columns=[
+       
 		{"label": _("Item Code"), "fieldname": "item_code", "fieldtype": "Link", "options":"Item","width":200},
   		{"label": _("Item Name"), "fieldname": "item_name", "fieldtype": "Data"},
     {"label": _("Current Stock"), "fieldname": "current_stock", "fieldtype": "Float"},
@@ -46,71 +51,53 @@ def get_purchase_data(filters):
     supplier = filters.get('supplier_name')
     data_query = f"""
         SELECT
-            poi.item_code,
-            poi.item_name,
-            SUM(poi.qty) AS "qty",
-            po.supplier,
-            po.posting_date
+           po.name,
+           poi.item_code,
+           poi.item_name,
+           sum(bin.actual_qty) AS "bin_qty"
             
         FROM
-            `tabPurchase Receipt` po 
-            JOIN `tabPurchase Receipt Item` poi ON po.name = poi.parent 
+            `tabPurchase Receipt` po JOIN `tabPurchase Receipt Item` poi ON po.name = poi.parent
+            JOIN `tabBin` bin ON poi.item_code = bin.item_code
             
         WHERE
             po.posting_date BETWEEN '{from_date}' AND '{to_date}'
+            AND po.status != "Cancelled"
+            AND poi.item_code = bin.item_code
     """
-    
     if supplier:
         data_query += f" AND po.supplier = '{supplier}'"
-
-    data_query += " GROUP BY poi.item_code"
-
+    data_query += " GROUP BY poi.item_code,po.supplier"
     return frappe.db.sql(data_query, as_dict=True)
 
+def get_bin_data():
+    data_query = f"""
+        SELECT
+           bin.item_code,
+           sum(bin.actual_qty) AS "bin_qty"
+	       
+        FROM
+            `tabBin` bin
+
+            
+        
+    """
+    data_query += " GROUP BY bin.item_code"
+    return frappe.db.sql(data_query, as_dict=True)
 
 def get_issue_data(filters):
     from_date = filters.get('from_date')
     to_date = filters.get('to_date')
     data_query = f"""
-        SELECT
-            sed.item_code,
-            sed.item_name,
-            SUM(sed.qty) AS "issue_qty"
-            
-        FROM
-            `tabStock Entry` se 
-            JOIN `tabStock Entry Detail` sed ON se.name = sed.parent 
-            
-        WHERE
-            se.posting_date BETWEEN '{from_date}' AND '{to_date}'
-            AND sed.t_warehouse IS NULL
+		SELECT
+		sle.item_code,
+		sum(sle.actual_qty) AS "issue_qty"
+        FROM `tabStock Ledger Entry` sle
+		WHERE
+		sle.posting_date BETWEEN '{from_date}' AND '{to_date}'
+		AND sle.actual_qty > 0
+        AND sle.is_cancelled = 0
     """
+    data_query += " GROUP BY sle.item_code"
     
-    
-
-    data_query += " GROUP BY sed.item_code"
-
-    return frappe.db.sql(data_query, as_dict=True)
-
-
-
-def get_stock_data(filters):
-    data_query = f"""
-        SELECT
-            bin.item_code,
-            SUM(bin.actual_qty) AS "stock_qty"
-            
-        FROM
-            `tabBin` bin 
-           
-        WHERE 
-        bin.actual_qty > 0     
-     
-          
-    """
-    
-    
-
-    data_query += " GROUP BY bin.item_code"
-
     return frappe.db.sql(data_query, as_dict=True)

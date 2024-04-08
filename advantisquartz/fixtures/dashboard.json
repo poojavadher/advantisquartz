@@ -298,5 +298,45 @@
   "modified": "2024-02-06 16:22:49.341265",
   "module": "Advantisquartz",
   "name": "AQ Stock Dashboard"
+ },
+ {
+  "cards": [
+   {
+    "card": "Total Assets",
+    "parent": "Employee Asset",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "New Assets (This Year)",
+    "parent": "Employee Asset",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Asset Value",
+    "parent": "Employee Asset",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Employee wise Asset Allocation",
+    "parent": "Employee Asset",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Employee Asset",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2024-04-05 11:07:46.376342",
+  "module": "Advantisquartz",
+  "name": "Employee Asset"
  }
 ]

@@ -1,0 +1,31 @@
+{
+ "cards": [
+  {
+   "card": "Total Assets"
+  },
+  {
+   "card": "New Assets (This Year)"
+  },
+  {
+   "card": "Asset Value"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Employee wise Asset Allocation",
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-04-05 10:50:45.497600",
+ "dashboard_name": "Employee Asset",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2024-04-05 10:51:37.255658",
+ "modified_by": "Administrator",
+ "module": "Advantisquartz",
+ "name": "Employee Asset",
+ "owner": "Administrator"
+}

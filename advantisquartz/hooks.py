@@ -262,7 +262,8 @@ fixtures = [
             "name","in",[
                 "Advantis Selling",
                 "AQ Stock Dashboard",
-                "AQ Buying Dashboard"
+                "AQ Buying Dashboard",
+                "Employee Asset"
             ]
         ]
     ]},
@@ -296,7 +297,8 @@ fixtures = [
                 "Stock",
                 "Manufacturing",
                 "Selling",
-                "Quality"
+                "Quality",
+                "HR"
             ]
         ]
     ]}
