@@ -8,7 +8,7 @@ from frappe import _
 def execute(filters=None):
     columns = get_columns(filters)
     purchase_data = get_purchase_data(filters)
-    bin_data = get_bin_data()
+  
     issue_data = get_issue_data(filters)
     data = []
     # for item in purchase_data:
@@ -54,12 +54,15 @@ def get_purchase_data(filters):
            po.name,
            poi.item_code,
            poi.item_name,
-           sum(bin.actual_qty) AS "bin_qty"
-            
+           COALESCE(bin_qty, 0) AS "bin_qty"
         FROM
-            `tabPurchase Receipt` po JOIN `tabPurchase Receipt Item` poi ON po.name = poi.parent
-            JOIN `tabBin` bin ON poi.item_code = bin.item_code
-            
+            `tabPurchase Receipt` po
+            JOIN `tabPurchase Receipt Item` poi ON po.name = poi.parent
+            LEFT JOIN (
+                SELECT item_code, SUM(actual_qty) AS bin_qty
+                FROM `tabBin`
+                GROUP BY item_code
+            ) bin ON poi.item_code = bin.item_code
         WHERE
             po.posting_date BETWEEN '{from_date}' AND '{to_date}'
             AND po.status != "Cancelled"
@@ -67,23 +70,10 @@ def get_purchase_data(filters):
     """
     if supplier:
         data_query += f" AND po.supplier = '{supplier}'"
-    data_query += " GROUP BY poi.item_code,po.supplier"
+    data_query += " GROUP BY poi.item_code, po.supplier, bin.item_code"
     return frappe.db.sql(data_query, as_dict=True)
 
-def get_bin_data():
-    data_query = f"""
-        SELECT
-           bin.item_code,
-           sum(bin.actual_qty) AS "bin_qty"
-	       
-        FROM
-            `tabBin` bin
 
-            
-        
-    """
-    data_query += " GROUP BY bin.item_code"
-    return frappe.db.sql(data_query, as_dict=True)
 
 def get_issue_data(filters):
     from_date = filters.get('from_date')
@@ -91,11 +81,11 @@ def get_issue_data(filters):
     data_query = f"""
 		SELECT
 		sle.item_code,
-		sum(sle.actual_qty) AS "issue_qty"
+		ABS(sum(sle.actual_qty)) AS "issue_qty"
         FROM `tabStock Ledger Entry` sle
 		WHERE
 		sle.posting_date BETWEEN '{from_date}' AND '{to_date}'
-		AND sle.actual_qty > 0
+		AND sle.actual_qty < 0
         AND sle.is_cancelled = 0
     """
     data_query += " GROUP BY sle.item_code"
