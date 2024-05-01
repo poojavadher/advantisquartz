@@ -117,7 +117,7 @@ frappe.ui.form.on('Polish Serial No Update', {
                 const formattedRow = {};
                 Object.keys(row).forEach(key => {
                     // Format date fields if present
-                    if (key === 'polish_date_') {
+                    if (key === 'polish_date_' || key === 'qc_date') {
                         const parts = row[key].split('-');
                         formattedRow[key] = `${parts[2]}-${parts[1]}-${parts[0]}`;
                     } else {
@@ -206,14 +206,19 @@ function processData(csvData) {
             pressItem[fieldName] = value;
         }
 
-        // Format the date if the field is 'polish_date_'
+        // Format the date if the field is 'Polish Date' and QC Date
         if (pressItem['polish_date_']) {
             // Assuming the original date format is 'yy-mm-dd'
             var parts = pressItem['polish_date_'].split('-');
             var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
             pressItem['polish_date_'] = formattedDate;
         }
-
+        if (pressItem['qc_date']) {
+            // Assuming the original date format is 'yy-mm-dd'
+            var parts = pressItem['qc_date'].split('-');
+            var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+            pressItem['qc_date'] = formattedDate;
+        }
         pressItems.push(pressItem);
     }
 
