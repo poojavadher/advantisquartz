@@ -112,10 +112,25 @@ frappe.ui.form.on('Polish Serial No Update', {
                 }
             });
 
+            // Format the date field to ensure consistency in Excel
+            const formattedData = childTableData.map(row => {
+                const formattedRow = {};
+                Object.keys(row).forEach(key => {
+                    // Format date fields if present
+                    if (key === 'polish_date_') {
+                        const parts = row[key].split('-');
+                        formattedRow[key] = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                    } else {
+                        formattedRow[key] = row[key];
+                    }
+                });
+                return formattedRow;
+            });
+
             // Create a CSV string with custom field names as the first row
             const csvContent = "data:text/csv;charset=utf-8," 
                 + Object.keys(fieldMapping).join(',') + '\n'
-                + childTableData.map(row => Object.keys(fieldMapping).map(customField => row[fieldMapping[customField]] || "").join(',')).join('\n');
+                + formattedData.map(row => Object.keys(fieldMapping).map(customField => row[fieldMapping[customField]] || "").join(',')).join('\n');
 
             // Create a temporary anchor element to trigger the download
             const anchor = document.createElement('a');
@@ -189,6 +204,14 @@ function processData(csvData) {
 
             // Map the field name with its corresponding value
             pressItem[fieldName] = value;
+        }
+
+        // Format the date if the field is 'polish_date_'
+        if (pressItem['polish_date_']) {
+            // Assuming the original date format is 'yy-mm-dd'
+            var parts = pressItem['polish_date_'].split('-');
+            var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+            pressItem['polish_date_'] = formattedDate;
         }
 
         pressItems.push(pressItem);
