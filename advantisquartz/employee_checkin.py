@@ -305,7 +305,7 @@ def skip_attendance_in_checkins(log_names: list):
 	EmployeeCheckin = frappe.qb.DocType("Employee Checkin")
 	(
 		frappe.qb.update(EmployeeCheckin)
-		.set("skip_auto_attendance", 1)
+		.set("skip_auto_attendance", 0)
 		.where(EmployeeCheckin.name.isin(log_names))
 	).run()
 
