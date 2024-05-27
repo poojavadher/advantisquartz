@@ -262,7 +262,8 @@ fixtures = [
                 "Advantis Selling",
                 "AQ Stock Dashboard",
                 "AQ Buying Dashboard",
-                "Employee Asset"
+                "Employee Asset",
+                "Gate Entry"
             ]
         ]
     ]},

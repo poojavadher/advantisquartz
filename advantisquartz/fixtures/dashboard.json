@@ -2,6 +2,70 @@
  {
   "cards": [
    {
+    "card": "Asset Repairing",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Asset Returnable",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Raw Material In",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Store & Spare In",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Sell Delivery",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Visitor On Visit Today",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Employee Go Out But Not Returned",
+    "parent": "Gate Entry",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Completed Gate Entry",
+    "parent": "Gate Entry",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Gate Entry",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2024-05-27 15:39:22.689808",
+  "module": "Advantis Gate Entry",
+  "name": "Gate Entry"
+ },
+ {
+  "cards": [
+   {
     "card": "Production Pending",
     "parent": "Advantis Selling",
     "parentfield": "cards",
