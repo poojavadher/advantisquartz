@@ -298,7 +298,8 @@ fixtures = [
                 "Manufacturing",
                 "Selling",
                 "Quality",
-                "HR"
+                "HR",
+                "Gate Pass"
             ]
         ]
     ]}

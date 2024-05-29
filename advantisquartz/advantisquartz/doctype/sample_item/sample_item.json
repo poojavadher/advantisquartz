@@ -19,7 +19,8 @@
   "column_break_esvhj",
   "sales_length",
   "sales_width",
-  "saleable_measurement"
+  "saleable_measurement",
+  "sales_weight"
  ],
  "fields": [
   {
@@ -102,12 +103,17 @@
    "fieldname": "item_description",
    "fieldtype": "Text Editor",
    "label": "Item Description"
+  },
+  {
+   "fieldname": "sales_weight",
+   "fieldtype": "Float",
+   "label": "Sales Weight"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-14 15:32:00.772047",
+ "modified": "2024-05-29 11:53:21.188132",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Item",

@@ -13,7 +13,12 @@ class Packinglist(Document):
 					frappe.db.set_value('Serial No',item.serial_no,{
 							"status":"Hold",
 							"serial_type":"",
-							"packing_list":self.name
+							"packing_list":self.name,
+							"custom_sales_grade":item.sales_grade,
+							"custom_sales_weight":item.sales_weight,
+							"custom_saleable_measurement":item.saleable_measurement,
+							"custom_sales_width":item.sales_width,
+							"custom_sales_length":item.sales_length
 						})
 			so_doc = frappe.get_doc('Sales Order', self.sales_order)
 			update_picking_status(so_doc)
@@ -26,7 +31,12 @@ class Packinglist(Document):
 				frappe.db.set_value('Serial No',item.serial_no,{
 						"status":"Active",
 						"serial_type":"",
-						"packing_list":""
+						"packing_list":"",
+						"custom_sales_grade":"",
+						"custom_sales_weight":"",
+						"custom_saleable_measurement":"",
+						"custom_sales_width":"",
+						"custom_sales_length":""
 					})
 				
 def update_picking_status(so_doc):

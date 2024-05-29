@@ -219,7 +219,12 @@ frappe.ui.form.on('Packing list', {
             frappe.db.set_value('Serial No', serial, {
                 'status': "Active",
                 "serial_type": "Finish",
-                "packing_list" : " "
+                "packing_list" : " ",
+                "custom_sales_grade":"",
+                "custom_sales_weight":"",
+                "custom_saleable_measurement":"",
+                "custom_sales_width":"",
+                "custom_sales_length":""
             });
         });
     },
@@ -233,7 +238,12 @@ frappe.ui.form.on('Packing List Item', {
             // Update the 'status' field in the 'Serial Number' DocType
             frappe.db.set_value('Serial No', serialNo, {
                 'status': "Active",
-                "packing_list": ""
+                "packing_list": "",
+                "custom_sales_grade":"",
+                "custom_sales_weight":"",
+                "custom_saleable_measurement":"",
+                "custom_sales_width":"",
+                "custom_sales_length":""
             });
         }
         frm.save()
