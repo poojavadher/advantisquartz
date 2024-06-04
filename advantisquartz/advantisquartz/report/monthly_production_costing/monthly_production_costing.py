@@ -26,9 +26,9 @@ def execute(filters=None):
     for work_data in work_order_data:
         wo_creation_date = work_data.actual_end_date
         for rates_data in rate_data:
-            if work_data.item_code == rates_data.item_code and wo_creation_date >= rates_data.posting_date:
+            if work_data.item_code == rates_data.item_code and wo_creation_date >= rates_data.posting_date and rates_data.valuation_rate > 0:
                 rates = rates_data.valuation_rate
-            
+                
         
         data.append({
             "raw_material": work_data.item_code,
@@ -128,9 +128,7 @@ def get_rate_order_data(filters):
             stl.name
         FROM
             `tabStock Ledger Entry` stl 
-        WHERE
-        
-             stl.valuation_rate IS NOT NULL
+       
         
     """
 
