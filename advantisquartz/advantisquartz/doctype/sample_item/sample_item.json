@@ -15,6 +15,7 @@
   "measurements_section",
   "production_length",
   "production_width",
+  "production_weight",
   "gross_measurement",
   "column_break_esvhj",
   "sales_length",
@@ -108,12 +109,17 @@
    "fieldname": "sales_weight",
    "fieldtype": "Float",
    "label": "Sales Weight"
+  },
+  {
+   "fieldname": "production_weight",
+   "fieldtype": "Float",
+   "label": "Production Weight"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-05-29 11:53:21.188132",
+ "modified": "2024-06-07 18:35:26.423213",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Sample Item",
