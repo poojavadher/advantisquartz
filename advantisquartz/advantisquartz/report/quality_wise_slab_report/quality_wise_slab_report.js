@@ -23,6 +23,12 @@ frappe.query_reports["Quality Wise Slab Report"] = {
             "fieldtype": "Link",
             "options": "Item"
         },
+        {
+            "fieldname": "batch_no",
+            "label": __("Batch No"),
+            "fieldtype": "Link",
+            "options": "Batch"
+        },
 		{
             "fieldname": "status",
             "label": __("Status"),
