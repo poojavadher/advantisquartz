@@ -106,6 +106,7 @@ app_include_js = "/assets/advantisquartz/js/image_view.js"
 override_doctype_class = {
 	"Gratuity": "advantisquartz.overrides.Gratuity",
     "Employee Checkin": "advantisquartz.employee_checkin.EmployeeCheckin",
+    "Salary Slip": "advantisquartz.salary_slip.SalarySlip"
     # "Stock Reconciliation": "advantisquartz.stock_reconciliation.StockReconciliation"
 }
 
@@ -235,6 +236,8 @@ fixtures = [
     "Property Setter",
     "Role",
     "Workflow Action Master",
+    "Salary Structure",
+    "Salary Component",
     {"dt":"Server Script","filters":[
         [
             "module","in",[
