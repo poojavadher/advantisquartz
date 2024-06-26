@@ -79,7 +79,7 @@ frappe.ui.form.on('Gate Entry', {
 		var row;
 		if (frm.doc.outward_for == "Delivery Note") {
 			frappe.call({
-				method: "advantisquartz.advantisquartz.doctype.gate_entry.api.get_child_for_parent",
+				method: "advantisquartz.advantis_gate_entry.doctype.gate_entry.api.get_child_for_parent",
 				args: {
 					'doc_name': doc_name,
 					'child_table': 'tabDelivery Note Item'
@@ -103,7 +103,7 @@ frappe.ui.form.on('Gate Entry', {
 		}
 		if (frm.doc.outward_for == "Purchase Receipt") {
 			frappe.call({
-				method: "advantisquartz.advantisquartz.doctype.gate_entry.api.get_child_for_parent",
+				method: "advantisquartz.advantis_gate_entry.doctype.gate_entry.api.get_child_for_parent",
 				args: {
 					'doc_name': doc_name,
 					'child_table': 'tabPurchase Receipt Item'
@@ -127,7 +127,7 @@ frappe.ui.form.on('Gate Entry', {
 		}
 		if (frm.doc.outward_for == "Machine Maintenance") {
 			frappe.call({
-				method: "advantisquartz.advantisquartz.doctype.gate_entry.api.get_child_for_parent",
+				method: "advantisquartz.advantis_gate_entry.doctype.gate_entry.api.get_child_for_parent",
 				args: {
 					'doc_name': doc_name,
 					'child_table': 'tabMachine Maintenance Item'
