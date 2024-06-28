@@ -33,7 +33,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -133,7 +132,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -167,7 +165,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -201,7 +198,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -235,7 +231,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -269,7 +264,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -303,7 +297,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -337,7 +330,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -371,7 +363,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -405,7 +396,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -439,7 +429,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -473,7 +462,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -507,7 +495,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -541,7 +528,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -575,7 +561,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -609,7 +594,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
@@ -643,7 +627,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 1,
@@ -677,7 +660,6 @@
   "variable_based_on_taxable_salary": 0
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "accounts": [],
   "amount": 0.0,
   "amount_based_on_formula": 0,
