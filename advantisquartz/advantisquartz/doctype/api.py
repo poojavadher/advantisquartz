@@ -2,7 +2,9 @@
 import os
 import frappe
 import datetime
+from datetime import datetime
 import math
+from frappe.utils.data import add_to_date
 from frappe.utils.file_manager import save_file_on_filesystem
 import openpyxl
 from openpyxl import Workbook
@@ -261,18 +263,134 @@ def create_xlsx(from_date, to_date):
 
 
 @frappe.whitelist(allow_guest=True)
+def mark_attendance(date, shift):
+    success_message_printed = False
+
+    checkin_records = frappe.db.get_all(
+        "Employee Checkin",
+        filters={
+            "shift": shift,
+            "date": date
+        },
+        fields=["employee", "name", "date", "log_type"],
+        order_by="date"
+    )
+
+    # if not checkin_records:
+    #     date_obj = datetime.strptime(date, '%Y-%m-%d')
+    #     formatted_date = date_obj.strftime('%d-%m-%Y')
+    #     frappe.msgprint(f"No Checkin Records found for the date {formatted_date}")
+    # else:
+    result_dict = {}
+
+    for record in checkin_records:
+        employee_id = record["employee"]
+        checkin_date = record["date"]
+
+        if employee_id not in result_dict:
+            result_dict[employee_id] = {}
+
+        if checkin_date not in result_dict[employee_id]:
+            result_dict[employee_id][checkin_date] = []
+
+        result_dict[employee_id][checkin_date].append({
+            "name": record["name"],
+            "log_type": record["log_type"]
+        })
+
+    first_chkin = None
+    last_chkout = None
+
+    for employee_id, dates in result_dict.items():
+        for checkin_date, logs in dates.items():
+            first_chkin = None
+            last_chkout = None
+
+            for log in logs:
+                name = log['name']
+                log_type = log['log_type']
+
+                if log_type == "IN" and first_chkin is None:
+                    first_chkin = name
+
+                if log_type == "OUT":
+                    last_chkout = name
+
+            if first_chkin and last_chkout:
+                exits_atte = frappe.db.get_value('Attendance', {'employee': employee_id, 'attendance_date': checkin_date, 'docstatus': 1}, ['name'])
+                if not exits_atte:
+                    
+                    chkin_datetime = frappe.db.get_value('Employee Checkin', first_chkin, 'time')
+                    chkout_datetime = frappe.db.get_value('Employee Checkin', last_chkout, 'time')
+
+                    chkin_time = frappe.utils.get_time(chkin_datetime)
+                    chkout_time = frappe.utils.get_time(chkout_datetime)
+
+                    attendance = frappe.new_doc("Attendance")
+                    attendance.employee = employee_id
+                    attendance.attendance_date = checkin_date
+                    attendance.shift = shift
+                    attendance.in_time = chkin_datetime
+                    attendance.out_time = chkout_datetime
+                    attendance.check_in_time = chkin_time
+                    attendance.check_out_time = chkout_time
+                    attendance.custom_employee_checkin = first_chkin
+                    attendance.custom_employee_checkout = last_chkout
+                    attendance.status = "Present"
+
+                    attendance.insert(ignore_permissions=True)
+                    attendance.submit()
+                    frappe.db.commit()
+
+                    if not success_message_printed:
+                        frappe.msgprint("Attendance is Marked Successfully")
+                        success_message_printed = True
+                else:
+                    attendance_link = frappe.utils.get_link_to_form("Attendance", exits_atte)
+                    frappe.msgprint(f"Attendance already marked of Employee:{employee_id} for date {checkin_date}: {attendance_link}")
+
+            elif first_chkin and not last_chkout:
+                exits_atte = frappe.db.get_value('Attendance', {'employee': employee_id, 'attendance_date': checkin_date, 'docstatus': 1}, ['name'])
+                if not exits_atte:
+                    chkin_datetime = frappe.db.get_value('Employee Checkin', first_chkin, 'time')
+                    chkin_time = frappe.utils.get_time(chkin_datetime)
+
+                    attendance = frappe.new_doc("Attendance")
+                    attendance.employee = employee_id
+                    attendance.attendance_date = checkin_date
+                    attendance.shift = shift
+                    attendance.in_time = chkin_datetime
+                    attendance.check_in_time = chkin_time
+                    attendance.custom_employee_checkin = first_chkin
+                    attendance.status = "Present"
+                    attendance.custom_remarks = "No OutPunch"
+
+                    attendance.insert(ignore_permissions=True)
+                    attendance.submit()
+                    frappe.db.commit()
+
+                    if not success_message_printed:
+                        frappe.msgprint("Attendance is Marked Successfully")
+                        success_message_printed = True
+                else:
+                    attendance_link = frappe.utils.get_link_to_form("Attendance", exits_atte)
+                    frappe.msgprint(f"Attendance already marked of Employee:{employee_id} for date {checkin_date}: {attendance_link}")
+
+
+
+                  
+@frappe.whitelist(allow_guest=True)
 def set_attendance_date():
-    today = datetime.date.today()
-    yesterday_end_of_day = datetime.datetime.combine(today - datetime.timedelta(days=1), datetime.time(23, 59, 00))
-    y_datetime = yesterday_end_of_day.strftime("%Y-%m-%d %H:%M:%S")
     
-    shift_types = frappe.get_all("Shift Type", fields=['name', 'last_sync_of_checkin'])
-    
-    for shift_type in shift_types:
-        frappe.db.set_value("Shift Type", shift_type['name'], "last_sync_of_checkin", y_datetime)
-        frappe.db.commit()
-    
-    # return y_datetime, shift_types
+    yesterday_date = add_to_date(datetime.now(), days=-1)
+    date = yesterday_date.strftime('%Y-%m-%d')
+
+    shift_types = frappe.get_all("Shift Type", filters={'enable_auto_attendance':1},fields=['name'])
+    if shift_types:
+        for shifts in shift_types:
+            shift = shifts.name
+
+            mark_attendance(date, shift)
 
 
 @frappe.whitelist(allow_guest=True)
