@@ -34,6 +34,20 @@ frappe.ui.form.on('Machine Maintenance', {
 			frm.refresh_field('challan_total_value');
 		}
 	},
+	setup: function (frm) {
+		frm.set_query('supplier_primary_address', function(doc) {
+			if(!doc.supplier) {
+				frappe.throw(__('Please set Supplier'));
+			}
+			return {
+				query: 'frappe.contacts.doctype.address.address.address_query',
+				filters: {
+					link_doctype: 'Supplier',
+					link_name: doc.supplier
+				}
+			};
+		});
+	},
 	
 	// supplier:function(frm){
 	// 	frm.set_query("supplier_primary_address", function () {
