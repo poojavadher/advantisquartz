@@ -264,6 +264,9 @@ def create_xlsx(from_date, to_date):
 
 @frappe.whitelist(allow_guest=True)
 def mark_attendance(date, shift):
+    if isinstance(date, str):
+        date = datetime.strptime(date, '%Y-%m-%d').date()
+
     success_message_printed = False
     
     emp_records = frappe.db.get_all("Employee",
@@ -301,17 +304,31 @@ def mark_attendance(date, shift):
                     'log_type': checkin['log_type']
                 })
         else:
-            exists_atte = frappe.db.get_value('Attendance', {'employee': emp_name, 'attendance_date': date, 'docstatus': 1}, ['name'])
-            if not exists_atte:
+            
+            holiday_list = frappe.db.get_value('Employee', emp_name, 'holiday_list')
+            is_holiday = False
+            
+            if holiday_list:
+                holiday_doc = frappe.get_doc('Holiday List', holiday_list)
+                holidays = holiday_doc.get("holidays")
                 
-                attendance = frappe.new_doc("Attendance")
-                attendance.employee = emp_name
-                attendance.attendance_date = date
-                attendance.status = "Absent"
-                attendance.custom_remarks = "No Checkin found"
-                attendance.insert(ignore_permissions=True)
-                attendance.submit()
-                frappe.db.commit()
+                for holiday in holidays:
+                    holiday_dt = holiday.holiday_date
+                    if date == holiday_dt:
+                        is_holiday = True
+                        break
+            
+            if not is_holiday:
+                exists_atte = frappe.db.get_value('Attendance', {'employee': emp_name, 'attendance_date': date, 'docstatus': 1}, ['name'])
+                if not exists_atte:
+                    attendance = frappe.new_doc("Attendance")
+                    attendance.employee = emp_name
+                    attendance.attendance_date = date
+                    attendance.status = "Absent"
+                    attendance.custom_remarks = "No Checkin found"
+                    attendance.insert(ignore_permissions=True)
+                    attendance.submit()
+                    frappe.db.commit()
 
     # Extract and print values from employee_checkins dictionary
     for emp_name, dates in employee_checkins.items():
@@ -402,15 +419,13 @@ def mark_attendance(date, shift):
 
 
 
-
-
                   
 @frappe.whitelist(allow_guest=True)
 def set_attendance_date():
     
     yesterday_date = add_to_date(datetime.now(), days=-1)
     date = yesterday_date.strftime('%Y-%m-%d')
-
+    
     shift_types = frappe.get_all("Shift Type", filters={'enable_auto_attendance':1},fields=['name'])
     if shift_types:
         for shifts in shift_types:
