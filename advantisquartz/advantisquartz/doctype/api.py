@@ -324,6 +324,7 @@ def mark_attendance(date, shift):
                     attendance = frappe.new_doc("Attendance")
                     attendance.employee = emp_name
                     attendance.attendance_date = date
+                    attendance.shift = shift
                     attendance.status = "Absent"
                     attendance.custom_remarks = "No Checkin found"
                     attendance.insert(ignore_permissions=True)
