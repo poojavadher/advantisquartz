@@ -1353,6 +1353,18 @@
   "filters": [
    {
     "default": null,
+    "fieldname": "company",
+    "fieldtype": "Link",
+    "label": "Company",
+    "mandatory": 1,
+    "options": "Company",
+    "parent": "Weekly Production Plan",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
     "fieldname": "from_date",
     "fieldtype": "Date",
     "label": "From Date",
@@ -1392,11 +1404,11 @@
   "javascript": null,
   "json": null,
   "letter_head": "LetterHead",
-  "modified": "2023-09-25 10:28:42.173839",
+  "modified": "2024-07-05 13:45:21.822256",
   "module": "Advantisquartz",
   "name": "Weekly Production Plan",
   "prepared_report": 0,
-  "query": "SELECT\n  `tabProduction Plan Item`.planned_start_date as \"Date:Date/Date:100\",\n  `tabProduction Plan Item`.description as \"Design Name:Data/Design Name:200\",\n  `tabProduction Plan Item`.item_code as \"Item Code:Data/Item Code:150\",\n  `tabProduction Plan Item`.planned_qty as \"Planned Qty:Float\",\n  `tabProduction Plan Item`.produced_qty as \"Produced Qty:Float\",\n  `tabProduction Plan Item`.pending_qty as \"Pending Qty:Float\",\n  `tabProduction Plan Item`.remarks as \"Remarks:Data/Remarks:240\",\n  `tabProduction Plan Item`.parent as \"Production Plan:Link/Production Plan:180\"\nFROM\n  `tabProduction Plan Item`\nWHERE\n  `tabProduction Plan Item`.planned_start_date BETWEEN %(from_date)s AND %(to_date)s\n  AND `tabProduction Plan Item`.parent IN (\n    SELECT `name` FROM `tabProduction Plan` WHERE `production_line` = %(pl)s\n  );\n",
+  "query": "SELECT\n  `tabProduction Plan Item`.planned_start_date as \"Date:Date/Date:100\",\n  `tabProduction Plan Item`.description as \"Design Name:Data/Design Name:200\",\n  `tabProduction Plan Item`.item_code as \"Item Code:Data/Item Code:150\",\n  `tabProduction Plan Item`.planned_qty as \"Planned Qty:Float\",\n  `tabProduction Plan Item`.produced_qty as \"Produced Qty:Float\",\n  `tabProduction Plan Item`.pending_qty as \"Pending Qty:Float\",\n  `tabProduction Plan Item`.remarks as \"Remarks:Data/Remarks:240\",\n  `tabProduction Plan Item`.parent as \"Production Plan:Link/Production Plan:180\"\nFROM\n  `tabProduction Plan Item`\nWHERE\n  `tabProduction Plan Item`.planned_start_date BETWEEN %(from_date)s AND %(to_date)s\n  AND `tabProduction Plan Item`.parent IN (\n    SELECT `name` FROM `tabProduction Plan` WHERE `production_line` = %(pl)s AND `company` = %(company)s\n  );\n",
   "ref_doctype": "Production Plan",
   "reference_report": null,
   "report_name": "Weekly Production Plan",
