@@ -18,7 +18,6 @@
   "column_break_w2yc2",
   "container_no",
   "vehicle_no",
-  "sales_invoice_no",
   "barcode_scanner",
   "delivered",
   "section_break_8gyty",
@@ -140,18 +139,12 @@
    "label": "Company",
    "options": "Company",
    "reqd": 1
-  },
-  {
-   "fieldname": "sales_invoice_no",
-   "fieldtype": "Link",
-   "label": "Sales Invoice No",
-   "options": "Sales Invoice"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-10 13:20:30.969895",
+ "modified": "2024-08-21 10:39:22.340883",
  "modified_by": "Administrator",
  "module": "Advantisquartz",
  "name": "Packing list",

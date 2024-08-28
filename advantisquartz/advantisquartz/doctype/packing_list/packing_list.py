@@ -33,10 +33,10 @@ class Packinglist(Document):
 						"serial_type":"",
 						"packing_list":"",
 						"custom_sales_grade":"",
-						"custom_sales_weight":"",
-						"custom_saleable_measurement":"",
-						"custom_sales_width":"",
-						"custom_sales_length":""
+						"custom_sales_weight":0,
+						"custom_saleable_measurement":0,
+						"custom_sales_width":0,
+						"custom_sales_length":0
 					})
 				
 def update_picking_status(so_doc):
