@@ -472,11 +472,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2024-03-13 13:01:53.989290",
+  "modified": "2024-11-05 18:12:13.500458",
   "module": "Advantisquartz",
   "name": "Validate Purchase Receipt For Existing Gate Entry Details Before Insert",
   "reference_doctype": "Purchase Receipt",
-  "script": "existing_pr = frappe.get_list(\n    \"Purchase Receipt\",\n    filters={\n        \"supplier\": doc.supplier,\n        \"bill_no\": doc.bill_no,\n        \"bill_date\": doc.bill_date,\n        \"gate_entry\": doc.gate_entry\n    },\n    fields=[\"name\"]\n)\n\nif existing_pr:\n    frappe.throw(\"Gate Entry Already Exists Against This Supplier With the Same Invoice No. and Date.\")",
+  "script": "if doc.amended_from == \"\":\n    existing_pr = frappe.get_list(\n        \"Purchase Receipt\",\n        filters={\n            \"supplier\": doc.supplier,\n            \"bill_no\": doc.bill_no,\n            \"bill_date\": doc.bill_date,\n            \"gate_entry\": doc.gate_entry\n        },\n        fields=[\"name\"]\n    )\n    \n    if existing_pr:\n        frappe.throw(\"Gate Entry Already Exists Against This Supplier With the Same Invoice No. and Date.\")",
   "script_type": "DocType Event"
  },
  {
@@ -494,5 +494,21 @@
   "reference_doctype": "Salary Slip",
   "script": "components_to_remove = [\"After Leave\", \"Base\"]\n    \nsalary_child = doc.get(\"earnings\")\n    \nfiltered_earnings = []\nfor component in salary_child:\n    if component.salary_component not in components_to_remove:\n        filtered_earnings.append(component)\n    \ndoc.earnings = filtered_earnings\n    \n",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "bulk_update_machine_maintenance_items",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2024-11-05 18:41:55.391571",
+  "module": "Advantisquartz",
+  "name": "Bulk Update machine maintainance Items",
+  "reference_doctype": "Purchase Receipt",
+  "script": "mm_ids = frappe.form_dict[\"mm_ids\"]\n# Ensure mm_ids is a list\nif isinstance(mm_ids, str):\n    mm_ids = json.loads(mm_ids)\n        \n# Update all records in one database call\nfor mm_id in mm_ids:\n    doc = frappe.get_doc(\"Machine Maintenance Item\", mm_id)\n    doc.returned = 1\n    doc.save()\n    \nfrappe.db.commit()\n",
+  "script_type": "API"
  }
 ]

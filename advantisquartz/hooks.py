@@ -268,10 +268,17 @@ fixtures = [
             ]
         ]
     ]},
+    # {"dt":"Print Format","filters":[
+    #     [
+    #     "module","in",[
+    #             "advantisquartz"
+    #         ]
+    #     ]
+    # ]},
     {"dt":"Print Format","filters":[
         [
-        "module","in",[
-                "advantisquartz"
+        "name","in",[
+                "Purchase Auditing Voucher"
             ]
         ]
     ]},
