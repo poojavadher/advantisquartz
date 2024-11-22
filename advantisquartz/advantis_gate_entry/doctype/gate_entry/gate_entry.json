@@ -29,6 +29,9 @@
   "gate_out_time",
   "challan_no",
   "challan_date",
+  "vehicle_head",
+  "out_km",
+  "in_km",
   "section_break_qaj4p",
   "get_data",
   "stock_item_tab",
@@ -98,7 +101,8 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Purpose",
-   "options": "\nRaw Material\nStore & Spare\nAsset Repair\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther"
+   "options": "\nOffice Vehicle\nRaw Material\nStore & Spare\nAsset Repair\nAsset Returnable\nCapital Item\nMachinery\nPurchase Return\nSales Delivery\nSales Return\nOther",
+   "reqd": 1
   },
   {
    "fieldname": "party_type",
@@ -493,6 +497,28 @@
    "fieldname": "edit_gate_in_date_and_time",
    "fieldtype": "Check",
    "label": "Edit Gate In Date and Time"
+  },
+  {
+   "depends_on": "eval:doc.purpose == \"Office Vehicle\";",
+   "fieldname": "vehicle_head",
+   "fieldtype": "Select",
+   "label": "Vehicle Head",
+   "mandatory_depends_on": "eval:doc.purpose == \"Office Vehicle\";",
+   "options": "\nMarket Work\nRaw Material Check\nGuest\nStaff\nOther"
+  },
+  {
+   "depends_on": "eval:doc.purpose == \"Office Vehicle\";",
+   "fieldname": "out_km",
+   "fieldtype": "Float",
+   "label": "Out KM ",
+   "mandatory_depends_on": "eval:doc.purpose == \"Office Vehicle\";"
+  },
+  {
+   "depends_on": "eval:doc.purpose == \"Office Vehicle\";",
+   "fieldname": "in_km",
+   "fieldtype": "Float",
+   "label": "In KM ",
+   "mandatory_depends_on": "eval:doc.purpose == \"Office Vehicle\";"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -503,7 +529,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2024-02-23 16:27:27.430631",
+ "modified": "2024-11-22 10:25:49.975779",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",

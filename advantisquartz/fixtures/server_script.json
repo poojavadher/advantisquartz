@@ -88,11 +88,11 @@
   "doctype": "Server Script",
   "doctype_event": "After Insert",
   "event_frequency": "All",
-  "modified": "2024-11-05 17:18:20.819454",
+  "modified": "2024-11-06 13:26:37.535083",
   "module": "Advantisquartz",
   "name": "Item Naming for finish goods",
   "reference_doctype": "Item",
-  "script": "if doc is not None and doc.finish_good_:\n    trimmed_url = \"\"\n    driver=\"\"\n    new_item = \"S-\"+str(doc.finish_good_id)+\"-\"+str(doc.thickness)\n    frappe.rename_doc(\"Item\", doc.name , new_item, merge=False)\n  \n    frappe.local.response[\"type\"] = \"redirect\"\n    frappe.local.response[\"location\"] = \"/app/item\"\n",
+  "script": "if doc is not None and doc.finish_good_:\n    new_item = \"S-\" + str(doc.finish_good_id) + \"-\" + str(doc.thickness)\n    frappe.rename_doc(\"Item\", doc.name, new_item, merge=False)\n    \n    # Show a message to the user with a link to the Items page\n    frappe.msgprint(\n        msg=f\"Item {doc.name} has been renamed to {new_item}. <a href='/app/item'>Go to Item List</a>\",\n        title=\"Item Renamed\",\n        indicator=\"green\"\n    )\n",
   "script_type": "DocType Event"
  },
  {

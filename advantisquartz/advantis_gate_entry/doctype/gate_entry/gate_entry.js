@@ -6,6 +6,9 @@ frappe.ui.form.on('Gate Entry', {
 		if (frm.doc.invoice_date > get_today()) {
 			frappe.throw(__("Not Allowed To Select future dates"));
 		}
+		if((frm.doc.purpose == "Office Vehicle" && frm.doc.in_km <= 0) || (frm.doc.purpose == "Office Vehicle" && frm.doc.out_km <= 0)){
+			frappe.throw(__("Invalid Value For In KM or Out KM"));
+		}
 	},
 	is_weight_in: function (frm) {
 		frm.set_value('weight_in_date', frappe.datetime.now_date());
@@ -451,7 +454,7 @@ frappe.ui.form.on('Gate Entry', {
 
 
 function checkLock(frm) {
-	const allFields = ['naming_series', 'entry_type', 'purpose', 'party_type', "supplier", 'invoice_no', 'challan_no', 'challan_date', 'outward_for', 'outward_entry', 'invoice_date', 'stock_item_tab', 'driver_name', 'driver_mobile_no', 'truck_no', 'remarks'];
+	const allFields = ['naming_series', 'entry_type', 'purpose', 'party_type', "supplier", 'invoice_no', 'challan_no', 'challan_date', 'outward_for', 'outward_entry', 'invoice_date', 'stock_item_tab', 'driver_name', 'driver_mobile_no', 'truck_no', 'remarks','vehicle_head','out_km','in_km'];
 
 	const isLocked = frm.doc.lock_fields;
 	for (const field of allFields) {
