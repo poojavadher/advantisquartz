@@ -30,8 +30,8 @@
   "challan_no",
   "challan_date",
   "vehicle_head",
-  "out_km",
-  "in_km",
+  "in_out_km",
+  "in_out_date_time",
   "section_break_qaj4p",
   "get_data",
   "stock_item_tab",
@@ -105,12 +105,14 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "party_type",
    "fieldtype": "Link",
    "label": "Party Type ",
    "options": "DocType"
   },
   {
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "supplier",
    "fieldtype": "Dynamic Link",
    "label": "Party",
@@ -137,6 +139,7 @@
   },
   {
    "default": "Today",
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "gate_in_date",
    "fieldtype": "Date",
    "label": "Gate in Date",
@@ -144,6 +147,7 @@
   },
   {
    "default": "Now",
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "gate_in_time",
    "fieldtype": "Time",
    "label": "Gate in Time",
@@ -171,6 +175,7 @@
   {
    "allow_on_submit": 1,
    "default": "0",
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "is_gate_out",
    "fieldtype": "Check",
    "label": "Is Gate Out",
@@ -508,17 +513,19 @@
   },
   {
    "depends_on": "eval:doc.purpose == \"Office Vehicle\";",
-   "fieldname": "out_km",
+   "fieldname": "in_out_km",
    "fieldtype": "Float",
-   "label": "Out KM ",
+   "label": "In/Out KM",
    "mandatory_depends_on": "eval:doc.purpose == \"Office Vehicle\";"
   },
   {
+   "default": "now",
    "depends_on": "eval:doc.purpose == \"Office Vehicle\";",
-   "fieldname": "in_km",
-   "fieldtype": "Float",
-   "label": "In KM ",
-   "mandatory_depends_on": "eval:doc.purpose == \"Office Vehicle\";"
+   "fieldname": "in_out_date_time",
+   "fieldtype": "Datetime",
+   "label": "In/Out Time",
+   "mandatory_depends_on": "eval:doc.purpose == \"Office Vehicle\";",
+   "read_only_depends_on": "eval:doc.edit_gate_in_date_and_time==0"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -529,7 +536,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2024-11-22 10:25:49.975779",
+ "modified": "2024-11-25 18:54:37.916187",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",

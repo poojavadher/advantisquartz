@@ -6,7 +6,7 @@ frappe.ui.form.on('Gate Entry', {
 		if (frm.doc.invoice_date > get_today()) {
 			frappe.throw(__("Not Allowed To Select future dates"));
 		}
-		if((frm.doc.purpose == "Office Vehicle" && frm.doc.in_km <= 0) || (frm.doc.purpose == "Office Vehicle" && frm.doc.out_km <= 0)){
+		if(frm.doc.purpose == "Office Vehicle" && frm.doc.in_out_km <= 0){
 			frappe.throw(__("Invalid Value For In KM or Out KM"));
 		}
 	},
@@ -454,14 +454,14 @@ frappe.ui.form.on('Gate Entry', {
 
 
 function checkLock(frm) {
-	const allFields = ['naming_series', 'entry_type', 'purpose', 'party_type', "supplier", 'invoice_no', 'challan_no', 'challan_date', 'outward_for', 'outward_entry', 'invoice_date', 'stock_item_tab', 'driver_name', 'driver_mobile_no', 'truck_no', 'remarks','vehicle_head','out_km','in_km'];
+	const allFields = ['naming_series', 'entry_type', 'purpose', 'party_type', "supplier", 'invoice_no', 'challan_no', 'challan_date', 'outward_for', 'outward_entry', 'invoice_date', 'stock_item_tab', 'driver_name', 'driver_mobile_no', 'truck_no', 'remarks','vehicle_head','in_out_km','in_out_date_time'];
 
 	const isLocked = frm.doc.lock_fields;
 	for (const field of allFields) {
 		frm.set_df_property(field, 'read_only', isLocked);
 	}
 
-	if (frm.doc.entry_type === 'Inward') {
+	if (frm.doc.entry_type === 'Inward' && frm.doc.purpose != "Office Vehicle") {
 		frm.set_df_property('purpose', 'reqd', !isLocked);
 		frm.set_df_property('driver_name', 'reqd', !isLocked);
 		frm.set_df_property('driver_mobile_no', 'reqd', !isLocked);
@@ -475,6 +475,10 @@ function checkLock(frm) {
 		frm.set_df_property('truck_no', 'reqd', !isLocked);
 	} else {
 		frm.set_df_property('entry_type', 'reqd', !isLocked);
+	}
+	if (frm.doc.purpose == "Office Vehicle" && frm.doc.entry_type === 'Inward'){
+		frm.set_df_property('supplier', 'reqd', isLocked);
+		frm.set_df_property('party_type', 'reqd', isLocked);
 	}
 }
 
