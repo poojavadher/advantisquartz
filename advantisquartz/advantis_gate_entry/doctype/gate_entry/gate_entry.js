@@ -460,26 +460,6 @@ function checkLock(frm) {
 	for (const field of allFields) {
 		frm.set_df_property(field, 'read_only', isLocked);
 	}
-
-	if (frm.doc.entry_type === 'Inward' && frm.doc.purpose != "Office Vehicle") {
-		frm.set_df_property('purpose', 'reqd', !isLocked);
-		frm.set_df_property('driver_name', 'reqd', !isLocked);
-		frm.set_df_property('driver_mobile_no', 'reqd', !isLocked);
-		frm.set_df_property('truck_no', 'reqd', !isLocked);
-		frm.set_df_property('supplier', 'reqd', !isLocked);
-		frm.set_df_property('party_type', 'reqd', !isLocked);
-	} else if (frm.doc.entry_type === 'Outward') {
-		frm.set_df_property('purpose', 'reqd', !isLocked);
-		frm.set_df_property('driver_name', 'reqd', !isLocked);
-		frm.set_df_property('driver_mobile_no', 'reqd', !isLocked);
-		frm.set_df_property('truck_no', 'reqd', !isLocked);
-	} else {
-		frm.set_df_property('entry_type', 'reqd', !isLocked);
-	}
-	if (frm.doc.purpose == "Office Vehicle" && frm.doc.entry_type === 'Inward'){
-		frm.set_df_property('supplier', 'reqd', isLocked);
-		frm.set_df_property('party_type', 'reqd', isLocked);
-	}
 }
 
 function toggleWeightLock(frm) {

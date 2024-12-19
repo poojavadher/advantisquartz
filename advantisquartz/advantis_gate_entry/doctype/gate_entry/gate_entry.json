@@ -94,7 +94,8 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Entry Type",
-   "options": "\nInward\nOutward\nOther"
+   "options": "\nInward\nOutward\nOther",
+   "reqd": 1
   },
   {
    "fieldname": "purpose",
@@ -109,6 +110,7 @@
    "fieldname": "party_type",
    "fieldtype": "Link",
    "label": "Party Type ",
+   "mandatory_depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "options": "DocType"
   },
   {
@@ -116,18 +118,19 @@
    "fieldname": "supplier",
    "fieldtype": "Dynamic Link",
    "label": "Party",
+   "mandatory_depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "options": "party_type"
   },
   {
-   "depends_on": "eval: doc.entry_type == 'Outward';",
+   "depends_on": "eval: doc.entry_type == 'Outward' && doc.purpose != \"Office Vehicle\";",
    "fieldname": "outward_for",
    "fieldtype": "Link",
    "label": "Outward For",
-   "mandatory_depends_on": "eval: doc.entry_type == 'Outward';",
+   "mandatory_depends_on": "eval: doc.entry_type == 'Outward' && doc.purpose != \"Office Vehicle\";",
    "options": "DocType"
   },
   {
-   "depends_on": "eval: doc.entry_type == 'Outward' && doc.outward_for !== 'Asset Repair';",
+   "depends_on": "eval: doc.entry_type == 'Outward' && doc.purpose != \"Office Vehicle\";",
    "fieldname": "outward_entry",
    "fieldtype": "Dynamic Link",
    "label": "Outward Entry",
@@ -159,11 +162,13 @@
    "label": "Remarks"
   },
   {
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "invoice_no",
    "fieldtype": "Data",
    "label": "Invoice No."
   },
   {
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "invoice_date",
    "fieldtype": "Date",
    "label": "Invoice Date"
@@ -229,13 +234,15 @@
   {
    "fieldname": "driver_name",
    "fieldtype": "Data",
-   "label": "Driver Name"
+   "label": "Driver Name",
+   "reqd": 1
   },
   {
    "default": "+91-",
    "fieldname": "driver_mobile_no",
    "fieldtype": "Phone",
-   "label": "Driver Mobile No."
+   "label": "Driver Mobile No.",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_mbtk2",
@@ -244,7 +251,8 @@
   {
    "fieldname": "truck_no",
    "fieldtype": "Data",
-   "label": "Truck No."
+   "label": "Truck No.",
+   "reqd": 1
   },
   {
    "default": "0",
@@ -499,6 +507,7 @@
   },
   {
    "default": "0",
+   "depends_on": "eval:doc.purpose != \"Office Vehicle\";",
    "fieldname": "edit_gate_in_date_and_time",
    "fieldtype": "Check",
    "label": "Edit Gate In Date and Time"
@@ -536,7 +545,7 @@
    "link_fieldname": "gate_entry"
   }
  ],
- "modified": "2024-11-25 18:54:37.916187",
+ "modified": "2024-12-19 11:52:10.461153",
  "modified_by": "Administrator",
  "module": "Advantis Gate Entry",
  "name": "Gate Entry",
